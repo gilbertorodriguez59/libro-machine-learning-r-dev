@@ -1,12 +1,32 @@
 # ¿Qué es el aprendizaje automático?
 
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de:
+
+- Explicar qué es el aprendizaje automático.
+- Diferenciar entre programación tradicional y aprendizaje automático.
+- Identificar problemas de clasificación, regresión y agrupamiento.
+- Reconocer las etapas principales de un proyecto de aprendizaje automático.
+- Construir un primer ejemplo sencillo de clasificación en R.
+
+## 1.1 Introducción
+
 El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.
 
-A diferencia de la programación tradicional, donde el programador escribe reglas explícitas, en el aprendizaje automático el modelo aprende a partir de ejemplos.
+En lugar de programar manualmente todas las reglas de decisión, proporcionamos datos a un algoritmo para que encuentre relaciones, regularidades o patrones útiles.
 
-## Programación tradicional
+En este libro nos interesa aprender aprendizaje automático desde una perspectiva práctica. Es decir, no comenzaremos con desarrollos matemáticos extensos, sino con preguntas aplicadas, datos reales, código reproducible e interpretación de resultados.
 
-En la programación tradicional, una persona define reglas como la siguiente:
+La idea central será:
+
+> Aprender Machine Learning haciendo proyectos con datos reales.
+
+## 1.2 Programación tradicional contra aprendizaje automático
+
+En la programación tradicional, una persona escribe reglas explícitas.
+
+Por ejemplo, supongamos que queremos clasificar la contaminación de un día usando la concentración de PM10.
 
 ```{r}
 pm10 <- 85
@@ -16,3 +36,355 @@ if (pm10 > 75) {
 } else {
   print("Contaminación baja")
 }
+```
+
+En este caso, la regla fue escrita directamente por el programador:
+
+```text
+Si PM10 > 75, entonces contaminación alta.
+```
+
+Esto puede funcionar cuando el problema es simple. Sin embargo, muchos problemas reales no se pueden resolver con una sola regla.
+
+Por ejemplo:
+
+- ¿Un accidente de tránsito tendrá lesionados?
+- ¿Un paciente tiene alto riesgo de cierta enfermedad?
+- ¿Un día tendrá mala calidad del aire?
+- ¿Un municipio pertenece a un grupo de alta, media o baja incidencia?
+- ¿Una transacción parece normal o sospechosa?
+
+En estos casos, el comportamiento depende de muchas variables al mismo tiempo.
+
+## 1.3 ¿Qué hace diferente al aprendizaje automático?
+
+En aprendizaje automático no le damos al sistema una regla fija. Le damos datos.
+
+Por ejemplo:
+
+```text
+Datos históricos + algoritmo = modelo aprendido
+```
+
+Un modelo de aprendizaje automático aprende a partir de ejemplos.
+
+Supongamos que tenemos información de varios días con datos de PM10, temperatura, humedad y una etiqueta que indica si la contaminación fue alta o baja.
+
+```{r}
+datos <- data.frame(
+  dia = 1:12,
+  pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),
+  temperatura = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),
+  humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),
+  clase = c(
+    "Baja", "Alta", "Baja", "Alta",
+    "Baja", "Alta", "Baja", "Alta",
+    "Baja", "Alta", "Baja", "Alta"
+  )
+)
+
+datos
+```
+
+La variable que deseamos predecir se llama **clase**.
+
+```{r}
+datos$clase
+```
+
+Las variables que usaremos para hacer la predicción son:
+
+```{r}
+datos[, c("pm10", "temperatura", "humedad")]
+```
+
+En este ejemplo, el objetivo del modelo sería aprender una relación aproximada como esta:
+
+```text
+PM10, temperatura y humedad  →  clase de contaminación
+```
+
+## 1.4 Variables predictoras y variable respuesta
+
+En aprendizaje automático es importante distinguir entre:
+
+### Variable respuesta
+
+Es la variable que queremos predecir.
+
+También se le llama:
+
+- variable objetivo,
+- etiqueta,
+- salida,
+- clase,
+- respuesta.
+
+En el ejemplo anterior, la variable respuesta es:
+
+```text
+clase
+```
+
+porque queremos predecir si la contaminación es alta o baja.
+
+### Variables predictoras
+
+Son las variables que usamos como entrada para el modelo.
+
+También se les llama:
+
+- características,
+- atributos,
+- variables independientes,
+- entradas,
+- *features*.
+
+En el ejemplo anterior, las variables predictoras son:
+
+```text
+pm10, temperatura, humedad
+```
+
+## 1.5 Tipos principales de aprendizaje automático
+
+En una primera aproximación podemos hablar de tres grandes tipos de aprendizaje automático:
+
+1. Aprendizaje supervisado.
+2. Aprendizaje no supervisado.
+3. Aprendizaje por refuerzo.
+
+En este libro nos concentraremos principalmente en los dos primeros.
+
+## 1.6 Aprendizaje supervisado
+
+El aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.
+
+Es decir, tenemos ejemplos históricos donde ya sabemos cuál fue el resultado.
+
+Por ejemplo:
+
+| Problema | Variables predictoras | Variable respuesta |
+|---|---|---|
+| Clasificar contaminación | PM10, temperatura, humedad | Alta o baja |
+| Predecir lesionados en accidente | Hora, día, tipo de accidente | Con lesionados o sin lesionados |
+| Clasificar tumor | Mediciones celulares | Benigno o maligno |
+| Predecir ventas | Precio, mes, publicidad | Ventas |
+
+Dentro del aprendizaje supervisado hay dos tareas muy importantes:
+
+- clasificación,
+- regresión.
+
+## 1.7 Clasificación
+
+La clasificación se utiliza cuando la variable respuesta es categórica.
+
+Por ejemplo:
+
+```text
+Alta / Baja
+Sí / No
+Benigno / Maligno
+Fatal / No fatal / Solo daños
+```
+
+Ejemplos de clasificación:
+
+- Clasificar si un accidente tendrá víctimas.
+- Clasificar si un tumor es benigno o maligno.
+- Clasificar si un correo es spam o no spam.
+- Clasificar si un día tiene contaminación alta o baja.
+
+En clasificación, el modelo asigna una observación a una categoría.
+
+## 1.8 Regresión
+
+La regresión se utiliza cuando la variable respuesta es numérica.
+
+Por ejemplo:
+
+```text
+Precio de una casa
+Temperatura
+Ventas
+Concentración de ozono
+Número de accidentes
+```
+
+Ejemplos de regresión:
+
+- Predecir la concentración de PM10.
+- Predecir la temperatura promedio de un día.
+- Predecir el número de accidentes en un municipio.
+- Predecir ventas mensuales.
+
+En regresión, el modelo predice un valor numérico.
+
+## 1.9 Aprendizaje no supervisado
+
+El aprendizaje no supervisado se utiliza cuando no tenemos una variable respuesta conocida.
+
+En lugar de predecir una etiqueta, buscamos patrones ocultos en los datos.
+
+Por ejemplo:
+
+- Agrupar municipios con características similares.
+- Agrupar estados por patrones de accidentes.
+- Agrupar estaciones de monitoreo ambiental.
+- Reducir muchas variables a dos o tres componentes principales.
+- Detectar observaciones atípicas.
+
+Dos técnicas importantes de aprendizaje no supervisado son:
+
+- agrupamiento o *clustering*,
+- análisis de componentes principales o PCA.
+
+## 1.10 El flujo general de un proyecto de aprendizaje automático
+
+Un proyecto de aprendizaje automático casi nunca empieza directamente con el modelo.
+
+Antes de modelar, necesitamos entender y preparar los datos.
+
+Un flujo típico es:
+
+```text
+1. Plantear el problema
+2. Conseguir los datos
+3. Entender las variables
+4. Limpiar los datos
+5. Explorar los datos
+6. Dividir en entrenamiento y prueba
+7. Entrenar el modelo
+8. Evaluar el modelo
+9. Interpretar los resultados
+10. Comunicar hallazgos
+```
+
+En este libro seguiremos esta lógica.
+
+## 1.11 Primer ejemplo visual en R
+
+Ahora construiremos una gráfica sencilla para visualizar el ejemplo de contaminación.
+
+```{r}
+library(ggplot2)
+
+ggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +
+  geom_point(size = 4) +
+  labs(
+    title = "Ejemplo inicial de clasificación",
+    subtitle = "Clasificación de contaminación alta o baja",
+    x = "PM10",
+    y = "Temperatura",
+    color = "Clase"
+  )
+```
+
+En la gráfica, cada punto representa un día.
+
+El color indica si ese día fue clasificado como contaminación alta o baja.
+
+Aunque este ejemplo es pequeño y didáctico, nos permite observar una idea fundamental:
+
+> Los modelos de aprendizaje automático buscan patrones en las variables predictoras para explicar o predecir una variable respuesta.
+
+## 1.12 División entre entrenamiento y prueba
+
+Un error común al iniciar en aprendizaje automático es evaluar el modelo con los mismos datos con los que fue entrenado.
+
+Para evitarlo, normalmente dividimos los datos en dos partes:
+
+- conjunto de entrenamiento,
+- conjunto de prueba.
+
+El conjunto de entrenamiento se usa para construir el modelo.
+
+El conjunto de prueba se usa para evaluar qué tan bien funciona el modelo con datos que no vio durante el entrenamiento.
+
+```{r}
+set.seed(123)
+
+n <- nrow(datos)
+indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
+
+entrenamiento <- datos[indices_entrenamiento, ]
+prueba <- datos[-indices_entrenamiento, ]
+
+entrenamiento
+prueba
+```
+
+En este ejemplo pequeño, la división es solo ilustrativa. En problemas reales usaremos conjuntos de datos más grandes.
+
+## 1.13 Primer clasificador sencillo basado en una regla
+
+Antes de usar algoritmos más avanzados, podemos construir una regla sencilla para entender la idea de predicción.
+
+```{r}
+datos$prediccion_regla <- ifelse(datos$pm10 > 75, "Alta", "Baja")
+
+datos[, c("pm10", "clase", "prediccion_regla")]
+```
+
+Ahora comparamos la clase real con la predicción.
+
+```{r}
+tabla_confusion <- table(
+  Real = datos$clase,
+  Predicho = datos$prediccion_regla
+)
+
+tabla_confusion
+```
+
+Calculamos la exactitud:
+
+```{r}
+exactitud <- mean(datos$clase == datos$prediccion_regla)
+exactitud
+```
+
+La exactitud indica la proporción de observaciones clasificadas correctamente.
+
+Este ejemplo todavía no es un modelo automático sofisticado, pero nos prepara para entender cómo evaluaremos modelos más adelante.
+
+## 1.14 ¿Qué aprenderemos en este libro?
+
+A lo largo del libro estudiaremos métodos como:
+
+- regresión lineal,
+- regresión logística,
+- k vecinos más cercanos,
+- árboles de decisión,
+- bosques aleatorios,
+- máquinas de soporte vectorial,
+- Naive Bayes,
+- agrupamiento,
+- componentes principales.
+
+Cada método se estudiará con:
+
+1. una explicación intuitiva,
+2. un problema real,
+3. preparación de datos,
+4. código en R,
+5. resultados,
+6. interpretación,
+7. ejercicios.
+
+## 1.15 Conclusión
+
+El aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos.
+
+En este capítulo vimos que:
+
+- la programación tradicional usa reglas escritas directamente por una persona;
+- el aprendizaje automático aprende patrones a partir de ejemplos;
+- los problemas supervisados tienen una variable respuesta;
+- la clasificación predice categorías;
+- la regresión predice valores numéricos;
+- el aprendizaje no supervisado busca estructuras ocultas;
+- todo proyecto requiere preparar, explorar, modelar, evaluar e interpretar los datos.
+
+En el siguiente capítulo comenzaremos con una parte fundamental: la preparación de datos reales.

@@ -179,7 +179,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#programación-tradicional" id="toc-programación-tradicional" class="nav-link active" data-scroll-target="#programación-tradicional"><span class="header-section-number">2.1</span> Programación tradicional</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.2</span> 1.1 Introducción</a></li>
+  <li><a href="#programación-tradicional-contra-aprendizaje-automático" id="toc-programación-tradicional-contra-aprendizaje-automático" class="nav-link" data-scroll-target="#programación-tradicional-contra-aprendizaje-automático"><span class="header-section-number">2.3</span> 1.2 Programación tradicional contra aprendizaje automático</a></li>
+  <li><a href="#qué-hace-diferente-al-aprendizaje-automático" id="toc-qué-hace-diferente-al-aprendizaje-automático" class="nav-link" data-scroll-target="#qué-hace-diferente-al-aprendizaje-automático"><span class="header-section-number">2.4</span> 1.3 ¿Qué hace diferente al aprendizaje automático?</a></li>
+  <li><a href="#variables-predictoras-y-variable-respuesta" id="toc-variables-predictoras-y-variable-respuesta" class="nav-link" data-scroll-target="#variables-predictoras-y-variable-respuesta"><span class="header-section-number">2.5</span> 1.4 Variables predictoras y variable respuesta</a>
+  <ul class="collapse">
+  <li><a href="#variable-respuesta" id="toc-variable-respuesta" class="nav-link" data-scroll-target="#variable-respuesta"><span class="header-section-number">2.5.1</span> Variable respuesta</a></li>
+  <li><a href="#variables-predictoras" id="toc-variables-predictoras" class="nav-link" data-scroll-target="#variables-predictoras"><span class="header-section-number">2.5.2</span> Variables predictoras</a></li>
+  </ul></li>
+  <li><a href="#tipos-principales-de-aprendizaje-automático" id="toc-tipos-principales-de-aprendizaje-automático" class="nav-link" data-scroll-target="#tipos-principales-de-aprendizaje-automático"><span class="header-section-number">2.6</span> 1.5 Tipos principales de aprendizaje automático</a></li>
+  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">2.7</span> 1.6 Aprendizaje supervisado</a></li>
+  <li><a href="#clasificación" id="toc-clasificación" class="nav-link" data-scroll-target="#clasificación"><span class="header-section-number">2.8</span> 1.7 Clasificación</a></li>
+  <li><a href="#regresión" id="toc-regresión" class="nav-link" data-scroll-target="#regresión"><span class="header-section-number">2.9</span> 1.8 Regresión</a></li>
+  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">2.10</span> 1.9 Aprendizaje no supervisado</a></li>
+  <li><a href="#el-flujo-general-de-un-proyecto-de-aprendizaje-automático" id="toc-el-flujo-general-de-un-proyecto-de-aprendizaje-automático" class="nav-link" data-scroll-target="#el-flujo-general-de-un-proyecto-de-aprendizaje-automático"><span class="header-section-number">2.11</span> 1.10 El flujo general de un proyecto de aprendizaje automático</a></li>
+  <li><a href="#primer-ejemplo-visual-en-r" id="toc-primer-ejemplo-visual-en-r" class="nav-link" data-scroll-target="#primer-ejemplo-visual-en-r"><span class="header-section-number">2.12</span> 1.11 Primer ejemplo visual en R</a></li>
+  <li><a href="#división-entre-entrenamiento-y-prueba" id="toc-división-entre-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-entre-entrenamiento-y-prueba"><span class="header-section-number">2.13</span> 1.12 División entre entrenamiento y prueba</a></li>
+  <li><a href="#primer-clasificador-sencillo-basado-en-una-regla" id="toc-primer-clasificador-sencillo-basado-en-una-regla" class="nav-link" data-scroll-target="#primer-clasificador-sencillo-basado-en-una-regla"><span class="header-section-number">2.14</span> 1.13 Primer clasificador sencillo basado en una regla</a></li>
+  <li><a href="#qué-aprenderemos-en-este-libro" id="toc-qué-aprenderemos-en-este-libro" class="nav-link" data-scroll-target="#qué-aprenderemos-en-este-libro"><span class="header-section-number">2.15</span> 1.14 ¿Qué aprenderemos en este libro?</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">2.16</span> 1.15 Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -188,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -205,13 +224,478 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="objetivos-del-capítulo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
+<p>Al finalizar este capítulo, el lector será capaz de:</p>
+<ul>
+<li>Explicar qué es el aprendizaje automático.</li>
+<li>Diferenciar entre programación tradicional y aprendizaje automático.</li>
+<li>Identificar problemas de clasificación, regresión y agrupamiento.</li>
+<li>Reconocer las etapas principales de un proyecto de aprendizaje automático.</li>
+<li>Construir un primer ejemplo sencillo de clasificación en R.</li>
+</ul>
+</section>
+<section id="introducción" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> 1.1 Introducción</h2>
 <p>El aprendizaje automático, también conocido como <em>Machine Learning</em>, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.</p>
-<p>A diferencia de la programación tradicional, donde el programador escribe reglas explícitas, en el aprendizaje automático el modelo aprende a partir de ejemplos.</p>
-<section id="programación-tradicional" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="programación-tradicional"><span class="header-section-number">2.1</span> Programación tradicional</h2>
-<p>En la programación tradicional, una persona define reglas como la siguiente:</p>
-<p>pm10 &lt;- 85</p>
-<p>if (pm10 &gt; 75) { print(“Contaminación alta”) } else { print(“Contaminación baja”) }</p>
+<p>En lugar de programar manualmente todas las reglas de decisión, proporcionamos datos a un algoritmo para que encuentre relaciones, regularidades o patrones útiles.</p>
+<p>En este libro nos interesa aprender aprendizaje automático desde una perspectiva práctica. Es decir, no comenzaremos con desarrollos matemáticos extensos, sino con preguntas aplicadas, datos reales, código reproducible e interpretación de resultados.</p>
+<p>La idea central será:</p>
+<blockquote class="blockquote">
+<p>Aprender Machine Learning haciendo proyectos con datos reales.</p>
+</blockquote>
+</section>
+<section id="programación-tradicional-contra-aprendizaje-automático" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="programación-tradicional-contra-aprendizaje-automático"><span class="header-section-number">2.3</span> 1.2 Programación tradicional contra aprendizaje automático</h2>
+<p>En la programación tradicional, una persona escribe reglas explícitas.</p>
+<p>Por ejemplo, supongamos que queremos clasificar la contaminación de un día usando la concentración de PM10.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pm10 <span class="ot">&lt;-</span> <span class="dv">85</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm10 <span class="sc">&gt;</span> <span class="dv">75</span>) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación alta"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación baja"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Contaminación alta"</code></pre>
+</div>
+</div>
+<p>En este caso, la regla fue escrita directamente por el programador:</p>
+<pre class="text"><code>Si PM10 &gt; 75, entonces contaminación alta.</code></pre>
+<p>Esto puede funcionar cuando el problema es simple. Sin embargo, muchos problemas reales no se pueden resolver con una sola regla.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>¿Un accidente de tránsito tendrá lesionados?</li>
+<li>¿Un paciente tiene alto riesgo de cierta enfermedad?</li>
+<li>¿Un día tendrá mala calidad del aire?</li>
+<li>¿Un municipio pertenece a un grupo de alta, media o baja incidencia?</li>
+<li>¿Una transacción parece normal o sospechosa?</li>
+</ul>
+<p>En estos casos, el comportamiento depende de muchas variables al mismo tiempo.</p>
+</section>
+<section id="qué-hace-diferente-al-aprendizaje-automático" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="qué-hace-diferente-al-aprendizaje-automático"><span class="header-section-number">2.4</span> 1.3 ¿Qué hace diferente al aprendizaje automático?</h2>
+<p>En aprendizaje automático no le damos al sistema una regla fija. Le damos datos.</p>
+<p>Por ejemplo:</p>
+<pre class="text"><code>Datos históricos + algoritmo = modelo aprendido</code></pre>
+<p>Un modelo de aprendizaje automático aprende a partir de ejemplos.</p>
+<p>Supongamos que tenemos información de varios días con datos de PM10, temperatura, humedad y una etiqueta que indica si la contaminación fue alta o baja.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pm10 =</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">88</span>, <span class="dv">55</span>, <span class="dv">120</span>, <span class="dv">63</span>, <span class="dv">95</span>, <span class="dv">38</span>, <span class="dv">110</span>, <span class="dv">72</span>, <span class="dv">130</span>, <span class="dv">47</span>, <span class="dv">99</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperatura =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">24</span>, <span class="dv">29</span>, <span class="dv">21</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">32</span>, <span class="dv">23</span>, <span class="dv">30</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">humedad =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">55</span>, <span class="dv">33</span>, <span class="dv">65</span>, <span class="dv">29</span>, <span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">34</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">clase =</span> <span class="fu">c</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dia pm10 temperatura humedad clase
+1    1   42          25      40  Baja
+2    2   88          28      35  Alta
+3    3   55          22      60  Baja
+4    4  120          30      30  Alta
+5    5   63          24      55  Baja
+6    6   95          29      33  Alta
+7    7   38          21      65  Baja
+8    8  110          31      29  Alta
+9    9   72          27      42  Baja
+10  10  130          32      28  Alta
+11  11   47          23      62  Baja
+12  12   99          30      34  Alta</code></pre>
+</div>
+</div>
+<p>La variable que deseamos predecir se llama <strong>clase</strong>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>clase</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Baja" "Alta" "Baja" "Alta" "Baja" "Alta" "Baja" "Alta" "Baja" "Alta"
+[11] "Baja" "Alta"</code></pre>
+</div>
+</div>
+<p>Las variables que usaremos para hacer la predicción son:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datos[, <span class="fu">c</span>(<span class="st">"pm10"</span>, <span class="st">"temperatura"</span>, <span class="st">"humedad"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   pm10 temperatura humedad
+1    42          25      40
+2    88          28      35
+3    55          22      60
+4   120          30      30
+5    63          24      55
+6    95          29      33
+7    38          21      65
+8   110          31      29
+9    72          27      42
+10  130          32      28
+11   47          23      62
+12   99          30      34</code></pre>
+</div>
+</div>
+<p>En este ejemplo, el objetivo del modelo sería aprender una relación aproximada como esta:</p>
+<pre class="text"><code>PM10, temperatura y humedad  →  clase de contaminación</code></pre>
+</section>
+<section id="variables-predictoras-y-variable-respuesta" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="variables-predictoras-y-variable-respuesta"><span class="header-section-number">2.5</span> 1.4 Variables predictoras y variable respuesta</h2>
+<p>En aprendizaje automático es importante distinguir entre:</p>
+<section id="variable-respuesta" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="variable-respuesta"><span class="header-section-number">2.5.1</span> Variable respuesta</h3>
+<p>Es la variable que queremos predecir.</p>
+<p>También se le llama:</p>
+<ul>
+<li>variable objetivo,</li>
+<li>etiqueta,</li>
+<li>salida,</li>
+<li>clase,</li>
+<li>respuesta.</li>
+</ul>
+<p>En el ejemplo anterior, la variable respuesta es:</p>
+<pre class="text"><code>clase</code></pre>
+<p>porque queremos predecir si la contaminación es alta o baja.</p>
+</section>
+<section id="variables-predictoras" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="variables-predictoras"><span class="header-section-number">2.5.2</span> Variables predictoras</h3>
+<p>Son las variables que usamos como entrada para el modelo.</p>
+<p>También se les llama:</p>
+<ul>
+<li>características,</li>
+<li>atributos,</li>
+<li>variables independientes,</li>
+<li>entradas,</li>
+<li><em>features</em>.</li>
+</ul>
+<p>En el ejemplo anterior, las variables predictoras son:</p>
+<pre class="text"><code>pm10, temperatura, humedad</code></pre>
+</section>
+</section>
+<section id="tipos-principales-de-aprendizaje-automático" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="tipos-principales-de-aprendizaje-automático"><span class="header-section-number">2.6</span> 1.5 Tipos principales de aprendizaje automático</h2>
+<p>En una primera aproximación podemos hablar de tres grandes tipos de aprendizaje automático:</p>
+<ol type="1">
+<li>Aprendizaje supervisado.</li>
+<li>Aprendizaje no supervisado.</li>
+<li>Aprendizaje por refuerzo.</li>
+</ol>
+<p>En este libro nos concentraremos principalmente en los dos primeros.</p>
+</section>
+<section id="aprendizaje-supervisado" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="aprendizaje-supervisado"><span class="header-section-number">2.7</span> 1.6 Aprendizaje supervisado</h2>
+<p>El aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.</p>
+<p>Es decir, tenemos ejemplos históricos donde ya sabemos cuál fue el resultado.</p>
+<p>Por ejemplo:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problema</th>
+<th>Variables predictoras</th>
+<th>Variable respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clasificar contaminación</td>
+<td>PM10, temperatura, humedad</td>
+<td>Alta o baja</td>
+</tr>
+<tr class="even">
+<td>Predecir lesionados en accidente</td>
+<td>Hora, día, tipo de accidente</td>
+<td>Con lesionados o sin lesionados</td>
+</tr>
+<tr class="odd">
+<td>Clasificar tumor</td>
+<td>Mediciones celulares</td>
+<td>Benigno o maligno</td>
+</tr>
+<tr class="even">
+<td>Predecir ventas</td>
+<td>Precio, mes, publicidad</td>
+<td>Ventas</td>
+</tr>
+</tbody>
+</table>
+<p>Dentro del aprendizaje supervisado hay dos tareas muy importantes:</p>
+<ul>
+<li>clasificación,</li>
+<li>regresión.</li>
+</ul>
+</section>
+<section id="clasificación" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">2.8</span> 1.7 Clasificación</h2>
+<p>La clasificación se utiliza cuando la variable respuesta es categórica.</p>
+<p>Por ejemplo:</p>
+<pre class="text"><code>Alta / Baja
+Sí / No
+Benigno / Maligno
+Fatal / No fatal / Solo daños</code></pre>
+<p>Ejemplos de clasificación:</p>
+<ul>
+<li>Clasificar si un accidente tendrá víctimas.</li>
+<li>Clasificar si un tumor es benigno o maligno.</li>
+<li>Clasificar si un correo es spam o no spam.</li>
+<li>Clasificar si un día tiene contaminación alta o baja.</li>
+</ul>
+<p>En clasificación, el modelo asigna una observación a una categoría.</p>
+</section>
+<section id="regresión" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="regresión"><span class="header-section-number">2.9</span> 1.8 Regresión</h2>
+<p>La regresión se utiliza cuando la variable respuesta es numérica.</p>
+<p>Por ejemplo:</p>
+<pre class="text"><code>Precio de una casa
+Temperatura
+Ventas
+Concentración de ozono
+Número de accidentes</code></pre>
+<p>Ejemplos de regresión:</p>
+<ul>
+<li>Predecir la concentración de PM10.</li>
+<li>Predecir la temperatura promedio de un día.</li>
+<li>Predecir el número de accidentes en un municipio.</li>
+<li>Predecir ventas mensuales.</li>
+</ul>
+<p>En regresión, el modelo predice un valor numérico.</p>
+</section>
+<section id="aprendizaje-no-supervisado" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="aprendizaje-no-supervisado"><span class="header-section-number">2.10</span> 1.9 Aprendizaje no supervisado</h2>
+<p>El aprendizaje no supervisado se utiliza cuando no tenemos una variable respuesta conocida.</p>
+<p>En lugar de predecir una etiqueta, buscamos patrones ocultos en los datos.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>Agrupar municipios con características similares.</li>
+<li>Agrupar estados por patrones de accidentes.</li>
+<li>Agrupar estaciones de monitoreo ambiental.</li>
+<li>Reducir muchas variables a dos o tres componentes principales.</li>
+<li>Detectar observaciones atípicas.</li>
+</ul>
+<p>Dos técnicas importantes de aprendizaje no supervisado son:</p>
+<ul>
+<li>agrupamiento o <em>clustering</em>,</li>
+<li>análisis de componentes principales o PCA.</li>
+</ul>
+</section>
+<section id="el-flujo-general-de-un-proyecto-de-aprendizaje-automático" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="el-flujo-general-de-un-proyecto-de-aprendizaje-automático"><span class="header-section-number">2.11</span> 1.10 El flujo general de un proyecto de aprendizaje automático</h2>
+<p>Un proyecto de aprendizaje automático casi nunca empieza directamente con el modelo.</p>
+<p>Antes de modelar, necesitamos entender y preparar los datos.</p>
+<p>Un flujo típico es:</p>
+<pre class="text"><code>1. Plantear el problema
+2. Conseguir los datos
+3. Entender las variables
+4. Limpiar los datos
+5. Explorar los datos
+6. Dividir en entrenamiento y prueba
+7. Entrenar el modelo
+8. Evaluar el modelo
+9. Interpretar los resultados
+10. Comunicar hallazgos</code></pre>
+<p>En este libro seguiremos esta lógica.</p>
+</section>
+<section id="primer-ejemplo-visual-en-r" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="primer-ejemplo-visual-en-r"><span class="header-section-number">2.12</span> 1.11 Primer ejemplo visual en R</h2>
+<p>Ahora construiremos una gráfica sencilla para visualizar el ejemplo de contaminación.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.3</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> pm10, <span class="at">y =</span> temperatura, <span class="at">color =</span> clase)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ejemplo inicial de clasificación"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Clasificación de contaminación alta o baja"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PM10"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temperatura"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Clase"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01-introduccion_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En la gráfica, cada punto representa un día.</p>
+<p>El color indica si ese día fue clasificado como contaminación alta o baja.</p>
+<p>Aunque este ejemplo es pequeño y didáctico, nos permite observar una idea fundamental:</p>
+<blockquote class="blockquote">
+<p>Los modelos de aprendizaje automático buscan patrones en las variables predictoras para explicar o predecir una variable respuesta.</p>
+</blockquote>
+</section>
+<section id="división-entre-entrenamiento-y-prueba" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="división-entre-entrenamiento-y-prueba"><span class="header-section-number">2.13</span> 1.12 División entre entrenamiento y prueba</h2>
+<p>Un error común al iniciar en aprendizaje automático es evaluar el modelo con los mismos datos con los que fue entrenado.</p>
+<p>Para evitarlo, normalmente dividimos los datos en dos partes:</p>
+<ul>
+<li>conjunto de entrenamiento,</li>
+<li>conjunto de prueba.</li>
+</ul>
+<p>El conjunto de entrenamiento se usa para construir el modelo.</p>
+<p>El conjunto de prueba se usa para evaluar qué tan bien funciona el modelo con datos que no vio durante el entrenamiento.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>entrenamiento <span class="ot">&lt;-</span> datos[indices_entrenamiento, ]</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> datos[<span class="sc">-</span>indices_entrenamiento, ]</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>entrenamiento</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dia pm10 temperatura humedad clase
+3    3   55          22      60  Baja
+12  12   99          30      34  Alta
+10  10  130          32      28  Alta
+2    2   88          28      35  Alta
+6    6   95          29      33  Alta
+11  11   47          23      62  Baja
+5    5   63          24      55  Baja
+4    4  120          30      30  Alta</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>prueba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  dia pm10 temperatura humedad clase
+1   1   42          25      40  Baja
+7   7   38          21      65  Baja
+8   8  110          31      29  Alta
+9   9   72          27      42  Baja</code></pre>
+</div>
+</div>
+<p>En este ejemplo pequeño, la división es solo ilustrativa. En problemas reales usaremos conjuntos de datos más grandes.</p>
+</section>
+<section id="primer-clasificador-sencillo-basado-en-una-regla" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="primer-clasificador-sencillo-basado-en-una-regla"><span class="header-section-number">2.14</span> 1.13 Primer clasificador sencillo basado en una regla</h2>
+<p>Antes de usar algoritmos más avanzados, podemos construir una regla sencilla para entender la idea de predicción.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>prediccion_regla <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>pm10 <span class="sc">&gt;</span> <span class="dv">75</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>datos[, <span class="fu">c</span>(<span class="st">"pm10"</span>, <span class="st">"clase"</span>, <span class="st">"prediccion_regla"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   pm10 clase prediccion_regla
+1    42  Baja             Baja
+2    88  Alta             Alta
+3    55  Baja             Baja
+4   120  Alta             Alta
+5    63  Baja             Baja
+6    95  Alta             Alta
+7    38  Baja             Baja
+8   110  Alta             Alta
+9    72  Baja             Baja
+10  130  Alta             Alta
+11   47  Baja             Baja
+12   99  Alta             Alta</code></pre>
+</div>
+</div>
+<p>Ahora comparamos la clase real con la predicción.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tabla_confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Real =</span> datos<span class="sc">$</span>clase,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Predicho =</span> datos<span class="sc">$</span>prediccion_regla</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>tabla_confusion</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Predicho
+Real   Alta Baja
+  Alta    6    0
+  Baja    0    6</code></pre>
+</div>
+</div>
+<p>Calculamos la exactitud:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>exactitud <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos<span class="sc">$</span>clase <span class="sc">==</span> datos<span class="sc">$</span>prediccion_regla)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>exactitud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>La exactitud indica la proporción de observaciones clasificadas correctamente.</p>
+<p>Este ejemplo todavía no es un modelo automático sofisticado, pero nos prepara para entender cómo evaluaremos modelos más adelante.</p>
+</section>
+<section id="qué-aprenderemos-en-este-libro" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="qué-aprenderemos-en-este-libro"><span class="header-section-number">2.15</span> 1.14 ¿Qué aprenderemos en este libro?</h2>
+<p>A lo largo del libro estudiaremos métodos como:</p>
+<ul>
+<li>regresión lineal,</li>
+<li>regresión logística,</li>
+<li>k vecinos más cercanos,</li>
+<li>árboles de decisión,</li>
+<li>bosques aleatorios,</li>
+<li>máquinas de soporte vectorial,</li>
+<li>Naive Bayes,</li>
+<li>agrupamiento,</li>
+<li>componentes principales.</li>
+</ul>
+<p>Cada método se estudiará con:</p>
+<ol type="1">
+<li>una explicación intuitiva,</li>
+<li>un problema real,</li>
+<li>preparación de datos,</li>
+<li>código en R,</li>
+<li>resultados,</li>
+<li>interpretación,</li>
+<li>ejercicios.</li>
+</ol>
+</section>
+<section id="conclusión" class="level2" data-number="2.16">
+<h2 data-number="2.16" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">2.16</span> 1.15 Conclusión</h2>
+<p>El aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos.</p>
+<p>En este capítulo vimos que:</p>
+<ul>
+<li>la programación tradicional usa reglas escritas directamente por una persona;</li>
+<li>el aprendizaje automático aprende patrones a partir de ejemplos;</li>
+<li>los problemas supervisados tienen una variable respuesta;</li>
+<li>la clasificación predice categorías;</li>
+<li>la regresión predice valores numéricos;</li>
+<li>el aprendizaje no supervisado busca estructuras ocultas;</li>
+<li>todo proyecto requiere preparar, explorar, modelar, evaluar e interpretar los datos.</li>
+</ul>
+<p>En el siguiente capítulo comenzaremos con una parte fundamental: la preparación de datos reales.</p>
 
 
 <!-- -->
@@ -682,24 +1166,396 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># ¿Qué es el aprendizaje automático?</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A diferencia de la programación tradicional, donde el programador escribe reglas explícitas, en el aprendizaje automático el modelo aprende a partir de ejemplos.</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Programación tradicional</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>En la programación tradicional, una persona define reglas como la siguiente:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>pm10 <span class="ot">&lt;-</span> <span class="dv">85</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm10 <span class="sc">&gt;</span> <span class="dv">75</span>) {</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación alta"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación baja"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># ¿Qué es el aprendizaje automático?</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos del capítulo</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>Al finalizar este capítulo, el lector será capaz de:</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explicar qué es el aprendizaje automático.</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Diferenciar entre programación tradicional y aprendizaje automático.</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Identificar problemas de clasificación, regresión y agrupamiento.</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reconocer las etapas principales de un proyecto de aprendizaje automático.</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Construir un primer ejemplo sencillo de clasificación en R.</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.1 Introducción</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>En lugar de programar manualmente todas las reglas de decisión, proporcionamos datos a un algoritmo para que encuentre relaciones, regularidades o patrones útiles.</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>En este libro nos interesa aprender aprendizaje automático desde una perspectiva práctica. Es decir, no comenzaremos con desarrollos matemáticos extensos, sino con preguntas aplicadas, datos reales, código reproducible e interpretación de resultados.</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>La idea central será:</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Aprender Machine Learning haciendo proyectos con datos reales.</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.2 Programación tradicional contra aprendizaje automático</span></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>En la programación tradicional, una persona escribe reglas explícitas.</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>Por ejemplo, supongamos que queremos clasificar la contaminación de un día usando la concentración de PM10.</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>pm10 <span class="ot">&lt;-</span> <span class="dv">85</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm10 <span class="sc">&gt;</span> <span class="dv">75</span>) {</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación alta"</span>)</span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación baja"</span>)</span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>En este caso, la regla fue escrita directamente por el programador:</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a><span class="in">Si PM10 &gt; 75, entonces contaminación alta.</span></span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>Esto puede funcionar cuando el problema es simple. Sin embargo, muchos problemas reales no se pueden resolver con una sola regla.</span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>Por ejemplo:</span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Un accidente de tránsito tendrá lesionados?</span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Un paciente tiene alto riesgo de cierta enfermedad?</span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Un día tendrá mala calidad del aire?</span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Un municipio pertenece a un grupo de alta, media o baja incidencia?</span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Una transacción parece normal o sospechosa?</span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a>En estos casos, el comportamiento depende de muchas variables al mismo tiempo.</span>
+<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.3 ¿Qué hace diferente al aprendizaje automático?</span></span>
+<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a>En aprendizaje automático no le damos al sistema una regla fija. Le damos datos.</span>
+<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a>Por ejemplo:</span>
+<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-67"><a href="#cb30-67" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-68"><a href="#cb30-68" aria-hidden="true" tabindex="-1"></a><span class="in">Datos históricos + algoritmo = modelo aprendido</span></span>
+<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-71"><a href="#cb30-71" aria-hidden="true" tabindex="-1"></a>Un modelo de aprendizaje automático aprende a partir de ejemplos.</span>
+<span id="cb30-72"><a href="#cb30-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-73"><a href="#cb30-73" aria-hidden="true" tabindex="-1"></a>Supongamos que tenemos información de varios días con datos de PM10, temperatura, humedad y una etiqueta que indica si la contaminación fue alta o baja.</span>
+<span id="cb30-74"><a href="#cb30-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-77"><a href="#cb30-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-78"><a href="#cb30-78" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-79"><a href="#cb30-79" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb30-80"><a href="#cb30-80" aria-hidden="true" tabindex="-1"></a>  <span class="at">pm10 =</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">88</span>, <span class="dv">55</span>, <span class="dv">120</span>, <span class="dv">63</span>, <span class="dv">95</span>, <span class="dv">38</span>, <span class="dv">110</span>, <span class="dv">72</span>, <span class="dv">130</span>, <span class="dv">47</span>, <span class="dv">99</span>),</span>
+<span id="cb30-81"><a href="#cb30-81" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperatura =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">24</span>, <span class="dv">29</span>, <span class="dv">21</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">32</span>, <span class="dv">23</span>, <span class="dv">30</span>),</span>
+<span id="cb30-82"><a href="#cb30-82" aria-hidden="true" tabindex="-1"></a>  <span class="at">humedad =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">55</span>, <span class="dv">33</span>, <span class="dv">65</span>, <span class="dv">29</span>, <span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">34</span>),</span>
+<span id="cb30-83"><a href="#cb30-83" aria-hidden="true" tabindex="-1"></a>  <span class="at">clase =</span> <span class="fu">c</span>(</span>
+<span id="cb30-84"><a href="#cb30-84" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>,</span>
+<span id="cb30-85"><a href="#cb30-85" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>,</span>
+<span id="cb30-86"><a href="#cb30-86" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span></span>
+<span id="cb30-87"><a href="#cb30-87" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-88"><a href="#cb30-88" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-89"><a href="#cb30-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-90"><a href="#cb30-90" aria-hidden="true" tabindex="-1"></a>datos</span>
+<span id="cb30-91"><a href="#cb30-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-92"><a href="#cb30-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-93"><a href="#cb30-93" aria-hidden="true" tabindex="-1"></a>La variable que deseamos predecir se llama **clase**.</span>
+<span id="cb30-94"><a href="#cb30-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-97"><a href="#cb30-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-98"><a href="#cb30-98" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>clase</span>
+<span id="cb30-99"><a href="#cb30-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-100"><a href="#cb30-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-101"><a href="#cb30-101" aria-hidden="true" tabindex="-1"></a>Las variables que usaremos para hacer la predicción son:</span>
+<span id="cb30-102"><a href="#cb30-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-105"><a href="#cb30-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-106"><a href="#cb30-106" aria-hidden="true" tabindex="-1"></a>datos[, <span class="fu">c</span>(<span class="st">"pm10"</span>, <span class="st">"temperatura"</span>, <span class="st">"humedad"</span>)]</span>
+<span id="cb30-107"><a href="#cb30-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-108"><a href="#cb30-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-109"><a href="#cb30-109" aria-hidden="true" tabindex="-1"></a>En este ejemplo, el objetivo del modelo sería aprender una relación aproximada como esta:</span>
+<span id="cb30-110"><a href="#cb30-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-111"><a href="#cb30-111" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-112"><a href="#cb30-112" aria-hidden="true" tabindex="-1"></a><span class="in">PM10, temperatura y humedad  →  clase de contaminación</span></span>
+<span id="cb30-113"><a href="#cb30-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-114"><a href="#cb30-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-115"><a href="#cb30-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.4 Variables predictoras y variable respuesta</span></span>
+<span id="cb30-116"><a href="#cb30-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-117"><a href="#cb30-117" aria-hidden="true" tabindex="-1"></a>En aprendizaje automático es importante distinguir entre:</span>
+<span id="cb30-118"><a href="#cb30-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-119"><a href="#cb30-119" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variable respuesta</span></span>
+<span id="cb30-120"><a href="#cb30-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-121"><a href="#cb30-121" aria-hidden="true" tabindex="-1"></a>Es la variable que queremos predecir.</span>
+<span id="cb30-122"><a href="#cb30-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-123"><a href="#cb30-123" aria-hidden="true" tabindex="-1"></a>También se le llama:</span>
+<span id="cb30-124"><a href="#cb30-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-125"><a href="#cb30-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>variable objetivo,</span>
+<span id="cb30-126"><a href="#cb30-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>etiqueta,</span>
+<span id="cb30-127"><a href="#cb30-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>salida,</span>
+<span id="cb30-128"><a href="#cb30-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clase,</span>
+<span id="cb30-129"><a href="#cb30-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>respuesta.</span>
+<span id="cb30-130"><a href="#cb30-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-131"><a href="#cb30-131" aria-hidden="true" tabindex="-1"></a>En el ejemplo anterior, la variable respuesta es:</span>
+<span id="cb30-132"><a href="#cb30-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-133"><a href="#cb30-133" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-134"><a href="#cb30-134" aria-hidden="true" tabindex="-1"></a><span class="in">clase</span></span>
+<span id="cb30-135"><a href="#cb30-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-136"><a href="#cb30-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-137"><a href="#cb30-137" aria-hidden="true" tabindex="-1"></a>porque queremos predecir si la contaminación es alta o baja.</span>
+<span id="cb30-138"><a href="#cb30-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-139"><a href="#cb30-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variables predictoras</span></span>
+<span id="cb30-140"><a href="#cb30-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-141"><a href="#cb30-141" aria-hidden="true" tabindex="-1"></a>Son las variables que usamos como entrada para el modelo.</span>
+<span id="cb30-142"><a href="#cb30-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-143"><a href="#cb30-143" aria-hidden="true" tabindex="-1"></a>También se les llama:</span>
+<span id="cb30-144"><a href="#cb30-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-145"><a href="#cb30-145" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>características,</span>
+<span id="cb30-146"><a href="#cb30-146" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>atributos,</span>
+<span id="cb30-147"><a href="#cb30-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>variables independientes,</span>
+<span id="cb30-148"><a href="#cb30-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>entradas,</span>
+<span id="cb30-149"><a href="#cb30-149" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*features*.</span>
+<span id="cb30-150"><a href="#cb30-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-151"><a href="#cb30-151" aria-hidden="true" tabindex="-1"></a>En el ejemplo anterior, las variables predictoras son:</span>
+<span id="cb30-152"><a href="#cb30-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-153"><a href="#cb30-153" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-154"><a href="#cb30-154" aria-hidden="true" tabindex="-1"></a><span class="in">pm10, temperatura, humedad</span></span>
+<span id="cb30-155"><a href="#cb30-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-156"><a href="#cb30-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-157"><a href="#cb30-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.5 Tipos principales de aprendizaje automático</span></span>
+<span id="cb30-158"><a href="#cb30-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-159"><a href="#cb30-159" aria-hidden="true" tabindex="-1"></a>En una primera aproximación podemos hablar de tres grandes tipos de aprendizaje automático:</span>
+<span id="cb30-160"><a href="#cb30-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-161"><a href="#cb30-161" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Aprendizaje supervisado.</span>
+<span id="cb30-162"><a href="#cb30-162" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Aprendizaje no supervisado.</span>
+<span id="cb30-163"><a href="#cb30-163" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Aprendizaje por refuerzo.</span>
+<span id="cb30-164"><a href="#cb30-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-165"><a href="#cb30-165" aria-hidden="true" tabindex="-1"></a>En este libro nos concentraremos principalmente en los dos primeros.</span>
+<span id="cb30-166"><a href="#cb30-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-167"><a href="#cb30-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.6 Aprendizaje supervisado</span></span>
+<span id="cb30-168"><a href="#cb30-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-169"><a href="#cb30-169" aria-hidden="true" tabindex="-1"></a>El aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.</span>
+<span id="cb30-170"><a href="#cb30-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-171"><a href="#cb30-171" aria-hidden="true" tabindex="-1"></a>Es decir, tenemos ejemplos históricos donde ya sabemos cuál fue el resultado.</span>
+<span id="cb30-172"><a href="#cb30-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-173"><a href="#cb30-173" aria-hidden="true" tabindex="-1"></a>Por ejemplo:</span>
+<span id="cb30-174"><a href="#cb30-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-175"><a href="#cb30-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Problema <span class="pp">|</span> Variables predictoras <span class="pp">|</span> Variable respuesta <span class="pp">|</span></span>
+<span id="cb30-176"><a href="#cb30-176" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb30-177"><a href="#cb30-177" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clasificar contaminación <span class="pp">|</span> PM10, temperatura, humedad <span class="pp">|</span> Alta o baja <span class="pp">|</span></span>
+<span id="cb30-178"><a href="#cb30-178" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Predecir lesionados en accidente <span class="pp">|</span> Hora, día, tipo de accidente <span class="pp">|</span> Con lesionados o sin lesionados <span class="pp">|</span></span>
+<span id="cb30-179"><a href="#cb30-179" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clasificar tumor <span class="pp">|</span> Mediciones celulares <span class="pp">|</span> Benigno o maligno <span class="pp">|</span></span>
+<span id="cb30-180"><a href="#cb30-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Predecir ventas <span class="pp">|</span> Precio, mes, publicidad <span class="pp">|</span> Ventas <span class="pp">|</span></span>
+<span id="cb30-181"><a href="#cb30-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-182"><a href="#cb30-182" aria-hidden="true" tabindex="-1"></a>Dentro del aprendizaje supervisado hay dos tareas muy importantes:</span>
+<span id="cb30-183"><a href="#cb30-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-184"><a href="#cb30-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clasificación,</span>
+<span id="cb30-185"><a href="#cb30-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>regresión.</span>
+<span id="cb30-186"><a href="#cb30-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-187"><a href="#cb30-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.7 Clasificación</span></span>
+<span id="cb30-188"><a href="#cb30-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-189"><a href="#cb30-189" aria-hidden="true" tabindex="-1"></a>La clasificación se utiliza cuando la variable respuesta es categórica.</span>
+<span id="cb30-190"><a href="#cb30-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-191"><a href="#cb30-191" aria-hidden="true" tabindex="-1"></a>Por ejemplo:</span>
+<span id="cb30-192"><a href="#cb30-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-193"><a href="#cb30-193" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-194"><a href="#cb30-194" aria-hidden="true" tabindex="-1"></a><span class="in">Alta / Baja</span></span>
+<span id="cb30-195"><a href="#cb30-195" aria-hidden="true" tabindex="-1"></a><span class="in">Sí / No</span></span>
+<span id="cb30-196"><a href="#cb30-196" aria-hidden="true" tabindex="-1"></a><span class="in">Benigno / Maligno</span></span>
+<span id="cb30-197"><a href="#cb30-197" aria-hidden="true" tabindex="-1"></a><span class="in">Fatal / No fatal / Solo daños</span></span>
+<span id="cb30-198"><a href="#cb30-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-199"><a href="#cb30-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-200"><a href="#cb30-200" aria-hidden="true" tabindex="-1"></a>Ejemplos de clasificación:</span>
+<span id="cb30-201"><a href="#cb30-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-202"><a href="#cb30-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clasificar si un accidente tendrá víctimas.</span>
+<span id="cb30-203"><a href="#cb30-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clasificar si un tumor es benigno o maligno.</span>
+<span id="cb30-204"><a href="#cb30-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clasificar si un correo es spam o no spam.</span>
+<span id="cb30-205"><a href="#cb30-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clasificar si un día tiene contaminación alta o baja.</span>
+<span id="cb30-206"><a href="#cb30-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-207"><a href="#cb30-207" aria-hidden="true" tabindex="-1"></a>En clasificación, el modelo asigna una observación a una categoría.</span>
+<span id="cb30-208"><a href="#cb30-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-209"><a href="#cb30-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.8 Regresión</span></span>
+<span id="cb30-210"><a href="#cb30-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-211"><a href="#cb30-211" aria-hidden="true" tabindex="-1"></a>La regresión se utiliza cuando la variable respuesta es numérica.</span>
+<span id="cb30-212"><a href="#cb30-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-213"><a href="#cb30-213" aria-hidden="true" tabindex="-1"></a>Por ejemplo:</span>
+<span id="cb30-214"><a href="#cb30-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-215"><a href="#cb30-215" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-216"><a href="#cb30-216" aria-hidden="true" tabindex="-1"></a><span class="in">Precio de una casa</span></span>
+<span id="cb30-217"><a href="#cb30-217" aria-hidden="true" tabindex="-1"></a><span class="in">Temperatura</span></span>
+<span id="cb30-218"><a href="#cb30-218" aria-hidden="true" tabindex="-1"></a><span class="in">Ventas</span></span>
+<span id="cb30-219"><a href="#cb30-219" aria-hidden="true" tabindex="-1"></a><span class="in">Concentración de ozono</span></span>
+<span id="cb30-220"><a href="#cb30-220" aria-hidden="true" tabindex="-1"></a><span class="in">Número de accidentes</span></span>
+<span id="cb30-221"><a href="#cb30-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-222"><a href="#cb30-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-223"><a href="#cb30-223" aria-hidden="true" tabindex="-1"></a>Ejemplos de regresión:</span>
+<span id="cb30-224"><a href="#cb30-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-225"><a href="#cb30-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predecir la concentración de PM10.</span>
+<span id="cb30-226"><a href="#cb30-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predecir la temperatura promedio de un día.</span>
+<span id="cb30-227"><a href="#cb30-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predecir el número de accidentes en un municipio.</span>
+<span id="cb30-228"><a href="#cb30-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predecir ventas mensuales.</span>
+<span id="cb30-229"><a href="#cb30-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-230"><a href="#cb30-230" aria-hidden="true" tabindex="-1"></a>En regresión, el modelo predice un valor numérico.</span>
+<span id="cb30-231"><a href="#cb30-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-232"><a href="#cb30-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.9 Aprendizaje no supervisado</span></span>
+<span id="cb30-233"><a href="#cb30-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-234"><a href="#cb30-234" aria-hidden="true" tabindex="-1"></a>El aprendizaje no supervisado se utiliza cuando no tenemos una variable respuesta conocida.</span>
+<span id="cb30-235"><a href="#cb30-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-236"><a href="#cb30-236" aria-hidden="true" tabindex="-1"></a>En lugar de predecir una etiqueta, buscamos patrones ocultos en los datos.</span>
+<span id="cb30-237"><a href="#cb30-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-238"><a href="#cb30-238" aria-hidden="true" tabindex="-1"></a>Por ejemplo:</span>
+<span id="cb30-239"><a href="#cb30-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-240"><a href="#cb30-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Agrupar municipios con características similares.</span>
+<span id="cb30-241"><a href="#cb30-241" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Agrupar estados por patrones de accidentes.</span>
+<span id="cb30-242"><a href="#cb30-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Agrupar estaciones de monitoreo ambiental.</span>
+<span id="cb30-243"><a href="#cb30-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reducir muchas variables a dos o tres componentes principales.</span>
+<span id="cb30-244"><a href="#cb30-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Detectar observaciones atípicas.</span>
+<span id="cb30-245"><a href="#cb30-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-246"><a href="#cb30-246" aria-hidden="true" tabindex="-1"></a>Dos técnicas importantes de aprendizaje no supervisado son:</span>
+<span id="cb30-247"><a href="#cb30-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-248"><a href="#cb30-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>agrupamiento o *clustering*,</span>
+<span id="cb30-249"><a href="#cb30-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>análisis de componentes principales o PCA.</span>
+<span id="cb30-250"><a href="#cb30-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-251"><a href="#cb30-251" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.10 El flujo general de un proyecto de aprendizaje automático</span></span>
+<span id="cb30-252"><a href="#cb30-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-253"><a href="#cb30-253" aria-hidden="true" tabindex="-1"></a>Un proyecto de aprendizaje automático casi nunca empieza directamente con el modelo.</span>
+<span id="cb30-254"><a href="#cb30-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-255"><a href="#cb30-255" aria-hidden="true" tabindex="-1"></a>Antes de modelar, necesitamos entender y preparar los datos.</span>
+<span id="cb30-256"><a href="#cb30-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-257"><a href="#cb30-257" aria-hidden="true" tabindex="-1"></a>Un flujo típico es:</span>
+<span id="cb30-258"><a href="#cb30-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-259"><a href="#cb30-259" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb30-260"><a href="#cb30-260" aria-hidden="true" tabindex="-1"></a><span class="in">1. Plantear el problema</span></span>
+<span id="cb30-261"><a href="#cb30-261" aria-hidden="true" tabindex="-1"></a><span class="in">2. Conseguir los datos</span></span>
+<span id="cb30-262"><a href="#cb30-262" aria-hidden="true" tabindex="-1"></a><span class="in">3. Entender las variables</span></span>
+<span id="cb30-263"><a href="#cb30-263" aria-hidden="true" tabindex="-1"></a><span class="in">4. Limpiar los datos</span></span>
+<span id="cb30-264"><a href="#cb30-264" aria-hidden="true" tabindex="-1"></a><span class="in">5. Explorar los datos</span></span>
+<span id="cb30-265"><a href="#cb30-265" aria-hidden="true" tabindex="-1"></a><span class="in">6. Dividir en entrenamiento y prueba</span></span>
+<span id="cb30-266"><a href="#cb30-266" aria-hidden="true" tabindex="-1"></a><span class="in">7. Entrenar el modelo</span></span>
+<span id="cb30-267"><a href="#cb30-267" aria-hidden="true" tabindex="-1"></a><span class="in">8. Evaluar el modelo</span></span>
+<span id="cb30-268"><a href="#cb30-268" aria-hidden="true" tabindex="-1"></a><span class="in">9. Interpretar los resultados</span></span>
+<span id="cb30-269"><a href="#cb30-269" aria-hidden="true" tabindex="-1"></a><span class="in">10. Comunicar hallazgos</span></span>
+<span id="cb30-270"><a href="#cb30-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-271"><a href="#cb30-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-272"><a href="#cb30-272" aria-hidden="true" tabindex="-1"></a>En este libro seguiremos esta lógica.</span>
+<span id="cb30-273"><a href="#cb30-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-274"><a href="#cb30-274" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.11 Primer ejemplo visual en R</span></span>
+<span id="cb30-275"><a href="#cb30-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-276"><a href="#cb30-276" aria-hidden="true" tabindex="-1"></a>Ahora construiremos una gráfica sencilla para visualizar el ejemplo de contaminación.</span>
+<span id="cb30-277"><a href="#cb30-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-280"><a href="#cb30-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-281"><a href="#cb30-281" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-282"><a href="#cb30-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-283"><a href="#cb30-283" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> pm10, <span class="at">y =</span> temperatura, <span class="at">color =</span> clase)) <span class="sc">+</span></span>
+<span id="cb30-284"><a href="#cb30-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb30-285"><a href="#cb30-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb30-286"><a href="#cb30-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ejemplo inicial de clasificación"</span>,</span>
+<span id="cb30-287"><a href="#cb30-287" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Clasificación de contaminación alta o baja"</span>,</span>
+<span id="cb30-288"><a href="#cb30-288" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PM10"</span>,</span>
+<span id="cb30-289"><a href="#cb30-289" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temperatura"</span>,</span>
+<span id="cb30-290"><a href="#cb30-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Clase"</span></span>
+<span id="cb30-291"><a href="#cb30-291" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-292"><a href="#cb30-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-293"><a href="#cb30-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-294"><a href="#cb30-294" aria-hidden="true" tabindex="-1"></a>En la gráfica, cada punto representa un día.</span>
+<span id="cb30-295"><a href="#cb30-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-296"><a href="#cb30-296" aria-hidden="true" tabindex="-1"></a>El color indica si ese día fue clasificado como contaminación alta o baja.</span>
+<span id="cb30-297"><a href="#cb30-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-298"><a href="#cb30-298" aria-hidden="true" tabindex="-1"></a>Aunque este ejemplo es pequeño y didáctico, nos permite observar una idea fundamental:</span>
+<span id="cb30-299"><a href="#cb30-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-300"><a href="#cb30-300" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Los modelos de aprendizaje automático buscan patrones en las variables predictoras para explicar o predecir una variable respuesta.</span></span>
+<span id="cb30-301"><a href="#cb30-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-302"><a href="#cb30-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.12 División entre entrenamiento y prueba</span></span>
+<span id="cb30-303"><a href="#cb30-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-304"><a href="#cb30-304" aria-hidden="true" tabindex="-1"></a>Un error común al iniciar en aprendizaje automático es evaluar el modelo con los mismos datos con los que fue entrenado.</span>
+<span id="cb30-305"><a href="#cb30-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-306"><a href="#cb30-306" aria-hidden="true" tabindex="-1"></a>Para evitarlo, normalmente dividimos los datos en dos partes:</span>
+<span id="cb30-307"><a href="#cb30-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-308"><a href="#cb30-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>conjunto de entrenamiento,</span>
+<span id="cb30-309"><a href="#cb30-309" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>conjunto de prueba.</span>
+<span id="cb30-310"><a href="#cb30-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-311"><a href="#cb30-311" aria-hidden="true" tabindex="-1"></a>El conjunto de entrenamiento se usa para construir el modelo.</span>
+<span id="cb30-312"><a href="#cb30-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-313"><a href="#cb30-313" aria-hidden="true" tabindex="-1"></a>El conjunto de prueba se usa para evaluar qué tan bien funciona el modelo con datos que no vio durante el entrenamiento.</span>
+<span id="cb30-314"><a href="#cb30-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-317"><a href="#cb30-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-318"><a href="#cb30-318" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb30-319"><a href="#cb30-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-320"><a href="#cb30-320" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos)</span>
+<span id="cb30-321"><a href="#cb30-321" aria-hidden="true" tabindex="-1"></a>indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
+<span id="cb30-322"><a href="#cb30-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-323"><a href="#cb30-323" aria-hidden="true" tabindex="-1"></a>entrenamiento <span class="ot">&lt;-</span> datos[indices_entrenamiento, ]</span>
+<span id="cb30-324"><a href="#cb30-324" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> datos[<span class="sc">-</span>indices_entrenamiento, ]</span>
+<span id="cb30-325"><a href="#cb30-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-326"><a href="#cb30-326" aria-hidden="true" tabindex="-1"></a>entrenamiento</span>
+<span id="cb30-327"><a href="#cb30-327" aria-hidden="true" tabindex="-1"></a>prueba</span>
+<span id="cb30-328"><a href="#cb30-328" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-329"><a href="#cb30-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-330"><a href="#cb30-330" aria-hidden="true" tabindex="-1"></a>En este ejemplo pequeño, la división es solo ilustrativa. En problemas reales usaremos conjuntos de datos más grandes.</span>
+<span id="cb30-331"><a href="#cb30-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-332"><a href="#cb30-332" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.13 Primer clasificador sencillo basado en una regla</span></span>
+<span id="cb30-333"><a href="#cb30-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-334"><a href="#cb30-334" aria-hidden="true" tabindex="-1"></a>Antes de usar algoritmos más avanzados, podemos construir una regla sencilla para entender la idea de predicción.</span>
+<span id="cb30-335"><a href="#cb30-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-338"><a href="#cb30-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-339"><a href="#cb30-339" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>prediccion_regla <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>pm10 <span class="sc">&gt;</span> <span class="dv">75</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>)</span>
+<span id="cb30-340"><a href="#cb30-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-341"><a href="#cb30-341" aria-hidden="true" tabindex="-1"></a>datos[, <span class="fu">c</span>(<span class="st">"pm10"</span>, <span class="st">"clase"</span>, <span class="st">"prediccion_regla"</span>)]</span>
+<span id="cb30-342"><a href="#cb30-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-343"><a href="#cb30-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-344"><a href="#cb30-344" aria-hidden="true" tabindex="-1"></a>Ahora comparamos la clase real con la predicción.</span>
+<span id="cb30-345"><a href="#cb30-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-348"><a href="#cb30-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-349"><a href="#cb30-349" aria-hidden="true" tabindex="-1"></a>tabla_confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb30-350"><a href="#cb30-350" aria-hidden="true" tabindex="-1"></a>  <span class="at">Real =</span> datos<span class="sc">$</span>clase,</span>
+<span id="cb30-351"><a href="#cb30-351" aria-hidden="true" tabindex="-1"></a>  <span class="at">Predicho =</span> datos<span class="sc">$</span>prediccion_regla</span>
+<span id="cb30-352"><a href="#cb30-352" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-353"><a href="#cb30-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-354"><a href="#cb30-354" aria-hidden="true" tabindex="-1"></a>tabla_confusion</span>
+<span id="cb30-355"><a href="#cb30-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-356"><a href="#cb30-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-357"><a href="#cb30-357" aria-hidden="true" tabindex="-1"></a>Calculamos la exactitud:</span>
+<span id="cb30-358"><a href="#cb30-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-361"><a href="#cb30-361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-362"><a href="#cb30-362" aria-hidden="true" tabindex="-1"></a>exactitud <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos<span class="sc">$</span>clase <span class="sc">==</span> datos<span class="sc">$</span>prediccion_regla)</span>
+<span id="cb30-363"><a href="#cb30-363" aria-hidden="true" tabindex="-1"></a>exactitud</span>
+<span id="cb30-364"><a href="#cb30-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-365"><a href="#cb30-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-366"><a href="#cb30-366" aria-hidden="true" tabindex="-1"></a>La exactitud indica la proporción de observaciones clasificadas correctamente.</span>
+<span id="cb30-367"><a href="#cb30-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-368"><a href="#cb30-368" aria-hidden="true" tabindex="-1"></a>Este ejemplo todavía no es un modelo automático sofisticado, pero nos prepara para entender cómo evaluaremos modelos más adelante.</span>
+<span id="cb30-369"><a href="#cb30-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-370"><a href="#cb30-370" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.14 ¿Qué aprenderemos en este libro?</span></span>
+<span id="cb30-371"><a href="#cb30-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-372"><a href="#cb30-372" aria-hidden="true" tabindex="-1"></a>A lo largo del libro estudiaremos métodos como:</span>
+<span id="cb30-373"><a href="#cb30-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-374"><a href="#cb30-374" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>regresión lineal,</span>
+<span id="cb30-375"><a href="#cb30-375" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>regresión logística,</span>
+<span id="cb30-376"><a href="#cb30-376" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>k vecinos más cercanos,</span>
+<span id="cb30-377"><a href="#cb30-377" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>árboles de decisión,</span>
+<span id="cb30-378"><a href="#cb30-378" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>bosques aleatorios,</span>
+<span id="cb30-379"><a href="#cb30-379" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>máquinas de soporte vectorial,</span>
+<span id="cb30-380"><a href="#cb30-380" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Naive Bayes,</span>
+<span id="cb30-381"><a href="#cb30-381" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>agrupamiento,</span>
+<span id="cb30-382"><a href="#cb30-382" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>componentes principales.</span>
+<span id="cb30-383"><a href="#cb30-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-384"><a href="#cb30-384" aria-hidden="true" tabindex="-1"></a>Cada método se estudiará con:</span>
+<span id="cb30-385"><a href="#cb30-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-386"><a href="#cb30-386" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>una explicación intuitiva,</span>
+<span id="cb30-387"><a href="#cb30-387" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>un problema real,</span>
+<span id="cb30-388"><a href="#cb30-388" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>preparación de datos,</span>
+<span id="cb30-389"><a href="#cb30-389" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>código en R,</span>
+<span id="cb30-390"><a href="#cb30-390" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>resultados,</span>
+<span id="cb30-391"><a href="#cb30-391" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>interpretación,</span>
+<span id="cb30-392"><a href="#cb30-392" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>ejercicios.</span>
+<span id="cb30-393"><a href="#cb30-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-394"><a href="#cb30-394" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.15 Conclusión</span></span>
+<span id="cb30-395"><a href="#cb30-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-396"><a href="#cb30-396" aria-hidden="true" tabindex="-1"></a>El aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos.</span>
+<span id="cb30-397"><a href="#cb30-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-398"><a href="#cb30-398" aria-hidden="true" tabindex="-1"></a>En este capítulo vimos que:</span>
+<span id="cb30-399"><a href="#cb30-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-400"><a href="#cb30-400" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la programación tradicional usa reglas escritas directamente por una persona;</span>
+<span id="cb30-401"><a href="#cb30-401" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>el aprendizaje automático aprende patrones a partir de ejemplos;</span>
+<span id="cb30-402"><a href="#cb30-402" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los problemas supervisados tienen una variable respuesta;</span>
+<span id="cb30-403"><a href="#cb30-403" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la clasificación predice categorías;</span>
+<span id="cb30-404"><a href="#cb30-404" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la regresión predice valores numéricos;</span>
+<span id="cb30-405"><a href="#cb30-405" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>el aprendizaje no supervisado busca estructuras ocultas;</span>
+<span id="cb30-406"><a href="#cb30-406" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>todo proyecto requiere preparar, explorar, modelar, evaluar e interpretar los datos.</span>
+<span id="cb30-407"><a href="#cb30-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-408"><a href="#cb30-408" aria-hidden="true" tabindex="-1"></a>En el siguiente capítulo comenzaremos con una parte fundamental: la preparación de datos reales.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
