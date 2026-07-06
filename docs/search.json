@@ -828,5 +828,315 @@
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html",
+    "href": "04-regresion-logistica.html",
+    "title": "4  Regresión logística para clasificación",
+    "section": "",
+    "text": "4.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#objetivos-del-capítulo",
+    "href": "04-regresion-logistica.html#objetivos-del-capítulo",
+    "title": "4  Regresión logística para clasificación",
+    "section": "",
+    "text": "Explicar qué es un problema de clasificación binaria.\nComprender la idea intuitiva de la regresión logística.\nDiferenciar entre probabilidad predicha y clase predicha.\nDividir una base de datos en entrenamiento y prueba.\nAjustar un modelo de regresión logística en R.\nConstruir una matriz de confusión.\nCalcular exactitud, sensibilidad y especificidad.\nInterpretar los resultados básicos de un modelo logístico.\nReconocer algunas limitaciones de la regresión logística.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#introducción",
+    "href": "04-regresion-logistica.html#introducción",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.2 Introducción",
+    "text": "4.2 Introducción\nEn los capítulos anteriores preparamos y exploramos una base real de accidentes de tránsito.\nAhora daremos un paso importante: construiremos nuestro primer modelo supervisado de clasificación.\nEl problema que vamos a estudiar es el siguiente:\n\n¿Podemos estimar la probabilidad de que un accidente de tránsito tenga víctimas?\n\nLa variable que queremos predecir es:\naccidente_con_victimas\nEsta variable tiene dos categorías:\nCon víctimas\nSolo daños\nPor lo tanto, estamos frente a un problema de clasificación binaria.\nLa regresión logística es uno de los modelos más utilizados para este tipo de problemas. Aunque tiene la palabra “regresión” en su nombre, se usa frecuentemente para clasificación.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#clasificación-binaria",
+    "href": "04-regresion-logistica.html#clasificación-binaria",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.3 Clasificación binaria",
+    "text": "4.3 Clasificación binaria\nUn problema de clasificación binaria es aquel donde la variable respuesta tiene solo dos posibles clases.\nAlgunos ejemplos son:\n\n\n\nProblema\nClase 1\nClase 2\n\n\n\n\nAccidente de tránsito\nCon víctimas\nSolo daños\n\n\nDiagnóstico médico\nEnfermo\nSano\n\n\nCrédito bancario\nIncumple\nNo incumple\n\n\nCorreo electrónico\nSpam\nNo spam\n\n\nCalidad del aire\nAlta contaminación\nBaja contaminación\n\n\n\nEn nuestro caso, la clase de interés será:\nCon víctimas\nEs decir, nos interesa estimar la probabilidad de que un accidente pertenezca a esa clase.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#por-qué-no-usar-regresión-lineal",
+    "href": "04-regresion-logistica.html#por-qué-no-usar-regresión-lineal",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.4 ¿Por qué no usar regresión lineal?",
+    "text": "4.4 ¿Por qué no usar regresión lineal?\nSupongamos que codificamos la variable respuesta así:\n1 = Con víctimas\n0 = Solo daños\nPodríamos pensar en ajustar un modelo de regresión lineal común. Sin embargo, esto presenta un problema importante.\nLa regresión lineal puede producir predicciones menores que 0 o mayores que 1.\nPero una probabilidad debe estar entre 0 y 1.\nPor ejemplo, no tendría sentido decir:\nLa probabilidad de accidente con víctimas es 1.27\no:\nLa probabilidad de accidente con víctimas es -0.15\nPara evitar este problema usamos la regresión logística, que transforma la salida del modelo para obtener valores entre 0 y 1.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#idea-intuitiva-de-la-regresión-logística",
+    "href": "04-regresion-logistica.html#idea-intuitiva-de-la-regresión-logística",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.5 Idea intuitiva de la regresión logística",
+    "text": "4.5 Idea intuitiva de la regresión logística\nLa regresión logística no predice directamente una clase.\nPrimero predice una probabilidad.\nPor ejemplo, para un accidente determinado, el modelo podría estimar:\nProbabilidad de accidente con víctimas = 0.72\nDespués usamos un punto de corte para convertir esa probabilidad en una clase.\nPor ejemplo, si usamos un punto de corte de 0.5:\nSi probabilidad &gt;= 0.5 → Con víctimas\nSi probabilidad &lt;  0.5 → Solo daños\nEntonces:\n0.72 → Con víctimas\n0.18 → Solo daños\nEsta distinción es muy importante:\n\nLa regresión logística produce probabilidades; la clasificación final depende del punto de corte elegido.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#la-función-logística",
+    "href": "04-regresion-logistica.html#la-función-logística",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.6 La función logística",
+    "text": "4.6 La función logística\nLa regresión logística utiliza una función especial llamada función logística.\nEsta función tiene forma de “S” y convierte cualquier número real en un valor entre 0 y 1.\nMatemáticamente, se escribe así:\n[ p = ]\ndonde:\n[ z = _0 + _1x_1 + _2x_2 + + _px_p ]\nEn esta expresión:\n\n(p) es la probabilidad predicha.\n(x_1, x_2, , x_p) son las variables predictoras.\n(_0) es el intercepto.\n(_1, _2, , _p) son los coeficientes del modelo.\n\nLa ventaja de esta función es que, sin importar el valor de (z), el resultado siempre estará entre 0 y 1.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#visualización-de-la-función-logística",
+    "href": "04-regresion-logistica.html#visualización-de-la-función-logística",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.7 Visualización de la función logística",
+    "text": "4.7 Visualización de la función logística\nVeamos la forma de la función logística.\n\n\nCode\nz &lt;- seq(-10, 10, length.out = 200)\n\np &lt;- 1 / (1 + exp(-z))\n\ndatos_logistica &lt;- data.frame(z = z, p = p)\n\nlibrary(ggplot2)\n\nggplot(datos_logistica, aes(x = z, y = p)) +\n  geom_line(linewidth = 1) +\n  labs(\n    title = \"Función logística\",\n    x = \"z\",\n    y = \"Probabilidad\"\n  )\n\n\n\n\n\n\n\n\n\nLa gráfica muestra que la probabilidad se acerca a 0 para valores muy negativos de (z), y se acerca a 1 para valores muy positivos.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#cargar-paquetes",
+    "href": "04-regresion-logistica.html#cargar-paquetes",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.8 Cargar paquetes",
+    "text": "4.8 Cargar paquetes\nEn este capítulo utilizaremos los siguientes paquetes:\n\n\nCode\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\n\n\nSi alguno no está instalado, puedes instalarlo con:\n\n\nCode\ninstall.packages(c(\"readr\", \"dplyr\", \"ggplot2\"))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#cargar-la-base-preparada",
+    "href": "04-regresion-logistica.html#cargar-la-base-preparada",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.9 Cargar la base preparada",
+    "text": "4.9 Cargar la base preparada\nUsaremos la base preparada en el capítulo 2:\ndatos/atus_ml_preparado.csv\nDefinimos la ruta:\n\n\nCode\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\n\nVerificamos que exista:\n\n\nCode\nfile.exists(ruta_atus_ml)\n\n\n[1] TRUE\n\n\nCargamos la base:\n\n\nCode\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(\n    ruta_atus_ml,\n    show_col_types = FALSE\n  )\n  \n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#preparar-variables-para-el-modelo",
+    "href": "04-regresion-logistica.html#preparar-variables-para-el-modelo",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.10 Preparar variables para el modelo",
+    "text": "4.10 Preparar variables para el modelo\nPara la regresión logística necesitamos preparar la variable respuesta.\nCrearemos una variable numérica llamada:\nvictimas_binaria\ncon la siguiente codificación:\n1 = Con víctimas\n0 = Solo daños\n\n\nCode\nif (!is.null(atus_ml)) {\n  atus_modelo &lt;- atus_ml |&gt;\n    mutate(\n      victimas_binaria = ifelse(accidente_con_victimas == \"Con víctimas\", 1, 0),\n      MES = as.factor(MES),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI),\n      ID_HORA = as.numeric(ID_HORA)\n    )\n}\n\n\nRevisamos las primeras filas:\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  head(atus_modelo)\n}\n\n\n# A tibble: 6 × 7\n  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI\n  &lt;chr&gt;                  &lt;fct&gt;   &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;                 &lt;fct&gt;    \n1 Solo daños             01          2 lunes     Colisión con vehícul… Conductor\n2 Solo daños             01          3 lunes     Colisión con objeto … Conductor\n3 Con víctimas           01          4 lunes     Colisión con peatón … Conductor\n4 Solo daños             01          5 lunes     Colisión con objeto … Conductor\n5 Solo daños             01          6 lunes     Colisión con objeto … Conductor\n6 Con víctimas           01          7 lunes     Colisión con vehícul… Conductor\n# ℹ 1 more variable: victimas_binaria &lt;dbl&gt;\n\n\nVerificamos la distribución de la variable respuesta:\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  table(atus_modelo$victimas_binaria)\n}\n\n\n\n     0      1 \n322519  68108 \n\n\nTambién revisamos la variable original:\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  table(atus_modelo$accidente_con_victimas)\n}\n\n\n\nCon víctimas   Solo daños \n       68108       322519",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#selección-inicial-de-variables-predictoras",
+    "href": "04-regresion-logistica.html#selección-inicial-de-variables-predictoras",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.11 Selección inicial de variables predictoras",
+    "text": "4.11 Selección inicial de variables predictoras\nPara nuestro primer modelo usaremos las siguientes variables:\nMES\nID_HORA\nDIASEMANA\nTIPACCID\nCAUSAACCI\nLa fórmula del modelo será:\nvictimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI\nEsto significa que intentaremos estimar la probabilidad de que un accidente tenga víctimas usando información temporal y descriptiva del accidente.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#división-en-entrenamiento-y-prueba",
+    "href": "04-regresion-logistica.html#división-en-entrenamiento-y-prueba",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.12 División en entrenamiento y prueba",
+    "text": "4.12 División en entrenamiento y prueba\nAntes de entrenar el modelo, dividimos los datos en dos partes:\n\nconjunto de entrenamiento,\nconjunto de prueba.\n\nEl conjunto de entrenamiento se usa para ajustar el modelo.\nEl conjunto de prueba se usa para evaluar el desempeño del modelo con datos que no se usaron para entrenarlo.\nUsaremos 70% de los datos para entrenamiento y 30% para prueba.\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  set.seed(123)\n  \n  n &lt;- nrow(atus_modelo)\n  \n  indices_entrenamiento &lt;- sample(\n    1:n,\n    size = round(0.7 * n)\n  )\n  \n  entrenamiento &lt;- atus_modelo[indices_entrenamiento, ]\n  prueba &lt;- atus_modelo[-indices_entrenamiento, ]\n}\n\n\nRevisamos el tamaño de cada conjunto:\n\n\nCode\nif (exists(\"entrenamiento\") && exists(\"prueba\")) {\n  nrow(entrenamiento)\n  nrow(prueba)\n}\n\n\n[1] 117188\n\n\nTambién revisamos si la proporción de clases se mantiene razonablemente parecida en ambos conjuntos.\n\n\nCode\nif (exists(\"entrenamiento\") && exists(\"prueba\")) {\n  round(100 * prop.table(table(entrenamiento$accidente_con_victimas)), 2)\n  round(100 * prop.table(table(prueba$accidente_con_victimas)), 2)\n}\n\n\n\nCon víctimas   Solo daños \n        17.5         82.5",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#ajustar-el-modelo-de-regresión-logística",
+    "href": "04-regresion-logistica.html#ajustar-el-modelo-de-regresión-logística",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.13 Ajustar el modelo de regresión logística",
+    "text": "4.13 Ajustar el modelo de regresión logística\nEn R, la regresión logística se ajusta con la función glm().\nLa opción importante es:\nfamily = binomial\nEsto le indica a R que queremos ajustar un modelo logístico para una respuesta binaria.\n\n\nCode\nif (exists(\"entrenamiento\")) {\n  modelo_logistico &lt;- glm(\n    victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    family = binomial\n  )\n}\n\n\nRevisamos el resumen del modelo:\n\n\nCode\nif (exists(\"modelo_logistico\")) {\n  summary(modelo_logistico)\n}\n\n\n\nCall:\nglm(formula = victimas_binaria ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, family = binomial, data = entrenamiento)\n\nCoefficients: (1 not defined because of singularities)\n                                                Estimate Std. Error z value\n(Intercept)                                    18.107257 101.847193   0.178\nMES02                                          -0.045766   0.029756  -1.538\nMES03                                          -0.032191   0.029273  -1.100\nMES04                                          -0.002838   0.029455  -0.096\nMES05                                          -0.015409   0.029067  -0.530\nMES06                                          -0.054753   0.029837  -1.835\nMES07                                          -0.076297   0.030352  -2.514\nMES08                                          -0.094050   0.029971  -3.138\nMES09                                          -0.077109   0.030150  -2.557\nMES10                                          -0.154152   0.029797  -5.173\nMES11                                          -0.106385   0.029508  -3.605\nMES12                                          -0.111889   0.029593  -3.781\nID_HORA                                        -0.001039   0.001025  -1.015\nDIASEMANAJueves                                -0.248317   0.022530 -11.022\nDIASEMANAlunes                                 -0.219442   0.022072  -9.942\nDIASEMANAMartes                                -0.266295   0.022564 -11.801\nDIASEMANAMiercoles                             -0.297457   0.022631 -13.144\nDIASEMANASabado                                -0.145669   0.021142  -6.890\nDIASEMANAViernes                               -0.234956   0.021860 -10.748\nTIPACCIDCertificado cero                      -35.365952 108.599964  -0.326\nTIPACCIDColisión con animal                   -18.408433 101.847115  -0.181\nTIPACCIDColisión con ciclista                 -17.466499 101.847083  -0.171\nTIPACCIDColisión con ferrocarril              -18.516007 101.847193  -0.182\nTIPACCIDColisión con motocicleta              -17.993904 101.847076  -0.177\nTIPACCIDColisión con objeto fijo              -19.631828 101.847078  -0.193\nTIPACCIDColisión con peatón (atropellamiento)  -0.014823 111.314486   0.000\nTIPACCIDColisión con vehículo automotor       -20.213142 101.847076  -0.198\nTIPACCIDIncendio                              -21.789442 101.848323  -0.214\nTIPACCIDOtro                                  -19.371321 101.847096  -0.190\nTIPACCIDSalida del camino                     -18.895003 101.847080  -0.186\nTIPACCIDVolcadura                             -17.704426 101.847078  -0.174\nCAUSAACCIConductor                             -0.282824   0.157369  -1.797\nCAUSAACCIFalla del vehículo                    -0.547420   0.167821  -3.262\nCAUSAACCIMala condición del camino             -0.097472   0.162233  -0.601\nCAUSAACCIOtra                                  -0.093819   0.169144  -0.555\nCAUSAACCIPeatón o pasajero                            NA         NA      NA\n                                              Pr(&gt;|z|)    \n(Intercept)                                   0.858889    \nMES02                                         0.124035    \nMES03                                         0.271467    \nMES04                                         0.923240    \nMES05                                         0.596036    \nMES06                                         0.066492 .  \nMES07                                         0.011946 *  \nMES08                                         0.001701 ** \nMES09                                         0.010543 *  \nMES10                                         2.30e-07 ***\nMES11                                         0.000312 ***\nMES12                                         0.000156 ***\nID_HORA                                       0.310343    \nDIASEMANAJueves                                &lt; 2e-16 ***\nDIASEMANAlunes                                 &lt; 2e-16 ***\nDIASEMANAMartes                                &lt; 2e-16 ***\nDIASEMANAMiercoles                             &lt; 2e-16 ***\nDIASEMANASabado                               5.58e-12 ***\nDIASEMANAViernes                               &lt; 2e-16 ***\nTIPACCIDCertificado cero                      0.744687    \nTIPACCIDColisión con animal                   0.856567    \nTIPACCIDColisión con ciclista                 0.863833    \nTIPACCIDColisión con ferrocarril              0.855738    \nTIPACCIDColisión con motocicleta              0.859763    \nTIPACCIDColisión con objeto fijo              0.847149    \nTIPACCIDColisión con peatón (atropellamiento) 0.999894    \nTIPACCIDColisión con vehículo automotor       0.842681    \nTIPACCIDIncendio                              0.830594    \nTIPACCIDOtro                                  0.849152    \nTIPACCIDSalida del camino                     0.852819    \nTIPACCIDVolcadura                             0.861996    \nCAUSAACCIConductor                            0.072303 .  \nCAUSAACCIFalla del vehículo                   0.001107 ** \nCAUSAACCIMala condición del camino            0.547964    \nCAUSAACCIOtra                                 0.579123    \nCAUSAACCIPeatón o pasajero                          NA    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 252832  on 273438  degrees of freedom\nResidual deviance: 181229  on 273404  degrees of freedom\nAIC: 181299\n\nNumber of Fisher Scoring iterations: 16",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#interpretación-inicial-del-resumen",
+    "href": "04-regresion-logistica.html#interpretación-inicial-del-resumen",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.14 Interpretación inicial del resumen",
+    "text": "4.14 Interpretación inicial del resumen\nEl resumen del modelo muestra los coeficientes estimados.\nCada coeficiente indica cómo cambia el logaritmo de las razones de momios, conocido como log-odds, cuando cambia una variable predictora.\nEn esta primera lectura no nos enfocaremos todavía en interpretar todos los coeficientes, porque varias variables son categóricas y generan muchas categorías.\nLo importante por ahora es entender que el modelo estima una relación entre las variables predictoras y la probabilidad de que el accidente tenga víctimas.\nMás adelante podemos profundizar en la interpretación mediante los odds ratios.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#predicción-de-probabilidades",
+    "href": "04-regresion-logistica.html#predicción-de-probabilidades",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.15 Predicción de probabilidades",
+    "text": "4.15 Predicción de probabilidades\nAhora usaremos el modelo para predecir sobre el conjunto de prueba.\nPrimero obtenemos probabilidades:\n\n\nCode\nif (exists(\"modelo_logistico\") && exists(\"prueba\")) {\n  prueba$probabilidad_victimas &lt;- predict(\n    modelo_logistico,\n    newdata = prueba,\n    type = \"response\"\n  )\n}\n\n\nRevisamos algunas predicciones:\n\n\nCode\nif (exists(\"prueba\")) {\n  head(\n    prueba |&gt;\n      select(accidente_con_victimas, victimas_binaria, probabilidad_victimas)\n  )\n}\n\n\n# A tibble: 6 × 3\n  accidente_con_victimas victimas_binaria probabilidad_victimas\n  &lt;chr&gt;                             &lt;dbl&gt;                 &lt;dbl&gt;\n1 Solo daños                            0                0.0685\n2 Solo daños                            0                0.116 \n3 Con víctimas                          1                1.000 \n4 Solo daños                            0                0.111 \n5 Solo daños                            0                0.111 \n6 Solo daños                            0                0.0632\n\n\nLa columna probabilidad_victimas indica la probabilidad estimada de que el accidente tenga víctimas.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#de-probabilidades-a-clases",
+    "href": "04-regresion-logistica.html#de-probabilidades-a-clases",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.16 De probabilidades a clases",
+    "text": "4.16 De probabilidades a clases\nPara convertir probabilidades en clases, usamos un punto de corte.\nComenzaremos con el punto de corte clásico:\n0.5\nLa regla será:\nSi probabilidad &gt;= 0.5 → Con víctimas\nSi probabilidad &lt;  0.5 → Solo daños\n\n\nCode\nif (exists(\"prueba\")) {\n  prueba$prediccion_05 &lt;- ifelse(\n    prueba$probabilidad_victimas &gt;= 0.5,\n    \"Con víctimas\",\n    \"Solo daños\"\n  )\n  \n  prueba$prediccion_05 &lt;- factor(\n    prueba$prediccion_05,\n    levels = c(\"Con víctimas\", \"Solo daños\")\n  )\n}\n\n\nRevisamos las primeras predicciones:\n\n\nCode\nif (exists(\"prueba\")) {\n  head(\n    prueba |&gt;\n      select(accidente_con_victimas, probabilidad_victimas, prediccion_05)\n  )\n}\n\n\n# A tibble: 6 × 3\n  accidente_con_victimas probabilidad_victimas prediccion_05\n  &lt;chr&gt;                                  &lt;dbl&gt; &lt;fct&gt;        \n1 Solo daños                            0.0685 Solo daños   \n2 Solo daños                            0.116  Solo daños   \n3 Con víctimas                          1.000  Con víctimas \n4 Solo daños                            0.111  Solo daños   \n5 Solo daños                            0.111  Solo daños   \n6 Solo daños                            0.0632 Solo daños",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#matriz-de-confusión",
+    "href": "04-regresion-logistica.html#matriz-de-confusión",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.17 Matriz de confusión",
+    "text": "4.17 Matriz de confusión\nLa matriz de confusión compara las clases reales contra las clases predichas.\n\n\nCode\nif (exists(\"prueba\")) {\n  matriz_confusion_05 &lt;- table(\n    Real = prueba$accidente_con_victimas,\n    Predicho = prueba$prediccion_05\n  )\n  \n  matriz_confusion_05\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas         4886      15618\n  Solo daños            807      95877\n\n\nLa matriz de confusión permite identificar:\n\nverdaderos positivos,\nfalsos positivos,\nverdaderos negativos,\nfalsos negativos.\n\nEn nuestro caso, consideraremos como clase positiva:\nCon víctimas",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#métricas-de-evaluación",
+    "href": "04-regresion-logistica.html#métricas-de-evaluación",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.18 Métricas de evaluación",
+    "text": "4.18 Métricas de evaluación\nA partir de la matriz de confusión podemos calcular varias métricas.\nPara evitar confusiones, primero extraemos los valores de la matriz.\n\n\nCode\nif (exists(\"matriz_confusion_05\")) {\n  VP &lt;- matriz_confusion_05[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_05[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_05[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_05[\"Solo daños\", \"Solo daños\"]\n  \n  VP\n  FN\n  FP\n  VN\n}\n\n\n[1] 95877\n\n\nDonde:\n\nVP: verdaderos positivos.\nFN: falsos negativos.\nFP: falsos positivos.\nVN: verdaderos negativos.\n\nCalculamos la exactitud:\n\n\nCode\nif (exists(\"VP\")) {\n  exactitud &lt;- (VP + VN) / (VP + FN + FP + VN)\n  exactitud\n}\n\n\n[1] 0.8598406\n\n\nCalculamos la sensibilidad:\n\n\nCode\nif (exists(\"VP\")) {\n  sensibilidad &lt;- VP / (VP + FN)\n  sensibilidad\n}\n\n\n[1] 0.238295\n\n\nCalculamos la especificidad:\n\n\nCode\nif (exists(\"VP\")) {\n  especificidad &lt;- VN / (VN + FP)\n  especificidad\n}\n\n\n[1] 0.9916532",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#interpretación-de-las-métricas",
+    "href": "04-regresion-logistica.html#interpretación-de-las-métricas",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.19 Interpretación de las métricas",
+    "text": "4.19 Interpretación de las métricas\nLa exactitud mide la proporción total de predicciones correctas.\nLa sensibilidad mide la proporción de accidentes con víctimas que el modelo detecta correctamente.\nLa especificidad mide la proporción de accidentes de solo daños que el modelo clasifica correctamente.\nEn problemas desbalanceados, la exactitud puede ser engañosa.\nPor ejemplo, como en esta base hay muchos más accidentes de solo daños, un modelo que prediga siempre “Solo daños” podría obtener una exactitud alta, pero una sensibilidad muy baja.\nEn nuestro problema, la sensibilidad es muy importante porque nos interesa detectar accidentes con víctimas.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#problema-del-punto-de-corte-0.5",
+    "href": "04-regresion-logistica.html#problema-del-punto-de-corte-0.5",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.20 Problema del punto de corte 0.5",
+    "text": "4.20 Problema del punto de corte 0.5\nEn muchos problemas desbalanceados, usar un punto de corte de 0.5 puede no ser adecuado.\n¿Por qué?\nPorque si la clase positiva es poco frecuente, muchas probabilidades predichas pueden quedar por debajo de 0.5.\nEsto puede provocar que el modelo prediga casi siempre la clase mayoritaria.\nPor eso, conviene probar otros puntos de corte.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#clasificación-con-punto-de-corte-0.3",
+    "href": "04-regresion-logistica.html#clasificación-con-punto-de-corte-0.3",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.21 Clasificación con punto de corte 0.3",
+    "text": "4.21 Clasificación con punto de corte 0.3\nAhora usaremos un punto de corte más bajo:\n0.3\n\n\nCode\nif (exists(\"prueba\")) {\n  prueba$prediccion_03 &lt;- ifelse(\n    prueba$probabilidad_victimas &gt;= 0.3,\n    \"Con víctimas\",\n    \"Solo daños\"\n  )\n  \n  prueba$prediccion_03 &lt;- factor(\n    prueba$prediccion_03,\n    levels = c(\"Con víctimas\", \"Solo daños\")\n  )\n}\n\n\nCalculamos la matriz de confusión:\n\n\nCode\nif (exists(\"prueba\")) {\n  matriz_confusion_03 &lt;- table(\n    Real = prueba$accidente_con_victimas,\n    Predicho = prueba$prediccion_03\n  )\n  \n  matriz_confusion_03\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas        13765       6739\n  Solo daños          14302      82382\n\n\nCalculamos las métricas:\n\n\nCode\nif (exists(\"matriz_confusion_03\")) {\n  VP_03 &lt;- matriz_confusion_03[\"Con víctimas\", \"Con víctimas\"]\n  FN_03 &lt;- matriz_confusion_03[\"Con víctimas\", \"Solo daños\"]\n  FP_03 &lt;- matriz_confusion_03[\"Solo daños\", \"Con víctimas\"]\n  VN_03 &lt;- matriz_confusion_03[\"Solo daños\", \"Solo daños\"]\n  \n  exactitud_03 &lt;- (VP_03 + VN_03) / (VP_03 + FN_03 + FP_03 + VN_03)\n  sensibilidad_03 &lt;- VP_03 / (VP_03 + FN_03)\n  especificidad_03 &lt;- VN_03 / (VN_03 + FP_03)\n  \n  data.frame(\n    punto_corte = 0.3,\n    exactitud = exactitud_03,\n    sensibilidad = sensibilidad_03,\n    especificidad = especificidad_03\n  )\n}\n\n\n  punto_corte exactitud sensibilidad especificidad\n1         0.3 0.8204509    0.6713324     0.8520748",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#comparación-de-puntos-de-corte",
+    "href": "04-regresion-logistica.html#comparación-de-puntos-de-corte",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.22 Comparación de puntos de corte",
+    "text": "4.22 Comparación de puntos de corte\nAhora comparamos los resultados usando dos puntos de corte:\n\n0.5\n0.3\n\n\n\nCode\nif (exists(\"exactitud\") && exists(\"exactitud_03\")) {\n  comparacion_cortes &lt;- data.frame(\n    punto_corte = c(0.5, 0.3),\n    exactitud = c(exactitud, exactitud_03),\n    sensibilidad = c(sensibilidad, sensibilidad_03),\n    especificidad = c(especificidad, especificidad_03)\n  )\n  \n  comparacion_cortes\n}\n\n\n  punto_corte exactitud sensibilidad especificidad\n1         0.5 0.8598406    0.2382950     0.9916532\n2         0.3 0.8204509    0.6713324     0.8520748",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#interpretación-de-los-puntos-de-corte",
+    "href": "04-regresion-logistica.html#interpretación-de-los-puntos-de-corte",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.23 Interpretación de los puntos de corte",
+    "text": "4.23 Interpretación de los puntos de corte\nBajar el punto de corte normalmente aumenta la sensibilidad, porque el modelo clasifica más casos como “Con víctimas”.\nSin embargo, esto también puede disminuir la especificidad, porque algunos accidentes de solo daños pueden clasificarse incorrectamente como accidentes con víctimas.\nEste intercambio es común en clasificación:\nMayor sensibilidad  → más detección de positivos, pero más falsos positivos.\nMayor especificidad → menos falsos positivos, pero más positivos no detectados.\nLa elección del punto de corte depende del problema.\nEn un problema de seguridad vial, puede ser preferible detectar más accidentes con víctimas, aunque eso aumente algunos falsos positivos.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#distribución-de-probabilidades-predichas",
+    "href": "04-regresion-logistica.html#distribución-de-probabilidades-predichas",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.24 Distribución de probabilidades predichas",
+    "text": "4.24 Distribución de probabilidades predichas\nAhora analizamos cómo se distribuyen las probabilidades predichas por el modelo.\n\n\nCode\nif (exists(\"prueba\")) {\n  ggplot(prueba, aes(x = probabilidad_victimas, fill = accidente_con_victimas)) +\n    geom_histogram(bins = 30, alpha = 0.7, position = \"identity\") +\n    labs(\n      title = \"Distribución de probabilidades predichas\",\n      x = \"Probabilidad predicha de accidente con víctimas\",\n      y = \"Frecuencia\",\n      fill = \"Clase real\"\n    )\n}",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#interpretación-de-las-probabilidades",
+    "href": "04-regresion-logistica.html#interpretación-de-las-probabilidades",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.25 Interpretación de las probabilidades",
+    "text": "4.25 Interpretación de las probabilidades\nSi el modelo separara perfectamente las clases, esperaríamos que:\n\nlos accidentes de solo daños tuvieran probabilidades cercanas a 0;\nlos accidentes con víctimas tuvieran probabilidades cercanas a 1.\n\nEn datos reales, especialmente con variables limitadas, suele haber mucho traslape.\nEse traslape significa que hay accidentes con características similares pero resultados distintos.\nEsto no necesariamente indica que el modelo esté “mal”, sino que el fenómeno puede ser complejo y que quizá necesitamos mejores variables.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#odds-ratios",
+    "href": "04-regresion-logistica.html#odds-ratios",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.26 Odds ratios",
+    "text": "4.26 Odds ratios\nLos coeficientes de la regresión logística están en escala logarítmica de momios.\nPara interpretarlos de manera más directa, podemos transformarlos con la función exponencial.\n\n\nCode\nif (exists(\"modelo_logistico\")) {\n  odds_ratios &lt;- exp(coef(modelo_logistico))\n  odds_ratios\n}\n\n\n                                  (Intercept) \n                                 7.309402e+07 \n                                        MES02 \n                                 9.552658e-01 \n                                        MES03 \n                                 9.683213e-01 \n                                        MES04 \n                                 9.971660e-01 \n                                        MES05 \n                                 9.847096e-01 \n                                        MES06 \n                                 9.467188e-01 \n                                        MES07 \n                                 9.265412e-01 \n                                        MES08 \n                                 9.102377e-01 \n                                        MES09 \n                                 9.257885e-01 \n                                        MES10 \n                                 8.571414e-01 \n                                        MES11 \n                                 8.990784e-01 \n                                        MES12 \n                                 8.941439e-01 \n                                      ID_HORA \n                                 9.989611e-01 \n                              DIASEMANAJueves \n                                 7.801123e-01 \n                               DIASEMANAlunes \n                                 8.029666e-01 \n                              DIASEMANAMartes \n                                 7.662134e-01 \n                           DIASEMANAMiercoles \n                                 7.427043e-01 \n                              DIASEMANASabado \n                                 8.644442e-01 \n                             DIASEMANAViernes \n                                 7.906058e-01 \n                     TIPACCIDCertificado cero \n                                 4.372826e-16 \n                  TIPACCIDColisión con animal \n                                 1.012323e-08 \n                TIPACCIDColisión con ciclista \n                                 2.596545e-08 \n             TIPACCIDColisión con ferrocarril \n                                 9.090763e-09 \n             TIPACCIDColisión con motocicleta \n                                 1.532311e-08 \n             TIPACCIDColisión con objeto fijo \n                                 2.978553e-09 \nTIPACCIDColisión con peatón (atropellamiento) \n                                 9.852867e-01 \n      TIPACCIDColisión con vehículo automotor \n                                 1.665497e-09 \n                             TIPACCIDIncendio \n                                 3.443225e-10 \n                                 TIPACCIDOtro \n                                 3.864937e-09 \n                    TIPACCIDSalida del camino \n                                 6.223066e-09 \n                            TIPACCIDVolcadura \n                                 2.046753e-08 \n                           CAUSAACCIConductor \n                                 7.536524e-01 \n                  CAUSAACCIFalla del vehículo \n                                 5.784403e-01 \n           CAUSAACCIMala condición del camino \n                                 9.071282e-01 \n                                CAUSAACCIOtra \n                                 9.104479e-01 \n                   CAUSAACCIPeatón o pasajero \n                                           NA \n\n\nEstos valores se conocen como odds ratios o razones de momios.\nUn odds ratio mayor que 1 indica que la variable aumenta los momios de la clase positiva, comparado con una categoría de referencia.\nUn odds ratio menor que 1 indica que la variable disminuye los momios de la clase positiva, comparado con una categoría de referencia.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#nota-sobre-la-interpretación-de-odds-ratios",
+    "href": "04-regresion-logistica.html#nota-sobre-la-interpretación-de-odds-ratios",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.27 Nota sobre la interpretación de odds ratios",
+    "text": "4.27 Nota sobre la interpretación de odds ratios\nCuando hay variables categóricas, R elige automáticamente una categoría de referencia.\nLos coeficientes de las demás categorías se interpretan en comparación con esa categoría base.\nPor eso, interpretar odds ratios requiere saber cuál es la categoría de referencia.\nEn esta primera aproximación, nuestro objetivo principal es entender el flujo completo:\ndatos → modelo → probabilidades → clases → matriz de confusión → métricas\nEn capítulos posteriores podremos profundizar más en interpretación estadística.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#limitaciones-del-modelo",
+    "href": "04-regresion-logistica.html#limitaciones-del-modelo",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.28 Limitaciones del modelo",
+    "text": "4.28 Limitaciones del modelo\nLa regresión logística es un modelo muy útil, pero tiene limitaciones.\nAlgunas de ellas son:\n\nsupone una relación lineal entre las variables predictoras y el logit;\npuede verse afectada por variables categóricas con muchas categorías;\npuede tener dificultades con relaciones complejas o no lineales;\nrequiere cuidado cuando las clases están muy desbalanceadas;\nno captura automáticamente interacciones complejas entre variables.\n\nEn nuestro caso, el modelo usa pocas variables y no incluye información espacial, condiciones del camino, tipo de vehículo, edad de conductores ni otros factores que podrían ser relevantes.\nPor lo tanto, este modelo debe verse como un primer modelo base, no como un modelo definitivo.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#qué-aprendimos",
+    "href": "04-regresion-logistica.html#qué-aprendimos",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.29 ¿Qué aprendimos?",
+    "text": "4.29 ¿Qué aprendimos?\nEn este capítulo construimos nuestro primer modelo supervisado de clasificación.\nAprendimos que:\n\nla regresión logística se usa para problemas de clasificación binaria;\nel modelo produce probabilidades;\nlas probabilidades se convierten en clases usando un punto de corte;\nel punto de corte afecta las métricas;\nla matriz de confusión permite evaluar el desempeño;\nla exactitud puede ser engañosa en bases desbalanceadas;\nla sensibilidad y la especificidad ayudan a entender mejor el modelo;\nlos odds ratios permiten interpretar coeficientes en términos de momios.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-logistica.html#conclusión",
+    "href": "04-regresion-logistica.html#conclusión",
+    "title": "4  Regresión logística para clasificación",
+    "section": "4.30 Conclusión",
+    "text": "4.30 Conclusión\nLa regresión logística es uno de los modelos más importantes en aprendizaje automático aplicado.\nAunque es relativamente simple, permite construir modelos interpretables y útiles para problemas de clasificación binaria.\nEn este capítulo la usamos para estimar la probabilidad de que un accidente tenga víctimas.\nEn el siguiente capítulo estudiaremos otro método de clasificación muy intuitivo: k vecinos más cercanos, conocido como k-NN.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
   }
 ]

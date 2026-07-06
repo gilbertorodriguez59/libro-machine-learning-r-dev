@@ -10,5 +10,8 @@
   },
   "03-analisis-exploratorio.qmd": {
     "03-analisis-exploratorio.html": "3b61342e"
+  },
+  "04-regresion-logistica.qmd": {
+    "04-regresion-logistica.html": "6d3337da"
   }
 }
