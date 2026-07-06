@@ -691,4 +691,4 @@ Aprendimos a:
 - comparar proporciones de accidentes con víctimas;
 - interpretar patrones iniciales.
 
-En el siguiente capítulo construiremos nuestro primer modelo supervisado para clasificación: una **regresión logística**. 
+En el siguiente capítulo construiremos nuestro primer modelo supervisado para clasificación: una **regresión logística**.
