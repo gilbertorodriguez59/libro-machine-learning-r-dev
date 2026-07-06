@@ -1138,5 +1138,305 @@
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
+  },
+  {
+    "objectID": "05-knn.html",
+    "href": "05-knn.html",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "",
+    "text": "5.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#objetivos-del-capítulo",
+    "href": "05-knn.html#objetivos-del-capítulo",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "",
+    "text": "Explicar la idea intuitiva del método k vecinos más cercanos.\nComprender el papel de la distancia en k-NN.\nCalcular distancias entre observaciones.\nExplicar por qué es necesario escalar las variables numéricas.\nAplicar k-NN en R para un problema de clasificación.\nConstruir una matriz de confusión.\nCalcular exactitud, sensibilidad y especificidad.\nComparar el efecto de distintos valores de (k).\nReconocer ventajas y limitaciones del método k-NN.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#introducción",
+    "href": "05-knn.html#introducción",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.2 Introducción",
+    "text": "5.2 Introducción\nEn el capítulo anterior estudiamos la regresión logística, un modelo supervisado que estima probabilidades para resolver problemas de clasificación binaria.\nEn este capítulo estudiaremos otro método de clasificación muy intuitivo: k vecinos más cercanos, conocido como k-NN por sus siglas en inglés: k-Nearest Neighbors.\nLa idea básica de k-NN es sencilla:\n\nPara clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.\n\nPor ejemplo, si queremos clasificar un nuevo accidente de tránsito, el algoritmo busca accidentes anteriores con características similares. Si la mayoría de esos accidentes similares fueron de “Solo daños”, entonces clasificará el nuevo accidente como “Solo daños”. Si la mayoría fueron “Con víctimas”, entonces lo clasificará como “Con víctimas”.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#idea-intuitiva-del-método",
+    "href": "05-knn.html#idea-intuitiva-del-método",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.3 Idea intuitiva del método",
+    "text": "5.3 Idea intuitiva del método\nSupongamos que tenemos un nuevo accidente que queremos clasificar.\nEl algoritmo k-NN hace lo siguiente:\n\nCalcula la distancia entre el nuevo accidente y los accidentes históricos.\nEncuentra los (k) accidentes más cercanos.\nRevisa la clase de esos vecinos.\nAsigna la clase más frecuente.\n\nPor ejemplo, si usamos:\nk = 5\ny los cinco vecinos más cercanos tienen estas clases:\nSolo daños\nSolo daños\nCon víctimas\nSolo daños\nSolo daños\nentonces la clase más frecuente es:\nSolo daños\nPor lo tanto, el nuevo accidente se clasifica como:\nSolo daños",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#qué-significa-k",
+    "href": "05-knn.html#qué-significa-k",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.4 ¿Qué significa k?",
+    "text": "5.4 ¿Qué significa k?\nLa letra (k) indica cuántos vecinos se usarán para clasificar una observación.\nAlgunos ejemplos:\nk = 1   → se usa el vecino más cercano\nk = 3   → se usan los 3 vecinos más cercanos\nk = 5   → se usan los 5 vecinos más cercanos\nk = 11  → se usan los 11 vecinos más cercanos\nEl valor de (k) es importante.\nSi (k) es muy pequeño, el modelo puede ser muy sensible al ruido.\nSi (k) es muy grande, el modelo puede volverse demasiado general y perder detalles locales.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#ejemplo-sencillo-con-puntos",
+    "href": "05-knn.html#ejemplo-sencillo-con-puntos",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.5 Ejemplo sencillo con puntos",
+    "text": "5.5 Ejemplo sencillo con puntos\nAntes de usar la base real de accidentes, construiremos un ejemplo pequeño.\nSupongamos que cada accidente está representado por dos variables:\n\nhora del accidente,\nmes del accidente.\n\nAdemás, cada accidente pertenece a una clase:\nCon víctimas\nSolo daños\n\n\nCode\ndatos_ejemplo &lt;- data.frame(\n  hora = c(8, 9, 10, 18, 19, 20, 22, 23),\n  mes = c(1, 1, 2, 6, 6, 7, 12, 12),\n  clase = c(\n    \"Solo daños\", \"Solo daños\", \"Solo daños\",\n    \"Con víctimas\", \"Con víctimas\", \"Con víctimas\",\n    \"Con víctimas\", \"Con víctimas\"\n  )\n)\n\ndatos_ejemplo\n\n\n  hora mes        clase\n1    8   1   Solo daños\n2    9   1   Solo daños\n3   10   2   Solo daños\n4   18   6 Con víctimas\n5   19   6 Con víctimas\n6   20   7 Con víctimas\n7   22  12 Con víctimas\n8   23  12 Con víctimas\n\n\nGraficamos estos puntos:\n\n\nCode\nlibrary(ggplot2)\n\nggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +\n  geom_point(size = 4) +\n  labs(\n    title = \"Ejemplo intuitivo de k-NN\",\n    x = \"Hora\",\n    y = \"Mes\",\n    color = \"Clase\"\n  )\n\n\n\n\n\n\n\n\n\nSi llega un nuevo accidente ocurrido a las 19 horas en el mes 7, k-NN buscará los puntos más cercanos en esta gráfica y decidirá la clase con base en ellos.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#distancia-euclidiana",
+    "href": "05-knn.html#distancia-euclidiana",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.6 Distancia euclidiana",
+    "text": "5.6 Distancia euclidiana\nk-NN necesita medir qué tan parecidas son dos observaciones.\nUna forma común de hacerlo es mediante la distancia euclidiana.\nPara dos puntos:\n[ A = (x_1, y_1) ]\ny\n[ B = (x_2, y_2) ]\nla distancia euclidiana es:\n[ d(A,B) = ]\nEsta fórmula mide la distancia en línea recta entre dos puntos.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#ejemplo-de-cálculo-de-distancia",
+    "href": "05-knn.html#ejemplo-de-cálculo-de-distancia",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.7 Ejemplo de cálculo de distancia",
+    "text": "5.7 Ejemplo de cálculo de distancia\nCalculemos la distancia entre dos accidentes.\nEl primer accidente ocurrió a las 8 horas en el mes 1.\nEl segundo ocurrió a las 10 horas en el mes 2.\n\n\nCode\nx1 &lt;- 8\ny1 &lt;- 1\n\nx2 &lt;- 10\ny2 &lt;- 2\n\ndistancia &lt;- sqrt((x1 - x2)^2 + (y1 - y2)^2)\n\ndistancia\n\n\n[1] 2.236068\n\n\nLa distancia indica qué tan separados están los dos accidentes en el espacio definido por las variables hora y mes.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#por-qué-hay-que-escalar-las-variables",
+    "href": "05-knn.html#por-qué-hay-que-escalar-las-variables",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.8 ¿Por qué hay que escalar las variables?",
+    "text": "5.8 ¿Por qué hay que escalar las variables?\nk-NN depende de distancias. Por eso, la escala de las variables importa mucho.\nSupongamos que usamos dos variables:\nedad\ningreso mensual\nLa edad puede variar entre 18 y 90, mientras que el ingreso puede variar entre 5,000 y 100,000.\nSi usamos distancias directamente, la variable ingreso dominará el cálculo, simplemente porque tiene números más grandes.\nPara evitar este problema, normalmente estandarizamos las variables.\nUna forma común de estandarizar es transformar cada variable para que tenga:\nmedia 0\ndesviación estándar 1\nEn R podemos hacerlo con la función:\nscale()",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#k-nn-con-variables-categóricas",
+    "href": "05-knn.html#k-nn-con-variables-categóricas",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.9 k-NN con variables categóricas",
+    "text": "5.9 k-NN con variables categóricas\nEl método k-NN funciona naturalmente con variables numéricas, porque se basa en distancias.\nPero muchas bases reales, como ATUS, tienen variables categóricas:\nDIASEMANA\nTIPACCID\nCAUSAACCI\nPara usar k-NN con estas variables, necesitamos transformarlas en variables numéricas.\nUna estrategia común es crear variables indicadoras, también llamadas variables dummy.\nPor ejemplo, si tenemos la variable:\nDIASEMANA\ncon valores:\nlunes\nMartes\nMiercoles\npodemos crear columnas como:\nDIASEMANA_lunes\nDIASEMANA_Martes\nDIASEMANA_Miercoles\nCada columna toma el valor 1 si la observación pertenece a esa categoría y 0 en caso contrario.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#cargar-paquetes",
+    "href": "05-knn.html#cargar-paquetes",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.10 Cargar paquetes",
+    "text": "5.10 Cargar paquetes\nEn este capítulo usaremos los siguientes paquetes:\n\n\nCode\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(class)\n\n\nSi alguno no está instalado, puedes instalarlo con:\n\n\nCode\ninstall.packages(c(\"readr\", \"dplyr\", \"ggplot2\", \"class\"))",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#cargar-la-base-preparada",
+    "href": "05-knn.html#cargar-la-base-preparada",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.11 Cargar la base preparada",
+    "text": "5.11 Cargar la base preparada\nUsaremos la base preparada en el capítulo 2:\ndatos/atus_ml_preparado.csv\nDefinimos la ruta:\n\n\nCode\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\n\nVerificamos si existe:\n\n\nCode\nfile.exists(ruta_atus_ml)\n\n\n[1] TRUE\n\n\nCargamos la base:\n\n\nCode\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(\n    ruta_atus_ml,\n    show_col_types = FALSE\n  )\n  \n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#selección-de-una-muestra-para-k-nn",
+    "href": "05-knn.html#selección-de-una-muestra-para-k-nn",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.12 Selección de una muestra para k-NN",
+    "text": "5.12 Selección de una muestra para k-NN\nLa base ATUS contiene muchos registros. k-NN puede volverse lento porque calcula distancias entre observaciones.\nPara mantener el capítulo didáctico y permitir que el libro se renderice con rapidez, trabajaremos con una muestra aleatoria de la base.\nEsto no cambia la explicación del método. Solo reduce el tiempo de cómputo.\n\n\nCode\nif (!is.null(atus_ml)) {\n  set.seed(123)\n  \n  tamano_muestra &lt;- min(12000, nrow(atus_ml))\n  \n  atus_knn_base &lt;- atus_ml |&gt;\n    sample_n(tamano_muestra)\n  \n  dim(atus_knn_base)\n}\n\n\n[1] 12000     6",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#preparar-variables-para-k-nn",
+    "href": "05-knn.html#preparar-variables-para-k-nn",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.13 Preparar variables para k-NN",
+    "text": "5.13 Preparar variables para k-NN\nPrimero convertimos algunas variables al tipo adecuado.\n\n\nCode\nif (exists(\"atus_knn_base\")) {\n  atus_knn_base &lt;- atus_knn_base |&gt;\n    mutate(\n      accidente_con_victimas = factor(\n        accidente_con_victimas,\n        levels = c(\"Con víctimas\", \"Solo daños\")\n      ),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n}\n\n\nRevisamos la distribución de la variable respuesta en la muestra:\n\n\nCode\nif (exists(\"atus_knn_base\")) {\n  table(atus_knn_base$accidente_con_victimas)\n}\n\n\n\nCon víctimas   Solo daños \n        2083         9917 \n\n\nTambién calculamos porcentajes:\n\n\nCode\nif (exists(\"atus_knn_base\")) {\n  round(100 * prop.table(table(atus_knn_base$accidente_con_victimas)), 2)\n}\n\n\n\nCon víctimas   Solo daños \n       17.36        82.64",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#crear-variables-dummy",
+    "href": "05-knn.html#crear-variables-dummy",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.14 Crear variables dummy",
+    "text": "5.14 Crear variables dummy\nPara usar k-NN necesitamos una matriz numérica de variables predictoras.\nUsaremos model.matrix() para convertir variables categóricas en variables dummy.\n\n\nCode\nif (exists(\"atus_knn_base\")) {\n  matriz_predictoras &lt;- model.matrix(\n    ~ ID_HORA + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1,\n    data = atus_knn_base\n  )\n  \n  dim(matriz_predictoras)\n}\n\n\n[1] 12000    36\n\n\nLa expresión - 1 evita crear una columna de intercepto.\nLa matriz resultante contiene variables numéricas que pueden usarse para calcular distancias.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#variable-respuesta",
+    "href": "05-knn.html#variable-respuesta",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.15 Variable respuesta",
+    "text": "5.15 Variable respuesta\nGuardamos la variable respuesta en un objeto separado.\n\n\nCode\nif (exists(\"atus_knn_base\")) {\n  y &lt;- atus_knn_base$accidente_con_victimas\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#división-en-entrenamiento-y-prueba",
+    "href": "05-knn.html#división-en-entrenamiento-y-prueba",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.16 División en entrenamiento y prueba",
+    "text": "5.16 División en entrenamiento y prueba\nDividimos la muestra en:\n\n70% para entrenamiento,\n30% para prueba.\n\n\n\nCode\nif (exists(\"matriz_predictoras\") && exists(\"y\")) {\n  set.seed(123)\n  \n  n &lt;- nrow(matriz_predictoras)\n  \n  indices_entrenamiento &lt;- sample(\n    1:n,\n    size = round(0.7 * n)\n  )\n  \n  x_entrenamiento &lt;- matriz_predictoras[indices_entrenamiento, ]\n  x_prueba &lt;- matriz_predictoras[-indices_entrenamiento, ]\n  \n  y_entrenamiento &lt;- y[indices_entrenamiento]\n  y_prueba &lt;- y[-indices_entrenamiento]\n}\n\n\nRevisamos el tamaño de los conjuntos:\n\n\nCode\nif (exists(\"x_entrenamiento\") && exists(\"x_prueba\")) {\n  data.frame(\n    conjunto = c(\"Entrenamiento\", \"Prueba\"),\n    registros = c(nrow(x_entrenamiento), nrow(x_prueba)),\n    porcentaje = c(\n      round(100 * nrow(x_entrenamiento) / nrow(matriz_predictoras), 2),\n      round(100 * nrow(x_prueba) / nrow(matriz_predictoras), 2)\n    )\n  )\n}\n\n\n       conjunto registros porcentaje\n1 Entrenamiento      8400         70\n2        Prueba      3600         30",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#estandarización-de-variables",
+    "href": "05-knn.html#estandarización-de-variables",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.17 Estandarización de variables",
+    "text": "5.17 Estandarización de variables\nComo k-NN depende de distancias, debemos estandarizar las variables.\nEs importante calcular la media y desviación estándar usando solo el conjunto de entrenamiento.\nDespués aplicamos esa misma transformación al conjunto de prueba.\n\n\nCode\nif (exists(\"x_entrenamiento\") && exists(\"x_prueba\")) {\n  medias &lt;- apply(x_entrenamiento, 2, mean)\n  desviaciones &lt;- apply(x_entrenamiento, 2, sd)\n  \n  desviaciones[desviaciones == 0] &lt;- 1\n  \n  x_entrenamiento_esc &lt;- scale(\n    x_entrenamiento,\n    center = medias,\n    scale = desviaciones\n  )\n  \n  x_prueba_esc &lt;- scale(\n    x_prueba,\n    center = medias,\n    scale = desviaciones\n  )\n}\n\n\nEsta forma de escalar evita que usemos información del conjunto de prueba durante el entrenamiento.\nEso es importante porque el conjunto de prueba debe simular datos nuevos.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#ajuste-del-modelo-k-nn-con-k-5",
+    "href": "05-knn.html#ajuste-del-modelo-k-nn-con-k-5",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.18 Ajuste del modelo k-NN con k = 5",
+    "text": "5.18 Ajuste del modelo k-NN con k = 5\nAhora aplicamos k-NN usando:\nk = 5\n\n\nCode\nif (exists(\"x_entrenamiento_esc\") && exists(\"x_prueba_esc\")) {\n  pred_knn_5 &lt;- knn(\n    train = x_entrenamiento_esc,\n    test = x_prueba_esc,\n    cl = y_entrenamiento,\n    k = 5\n  )\n}\n\n\nRevisamos las primeras predicciones:\n\n\nCode\nif (exists(\"pred_knn_5\")) {\n  head(\n    data.frame(\n      real = y_prueba,\n      predicho = pred_knn_5\n    )\n  )\n}\n\n\n        real   predicho\n1 Solo daños Solo daños\n2 Solo daños Solo daños\n3 Solo daños Solo daños\n4 Solo daños Solo daños\n5 Solo daños Solo daños\n6 Solo daños Solo daños",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#matriz-de-confusión",
+    "href": "05-knn.html#matriz-de-confusión",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.19 Matriz de confusión",
+    "text": "5.19 Matriz de confusión\nConstruimos la matriz de confusión.\n\n\nCode\nif (exists(\"pred_knn_5\")) {\n  pred_knn_5 &lt;- factor(\n    pred_knn_5,\n    levels = c(\"Con víctimas\", \"Solo daños\")\n  )\n  \n  y_prueba &lt;- factor(\n    y_prueba,\n    levels = c(\"Con víctimas\", \"Solo daños\")\n  )\n  \n  matriz_confusion_knn_5 &lt;- table(\n    Real = y_prueba,\n    Predicho = pred_knn_5\n  )\n  \n  matriz_confusion_knn_5\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          211        399\n  Solo daños            144       2846",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#métricas-de-evaluación",
+    "href": "05-knn.html#métricas-de-evaluación",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.20 Métricas de evaluación",
+    "text": "5.20 Métricas de evaluación\nCalculamos exactitud, sensibilidad y especificidad.\nPrimero extraemos los valores de la matriz.\n\n\nCode\nif (exists(\"matriz_confusion_knn_5\")) {\n  VP &lt;- matriz_confusion_knn_5[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_knn_5[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_knn_5[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_knn_5[\"Solo daños\", \"Solo daños\"]\n  \n  data.frame(\n    medida = c(\"VP\", \"FN\", \"FP\", \"VN\"),\n    nombre = c(\n      \"Verdaderos positivos\",\n      \"Falsos negativos\",\n      \"Falsos positivos\",\n      \"Verdaderos negativos\"\n    ),\n    descripcion = c(\n      \"Con víctimas clasificado como Con víctimas\",\n      \"Con víctimas clasificado como Solo daños\",\n      \"Solo daños clasificado como Con víctimas\",\n      \"Solo daños clasificado como Solo daños\"\n    ),\n    valor = c(VP, FN, FP, VN)\n  )\n}\n\n\n  medida               nombre                                descripcion valor\n1     VP Verdaderos positivos Con víctimas clasificado como Con víctimas   211\n2     FN     Falsos negativos   Con víctimas clasificado como Solo daños   399\n3     FP     Falsos positivos   Solo daños clasificado como Con víctimas   144\n4     VN Verdaderos negativos     Solo daños clasificado como Solo daños  2846\n\n\nCalculamos las métricas:\n\n\nCode\nif (exists(\"VP\")) {\n  exactitud_knn_5 &lt;- (VP + VN) / (VP + FN + FP + VN)\n  sensibilidad_knn_5 &lt;- VP / (VP + FN)\n  especificidad_knn_5 &lt;- VN / (VN + FP)\n  \n  data.frame(\n    k = 5,\n    exactitud = exactitud_knn_5,\n    sensibilidad = sensibilidad_knn_5,\n    especificidad = especificidad_knn_5\n  )\n}\n\n\n  k exactitud sensibilidad especificidad\n1 5 0.8491667    0.3459016     0.9518395",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#interpretación-de-las-métricas",
+    "href": "05-knn.html#interpretación-de-las-métricas",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.21 Interpretación de las métricas",
+    "text": "5.21 Interpretación de las métricas\nLa exactitud indica la proporción total de clasificaciones correctas.\nLa sensibilidad indica qué proporción de accidentes con víctimas fueron detectados correctamente.\nLa especificidad indica qué proporción de accidentes de solo daños fueron clasificados correctamente.\nComo ya vimos en el capítulo anterior, esta base está desbalanceada. Por eso no debemos evaluar el modelo solo con exactitud.\nEn seguridad vial, la sensibilidad puede ser especialmente importante, porque nos interesa detectar accidentes con víctimas.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#comparación-con-distintos-valores-de-k",
+    "href": "05-knn.html#comparación-con-distintos-valores-de-k",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.22 Comparación con distintos valores de k",
+    "text": "5.22 Comparación con distintos valores de k\nEl valor de (k) puede afectar los resultados.\nProbaremos tres valores:\nk = 3\nk = 5\nk = 11\nPrimero creamos una función para calcular métricas.\n\n\nCode\ncalcular_metricas &lt;- function(real, predicho) {\n  \n  real &lt;- factor(real, levels = c(\"Con víctimas\", \"Solo daños\"))\n  predicho &lt;- factor(predicho, levels = c(\"Con víctimas\", \"Solo daños\"))\n  \n  matriz &lt;- table(\n    Real = real,\n    Predicho = predicho\n  )\n  \n  VP &lt;- matriz[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz[\"Solo daños\", \"Solo daños\"]\n  \n  exactitud &lt;- (VP + VN) / (VP + FN + FP + VN)\n  sensibilidad &lt;- VP / (VP + FN)\n  especificidad &lt;- VN / (VN + FP)\n  \n  data.frame(\n    exactitud = exactitud,\n    sensibilidad = sensibilidad,\n    especificidad = especificidad\n  )\n}\n\n\nAhora probamos varios valores de (k).\n\n\nCode\nif (exists(\"x_entrenamiento_esc\") && exists(\"x_prueba_esc\")) {\n  \n  valores_k &lt;- c(3, 5, 11)\n  \n  resultados_knn &lt;- data.frame()\n  \n  for (k_actual in valores_k) {\n    \n    pred_actual &lt;- knn(\n      train = x_entrenamiento_esc,\n      test = x_prueba_esc,\n      cl = y_entrenamiento,\n      k = k_actual\n    )\n    \n    metricas_actuales &lt;- calcular_metricas(\n      real = y_prueba,\n      predicho = pred_actual\n    )\n    \n    metricas_actuales$k &lt;- k_actual\n    \n    resultados_knn &lt;- rbind(\n      resultados_knn,\n      metricas_actuales\n    )\n  }\n  \n  resultados_knn &lt;- resultados_knn |&gt;\n    select(k, exactitud, sensibilidad, especificidad)\n  \n  resultados_knn\n}\n\n\n   k exactitud sensibilidad especificidad\n1  3 0.8433333    0.3770492     0.9384615\n2  5 0.8480556    0.3491803     0.9498328\n3 11 0.8558333    0.3377049     0.9615385",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#gráfica-de-comparación",
+    "href": "05-knn.html#gráfica-de-comparación",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.23 Gráfica de comparación",
+    "text": "5.23 Gráfica de comparación\nGraficamos la exactitud, sensibilidad y especificidad para cada valor de (k).\n\n\nCode\nif (exists(\"resultados_knn\")) {\n  \n  resultados_largos &lt;- resultados_knn |&gt;\n    tidyr::pivot_longer(\n      cols = c(exactitud, sensibilidad, especificidad),\n      names_to = \"metrica\",\n      values_to = \"valor\"\n    )\n  \n  ggplot(resultados_largos, aes(x = k, y = valor, group = metrica)) +\n    geom_line() +\n    geom_point(size = 3) +\n    scale_x_continuous(breaks = valores_k) +\n    labs(\n      title = \"Comparación de métricas para distintos valores de k\",\n      x = \"Valor de k\",\n      y = \"Valor de la métrica\",\n      group = \"Métrica\"\n    )\n}",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#interpretación-de-la-comparación",
+    "href": "05-knn.html#interpretación-de-la-comparación",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.24 Interpretación de la comparación",
+    "text": "5.24 Interpretación de la comparación\nEl valor de (k) influye en el comportamiento del modelo.\nCon valores pequeños de (k), el modelo puede reaccionar mucho a observaciones individuales. Esto puede hacerlo sensible al ruido.\nCon valores grandes de (k), el modelo toma decisiones más suaves, pero puede perder capacidad para detectar patrones locales.\nNo existe un valor de (k) universalmente mejor. Debe elegirse evaluando el desempeño del modelo y considerando el objetivo del problema.\nEn este caso, como el problema está desbalanceado, no basta con elegir el valor de (k) que tenga mayor exactitud. También debemos revisar sensibilidad y especificidad.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#comparación-conceptual-con-regresión-logística",
+    "href": "05-knn.html#comparación-conceptual-con-regresión-logística",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.25 Comparación conceptual con regresión logística",
+    "text": "5.25 Comparación conceptual con regresión logística\nLa regresión logística y k-NN son modelos de clasificación, pero funcionan de manera muy diferente.\n\n\n\n\n\n\n\n\nAspecto\nRegresión logística\nk-NN\n\n\n\n\nTipo de modelo\nParamétrico\nNo paramétrico\n\n\nProduce modelo explícito\nSí\nNo en el mismo sentido\n\n\nUsa distancias\nNo\nSí\n\n\nRequiere escalamiento\nNo siempre\nSí\n\n\nInterpretable\nAlta\nMedia o baja\n\n\nSensible a muchas variables\nModeradamente\nSí\n\n\nCosto de predicción\nBajo\nPuede ser alto\n\n\nManejo natural de categóricas\nSí, con factores\nRequiere transformación\n\n\n\nLa regresión logística estima una relación matemática entre variables y probabilidad.\nk-NN clasifica comparando cada nueva observación contra observaciones existentes.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#ventajas-de-k-nn",
+    "href": "05-knn.html#ventajas-de-k-nn",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.26 Ventajas de k-NN",
+    "text": "5.26 Ventajas de k-NN\nAlgunas ventajas de k-NN son:\n\nes fácil de entender;\nno requiere asumir una forma funcional específica;\npuede capturar fronteras de decisión no lineales;\nes útil como método introductorio de clasificación;\npermite explicar visualmente la idea de cercanía y similitud.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#limitaciones-de-k-nn",
+    "href": "05-knn.html#limitaciones-de-k-nn",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.27 Limitaciones de k-NN",
+    "text": "5.27 Limitaciones de k-NN\nk-NN también tiene limitaciones importantes:\n\npuede ser lento con bases grandes;\ndepende mucho de la escala de las variables;\npuede verse afectado por variables irrelevantes;\nno maneja variables categóricas directamente;\nrequiere elegir el valor de (k);\npuede tener dificultades en espacios de muchas dimensiones;\nno produce una ecuación interpretable como la regresión logística.\n\nEn el caso de ATUS, usamos variables categóricas transformadas en variables dummy. Esto permite aplicar k-NN, pero también aumenta el número de columnas.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#qué-aprendimos",
+    "href": "05-knn.html#qué-aprendimos",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.28 ¿Qué aprendimos?",
+    "text": "5.28 ¿Qué aprendimos?\nEn este capítulo aprendimos que:\n\nk-NN clasifica una observación según sus vecinos más cercanos;\nel parámetro (k) indica cuántos vecinos se consideran;\nel método depende de una medida de distancia;\nlas variables deben estar en una escala comparable;\nlas variables categóricas deben transformarse antes de usar k-NN;\nel desempeño cambia según el valor de (k);\nen bases desbalanceadas debemos revisar más que la exactitud.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
+    "objectID": "05-knn.html#conclusión",
+    "href": "05-knn.html#conclusión",
+    "title": "5  k vecinos más cercanos, k-NN",
+    "section": "5.29 Conclusión",
+    "text": "5.29 Conclusión\nk-NN es uno de los métodos más intuitivos del aprendizaje automático.\nAunque es sencillo de explicar, requiere cuidado en la preparación de los datos, especialmente en el escalamiento y en el tratamiento de variables categóricas.\nEn este capítulo usamos k-NN para clasificar accidentes de tránsito según la presencia de víctimas.\nEn el siguiente capítulo estudiaremos un método muy importante por su interpretabilidad: árboles de decisión.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
   }
 ]

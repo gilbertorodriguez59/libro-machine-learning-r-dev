@@ -7,12 +7,14 @@ book:
   subtitle: "Un enfoque práctico con datos abiertos reales"
   author: "MI. Gilberto Rodríguez"
   date: today
+  downloads: [pdf]
   chapters:
     - index.qmd
     - 01-introduccion.qmd
     - 02-preparacion-datos.qmd
     - 03-analisis-exploratorio.qmd
     - 04-regresion-logistica.qmd
+    - 05-knn.qmd
 
 format:
   html:
@@ -26,3 +28,4 @@ format:
     documentclass: book
     toc: true
     number-sections: true
+    colorlinks: true

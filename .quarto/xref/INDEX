@@ -13,5 +13,8 @@
   },
   "04-regresion-logistica.qmd": {
     "04-regresion-logistica.html": "6d3337da"
+  },
+  "05-knn.qmd": {
+    "05-knn.html": "2d07b746"
   }
 }
