@@ -1,5 +1,16 @@
 # Preparación de datos reales
 
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE
+)
+```
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -252,9 +263,9 @@ Para evitar que el libro falle si el archivo aún no está descargado, primero v
 ```{r}
 if (file.exists(ruta_atus)) {
   atus <- read_csv(
-    file = ruta_atus,
+   file = ruta_atus,
     show_col_types = FALSE,
-    locale = locale(encoding = "Latin1")
+    locale = locale(encoding = "UTF-8")
   )
   
   print("Archivo leído correctamente.")
@@ -435,15 +446,18 @@ if (!is.null(atus) && "CLASACC" %in% names(atus_base)) {
       CLASACC_TXT = as.character(CLASACC),
       CLASACC_TXT = str_to_lower(CLASACC_TXT),
       accidente_con_victimas = case_when(
-        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
+        str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "daã") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "daÃ") ~ "Solo daños",
         str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
-        str_detect(CLASACC_TXT, "dañ") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
         CLASACC_TXT %in% c("1", "2") ~ "Con víctimas",
         CLASACC_TXT %in% c("3") ~ "Solo daños",
         TRUE ~ NA_character_
       )
     )
-  
   table(atus_modelo$accidente_con_victimas, useNA = "ifany")
 }
 ```
