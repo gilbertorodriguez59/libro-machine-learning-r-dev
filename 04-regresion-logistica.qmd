@@ -54,15 +54,12 @@ La regresión logística es uno de los modelos más utilizados para este tipo de
 
 Un problema de clasificación binaria es aquel donde la variable respuesta tiene solo dos posibles clases.
 
-Algunos ejemplos son:
-
 | Problema | Clase 1 | Clase 2 |
 |---|---|---|
 | Accidente de tránsito | Con víctimas | Solo daños |
 | Diagnóstico médico | Enfermo | Sano |
 | Crédito bancario | Incumple | No incumple |
 | Correo electrónico | Spam | No spam |
-| Calidad del aire | Alta contaminación | Baja contaminación |
 
 En nuestro caso, la clase de interés será:
 
@@ -70,34 +67,11 @@ En nuestro caso, la clase de interés será:
 Con víctimas
 ```
 
-Es decir, nos interesa estimar la probabilidad de que un accidente pertenezca a esa clase.
-
 ## ¿Por qué no usar regresión lineal?
 
-Supongamos que codificamos la variable respuesta así:
+Si codificamos la variable respuesta como \(1\) para “Con víctimas” y \(0\) para “Solo daños”, podríamos pensar en usar regresión lineal.
 
-```text
-1 = Con víctimas
-0 = Solo daños
-```
-
-Podríamos pensar en ajustar un modelo de regresión lineal común. Sin embargo, esto presenta un problema importante.
-
-La regresión lineal puede producir predicciones menores que 0 o mayores que 1.
-
-Pero una probabilidad debe estar entre 0 y 1.
-
-Por ejemplo, no tendría sentido decir:
-
-```text
-La probabilidad de accidente con víctimas es 1.27
-```
-
-o:
-
-```text
-La probabilidad de accidente con víctimas es -0.15
-```
+Pero la regresión lineal puede producir predicciones menores que 0 o mayores que 1, y una probabilidad debe estar entre 0 y 1.
 
 Para evitar este problema usamos la **regresión logística**, que transforma la salida del modelo para obtener valores entre 0 y 1.
 
@@ -107,12 +81,6 @@ La regresión logística no predice directamente una clase.
 
 Primero predice una probabilidad.
 
-Por ejemplo, para un accidente determinado, el modelo podría estimar:
-
-```text
-Probabilidad de accidente con víctimas = 0.72
-```
-
 Después usamos un punto de corte para convertir esa probabilidad en una clase.
 
 Por ejemplo, si usamos un punto de corte de 0.5:
@@ -120,13 +88,6 @@ Por ejemplo, si usamos un punto de corte de 0.5:
 ```text
 Si probabilidad >= 0.5 → Con víctimas
 Si probabilidad <  0.5 → Solo daños
-```
-
-Entonces:
-
-```text
-0.72 → Con víctimas
-0.18 → Solo daños
 ```
 
 Esta distinción es muy importante:
@@ -139,8 +100,6 @@ La regresión logística utiliza una función especial llamada **función logís
 
 Esta función tiene forma de “S” y convierte cualquier número real en un valor entre 0 y 1.
 
-Matemáticamente, se escribe así:
-
 \[
 p = \frac{1}{1 + e^{-z}}
 \]
@@ -151,24 +110,126 @@ donde:
 z = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_px_p
 \]
 
-En esta expresión:
+## Fundamento matemático de la regresión logística
 
-- \(p\) es la probabilidad predicha.
-- \(x_1, x_2, \ldots, x_p\) son las variables predictoras.
-- \(\beta_0\) es el intercepto.
-- \(\beta_1, \beta_2, \ldots, \beta_p\) son los coeficientes del modelo.
+En clasificación binaria, la variable respuesta puede representarse como:
 
-La ventaja de esta función es que, sin importar el valor de \(z\), el resultado siempre estará entre 0 y 1.
+\[
+Y_i =
+\begin{cases}
+1, & \text{si el accidente tiene víctimas} \\
+0, & \text{si el accidente es de solo daños}
+\end{cases}
+\]
+
+La regresión logística estima la probabilidad de que \(Y_i = 1\) dado un conjunto de variables predictoras \(X_i\):
+
+\[
+P(Y_i = 1 \mid X_i) = \hat{p}_i
+\]
+
+La probabilidad estimada se calcula mediante:
+
+\[
+\hat{p}_i =
+\frac{1}{1 + e^{-z_i}}
+\]
+
+donde:
+
+\[
+z_i =
+\beta_0 +
+\beta_1x_{i1} +
+\beta_2x_{i2} +
+\cdots +
+\beta_px_{ip}
+\]
+
+La función logística garantiza que:
+
+\[
+0 \leq \hat{p}_i \leq 1
+\]
+
+por lo tanto, \(\hat{p}_i\) puede interpretarse como una probabilidad.
+
+## Logit y razón de momios
+
+La regresión logística también puede escribirse mediante la función logit:
+
+\[
+\log
+\left(
+\frac{p_i}{1 - p_i}
+\right)
+=
+\beta_0 +
+\beta_1x_{i1} +
+\cdots +
+\beta_px_{ip}
+\]
+
+La expresión:
+
+\[
+\frac{p_i}{1 - p_i}
+\]
+
+se conoce como **momios** u **odds**.
+
+Cuando aplicamos la función exponencial a un coeficiente, obtenemos un **odds ratio**:
+
+\[
+OR_j = e^{\beta_j}
+\]
+
+## Regla de clasificación
+
+Una vez estimada la probabilidad \(\hat{p}_i\), se elige un punto de corte \(c\).
+
+\[
+\hat{Y}_i =
+\begin{cases}
+1, & \text{si } \hat{p}_i \geq c \\
+0, & \text{si } \hat{p}_i < c
+\end{cases}
+\]
+
+## Algoritmo de regresión logística
+
+```text
+Algoritmo: Regresión logística para clasificación binaria
+
+Entrada:
+  - Matriz de variables predictoras X
+  - Variable respuesta binaria Y
+  - Punto de corte c
+
+Proceso:
+  1. Codificar la variable respuesta como 0 y 1.
+  2. Estimar los coeficientes beta del modelo logístico.
+  3. Calcular z = beta_0 + beta_1 x_1 + ... + beta_p x_p.
+  4. Transformar z mediante la función logística.
+  5. Obtener la probabilidad estimada p.
+  6. Comparar p contra el punto de corte c.
+  7. Si p >= c, clasificar como clase positiva.
+  8. Si p < c, clasificar como clase negativa.
+  9. Comparar las clases predichas contra las clases reales.
+  10. Calcular matriz de confusión y métricas.
+
+Salida:
+  - Probabilidades predichas
+  - Clases predichas
+  - Matriz de confusión
+  - Exactitud, sensibilidad y especificidad
+```
 
 ## Visualización de la función logística
 
-Veamos la forma de la función logística.
-
 ```{r}
 z <- seq(-10, 10, length.out = 200)
-
 p <- 1 / (1 + exp(-z))
-
 datos_logistica <- data.frame(z = z, p = p)
 
 library(ggplot2)
@@ -182,11 +243,7 @@ ggplot(datos_logistica, aes(x = z, y = p)) +
   )
 ```
 
-La gráfica muestra que la probabilidad se acerca a 0 para valores muy negativos de \(z\), y se acerca a 1 para valores muy positivos.
-
 ## Cargar paquetes
-
-En este capítulo utilizaremos los siguientes paquetes:
 
 ```{r}
 library(readr)
@@ -202,25 +259,10 @@ install.packages(c("readr", "dplyr", "ggplot2"))
 
 ## Cargar la base preparada
 
-Usaremos la base preparada en el capítulo 2:
-
-```text
-datos/atus_ml_preparado.csv
-```
-
-Definimos la ruta:
-
 ```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-```
-
-Verificamos que exista:
-
-```{r}
 file.exists(ruta_atus_ml)
 ```
-
-Cargamos la base:
 
 ```{r}
 if (file.exists(ruta_atus_ml)) {
@@ -228,7 +270,6 @@ if (file.exists(ruta_atus_ml)) {
     ruta_atus_ml,
     show_col_types = FALSE
   )
-  
   print("Base preparada cargada correctamente.")
 } else {
   atus_ml <- NULL
@@ -237,21 +278,6 @@ if (file.exists(ruta_atus_ml)) {
 ```
 
 ## Preparar variables para el modelo
-
-Para la regresión logística necesitamos preparar la variable respuesta.
-
-Crearemos una variable numérica llamada:
-
-```text
-victimas_binaria
-```
-
-con la siguiente codificación:
-
-```text
-1 = Con víctimas
-0 = Solo daños
-```
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -271,33 +297,22 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-Revisamos las primeras filas:
-
 ```{r}
 if (exists("atus_modelo")) {
   head(atus_modelo)
 }
 ```
 
-Verificamos la distribución de la variable respuesta binaria:
-
 ```{r}
 if (exists("atus_modelo")) {
   table(atus_modelo$victimas_binaria)
-}
-```
-
-También revisamos la variable original:
-
-```{r}
-if (exists("atus_modelo")) {
   table(atus_modelo$accidente_con_victimas)
 }
 ```
 
 ## Selección inicial de variables predictoras
 
-Para nuestro primer modelo usaremos las siguientes variables:
+Usaremos:
 
 ```text
 MES
@@ -313,38 +328,22 @@ La fórmula del modelo será:
 victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI
 ```
 
-Esto significa que intentaremos estimar la probabilidad de que un accidente tenga víctimas usando información temporal y descriptiva del accidente.
-
 ## División en entrenamiento y prueba
-
-Antes de entrenar el modelo, dividimos los datos en dos partes:
-
-- conjunto de entrenamiento,
-- conjunto de prueba.
-
-El conjunto de entrenamiento se usa para ajustar el modelo.
-
-El conjunto de prueba se usa para evaluar el desempeño del modelo con datos que no se usaron para entrenarlo.
-
-Usaremos 70% de los datos para entrenamiento y 30% para prueba.
 
 ```{r}
 if (exists("atus_modelo")) {
   set.seed(123)
-  
   n <- nrow(atus_modelo)
-  
+
   indices_entrenamiento <- sample(
     1:n,
     size = round(0.7 * n)
   )
-  
+
   entrenamiento <- atus_modelo[indices_entrenamiento, ]
   prueba <- atus_modelo[-indices_entrenamiento, ]
 }
 ```
-
-Revisamos el tamaño de cada conjunto:
 
 ```{r}
 if (exists("entrenamiento") && exists("prueba")) {
@@ -359,20 +358,18 @@ if (exists("entrenamiento") && exists("prueba")) {
 }
 ```
 
-También revisamos si la proporción de clases se mantiene razonablemente parecida en ambos conjuntos.
-
 ```{r}
 if (exists("entrenamiento") && exists("prueba")) {
   prop_entrenamiento <- round(
     100 * prop.table(table(entrenamiento$accidente_con_victimas)),
     2
   )
-  
+
   prop_prueba <- round(
     100 * prop.table(table(prueba$accidente_con_victimas)),
     2
   )
-  
+
   data.frame(
     clase = names(prop_entrenamiento),
     entrenamiento = as.numeric(prop_entrenamiento),
@@ -382,16 +379,6 @@ if (exists("entrenamiento") && exists("prueba")) {
 ```
 
 ## Ajustar el modelo de regresión logística
-
-En R, la regresión logística se ajusta con la función `glm()`.
-
-La opción importante es:
-
-```text
-family = binomial
-```
-
-Esto le indica a R que queremos ajustar un modelo logístico para una respuesta binaria.
 
 ```{r}
 if (exists("entrenamiento")) {
@@ -403,33 +390,15 @@ if (exists("entrenamiento")) {
 }
 ```
 
-Revisamos el resumen del modelo:
-
 ```{r}
 if (exists("modelo_logistico")) {
   summary(modelo_logistico)
 }
 ```
 
-## Interpretación inicial del resumen
-
-El resumen del modelo muestra los coeficientes estimados.
-
-Cada coeficiente indica cómo cambia el logaritmo de las razones de momios, conocido como **log-odds**, cuando cambia una variable predictora.
-
-En esta primera lectura no nos enfocaremos todavía en interpretar todos los coeficientes, porque varias variables son categóricas y generan muchas categorías.
-
-Lo importante por ahora es entender que el modelo estima una relación entre las variables predictoras y la probabilidad de que el accidente tenga víctimas.
-
-Más adelante podemos profundizar en la interpretación mediante los **odds ratios**.
-
 Nota didáctica: si aparece el mensaje “1 not defined because of singularities”, significa que una categoría no pudo estimarse de forma independiente, posiblemente por redundancia o falta de variación suficiente respecto a otras variables. En esta primera aproximación no lo trataremos como un error fatal, pero en un análisis profesional convendría revisar las categorías y simplificar algunas variables.
 
 ## Predicción de probabilidades
-
-Ahora usaremos el modelo para predecir sobre el conjunto de prueba.
-
-Primero obtenemos probabilidades:
 
 ```{r}
 if (exists("modelo_logistico") && exists("prueba")) {
@@ -441,8 +410,6 @@ if (exists("modelo_logistico") && exists("prueba")) {
 }
 ```
 
-Revisamos algunas predicciones:
-
 ```{r}
 if (exists("prueba")) {
   head(
@@ -452,24 +419,7 @@ if (exists("prueba")) {
 }
 ```
 
-La columna `probabilidad_victimas` indica la probabilidad estimada de que el accidente tenga víctimas.
-
 ## De probabilidades a clases
-
-Para convertir probabilidades en clases, usamos un punto de corte.
-
-Comenzaremos con el punto de corte clásico:
-
-```text
-0.5
-```
-
-La regla será:
-
-```text
-Si probabilidad >= 0.5 → Con víctimas
-Si probabilidad <  0.5 → Solo daños
-```
 
 ```{r}
 if (exists("prueba")) {
@@ -478,7 +428,7 @@ if (exists("prueba")) {
     "Con víctimas",
     "Solo daños"
   )
-  
+
   prueba$prediccion_05 <- factor(
     prueba$prediccion_05,
     levels = c("Con víctimas", "Solo daños")
@@ -486,20 +436,7 @@ if (exists("prueba")) {
 }
 ```
 
-Revisamos las primeras predicciones:
-
-```{r}
-if (exists("prueba")) {
-  head(
-    prueba |>
-      select(accidente_con_victimas, probabilidad_victimas, prediccion_05)
-  )
-}
-```
-
 ## Matriz de confusión
-
-La matriz de confusión compara las clases reales contra las clases predichas.
 
 ```{r}
 if (exists("prueba")) {
@@ -507,29 +444,12 @@ if (exists("prueba")) {
     Real = prueba$accidente_con_victimas,
     Predicho = prueba$prediccion_05
   )
-  
+
   matriz_confusion_05
 }
 ```
 
-La matriz de confusión permite identificar:
-
-- verdaderos positivos,
-- falsos positivos,
-- verdaderos negativos,
-- falsos negativos.
-
-En nuestro caso, consideraremos como clase positiva:
-
-```text
-Con víctimas
-```
-
 ## Métricas de evaluación
-
-A partir de la matriz de confusión podemos calcular varias métricas.
-
-Para evitar confusiones, primero extraemos los valores de la matriz.
 
 ```{r}
 if (exists("matriz_confusion_05")) {
@@ -537,7 +457,7 @@ if (exists("matriz_confusion_05")) {
   FN <- matriz_confusion_05["Con víctimas", "Solo daños"]
   FP <- matriz_confusion_05["Solo daños", "Con víctimas"]
   VN <- matriz_confusion_05["Solo daños", "Solo daños"]
-  
+
   data.frame(
     medida = c("VP", "FN", "FP", "VN"),
     nombre = c(
@@ -557,73 +477,73 @@ if (exists("matriz_confusion_05")) {
 }
 ```
 
-Donde:
+## Fórmulas de evaluación para clasificación binaria
 
-- **VP**: verdaderos positivos.
-- **FN**: falsos negativos.
-- **FP**: falsos positivos.
-- **VN**: verdaderos negativos.
+A partir de la matriz de confusión podemos definir las siguientes cantidades:
 
-Calculamos la exactitud:
+| Símbolo | Nombre | Descripción |
+|---|---|---|
+| \(VP\) | Verdaderos positivos | Casos positivos clasificados correctamente |
+| \(FN\) | Falsos negativos | Casos positivos clasificados como negativos |
+| \(FP\) | Falsos positivos | Casos negativos clasificados como positivos |
+| \(VN\) | Verdaderos negativos | Casos negativos clasificados correctamente |
+
+La exactitud se calcula como:
+
+\[
+\text{Exactitud}
+=
+\frac{VP + VN}{VP + FN + FP + VN}
+\]
+
+La sensibilidad se calcula como:
+
+\[
+\text{Sensibilidad}
+=
+\frac{VP}{VP + FN}
+\]
+
+La especificidad se calcula como:
+
+\[
+\text{Especificidad}
+=
+\frac{VN}{VN + FP}
+\]
+
+La precisión se calcula como:
+
+\[
+\text{Precisión}
+=
+\frac{VP}{VP + FP}
+\]
+
+En problemas desbalanceados, la exactitud puede ser engañosa. Por eso es importante revisar también sensibilidad, especificidad y precisión.
 
 ```{r}
 if (exists("VP")) {
   exactitud <- (VP + VN) / (VP + FN + FP + VN)
-  exactitud
-}
-```
-
-Calculamos la sensibilidad:
-
-```{r}
-if (exists("VP")) {
   sensibilidad <- VP / (VP + FN)
-  sensibilidad
-}
-```
-
-Calculamos la especificidad:
-
-```{r}
-if (exists("VP")) {
   especificidad <- VN / (VN + FP)
-  especificidad
+
+  data.frame(
+    punto_corte = 0.5,
+    exactitud = exactitud,
+    sensibilidad = sensibilidad,
+    especificidad = especificidad
+  )
 }
 ```
-
-## Interpretación de las métricas
-
-La **exactitud** mide la proporción total de predicciones correctas.
-
-La **sensibilidad** mide la proporción de accidentes con víctimas que el modelo detecta correctamente.
-
-La **especificidad** mide la proporción de accidentes de solo daños que el modelo clasifica correctamente.
-
-En problemas desbalanceados, la exactitud puede ser engañosa.
-
-Por ejemplo, como en esta base hay muchos más accidentes de solo daños, un modelo que prediga siempre “Solo daños” podría obtener una exactitud alta, pero una sensibilidad muy baja.
-
-En nuestro problema, la sensibilidad es muy importante porque nos interesa detectar accidentes con víctimas.
 
 ## Problema del punto de corte 0.5
 
 En muchos problemas desbalanceados, usar un punto de corte de 0.5 puede no ser adecuado.
 
-¿Por qué?
-
-Porque si la clase positiva es poco frecuente, muchas probabilidades predichas pueden quedar por debajo de 0.5.
-
-Esto puede provocar que el modelo prediga casi siempre la clase mayoritaria.
-
-Por eso, conviene probar otros puntos de corte.
+Si la clase positiva es poco frecuente, muchas probabilidades predichas pueden quedar por debajo de 0.5. Esto puede provocar que el modelo prediga casi siempre la clase mayoritaria.
 
 ## Clasificación con punto de corte 0.3
-
-Ahora usaremos un punto de corte más bajo:
-
-```text
-0.3
-```
 
 ```{r}
 if (exists("prueba")) {
@@ -632,7 +552,7 @@ if (exists("prueba")) {
     "Con víctimas",
     "Solo daños"
   )
-  
+
   prueba$prediccion_03 <- factor(
     prueba$prediccion_03,
     levels = c("Con víctimas", "Solo daños")
@@ -640,20 +560,16 @@ if (exists("prueba")) {
 }
 ```
 
-Calculamos la matriz de confusión:
-
 ```{r}
 if (exists("prueba")) {
   matriz_confusion_03 <- table(
     Real = prueba$accidente_con_victimas,
     Predicho = prueba$prediccion_03
   )
-  
+
   matriz_confusion_03
 }
 ```
-
-Calculamos las métricas:
 
 ```{r}
 if (exists("matriz_confusion_03")) {
@@ -661,11 +577,11 @@ if (exists("matriz_confusion_03")) {
   FN_03 <- matriz_confusion_03["Con víctimas", "Solo daños"]
   FP_03 <- matriz_confusion_03["Solo daños", "Con víctimas"]
   VN_03 <- matriz_confusion_03["Solo daños", "Solo daños"]
-  
+
   exactitud_03 <- (VP_03 + VN_03) / (VP_03 + FN_03 + FP_03 + VN_03)
   sensibilidad_03 <- VP_03 / (VP_03 + FN_03)
   especificidad_03 <- VN_03 / (VN_03 + FP_03)
-  
+
   data.frame(
     punto_corte = 0.3,
     exactitud = exactitud_03,
@@ -677,11 +593,6 @@ if (exists("matriz_confusion_03")) {
 
 ## Comparación de puntos de corte
 
-Ahora comparamos los resultados usando dos puntos de corte:
-
-- 0.5
-- 0.3
-
 ```{r}
 if (exists("exactitud") && exists("exactitud_03")) {
   comparacion_cortes <- data.frame(
@@ -690,33 +601,16 @@ if (exists("exactitud") && exists("exactitud_03")) {
     sensibilidad = c(sensibilidad, sensibilidad_03),
     especificidad = c(especificidad, especificidad_03)
   )
-  
+
   comparacion_cortes
 }
 ```
-
-## Interpretación de los puntos de corte
-
-Bajar el punto de corte normalmente aumenta la sensibilidad, porque el modelo clasifica más casos como “Con víctimas”.
-
-Sin embargo, esto también puede disminuir la especificidad, porque algunos accidentes de solo daños pueden clasificarse incorrectamente como accidentes con víctimas.
-
-Este intercambio es común en clasificación:
-
-```text
-Mayor sensibilidad  → más detección de positivos, pero más falsos positivos.
-Mayor especificidad → menos falsos positivos, pero más positivos no detectados.
-```
-
-La elección del punto de corte depende del problema.
 
 En este ejemplo, el punto de corte 0.5 produce mayor exactitud, pero detecta pocos accidentes con víctimas. En cambio, el punto de corte 0.3 reduce la exactitud global, pero mejora considerablemente la sensibilidad.
 
 Desde una perspectiva de seguridad vial, podría ser más útil detectar una mayor proporción de accidentes con víctimas, aunque eso implique aceptar más falsos positivos.
 
 ## Distribución de probabilidades predichas
-
-Ahora analizamos cómo se distribuyen las probabilidades predichas por el modelo.
 
 ```{r}
 if (exists("prueba")) {
@@ -731,24 +625,7 @@ if (exists("prueba")) {
 }
 ```
 
-## Interpretación de las probabilidades
-
-Si el modelo separara perfectamente las clases, esperaríamos que:
-
-- los accidentes de solo daños tuvieran probabilidades cercanas a 0;
-- los accidentes con víctimas tuvieran probabilidades cercanas a 1.
-
-En datos reales, especialmente con variables limitadas, suele haber mucho traslape.
-
-Ese traslape significa que hay accidentes con características similares pero resultados distintos.
-
-Esto no necesariamente indica que el modelo esté “mal”, sino que el fenómeno puede ser complejo y que quizá necesitamos mejores variables.
-
 ## Odds ratios
-
-Los coeficientes de la regresión logística están en escala logarítmica de momios.
-
-Para interpretarlos de manera más directa, podemos transformarlos con la función exponencial.
 
 ```{r}
 if (exists("modelo_logistico")) {
@@ -756,34 +633,12 @@ if (exists("modelo_logistico")) {
     variable = names(coef(modelo_logistico)),
     odds_ratio = exp(coef(modelo_logistico))
   )
-  
+
   head(odds_ratios, 15)
 }
 ```
 
-Estos valores se conocen como **odds ratios** o razones de momios.
-
-Un odds ratio mayor que 1 indica que la variable aumenta los momios de la clase positiva, comparado con una categoría de referencia.
-
-Un odds ratio menor que 1 indica que la variable disminuye los momios de la clase positiva, comparado con una categoría de referencia.
-
-## Nota sobre la interpretación de odds ratios
-
-Cuando hay variables categóricas, R elige automáticamente una categoría de referencia.
-
-Los coeficientes de las demás categorías se interpretan en comparación con esa categoría base.
-
-Por eso, interpretar odds ratios requiere saber cuál es la categoría de referencia.
-
 En modelos con muchas variables categóricas, los odds ratios pueden ser numerosos y algunos pueden tomar valores extremos. Por eso, en esta primera lectura los usamos solo como introducción conceptual.
-
-En esta primera aproximación, nuestro objetivo principal es entender el flujo completo:
-
-```text
-datos → modelo → probabilidades → clases → matriz de confusión → métricas
-```
-
-En capítulos posteriores podremos profundizar más en interpretación estadística.
 
 ## Limitaciones del modelo
 

@@ -23,9 +23,14 @@ format:
     number-sections: true
     code-fold: true
     code-tools: true
+    html-math-method: mathjax
 
   pdf:
     documentclass: book
     toc: true
     number-sections: true
     colorlinks: true
+    geometry:
+      - margin=2.5cm
+    fontsize: 11pt
+    keep-tex: true

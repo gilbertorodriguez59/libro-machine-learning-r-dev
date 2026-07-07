@@ -34,12 +34,11 @@ La primera edición del libro incluye los siguientes temas:
 1. Introducción al aprendizaje automático.
 2. Preparación de datos reales.
 3. Análisis exploratorio de datos.
-4. Regresión lineal.
-5. Regresión logística.
-6. k vecinos más cercanos.
-7. Árboles de decisión.
-8. Bosques aleatorios.
-9. Máquinas de soporte vectorial.
-10. Naive Bayes.
-11. Agrupamiento.
-12. Componentes principales.
+4. Regresión logística.
+5. k vecinos más cercanos.
+6. Árboles de decisión.
+7. Bosques aleatorios.
+8. Máquinas de soporte vectorial.
+9. Naive Bayes.
+10. Agrupamiento.
+11. Componentes principales.

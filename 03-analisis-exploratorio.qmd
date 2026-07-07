@@ -21,6 +21,7 @@ Al finalizar este capítulo, el lector será capaz de:
 - Elaborar gráficas de barras con `ggplot2`.
 - Interpretar patrones iniciales antes de construir modelos.
 - Formular conclusiones preliminares a partir de datos reales.
+- Comprender las proporciones y proporciones condicionales usadas en EDA.
 
 ## Introducción
 
@@ -42,6 +43,100 @@ Esta etapa es fundamental porque permite responder preguntas como:
 Antes de aplicar algoritmos como regresión logística, árboles de decisión o bosques aleatorios, necesitamos conocer la base con la que vamos a trabajar.
 
 Un buen modelo empieza con una buena comprensión de los datos.
+
+## Fundamento matemático del análisis exploratorio
+
+El análisis exploratorio utiliza conteos, proporciones, resúmenes y gráficas para entender la estructura de los datos.
+
+Si una variable categórica tiene categorías \(c_1, c_2, \ldots, c_k\), la frecuencia absoluta de una categoría \(c_j\) se puede representar como:
+
+\[
+n_j = \sum_{i=1}^{n} I(y_i = c_j)
+\]
+
+donde \(I(y_i = c_j)\) es una función indicadora:
+
+\[
+I(y_i = c_j) =
+\begin{cases}
+1, & \text{si } y_i = c_j \\
+0, & \text{si } y_i \neq c_j
+\end{cases}
+\]
+
+La proporción de la categoría \(c_j\) es:
+
+\[
+p_j = \frac{n_j}{n}
+\]
+
+donde:
+
+- \(n_j\) es el número de observaciones en la categoría \(c_j\);
+- \(n\) es el número total de observaciones;
+- \(p_j\) es la proporción observada.
+
+En nuestro caso, una proporción importante es:
+
+\[
+p_{\text{víctimas}} =
+\frac{\text{número de accidentes con víctimas}}
+{\text{número total de accidentes}}
+\]
+
+Esta proporción permite medir qué tan frecuente es la clase positiva.
+
+## Proporciones condicionales
+
+Cuando analizamos la relación entre dos variables categóricas, usamos proporciones condicionales.
+
+Por ejemplo, podemos estudiar la proporción de accidentes con víctimas dado un tipo de accidente:
+
+\[
+P(\text{Con víctimas} \mid \text{Tipo de accidente})
+\]
+
+De forma empírica, esta proporción se calcula como:
+
+\[
+\hat{P}(\text{Con víctimas} \mid T = t)
+=
+\frac{
+\text{número de accidentes con víctimas del tipo } t
+}{
+\text{número total de accidentes del tipo } t
+}
+\]
+
+Esto permite comparar tipos de accidente aunque tengan frecuencias totales diferentes.
+
+## Algoritmo general del análisis exploratorio
+
+```text
+Algoritmo: Análisis exploratorio de datos
+
+Entrada:
+  - Base de datos preparada
+  - Variable respuesta
+  - Variables predictoras
+
+Proceso:
+  1. Revisar dimensiones de la base.
+  2. Revisar nombres y tipos de variables.
+  3. Calcular frecuencias de la variable respuesta.
+  4. Calcular proporciones de la variable respuesta.
+  5. Analizar variables temporales, categóricas y numéricas.
+  6. Construir gráficas exploratorias.
+  7. Cruzar variables predictoras con la variable respuesta.
+  8. Identificar patrones, desbalances y posibles problemas.
+
+Salida:
+  - Tablas descriptivas
+  - Gráficas exploratorias
+  - Primeras hipótesis sobre los datos
+```
+
+El análisis exploratorio no demuestra causalidad, pero ayuda a entender la base antes de construir modelos.
 
 ## Cargar paquetes
 
@@ -87,7 +182,7 @@ if (file.exists(ruta_atus_ml)) {
     ruta_atus_ml,
     show_col_types = FALSE
   )
-  
+
   print("Base preparada cargada correctamente.")
 } else {
   atus_ml <- NULL
@@ -276,7 +371,7 @@ if (!is.null(atus_ml)) {
   accidentes_mes <- atus_ml |>
     count(MES) |>
     arrange(as.numeric(MES))
-  
+
   accidentes_mes
 }
 ```
@@ -324,7 +419,7 @@ if (!is.null(atus_ml)) {
   accidentes_hora <- atus_ml |>
     count(ID_HORA_NUM) |>
     arrange(ID_HORA_NUM)
-  
+
   accidentes_hora
 }
 ```
@@ -366,7 +461,7 @@ if (!is.null(atus_ml)) {
   accidentes_dia <- atus_ml |>
     count(DIASEMANA) |>
     arrange(DIASEMANA)
-  
+
   accidentes_dia
 }
 ```
@@ -408,7 +503,7 @@ if (!is.null(atus_ml)) {
   accidentes_tipo <- atus_ml |>
     count(TIPACCID) |>
     arrange(desc(n))
-  
+
   accidentes_tipo
 }
 ```
@@ -419,7 +514,7 @@ Graficamos los tipos de accidente más frecuentes:
 if (!is.null(atus_ml)) {
   accidentes_tipo_top <- accidentes_tipo |>
     slice_max(n, n = 10)
-  
+
   ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +
     geom_col() +
     coord_flip() +
@@ -452,7 +547,7 @@ if (!is.null(atus_ml)) {
   accidentes_causa <- atus_ml |>
     count(CAUSAACCI) |>
     arrange(desc(n))
-  
+
   accidentes_causa
 }
 ```
@@ -463,7 +558,7 @@ Graficamos las causas más frecuentes:
 if (!is.null(atus_ml)) {
   accidentes_causa_top <- accidentes_causa |>
     slice_max(n, n = 10)
-  
+
   ggplot(accidentes_causa_top, aes(x = reorder(CAUSAACCI, n), y = n)) +
     geom_col() +
     coord_flip() +
@@ -507,7 +602,7 @@ if (!is.null(atus_ml)) {
     Tipo = atus_ml$TIPACCID,
     Clase = atus_ml$accidente_con_victimas
   )
-  
+
   tabla_tipo_victimas
 }
 ```
@@ -520,10 +615,10 @@ if (!is.null(atus_ml)) {
     count(TIPACCID) |>
     slice_max(n, n = 10) |>
     pull(TIPACCID)
-  
+
   atus_tipo_top <- atus_ml |>
     filter(TIPACCID %in% tipos_top)
-  
+
   ggplot(atus_tipo_top, aes(x = TIPACCID, fill = accidente_con_victimas)) +
     geom_bar(position = "fill") +
     coord_flip() +
@@ -627,7 +722,7 @@ if (!is.null(atus_ml)) {
       hora_maxima = max(ID_HORA_NUM, na.rm = TRUE),
       .groups = "drop"
     )
-  
+
   resumen_clase
 }
 ```

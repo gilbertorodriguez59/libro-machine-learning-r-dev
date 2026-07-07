@@ -1,5 +1,14 @@
 # ¿Qué es el aprendizaje automático?
 
+```{r}
+#| include: false
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE
+)
+```
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -9,6 +18,7 @@ Al finalizar este capítulo, el lector será capaz de:
 - Identificar problemas de clasificación, regresión y agrupamiento.
 - Reconocer las etapas principales de un proyecto de aprendizaje automático.
 - Construir un primer ejemplo sencillo de clasificación en R.
+- Reconocer la notación matemática básica usada en aprendizaje automático.
 
 ## Introducción
 
@@ -155,6 +165,81 @@ En una primera aproximación podemos hablar de tres grandes tipos de aprendizaje
 3. Aprendizaje por refuerzo.
 
 En este libro nos concentraremos principalmente en los dos primeros.
+
+## Notación básica para aprendizaje automático
+
+En aprendizaje automático trabajamos con observaciones y variables.
+
+Supongamos que tenemos \(n\) observaciones y \(p\) variables predictoras. Podemos representar los datos mediante una matriz:
+
+\[
+X =
+\begin{bmatrix}
+x_{11} & x_{12} & \cdots & x_{1p} \\
+x_{21} & x_{22} & \cdots & x_{2p} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} & \cdots & x_{np}
+\end{bmatrix}
+\]
+
+donde:
+
+- \(n\) es el número de observaciones;
+- \(p\) es el número de variables predictoras;
+- \(x_{ij}\) representa el valor de la variable \(j\) en la observación \(i\).
+
+La variable respuesta se representa como:
+
+\[
+Y =
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{bmatrix}
+\]
+
+El objetivo general del aprendizaje supervisado es encontrar una función \(f\) que permita aproximar la respuesta:
+
+\[
+\hat{y} = f(x_1, x_2, \ldots, x_p)
+\]
+
+donde:
+
+- \(\hat{y}\) es la predicción del modelo;
+- \(x_1, x_2, \ldots, x_p\) son las variables predictoras;
+- \(f\) es la función aprendida a partir de los datos.
+
+En clasificación, \(\hat{y}\) representa una categoría.  
+En regresión, \(\hat{y}\) representa un valor numérico.
+
+## Algoritmo general de aprendizaje supervisado
+
+```text
+Algoritmo: Aprendizaje supervisado
+
+Entrada:
+  - Matriz de datos X
+  - Variable respuesta Y
+  - Algoritmo de aprendizaje
+
+Proceso:
+  1. Dividir los datos en entrenamiento y prueba.
+  2. Usar los datos de entrenamiento para aprender una función f.
+  3. Usar la función f para predecir nuevas respuestas.
+  4. Comparar las predicciones contra los valores reales.
+  5. Calcular métricas de desempeño.
+  6. Interpretar los resultados.
+
+Salida:
+  - Modelo entrenado
+  - Predicciones
+  - Métricas de evaluación
+```
+
+Este esquema aparecerá repetidamente a lo largo del libro.
 
 ## Aprendizaje supervisado
 
