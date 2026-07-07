@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.7.1)  7 JUL 2026 14:22
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.7.1)  7 JUL 2026 14:59
  restricted system commands enabled.
 **index.tex
 (./index.tex
@@ -948,20 +948,24 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 388.
 [3
 
-] [4] [5]
+] [4] [5] [6] [7] [8] [9] [10] [11] [12
+
+]
+Chapter 2.
+[13] [14]
 ! Missing $ inserted.
 <inserted text> 
 $
-l.581 \begin{bmatrix}
-                   
+l.1204 \begin{cases}
+                  
 
 Here is how much of LuaTeX's memory you used:
- 22112 strings out of 475704
+ 22174 strings out of 475704
  125086,1373583 words of node,token memory allocated
- 4298 words of node memory still in use:
-   20 hlist, 1 vlist, 2 rule, 2 mark, 34 disc, 7 local_par, 1 dir, 83 glue, 21 kern, 15 penalty, 5 margin_kern, 336 glyph, 37 attribute, 63 glue_spec, 37 attribute_list, 2 write, 2 pdf_dest, 2 pdf_colorstack nodes
-   avail lists: 2:950,3:272,4:652,5:268,6:52,7:3345,9:292,10:6,11:264
- 44547 multiletter control sequences out of 65536+600000
+ 6624 words of node memory still in use:
+   96 hlist, 11 vlist, 14 rule, 16 disc, 8 local_par, 1 dir, 40 math, 261 glue, 26 kern, 37 penalty, 5 margin_kern, 275 glyph, 140 attribute, 63 glue_spec, 140 attribute_list, 18 pdf_colorstack nodes
+   avail lists: 2:744,3:254,4:636,5:277,6:53,7:3356,8:13,9:338,10:6,11:282
+ 44573 multiletter control sequences out of 65536+600000
  50 fonts using 12349655 bytes
- 90i,5n,114p,1001b,499s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,7n,114p,1001b,499s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

@@ -2,12 +2,9 @@
 
 ```{r}
 #| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE
-)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
+
 
 ## Objetivos del capítulo
 
@@ -20,8 +17,6 @@ Al finalizar este capítulo, el lector será capaz de:
 - Construir tablas de frecuencia.
 - Elaborar gráficas de barras con `ggplot2`.
 - Interpretar patrones iniciales antes de construir modelos.
-- Formular conclusiones preliminares a partir de datos reales.
-- Comprender las proporciones y proporciones condicionales usadas en EDA.
 
 ## Introducción
 
@@ -29,76 +24,51 @@ Después de preparar los datos, el siguiente paso en un proyecto de aprendizaje 
 
 El **análisis exploratorio de datos**, también conocido como *Exploratory Data Analysis* o **EDA**, consiste en revisar, resumir, visualizar e interpretar los datos antes de construir modelos.
 
-Esta etapa es fundamental porque permite responder preguntas como:
-
-- ¿Cuántos registros tiene la base?
-- ¿Cuántas variables contiene?
-- ¿Qué tipo de variables tenemos?
-- ¿Hay más accidentes con víctimas o más accidentes de solo daños?
-- ¿En qué meses ocurren más accidentes?
-- ¿A qué horas son más frecuentes?
-- ¿Qué tipos de accidente predominan?
-- ¿Qué causas aparecen con mayor frecuencia?
-
-Antes de aplicar algoritmos como regresión logística, árboles de decisión o bosques aleatorios, necesitamos conocer la base con la que vamos a trabajar.
-
-Un buen modelo empieza con una buena comprensión de los datos.
-
 ## Fundamento matemático del análisis exploratorio
 
-El análisis exploratorio utiliza conteos, proporciones, resúmenes y gráficas para entender la estructura de los datos.
+Si una variable categórica tiene categorías $c_1, c_2, \ldots, c_k$, la frecuencia absoluta de una categoría $c_j$ se puede representar como:
 
-Si una variable categórica tiene categorías \(c_1, c_2, \ldots, c_k\), la frecuencia absoluta de una categoría \(c_j\) se puede representar como:
-
-\[
+$$
 n_j = \sum_{i=1}^{n} I(y_i = c_j)
-\]
+$$
 
-donde \(I(y_i = c_j)\) es una función indicadora:
+donde $I(y_i = c_j)$ es una función indicadora:
 
-\[
+$$
 I(y_i = c_j) =
-\begin{cases}
+\left\{
+\begin{array}{ll}
 1, & \text{si } y_i = c_j \\
 0, & \text{si } y_i \neq c_j
-\end{cases}
-\]
+\end{array}
+\right.
+$$
 
-La proporción de la categoría \(c_j\) es:
+La proporción de la categoría $c_j$ es:
 
-\[
+$$
 p_j = \frac{n_j}{n}
-\]
-
-donde:
-
-- \(n_j\) es el número de observaciones en la categoría \(c_j\);
-- \(n\) es el número total de observaciones;
-- \(p_j\) es la proporción observada.
+$$
 
 En nuestro caso, una proporción importante es:
 
-\[
+$$
 p_{\text{víctimas}} =
 \frac{\text{número de accidentes con víctimas}}
 {\text{número total de accidentes}}
-\]
-
-Esta proporción permite medir qué tan frecuente es la clase positiva.
+$$
 
 ## Proporciones condicionales
 
-Cuando analizamos la relación entre dos variables categóricas, usamos proporciones condicionales.
+Podemos estudiar la proporción de accidentes con víctimas dado un tipo de accidente:
 
-Por ejemplo, podemos estudiar la proporción de accidentes con víctimas dado un tipo de accidente:
-
-\[
+$$
 P(\text{Con víctimas} \mid \text{Tipo de accidente})
-\]
+$$
 
 De forma empírica, esta proporción se calcula como:
 
-\[
+$$
 \hat{P}(\text{Con víctimas} \mid T = t)
 =
 \frac{
@@ -106,9 +76,7 @@ De forma empírica, esta proporción se calcula como:
 }{
 \text{número total de accidentes del tipo } t
 }
-\]
-
-Esto permite comparar tipos de accidente aunque tengan frecuencias totales diferentes.
+$$
 
 ## Algoritmo general del análisis exploratorio
 
@@ -136,11 +104,7 @@ Salida:
   - Primeras hipótesis sobre los datos
 ```
 
-El análisis exploratorio no demuestra causalidad, pero ayuda a entender la base antes de construir modelos.
-
 ## Cargar paquetes
-
-En este capítulo utilizaremos los siguientes paquetes:
 
 ```{r}
 library(readr)
@@ -148,41 +112,16 @@ library(dplyr)
 library(ggplot2)
 ```
 
-Si alguno no está instalado, puedes instalarlo con:
-
-```{r, eval=FALSE}
-install.packages(c("readr", "dplyr", "ggplot2"))
-```
-
 ## Cargar la base preparada
-
-En el capítulo anterior guardamos una base preparada llamada:
-
-```text
-atus_ml_preparado.csv
-```
-
-Primero definimos la ruta del archivo.
 
 ```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-```
-
-Verificamos si el archivo existe:
-
-```{r}
 file.exists(ruta_atus_ml)
 ```
 
-Ahora cargamos la base.
-
 ```{r}
 if (file.exists(ruta_atus_ml)) {
-  atus_ml <- read_csv(
-    ruta_atus_ml,
-    show_col_types = FALSE
-  )
-
+  atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
 } else {
   atus_ml <- NULL
@@ -192,12 +131,6 @@ if (file.exists(ruta_atus_ml)) {
 
 ## Preparar variables para el análisis exploratorio
 
-Después de cargar la base, haremos algunos ajustes para que las tablas y gráficas sean más claras.
-
-Primero convertimos la hora del accidente a una variable numérica. Esto permitirá ordenar correctamente las horas de 0 a 23.
-
-También ordenamos los días de la semana en su orden natural.
-
 ```{r}
 if (!is.null(atus_ml)) {
   atus_ml <- atus_ml |>
@@ -205,15 +138,7 @@ if (!is.null(atus_ml)) {
       ID_HORA_NUM = as.numeric(ID_HORA),
       DIASEMANA = factor(
         DIASEMANA,
-        levels = c(
-          "lunes",
-          "Martes",
-          "Miercoles",
-          "Jueves",
-          "Viernes",
-          "Sabado",
-          "Domingo"
-        )
+        levels = c("lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
       ),
       accidente_con_victimas = factor(
         accidente_con_victimas,
@@ -223,43 +148,17 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-La variable `ID_HORA_NUM` será útil para gráficas y resúmenes numéricos.
-
-La variable `DIASEMANA` se ordenó manualmente porque, si no lo hacemos, R puede mostrar los días en orden alfabético o en el orden en que aparecen en la base.
-
 ## Primer vistazo a la base
-
-Revisamos las dimensiones de la base:
 
 ```{r}
 if (!is.null(atus_ml)) {
   dim(atus_ml)
-}
-```
-
-El primer número corresponde al número de accidentes registrados.
-
-El segundo número corresponde al número de variables disponibles para este primer análisis.
-
-Ahora observamos los primeros registros:
-
-```{r}
-if (!is.null(atus_ml)) {
   head(atus_ml)
-}
-```
-
-También revisamos los nombres de las variables:
-
-```{r}
-if (!is.null(atus_ml)) {
   names(atus_ml)
 }
 ```
 
 ## Estructura de los datos
-
-La función `str()` permite revisar el tipo de cada variable.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -267,48 +166,13 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-En esta base tenemos una variable respuesta:
-
-```text
-accidente_con_victimas
-```
-
-y varias variables predictoras:
-
-```text
-MES
-ID_HORA
-DIASEMANA
-TIPACCID
-CAUSAACCI
-```
-
-La variable respuesta indica si el accidente fue clasificado como:
-
-```text
-Con víctimas
-Solo daños
-```
-
 ## Distribución de la variable respuesta
-
-La primera variable que debemos analizar es la variable respuesta.
 
 ```{r}
 if (!is.null(atus_ml)) {
   table(atus_ml$accidente_con_victimas)
 }
 ```
-
-También podemos calcular proporciones:
-
-```{r}
-if (!is.null(atus_ml)) {
-  prop.table(table(atus_ml$accidente_con_victimas))
-}
-```
-
-Para mostrar los porcentajes de forma más clara:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -318,27 +182,9 @@ if (!is.null(atus_ml)) {
 
 ## Interpretación de la variable respuesta
 
-En problemas de clasificación es importante revisar si las clases están balanceadas.
-
-Un conjunto está **balanceado** cuando las categorías de la variable respuesta aparecen en proporciones similares.
-
-Un conjunto está **desbalanceado** cuando una categoría aparece con mucha mayor frecuencia que otra.
-
 En esta base se observa un desbalance importante: aproximadamente 82.56% de los accidentes corresponden a solo daños, mientras que 17.44% corresponden a accidentes con víctimas.
 
-Esto será relevante cuando construyamos modelos de clasificación, porque un modelo ingenuo podría predecir siempre “Solo daños” y aun así obtener una exactitud cercana al 82.56%.
-
-Por esa razón, más adelante necesitaremos usar métricas adicionales a la exactitud, como:
-
-- sensibilidad,
-- especificidad,
-- precisión,
-- matriz de confusión,
-- curva ROC.
-
 ## Gráfica de la variable respuesta
-
-Construimos una primera gráfica de barras.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -352,19 +198,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-Esta gráfica permite observar visualmente si hay más accidentes con víctimas o más accidentes de solo daños.
-
 ## Accidentes por mes
-
-Ahora analizamos la variable `MES`.
-
-```{r}
-if (!is.null(atus_ml)) {
-  table(atus_ml$MES)
-}
-```
-
-Construimos una tabla ordenada por mes:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -375,8 +209,6 @@ if (!is.null(atus_ml)) {
   accidentes_mes
 }
 ```
-
-Ahora graficamos:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -390,29 +222,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de accidentes por mes
-
-La gráfica de accidentes por mes permite identificar si existen meses con mayor número de accidentes.
-
-En la tabla se observa que mayo presenta el mayor número de accidentes, con 34,665 registros, mientras que julio presenta el menor número, con 30,062 registros. La variación mensual existe, aunque no es extrema.
-
-En un análisis más profundo podríamos preguntarnos:
-
-- ¿hay meses con más movilidad?
-- ¿hay relación con vacaciones?
-- ¿hay relación con temporadas de lluvia?
-- ¿hay diferencias por entidad federativa?
-- ¿hay diferencias entre accidentes con víctimas y solo daños?
-
-Por ahora, nuestro objetivo es observar patrones generales.
-
 ## Accidentes por hora del día
-
-La variable `ID_HORA` indica la hora en la que ocurrió el accidente.
-
-Como esta variable puede leerse como texto, usaremos la variable numérica `ID_HORA_NUM`, creada previamente.
-
-Primero construimos una tabla de frecuencias:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -423,8 +233,6 @@ if (!is.null(atus_ml)) {
   accidentes_hora
 }
 ```
-
-Ahora graficamos:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -439,22 +247,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de accidentes por hora
-
-El análisis por hora puede revelar patrones asociados con la movilidad diaria.
-
-Por ejemplo, podrían aparecer más accidentes:
-
-- en horas de entrada al trabajo o escuela,
-- en horas de salida,
-- durante la noche,
-- en horarios de mayor tráfico.
-
-Este tipo de análisis es útil porque algunas variables temporales pueden ayudar a clasificar la severidad o el tipo de accidente.
-
 ## Accidentes por día de la semana
-
-Ahora analizamos la variable `DIASEMANA`.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -465,8 +258,6 @@ if (!is.null(atus_ml)) {
   accidentes_dia
 }
 ```
-
-Graficamos:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -481,22 +272,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de accidentes por día de la semana
-
-El día de la semana puede ser una variable importante.
-
-Podemos preguntarnos:
-
-- ¿ocurren más accidentes entre semana o en fin de semana?
-- ¿el patrón cambia para accidentes con víctimas?
-- ¿hay más accidentes graves en viernes, sábado o domingo?
-- ¿el comportamiento es distinto por hora?
-
-Estas preguntas serán útiles cuando construyamos modelos de clasificación.
-
 ## Accidentes por tipo de accidente
-
-Ahora revisamos la variable `TIPACCID`.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -507,8 +283,6 @@ if (!is.null(atus_ml)) {
   accidentes_tipo
 }
 ```
-
-Graficamos los tipos de accidente más frecuentes:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -526,21 +300,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación por tipo de accidente
-
-El tipo de accidente puede estar relacionado con la presencia de víctimas.
-
-El tipo de accidente más frecuente es la colisión con vehículo automotor, con 224,720 casos. Le siguen la colisión con motocicleta, con 61,869 casos, y la colisión con objeto fijo, con 43,119 casos.
-
-Esto sugiere que las colisiones entre vehículos concentran una parte muy importante del fenómeno.
-
-Sin embargo, frecuencia no significa necesariamente mayor gravedad. Un tipo de accidente puede ser muy frecuente, pero tener baja proporción de víctimas; otro puede ser menos frecuente, pero más grave en términos relativos.
-
-Por eso más adelante analizaremos proporciones, no solo cantidades absolutas.
-
 ## Accidentes por causa presunta
-
-Ahora analizamos la variable `CAUSAACCI`.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -551,8 +311,6 @@ if (!is.null(atus_ml)) {
   accidentes_causa
 }
 ```
-
-Graficamos las causas más frecuentes:
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -570,44 +328,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación por causa presunta
-
-La causa presunta del accidente puede aportar información importante para el modelo.
-
-Sin embargo, también debemos tener cuidado: algunas variables pueden estar codificadas de manera muy general o depender del registro administrativo.
-
-Por eso, antes de usar una variable en un modelo, conviene revisar:
-
-- cuántas categorías tiene,
-- si hay categorías muy poco frecuentes,
-- si contiene valores faltantes,
-- si su interpretación es clara.
-
-Nota didáctica: la categoría “Certificado cero” aparece en algunas variables del conjunto de datos. Antes de usarla en un modelo predictivo, conviene revisar la documentación oficial de la base para entender exactamente qué representa. En esta primera exploración la conservamos, pero en un análisis más cuidadoso podríamos tratarla como una categoría especial.
-
 ## Relación entre tipo de accidente y presencia de víctimas
-
-Ahora cruzamos dos variables:
-
-```text
-TIPACCID
-accidente_con_victimas
-```
-
-Primero hacemos una tabla de contingencia:
-
-```{r}
-if (!is.null(atus_ml)) {
-  tabla_tipo_victimas <- table(
-    Tipo = atus_ml$TIPACCID,
-    Clase = atus_ml$accidente_con_victimas
-  )
-
-  tabla_tipo_victimas
-}
-```
-
-Esta tabla puede ser grande. Para visualizar mejor, trabajamos con los tipos de accidente más frecuentes.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -631,21 +352,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de la relación entre tipo de accidente y víctimas
-
-La gráfica anterior no muestra cantidades absolutas, sino proporciones.
-
-Esto permite comparar tipos de accidente aunque algunos sean mucho más frecuentes que otros.
-
-Por ejemplo, si un tipo de accidente tiene una proporción alta de “Con víctimas”, podría ser una variable importante para el modelo.
-
-Esta es una de las ideas centrales del análisis exploratorio:
-
-> No solo queremos contar datos; queremos encontrar relaciones que ayuden a entender el problema.
-
 ## Relación entre hora y presencia de víctimas
-
-Ahora analizamos si la proporción de accidentes con víctimas cambia según la hora.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -661,24 +368,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de la relación entre hora y víctimas
-
-Esta gráfica ayuda a identificar si algunas horas tienen mayor proporción de accidentes con víctimas.
-
-Es importante distinguir entre:
-
-- número total de accidentes,
-- proporción de accidentes con víctimas.
-
-Una hora puede tener muchos accidentes, pero una proporción baja de accidentes graves.
-
-Otra hora puede tener menos accidentes, pero una proporción mayor de accidentes con víctimas.
-
-Ambas interpretaciones son útiles.
-
 ## Relación entre día de la semana y presencia de víctimas
-
-Ahora hacemos algo similar con `DIASEMANA`.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -694,22 +384,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de la relación entre día de la semana y víctimas
-
-Esta gráfica permite observar si los accidentes con víctimas son proporcionalmente más frecuentes en algunos días.
-
-Este análisis puede sugerir hipótesis, por ejemplo:
-
-- mayor riesgo en fines de semana,
-- mayor riesgo en días laborales,
-- relación con horarios de movilidad,
-- relación con actividades recreativas o laborales.
-
-Estas hipótesis deberán evaluarse con modelos y análisis más formales.
-
 ## Tabla resumen por clase
-
-Ahora calculamos un resumen general por clase de accidente.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -727,63 +402,8 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación de la tabla resumen
-
-Esta tabla resume algunas diferencias básicas entre los accidentes con víctimas y los accidentes de solo daños.
-
-La hora promedio no debe interpretarse de forma aislada, porque la hora del día es una variable circular: después de las 23 horas vuelve la hora 0. Sin embargo, puede servir como una primera descripción general.
-
-En análisis posteriores podríamos comparar distribuciones completas, no solo promedios.
-
-También podríamos crear variables derivadas como:
-
-- madrugada,
-- mañana,
-- tarde,
-- noche.
-
-Este tipo de transformación puede mejorar la interpretación y eventualmente el desempeño de algunos modelos.
-
-## ¿Qué aprendimos de los datos?
-
-Después de este análisis exploratorio podemos resumir algunas ideas:
-
-- La base contiene accidentes clasificados en dos categorías.
-- La variable respuesta está desbalanceada.
-- El mes, la hora y el día de la semana permiten observar patrones temporales.
-- El tipo de accidente puede estar relacionado con la presencia de víctimas.
-- La causa presunta puede ser una variable predictora útil.
-- Las gráficas ayudan a detectar relaciones antes de construir modelos.
-
-Este análisis no sustituye al modelado, pero lo orienta.
-
-## Importancia del análisis exploratorio antes de modelar
-
-El análisis exploratorio cumple varias funciones:
-
-1. Ayuda a detectar errores en los datos.
-2. Permite entender la distribución de las variables.
-3. Muestra posibles relaciones entre variables.
-4. Ayuda a decidir qué variables usar.
-5. Permite anticipar problemas como clases desbalanceadas.
-6. Facilita la interpretación posterior de los modelos.
-
-En aprendizaje automático, construir modelos sin explorar los datos es como manejar de noche sin luces.
-
-Puede que avancemos, pero no sabemos bien hacia dónde vamos.
-
 ## Conclusión
 
-En este capítulo realizamos un primer análisis exploratorio de la base preparada de accidentes de tránsito.
-
-Aprendimos a:
-
-- cargar una base preparada;
-- revisar dimensiones, nombres y estructura;
-- analizar la variable respuesta;
-- construir tablas de frecuencia;
-- graficar accidentes por mes, hora, día, tipo y causa;
-- comparar proporciones de accidentes con víctimas;
-- interpretar patrones iniciales.
+En este capítulo aprendimos a cargar una base preparada, revisar dimensiones, analizar la variable respuesta, construir tablas de frecuencia, graficar accidentes por mes, hora, día, tipo y causa, e interpretar patrones iniciales.
 
 En el siguiente capítulo construiremos nuestro primer modelo supervisado para clasificación: una **regresión logística**.

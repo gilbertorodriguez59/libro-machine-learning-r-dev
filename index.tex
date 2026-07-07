@@ -573,65 +573,67 @@ automático}\label{notaciuxf3n-buxe1sica-para-aprendizaje-automuxe1tico}
 
 En aprendizaje automático trabajamos con observaciones y variables.
 
-Supongamos que tenemos (n) observaciones y (p) variables predictoras.
-Podemos representar los datos mediante una matriz:
+Supongamos que tenemos \(n\) observaciones y \(p\) variables
+predictoras. Podemos representar los datos mediante una matriz:
 
-{[} X =
-
-\begin{bmatrix}
+\[
+X =
+\left[
+\begin{array}{cccc}
 x_{11} & x_{12} & \cdots & x_{1p} \\
 x_{21} & x_{22} & \cdots & x_{2p} \\
 \vdots & \vdots & \ddots & \vdots \\
 x_{n1} & x_{n2} & \cdots & x_{np}
-\end{bmatrix}
-
-{]}
+\end{array}
+\right]
+\]
 
 donde:
 
 \begin{itemize}
 \tightlist
 \item
-  (n) es el número de observaciones;
+  \(n\) es el número de observaciones;
 \item
-  (p) es el número de variables predictoras;
+  \(p\) es el número de variables predictoras;
 \item
-  (x\_\{ij\}) representa el valor de la variable (j) en la observación
+  \(x_{ij}\) representa el valor de la variable (j) en la observación
   (i).
 \end{itemize}
 
 La variable respuesta se representa como:
 
-{[} Y =
-
-\begin{bmatrix}
+\[
+Y =
+\left[
+\begin{array}{c}
 y_1 \\
 y_2 \\
 \vdots \\
 y_n
-\end{bmatrix}
-
-{]}
+\end{array}
+\right]
+\]
 
 El objetivo general del aprendizaje supervisado es encontrar una función
 (f) que permita aproximar la respuesta:
 
-{[} \hat{y} = f(x\_1, x\_2, \ldots, x\_p) {]}
-
-donde:
+\[
+\hat{y} = f(x_1, x_2, \ldots, x_p)
+\] donde:
 
 \begin{itemize}
 \tightlist
 \item
-  (\hat{y}) es la predicción del modelo;
+  \(\hat{y}\) es la predicción del modelo;
 \item
-  (x\_1, x\_2, \ldots, x\_p) son las variables predictoras;
+  \(x_1, x_2, \ldots, x_p\) son las variables predictoras;
 \item
-  (f) es la función aprendida a partir de los datos.
+  \(f\) es la función aprendida a partir de los datos.
 \end{itemize}
 
-En clasificación, (\hat{y}) representa una categoría.\\
-En regresión, (\hat{y}) representa un valor numérico.
+En clasificación, \(\hat{y}\) representa una categoría.\\
+En regresión, \(\hat{y}\) representa un valor numérico.
 
 \section{Algoritmo general de aprendizaje
 supervisado}\label{algoritmo-general-de-aprendizaje-supervisado}
@@ -1152,29 +1154,31 @@ una matriz de variables predictoras (X) y una variable respuesta (Y).
 
 La matriz de variables predictoras es:
 
-{[} X =
-
-\begin{bmatrix}
+\[
+X =
+\left[
+\begin{array}{cccc}
 x_{11} & x_{12} & \cdots & x_{1p} \\
 x_{21} & x_{22} & \cdots & x_{2p} \\
 \vdots & \vdots & \ddots & \vdots \\
 x_{n1} & x_{n2} & \cdots & x_{np}
-\end{bmatrix}
-
-{]}
+\end{array}
+\right]
+\]
 
 y la variable respuesta es:
 
-{[} Y =
-
-\begin{bmatrix}
+\[
+Y =
+\left[
+\begin{array}{c}
 y_1 \\
 y_2 \\
 \vdots \\
 y_n
-\end{bmatrix}
-
-{]}
+\end{array}
+\right]
+\]
 
 En nuestro caso, (Y) representa la variable:
 

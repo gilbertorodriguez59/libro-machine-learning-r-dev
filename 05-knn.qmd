@@ -2,12 +2,9 @@
 
 ```{r}
 #| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE
-)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
+
 
 ## Objetivos del capítulo
 
@@ -20,68 +17,31 @@ Al finalizar este capítulo, el lector será capaz de:
 - Aplicar k-NN en R para un problema de clasificación.
 - Construir una matriz de confusión.
 - Calcular exactitud, sensibilidad y especificidad.
-- Comparar el efecto de distintos valores de \(k\).
-- Reconocer ventajas y limitaciones del método k-NN.
 
 ## Introducción
 
-En el capítulo anterior estudiamos la regresión logística, un modelo supervisado que estima probabilidades para resolver problemas de clasificación binaria.
+k-NN significa *k-Nearest Neighbors* o **k vecinos más cercanos**.
 
-En este capítulo estudiaremos otro método de clasificación muy intuitivo: **k vecinos más cercanos**, conocido como **k-NN** por sus siglas en inglés: *k-Nearest Neighbors*.
-
-La idea básica de k-NN es sencilla:
+La idea básica es:
 
 > Para clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.
 
 ## Idea intuitiva del método
 
-Supongamos que tenemos un nuevo accidente que queremos clasificar.
-
 El algoritmo k-NN hace lo siguiente:
 
-1. Calcula la distancia entre el nuevo accidente y los accidentes históricos.
-2. Encuentra los \(k\) accidentes más cercanos.
+1. Calcula la distancia entre la nueva observación y las observaciones históricas.
+2. Encuentra los $k$ vecinos más cercanos.
 3. Revisa la clase de esos vecinos.
 4. Asigna la clase más frecuente.
 
-Si usamos \(k = 5\) y los cinco vecinos más cercanos tienen estas clases:
-
-```text
-Solo daños
-Solo daños
-Con víctimas
-Solo daños
-Solo daños
-```
-
-entonces la clase más frecuente es:
-
-```text
-Solo daños
-```
-
 ## ¿Qué significa k?
 
-La letra \(k\) indica cuántos vecinos se usarán para clasificar una observación.
+La letra $k$ indica cuántos vecinos se usarán para clasificar una observación.
 
-Algunos ejemplos:
-
-```text
-k = 1   → se usa el vecino más cercano
-k = 3   → se usan los 3 vecinos más cercanos
-k = 5   → se usan los 5 vecinos más cercanos
-k = 11  → se usan los 11 vecinos más cercanos
-```
-
-El valor de \(k\) es importante.
-
-Si \(k\) es muy pequeño, el modelo puede ser muy sensible al ruido.
-
-Si \(k\) es muy grande, el modelo puede volverse demasiado general y perder detalles locales.
+Si $k$ es muy pequeño, el modelo puede ser muy sensible al ruido. Si $k$ es muy grande, el modelo puede volverse demasiado general.
 
 ## Ejemplo sencillo con puntos
-
-Antes de usar la base real de accidentes, construiremos un ejemplo pequeño.
 
 ```{r}
 datos_ejemplo <- data.frame(
@@ -96,8 +56,6 @@ datos_ejemplo <- data.frame(
 
 datos_ejemplo
 ```
-
-Graficamos estos puntos:
 
 ```{r}
 library(ggplot2)
@@ -114,139 +72,96 @@ ggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +
 
 ## Distancia euclidiana
 
-k-NN necesita medir qué tan parecidas son dos observaciones.
-
-Una forma común de hacerlo es mediante la **distancia euclidiana**.
-
 Para dos puntos:
 
-\[
+$$
 A = (x_1, y_1)
-\]
+$$
 
 y
 
-\[
+$$
 B = (x_2, y_2)
-\]
+$$
 
 la distancia euclidiana es:
 
-\[
+$$
 d(A,B) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}
-\]
+$$
 
 ## Fundamento matemático de k-NN
 
-Sea \(x_0\) una nueva observación que queremos clasificar.
+Sea $x_0$ una nueva observación que queremos clasificar.
 
-Sea \(x_i\) una observación del conjunto de entrenamiento.
+Sea $x_i$ una observación del conjunto de entrenamiento.
 
-Si tenemos \(p\) variables predictoras, podemos escribir:
+Si tenemos $p$ variables predictoras, podemos escribir:
 
-\[
+$$
 x_0 = (x_{01}, x_{02}, \ldots, x_{0p})
-\]
+$$
 
 y
 
-\[
+$$
 x_i = (x_{i1}, x_{i2}, \ldots, x_{ip})
-\]
+$$
 
-La distancia euclidiana entre \(x_0\) y \(x_i\) se define como:
+La distancia euclidiana entre $x_0$ y $x_i$ se define como:
 
-\[
+$$
 d(x_0, x_i)
 =
 \sqrt{
 \sum_{j=1}^{p}
 (x_{0j} - x_{ij})^2
 }
-\]
+$$
 
-El método k-NN calcula esta distancia entre \(x_0\) y todas las observaciones de entrenamiento.
+Después se seleccionan las $k$ observaciones con menor distancia.
 
-Después selecciona las \(k\) observaciones con menor distancia.
+Si las clases de los $k$ vecinos más cercanos son:
 
-Si las clases de los \(k\) vecinos más cercanos son:
-
-\[
+$$
 y_{(1)}, y_{(2)}, \ldots, y_{(k)}
-\]
+$$
 
 entonces la clase predicha se obtiene por mayoría de votos:
 
-\[
+$$
 \hat{y}_0 =
 \operatorname{moda}
 \left(
 y_{(1)}, y_{(2)}, \ldots, y_{(k)}
 \right)
-\]
-
-donde:
-
-- \(y_{(1)}\) es la clase del vecino más cercano;
-- \(y_{(2)}\) es la clase del segundo vecino más cercano;
-- \(y_{(k)}\) es la clase del vecino \(k\)-ésimo más cercano.
+$$
 
 ## Ejemplo de cálculo de distancia
-
-Calculemos la distancia entre dos accidentes.
 
 ```{r}
 x1 <- 8
 y1 <- 1
-
 x2 <- 10
 y2 <- 2
 
 distancia <- sqrt((x1 - x2)^2 + (y1 - y2)^2)
-
 distancia
 ```
-
-La distancia indica qué tan separados están los dos accidentes en el espacio definido por las variables hora y mes.
 
 ## Estandarización de variables
 
 Como k-NN depende de distancias, es importante que las variables estén en escalas comparables.
 
-Una forma común de estandarizar una variable \(X_j\) es:
+Una forma común de estandarizar una variable $X_j$ es:
 
-\[
+$$
 z_{ij}
 =
 \frac{x_{ij} - \bar{x}_j}{s_j}
-\]
+$$
 
-donde:
-
-- \(x_{ij}\) es el valor original de la variable \(j\) en la observación \(i\);
-- \(\bar{x}_j\) es la media de la variable \(j\);
-- \(s_j\) es la desviación estándar de la variable \(j\);
-- \(z_{ij}\) es el valor estandarizado.
-
-Después de esta transformación, la variable tiene media aproximadamente 0 y desviación estándar aproximadamente 1.
-
-Esto evita que una variable con valores grandes domine artificialmente el cálculo de distancias.
-
-## k-NN con variables categóricas
-
-El método k-NN funciona naturalmente con variables numéricas, porque se basa en distancias.
-
-Pero muchas bases reales, como ATUS, tienen variables categóricas:
-
-```text
-DIASEMANA
-TIPACCID
-CAUSAACCI
-```
-
-Para usar k-NN con estas variables, necesitamos transformarlas en variables numéricas.
-
-Una estrategia común es crear variables indicadoras, también llamadas variables *dummy*.
+donde $\bar{x}_j$ es la media de la variable $j$ y $s_j$ es su desviación estándar.
 
 ## Algoritmo k-NN
 
@@ -272,8 +187,6 @@ Salida:
   - Clase predicha para x_0
 ```
 
-k-NN es conceptualmente sencillo, pero computacionalmente puede ser costoso cuando la base es grande, porque necesita calcular muchas distancias.
-
 ## Cargar paquetes
 
 ```{r}
@@ -281,12 +194,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(class)
-```
-
-Si alguno no está instalado, puedes instalarlo con:
-
-```{r, eval=FALSE}
-install.packages(c("readr", "dplyr", "ggplot2", "class"))
+library(tidyr)
 ```
 
 ## Cargar la base preparada
@@ -298,11 +206,7 @@ file.exists(ruta_atus_ml)
 
 ```{r}
 if (file.exists(ruta_atus_ml)) {
-  atus_ml <- read_csv(
-    ruta_atus_ml,
-    show_col_types = FALSE
-  )
-
+  atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
 } else {
   atus_ml <- NULL
@@ -312,19 +216,12 @@ if (file.exists(ruta_atus_ml)) {
 
 ## Selección de una muestra para k-NN
 
-La base ATUS contiene muchos registros. k-NN puede volverse lento porque calcula distancias entre observaciones.
-
-Para mantener el capítulo didáctico y permitir que el libro se renderice con rapidez, trabajaremos con una muestra aleatoria de la base.
-
 ```{r}
 if (!is.null(atus_ml)) {
   set.seed(123)
-
   tamano_muestra <- min(12000, nrow(atus_ml))
-
   atus_knn_base <- atus_ml |>
     sample_n(tamano_muestra)
-
   dim(atus_knn_base)
 }
 ```
@@ -335,10 +232,7 @@ if (!is.null(atus_ml)) {
 if (exists("atus_knn_base")) {
   atus_knn_base <- atus_knn_base |>
     mutate(
-      accidente_con_victimas = factor(
-        accidente_con_victimas,
-        levels = c("Con víctimas", "Solo daños")
-      ),
+      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
       MES = as.factor(MES),
       ID_HORA = as.numeric(ID_HORA),
       DIASEMANA = as.factor(DIASEMANA),
@@ -352,20 +246,11 @@ if (exists("atus_knn_base")) {
 ```{r}
 if (exists("atus_knn_base")) {
   table(atus_knn_base$accidente_con_victimas)
-}
-```
-
-```{r}
-if (exists("atus_knn_base")) {
   round(100 * prop.table(table(atus_knn_base$accidente_con_victimas)), 2)
 }
 ```
 
 ## Crear variables dummy
-
-Para usar k-NN necesitamos una matriz numérica de variables predictoras.
-
-Usaremos `model.matrix()` para convertir variables categóricas en variables dummy.
 
 ```{r}
 if (exists("atus_knn_base")) {
@@ -378,8 +263,6 @@ if (exists("atus_knn_base")) {
 }
 ```
 
-## Variable respuesta
-
 ```{r}
 if (exists("atus_knn_base")) {
   y <- atus_knn_base$accidente_con_victimas
@@ -391,17 +274,10 @@ if (exists("atus_knn_base")) {
 ```{r}
 if (exists("matriz_predictoras") && exists("y")) {
   set.seed(123)
-
   n <- nrow(matriz_predictoras)
-
-  indices_entrenamiento <- sample(
-    1:n,
-    size = round(0.7 * n)
-  )
-
+  indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
   x_entrenamiento <- matriz_predictoras[indices_entrenamiento, ]
   x_prueba <- matriz_predictoras[-indices_entrenamiento, ]
-
   y_entrenamiento <- y[indices_entrenamiento]
   y_prueba <- y[-indices_entrenamiento]
 }
@@ -426,24 +302,12 @@ if (exists("x_entrenamiento") && exists("x_prueba")) {
 if (exists("x_entrenamiento") && exists("x_prueba")) {
   medias <- apply(x_entrenamiento, 2, mean)
   desviaciones <- apply(x_entrenamiento, 2, sd)
-
   desviaciones[desviaciones == 0] <- 1
 
-  x_entrenamiento_esc <- scale(
-    x_entrenamiento,
-    center = medias,
-    scale = desviaciones
-  )
-
-  x_prueba_esc <- scale(
-    x_prueba,
-    center = medias,
-    scale = desviaciones
-  )
+  x_entrenamiento_esc <- scale(x_entrenamiento, center = medias, scale = desviaciones)
+  x_prueba_esc <- scale(x_prueba, center = medias, scale = desviaciones)
 }
 ```
-
-Esta forma de escalar evita que usemos información del conjunto de prueba durante el entrenamiento.
 
 ## Ajuste del modelo k-NN con k = 5
 
@@ -458,30 +322,12 @@ if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
 }
 ```
 
-```{r}
-if (exists("pred_knn_5")) {
-  head(
-    data.frame(
-      real = y_prueba,
-      predicho = pred_knn_5
-    )
-  )
-}
-```
-
 ## Matriz de confusión
 
 ```{r}
 if (exists("pred_knn_5")) {
-  pred_knn_5 <- factor(
-    pred_knn_5,
-    levels = c("Con víctimas", "Solo daños")
-  )
-
-  y_prueba <- factor(
-    y_prueba,
-    levels = c("Con víctimas", "Solo daños")
-  )
+  pred_knn_5 <- factor(pred_knn_5, levels = c("Con víctimas", "Solo daños"))
+  y_prueba <- factor(y_prueba, levels = c("Con víctimas", "Solo daños"))
 
   matriz_confusion_knn_5 <- table(
     Real = y_prueba,
@@ -501,27 +347,6 @@ if (exists("matriz_confusion_knn_5")) {
   FP <- matriz_confusion_knn_5["Solo daños", "Con víctimas"]
   VN <- matriz_confusion_knn_5["Solo daños", "Solo daños"]
 
-  data.frame(
-    medida = c("VP", "FN", "FP", "VN"),
-    nombre = c(
-      "Verdaderos positivos",
-      "Falsos negativos",
-      "Falsos positivos",
-      "Verdaderos negativos"
-    ),
-    descripcion = c(
-      "Con víctimas clasificado como Con víctimas",
-      "Con víctimas clasificado como Solo daños",
-      "Solo daños clasificado como Con víctimas",
-      "Solo daños clasificado como Solo daños"
-    ),
-    valor = c(VP, FN, FP, VN)
-  )
-}
-```
-
-```{r}
-if (exists("VP")) {
   exactitud_knn_5 <- (VP + VN) / (VP + FN + FP + VN)
   sensibilidad_knn_5 <- VP / (VP + FN)
   especificidad_knn_5 <- VN / (VN + FP)
@@ -535,40 +360,14 @@ if (exists("VP")) {
 }
 ```
 
-## Interpretación de las métricas
-
-La exactitud indica la proporción total de clasificaciones correctas.
-
-La sensibilidad indica qué proporción de accidentes con víctimas fueron detectados correctamente.
-
-La especificidad indica qué proporción de accidentes de solo daños fueron clasificados correctamente.
-
-Como ya vimos en el capítulo anterior, esta base está desbalanceada. Por eso no debemos evaluar el modelo solo con exactitud.
-
 ## Comparación con distintos valores de k
-
-El valor de \(k\) puede afectar los resultados.
-
-Probaremos tres valores:
-
-```text
-k = 3
-k = 5
-k = 11
-```
-
-Primero creamos una función para calcular métricas.
 
 ```{r}
 calcular_metricas <- function(real, predicho) {
-
   real <- factor(real, levels = c("Con víctimas", "Solo daños"))
   predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
 
-  matriz <- table(
-    Real = real,
-    Predicho = predicho
-  )
+  matriz <- table(Real = real, Predicho = predicho)
 
   VP <- matriz["Con víctimas", "Con víctimas"]
   FN <- matriz["Con víctimas", "Solo daños"]
@@ -579,23 +378,16 @@ calcular_metricas <- function(real, predicho) {
   sensibilidad <- VP / (VP + FN)
   especificidad <- VN / (VN + FP)
 
-  data.frame(
-    exactitud = exactitud,
-    sensibilidad = sensibilidad,
-    especificidad = especificidad
-  )
+  data.frame(exactitud = exactitud, sensibilidad = sensibilidad, especificidad = especificidad)
 }
 ```
 
 ```{r}
 if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
-
   valores_k <- c(3, 5, 11)
-
   resultados_knn <- data.frame()
 
   for (k_actual in valores_k) {
-
     pred_actual <- knn(
       train = x_entrenamiento_esc,
       test = x_prueba_esc,
@@ -603,17 +395,9 @@ if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
       k = k_actual
     )
 
-    metricas_actuales <- calcular_metricas(
-      real = y_prueba,
-      predicho = pred_actual
-    )
-
+    metricas_actuales <- calcular_metricas(y_prueba, pred_actual)
     metricas_actuales$k <- k_actual
-
-    resultados_knn <- rbind(
-      resultados_knn,
-      metricas_actuales
-    )
+    resultados_knn <- rbind(resultados_knn, metricas_actuales)
   }
 
   resultados_knn <- resultados_knn |>
@@ -623,13 +407,10 @@ if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
 }
 ```
 
-## Gráfica de comparación
-
 ```{r}
 if (exists("resultados_knn")) {
-
   resultados_largos <- resultados_knn |>
-    tidyr::pivot_longer(
+    pivot_longer(
       cols = c(exactitud, sensibilidad, especificidad),
       names_to = "metrica",
       values_to = "valor"
@@ -642,21 +423,10 @@ if (exists("resultados_knn")) {
     labs(
       title = "Comparación de métricas para distintos valores de k",
       x = "Valor de k",
-      y = "Valor de la métrica",
-      group = "Métrica"
+      y = "Valor de la métrica"
     )
 }
 ```
-
-## Interpretación de la comparación
-
-El valor de \(k\) influye en el comportamiento del modelo.
-
-Con valores pequeños de \(k\), el modelo puede reaccionar mucho a observaciones individuales. Esto puede hacerlo sensible al ruido.
-
-Con valores grandes de \(k\), el modelo toma decisiones más suaves, pero puede perder capacidad para detectar patrones locales.
-
-No existe un valor de \(k\) universalmente mejor. Debe elegirse evaluando el desempeño del modelo y considerando el objetivo del problema.
 
 ## Comparación conceptual con regresión logística
 
@@ -667,50 +437,11 @@ No existe un valor de \(k\) universalmente mejor. Debe elegirse evaluando el des
 | Usa distancias | No | Sí |
 | Requiere escalamiento | No siempre | Sí |
 | Interpretable | Alta | Media o baja |
-| Sensible a muchas variables | Moderadamente | Sí |
-| Costo de predicción | Bajo | Puede ser alto |
-| Manejo natural de categóricas | Sí, con factores | Requiere transformación |
-
-## Ventajas de k-NN
-
-Algunas ventajas de k-NN son:
-
-- es fácil de entender;
-- no requiere asumir una forma funcional específica;
-- puede capturar fronteras de decisión no lineales;
-- es útil como método introductorio de clasificación;
-- permite explicar visualmente la idea de cercanía y similitud.
-
-## Limitaciones de k-NN
-
-k-NN también tiene limitaciones importantes:
-
-- puede ser lento con bases grandes;
-- depende mucho de la escala de las variables;
-- puede verse afectado por variables irrelevantes;
-- no maneja variables categóricas directamente;
-- requiere elegir el valor de \(k\);
-- puede tener dificultades en espacios de muchas dimensiones;
-- no produce una ecuación interpretable como la regresión logística.
-
-## ¿Qué aprendimos?
-
-En este capítulo aprendimos que:
-
-- k-NN clasifica una observación según sus vecinos más cercanos;
-- el parámetro \(k\) indica cuántos vecinos se consideran;
-- el método depende de una medida de distancia;
-- las variables deben estar en una escala comparable;
-- las variables categóricas deben transformarse antes de usar k-NN;
-- el desempeño cambia según el valor de \(k\);
-- en bases desbalanceadas debemos revisar más que la exactitud.
 
 ## Conclusión
 
 k-NN es uno de los métodos más intuitivos del aprendizaje automático.
 
 Aunque es sencillo de explicar, requiere cuidado en la preparación de los datos, especialmente en el escalamiento y en el tratamiento de variables categóricas.
-
-En este capítulo usamos k-NN para clasificar accidentes de tránsito según la presencia de víctimas.
 
 En el siguiente capítulo estudiaremos un método muy importante por su interpretabilidad: **árboles de decisión**.

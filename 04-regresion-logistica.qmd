@@ -2,12 +2,9 @@
 
 ```{r}
 #| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE
-)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
+
 
 ## Objetivos del capítulo
 
@@ -15,150 +12,82 @@ Al finalizar este capítulo, el lector será capaz de:
 
 - Explicar qué es un problema de clasificación binaria.
 - Comprender la idea intuitiva de la regresión logística.
-- Diferenciar entre probabilidad predicha y clase predicha.
 - Dividir una base de datos en entrenamiento y prueba.
 - Ajustar un modelo de regresión logística en R.
 - Construir una matriz de confusión.
 - Calcular exactitud, sensibilidad y especificidad.
-- Interpretar los resultados básicos de un modelo logístico.
-- Reconocer algunas limitaciones de la regresión logística.
 
 ## Introducción
 
-En los capítulos anteriores preparamos y exploramos una base real de accidentes de tránsito.
-
-Ahora daremos un paso importante: construiremos nuestro primer modelo supervisado de clasificación.
-
-El problema que vamos a estudiar es el siguiente:
+El problema que vamos a estudiar es:
 
 > ¿Podemos estimar la probabilidad de que un accidente de tránsito tenga víctimas?
 
-La variable que queremos predecir es:
-
-```text
-accidente_con_victimas
-```
-
-Esta variable tiene dos categorías:
-
-```text
-Con víctimas
-Solo daños
-```
-
-Por lo tanto, estamos frente a un problema de **clasificación binaria**.
-
-La regresión logística es uno de los modelos más utilizados para este tipo de problemas. Aunque tiene la palabra “regresión” en su nombre, se usa frecuentemente para clasificación.
-
-## Clasificación binaria
-
-Un problema de clasificación binaria es aquel donde la variable respuesta tiene solo dos posibles clases.
-
-| Problema | Clase 1 | Clase 2 |
-|---|---|---|
-| Accidente de tránsito | Con víctimas | Solo daños |
-| Diagnóstico médico | Enfermo | Sano |
-| Crédito bancario | Incumple | No incumple |
-| Correo electrónico | Spam | No spam |
-
-En nuestro caso, la clase de interés será:
-
-```text
-Con víctimas
-```
-
-## ¿Por qué no usar regresión lineal?
-
-Si codificamos la variable respuesta como \(1\) para “Con víctimas” y \(0\) para “Solo daños”, podríamos pensar en usar regresión lineal.
-
-Pero la regresión lineal puede producir predicciones menores que 0 o mayores que 1, y una probabilidad debe estar entre 0 y 1.
-
-Para evitar este problema usamos la **regresión logística**, que transforma la salida del modelo para obtener valores entre 0 y 1.
-
-## Idea intuitiva de la regresión logística
-
-La regresión logística no predice directamente una clase.
-
-Primero predice una probabilidad.
-
-Después usamos un punto de corte para convertir esa probabilidad en una clase.
-
-Por ejemplo, si usamos un punto de corte de 0.5:
-
-```text
-Si probabilidad >= 0.5 → Con víctimas
-Si probabilidad <  0.5 → Solo daños
-```
-
-Esta distinción es muy importante:
-
-> La regresión logística produce probabilidades; la clasificación final depende del punto de corte elegido.
+La variable que queremos predecir es `accidente_con_victimas`.
 
 ## La función logística
 
 La regresión logística utiliza una función especial llamada **función logística**.
 
-Esta función tiene forma de “S” y convierte cualquier número real en un valor entre 0 y 1.
-
-\[
+$$
 p = \frac{1}{1 + e^{-z}}
-\]
+$$
 
 donde:
 
-\[
+$$
 z = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_px_p
-\]
+$$
 
 ## Fundamento matemático de la regresión logística
 
 En clasificación binaria, la variable respuesta puede representarse como:
 
-\[
+$$
 Y_i =
-\begin{cases}
+\left\{
+\begin{array}{ll}
 1, & \text{si el accidente tiene víctimas} \\
 0, & \text{si el accidente es de solo daños}
-\end{cases}
-\]
+\end{array}
+\right.
+$$
 
-La regresión logística estima la probabilidad de que \(Y_i = 1\) dado un conjunto de variables predictoras \(X_i\):
+La regresión logística estima:
 
-\[
+$$
 P(Y_i = 1 \mid X_i) = \hat{p}_i
-\]
+$$
 
 La probabilidad estimada se calcula mediante:
 
-\[
+$$
 \hat{p}_i =
 \frac{1}{1 + e^{-z_i}}
-\]
+$$
 
 donde:
 
-\[
+$$
 z_i =
 \beta_0 +
 \beta_1x_{i1} +
 \beta_2x_{i2} +
 \cdots +
 \beta_px_{ip}
-\]
+$$
 
 La función logística garantiza que:
 
-\[
+$$
 0 \leq \hat{p}_i \leq 1
-\]
-
-por lo tanto, \(\hat{p}_i\) puede interpretarse como una probabilidad.
+$$
 
 ## Logit y razón de momios
 
 La regresión logística también puede escribirse mediante la función logit:
 
-\[
+$$
 \log
 \left(
 \frac{p_i}{1 - p_i}
@@ -168,33 +97,27 @@ La regresión logística también puede escribirse mediante la función logit:
 \beta_1x_{i1} +
 \cdots +
 \beta_px_{ip}
-\]
-
-La expresión:
-
-\[
-\frac{p_i}{1 - p_i}
-\]
-
-se conoce como **momios** u **odds**.
+$$
 
 Cuando aplicamos la función exponencial a un coeficiente, obtenemos un **odds ratio**:
 
-\[
+$$
 OR_j = e^{\beta_j}
-\]
+$$
 
 ## Regla de clasificación
 
-Una vez estimada la probabilidad \(\hat{p}_i\), se elige un punto de corte \(c\).
+Una vez estimada la probabilidad $\hat{p}_i$, se elige un punto de corte $c$.
 
-\[
+$$
 \hat{Y}_i =
-\begin{cases}
+\left\{
+\begin{array}{ll}
 1, & \text{si } \hat{p}_i \geq c \\
 0, & \text{si } \hat{p}_i < c
-\end{cases}
-\]
+\end{array}
+\right.
+$$
 
 ## Algoritmo de regresión logística
 
@@ -213,10 +136,8 @@ Proceso:
   4. Transformar z mediante la función logística.
   5. Obtener la probabilidad estimada p.
   6. Comparar p contra el punto de corte c.
-  7. Si p >= c, clasificar como clase positiva.
-  8. Si p < c, clasificar como clase negativa.
-  9. Comparar las clases predichas contra las clases reales.
-  10. Calcular matriz de confusión y métricas.
+  7. Clasificar como clase positiva o negativa.
+  8. Calcular matriz de confusión y métricas.
 
 Salida:
   - Probabilidades predichas
@@ -236,11 +157,7 @@ library(ggplot2)
 
 ggplot(datos_logistica, aes(x = z, y = p)) +
   geom_line(linewidth = 1) +
-  labs(
-    title = "Función logística",
-    x = "z",
-    y = "Probabilidad"
-  )
+  labs(title = "Función logística", x = "z", y = "Probabilidad")
 ```
 
 ## Cargar paquetes
@@ -249,12 +166,6 @@ ggplot(datos_logistica, aes(x = z, y = p)) +
 library(readr)
 library(dplyr)
 library(ggplot2)
-```
-
-Si alguno no está instalado, puedes instalarlo con:
-
-```{r, eval=FALSE}
-install.packages(c("readr", "dplyr", "ggplot2"))
 ```
 
 ## Cargar la base preparada
@@ -266,10 +177,7 @@ file.exists(ruta_atus_ml)
 
 ```{r}
 if (file.exists(ruta_atus_ml)) {
-  atus_ml <- read_csv(
-    ruta_atus_ml,
-    show_col_types = FALSE
-  )
+  atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
 } else {
   atus_ml <- NULL
@@ -289,43 +197,9 @@ if (!is.null(atus_ml)) {
       TIPACCID = as.factor(TIPACCID),
       CAUSAACCI = as.factor(CAUSAACCI),
       ID_HORA = as.numeric(ID_HORA),
-      accidente_con_victimas = factor(
-        accidente_con_victimas,
-        levels = c("Con víctimas", "Solo daños")
-      )
+      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
     )
 }
-```
-
-```{r}
-if (exists("atus_modelo")) {
-  head(atus_modelo)
-}
-```
-
-```{r}
-if (exists("atus_modelo")) {
-  table(atus_modelo$victimas_binaria)
-  table(atus_modelo$accidente_con_victimas)
-}
-```
-
-## Selección inicial de variables predictoras
-
-Usaremos:
-
-```text
-MES
-ID_HORA
-DIASEMANA
-TIPACCID
-CAUSAACCI
-```
-
-La fórmula del modelo será:
-
-```text
-victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI
 ```
 
 ## División en entrenamiento y prueba
@@ -334,12 +208,7 @@ victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI
 if (exists("atus_modelo")) {
   set.seed(123)
   n <- nrow(atus_modelo)
-
-  indices_entrenamiento <- sample(
-    1:n,
-    size = round(0.7 * n)
-  )
-
+  indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
   entrenamiento <- atus_modelo[indices_entrenamiento, ]
   prueba <- atus_modelo[-indices_entrenamiento, ]
 }
@@ -354,26 +223,6 @@ if (exists("entrenamiento") && exists("prueba")) {
       round(100 * nrow(entrenamiento) / nrow(atus_modelo), 2),
       round(100 * nrow(prueba) / nrow(atus_modelo), 2)
     )
-  )
-}
-```
-
-```{r}
-if (exists("entrenamiento") && exists("prueba")) {
-  prop_entrenamiento <- round(
-    100 * prop.table(table(entrenamiento$accidente_con_victimas)),
-    2
-  )
-
-  prop_prueba <- round(
-    100 * prop.table(table(prueba$accidente_con_victimas)),
-    2
-  )
-
-  data.frame(
-    clase = names(prop_entrenamiento),
-    entrenamiento = as.numeric(prop_entrenamiento),
-    prueba = as.numeric(prop_prueba)
   )
 }
 ```
@@ -396,7 +245,7 @@ if (exists("modelo_logistico")) {
 }
 ```
 
-Nota didáctica: si aparece el mensaje “1 not defined because of singularities”, significa que una categoría no pudo estimarse de forma independiente, posiblemente por redundancia o falta de variación suficiente respecto a otras variables. En esta primera aproximación no lo trataremos como un error fatal, pero en un análisis profesional convendría revisar las categorías y simplificar algunas variables.
+Nota didáctica: si aparece el mensaje “1 not defined because of singularities”, significa que una categoría no pudo estimarse de forma independiente.
 
 ## Predicción de probabilidades
 
@@ -406,15 +255,6 @@ if (exists("modelo_logistico") && exists("prueba")) {
     modelo_logistico,
     newdata = prueba,
     type = "response"
-  )
-}
-```
-
-```{r}
-if (exists("prueba")) {
-  head(
-    prueba |>
-      select(accidente_con_victimas, victimas_binaria, probabilidad_victimas)
   )
 }
 ```
@@ -429,10 +269,7 @@ if (exists("prueba")) {
     "Solo daños"
   )
 
-  prueba$prediccion_05 <- factor(
-    prueba$prediccion_05,
-    levels = c("Con víctimas", "Solo daños")
-  )
+  prueba$prediccion_05 <- factor(prueba$prediccion_05, levels = c("Con víctimas", "Solo daños"))
 }
 ```
 
@@ -460,18 +297,7 @@ if (exists("matriz_confusion_05")) {
 
   data.frame(
     medida = c("VP", "FN", "FP", "VN"),
-    nombre = c(
-      "Verdaderos positivos",
-      "Falsos negativos",
-      "Falsos positivos",
-      "Verdaderos negativos"
-    ),
-    descripcion = c(
-      "Con víctimas clasificado como Con víctimas",
-      "Con víctimas clasificado como Solo daños",
-      "Solo daños clasificado como Con víctimas",
-      "Solo daños clasificado como Solo daños"
-    ),
+    nombre = c("Verdaderos positivos", "Falsos negativos", "Falsos positivos", "Verdaderos negativos"),
     valor = c(VP, FN, FP, VN)
   )
 }
@@ -479,48 +305,37 @@ if (exists("matriz_confusion_05")) {
 
 ## Fórmulas de evaluación para clasificación binaria
 
-A partir de la matriz de confusión podemos definir las siguientes cantidades:
-
-| Símbolo | Nombre | Descripción |
-|---|---|---|
-| \(VP\) | Verdaderos positivos | Casos positivos clasificados correctamente |
-| \(FN\) | Falsos negativos | Casos positivos clasificados como negativos |
-| \(FP\) | Falsos positivos | Casos negativos clasificados como positivos |
-| \(VN\) | Verdaderos negativos | Casos negativos clasificados correctamente |
-
 La exactitud se calcula como:
 
-\[
+$$
 \text{Exactitud}
 =
 \frac{VP + VN}{VP + FN + FP + VN}
-\]
+$$
 
 La sensibilidad se calcula como:
 
-\[
+$$
 \text{Sensibilidad}
 =
 \frac{VP}{VP + FN}
-\]
+$$
 
 La especificidad se calcula como:
 
-\[
+$$
 \text{Especificidad}
 =
 \frac{VN}{VN + FP}
-\]
+$$
 
 La precisión se calcula como:
 
-\[
+$$
 \text{Precisión}
 =
 \frac{VP}{VP + FP}
-\]
-
-En problemas desbalanceados, la exactitud puede ser engañosa. Por eso es importante revisar también sensibilidad, especificidad y precisión.
+$$
 
 ```{r}
 if (exists("VP")) {
@@ -537,12 +352,6 @@ if (exists("VP")) {
 }
 ```
 
-## Problema del punto de corte 0.5
-
-En muchos problemas desbalanceados, usar un punto de corte de 0.5 puede no ser adecuado.
-
-Si la clase positiva es poco frecuente, muchas probabilidades predichas pueden quedar por debajo de 0.5. Esto puede provocar que el modelo prediga casi siempre la clase mayoritaria.
-
 ## Clasificación con punto de corte 0.3
 
 ```{r}
@@ -552,11 +361,7 @@ if (exists("prueba")) {
     "Con víctimas",
     "Solo daños"
   )
-
-  prueba$prediccion_03 <- factor(
-    prueba$prediccion_03,
-    levels = c("Con víctimas", "Solo daños")
-  )
+  prueba$prediccion_03 <- factor(prueba$prediccion_03, levels = c("Con víctimas", "Solo daños"))
 }
 ```
 
@@ -566,7 +371,6 @@ if (exists("prueba")) {
     Real = prueba$accidente_con_victimas,
     Predicho = prueba$prediccion_03
   )
-
   matriz_confusion_03
 }
 ```
@@ -595,20 +399,14 @@ if (exists("matriz_confusion_03")) {
 
 ```{r}
 if (exists("exactitud") && exists("exactitud_03")) {
-  comparacion_cortes <- data.frame(
+  data.frame(
     punto_corte = c(0.5, 0.3),
     exactitud = c(exactitud, exactitud_03),
     sensibilidad = c(sensibilidad, sensibilidad_03),
     especificidad = c(especificidad, especificidad_03)
   )
-
-  comparacion_cortes
 }
 ```
-
-En este ejemplo, el punto de corte 0.5 produce mayor exactitud, pero detecta pocos accidentes con víctimas. En cambio, el punto de corte 0.3 reduce la exactitud global, pero mejora considerablemente la sensibilidad.
-
-Desde una perspectiva de seguridad vial, podría ser más útil detectar una mayor proporción de accidentes con víctimas, aunque eso implique aceptar más falsos positivos.
 
 ## Distribución de probabilidades predichas
 
@@ -638,45 +436,6 @@ if (exists("modelo_logistico")) {
 }
 ```
 
-En modelos con muchas variables categóricas, los odds ratios pueden ser numerosos y algunos pueden tomar valores extremos. Por eso, en esta primera lectura los usamos solo como introducción conceptual.
-
-## Limitaciones del modelo
-
-La regresión logística es un modelo muy útil, pero tiene limitaciones.
-
-Algunas de ellas son:
-
-- supone una relación lineal entre las variables predictoras y el logit;
-- puede verse afectada por variables categóricas con muchas categorías;
-- puede tener dificultades con relaciones complejas o no lineales;
-- requiere cuidado cuando las clases están muy desbalanceadas;
-- no captura automáticamente interacciones complejas entre variables.
-
-En nuestro caso, el modelo usa pocas variables y no incluye información espacial, condiciones del camino, tipo de vehículo, edad de conductores ni otros factores que podrían ser relevantes.
-
-Por lo tanto, este modelo debe verse como un primer modelo base, no como un modelo definitivo.
-
-## ¿Qué aprendimos?
-
-En este capítulo construimos nuestro primer modelo supervisado de clasificación.
-
-Aprendimos que:
-
-- la regresión logística se usa para problemas de clasificación binaria;
-- el modelo produce probabilidades;
-- las probabilidades se convierten en clases usando un punto de corte;
-- el punto de corte afecta las métricas;
-- la matriz de confusión permite evaluar el desempeño;
-- la exactitud puede ser engañosa en bases desbalanceadas;
-- la sensibilidad y la especificidad ayudan a entender mejor el modelo;
-- los odds ratios permiten interpretar coeficientes en términos de momios.
-
 ## Conclusión
 
-La regresión logística es uno de los modelos más importantes en aprendizaje automático aplicado.
-
-Aunque es relativamente simple, permite construir modelos interpretables y útiles para problemas de clasificación binaria.
-
-En este capítulo la usamos para estimar la probabilidad de que un accidente tenga víctimas.
-
-En el siguiente capítulo estudiaremos otro método de clasificación muy intuitivo: **k vecinos más cercanos**, conocido como **k-NN**.
+La regresión logística es uno de los modelos más importantes para clasificación binaria. En el siguiente capítulo estudiaremos **k vecinos más cercanos**, conocido como **k-NN**.

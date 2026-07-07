@@ -24,7 +24,6 @@ format:
     code-fold: true
     code-tools: true
     html-math-method: mathjax
-
   pdf:
     documentclass: book
     toc: true
@@ -34,3 +33,4 @@ format:
       - margin=2.5cm
     fontsize: 11pt
     keep-tex: true
+    pdf-engine: lualatex
