@@ -172,15 +172,17 @@ En aprendizaje automático trabajamos con observaciones y variables.
 
 Supongamos que tenemos \(n\) observaciones y \(p\) variables predictoras. Podemos representar los datos mediante una matriz:
 
-\[
+$$
 X =
-\begin{bmatrix}
+\left[
+\begin{array}{cccc}
 x_{11} & x_{12} & \cdots & x_{1p} \\
 x_{21} & x_{22} & \cdots & x_{2p} \\
 \vdots & \vdots & \ddots & \vdots \\
 x_{n1} & x_{n2} & \cdots & x_{np}
-\end{bmatrix}
-\]
+\end{array}
+\right]
+$$
 
 donde:
 
@@ -190,15 +192,17 @@ donde:
 
 La variable respuesta se representa como:
 
-\[
+$$
 Y =
-\begin{bmatrix}
+\left[
+\begin{array}{c}
 y_1 \\
 y_2 \\
 \vdots \\
 y_n
-\end{bmatrix}
-\]
+\end{array}
+\right]
+$$
 
 El objetivo general del aprendizaje supervisado es encontrar una función \(f\) que permita aproximar la respuesta:
 

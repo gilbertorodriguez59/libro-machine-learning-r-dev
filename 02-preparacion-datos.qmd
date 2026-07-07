@@ -89,27 +89,31 @@ Una base de datos para aprendizaje automático puede representarse como una matr
 
 La matriz de variables predictoras es:
 
-\[
+$$
 X =
-\begin{bmatrix}
+\left[
+\begin{array}{cccc}
 x_{11} & x_{12} & \cdots & x_{1p} \\
 x_{21} & x_{22} & \cdots & x_{2p} \\
 \vdots & \vdots & \ddots & \vdots \\
 x_{n1} & x_{n2} & \cdots & x_{np}
-\end{bmatrix}
-\]
+\end{array}
+\right]
+$$
 
 y la variable respuesta es:
 
-\[
+$$
 Y =
-\begin{bmatrix}
+\left[
+\begin{array}{c}
 y_1 \\
 y_2 \\
 \vdots \\
 y_n
-\end{bmatrix}
-\]
+\end{array}
+\right]
+$$
 
 En nuestro caso, \(Y\) representa la variable:
 

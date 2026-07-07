@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.7.1)  7 JUL 2026 14:02
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.7.1)  7 JUL 2026 14:22
  restricted system commands enabled.
 **index.tex
 (./index.tex
@@ -38,8 +38,7 @@ Inserting `tracingstacklevels' in `input_level_string'. (c:/Users/DELL/AppData/R
 Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
 (c:/Users/DELL/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk11.clo
 File: bk11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
-luaotfload | db : Font names database not found, generating new one.
-luaotfload | db : This can take several minutes; please be patient.)
+luaotfload | db : Font names database loaded from C:/Users/DELL/AppData/Roaming/TinyTeX/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
 \c@part=\count274
 \c@chapter=\count275
 \c@section=\count276
@@ -963,6 +962,6 @@ Here is how much of LuaTeX's memory you used:
    20 hlist, 1 vlist, 2 rule, 2 mark, 34 disc, 7 local_par, 1 dir, 83 glue, 21 kern, 15 penalty, 5 margin_kern, 336 glyph, 37 attribute, 63 glue_spec, 37 attribute_list, 2 write, 2 pdf_dest, 2 pdf_colorstack nodes
    avail lists: 2:950,3:272,4:652,5:268,6:52,7:3345,9:292,10:6,11:264
  44547 multiletter control sequences out of 65536+600000
- 50 fonts using 12349855 bytes
+ 50 fonts using 12349655 bytes
  90i,5n,114p,1001b,499s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

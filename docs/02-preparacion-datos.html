@@ -337,23 +337,29 @@ Modelo de aprendizaje automático</code></pre>
 <h2 data-number="2.5" class="anchored" data-anchor-id="representación-matemática-de-una-base-preparada"><span class="header-section-number">2.5</span> Representación matemática de una base preparada</h2>
 <p>Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras (X) y una variable respuesta (Y).</p>
 <p>La matriz de variables predictoras es:</p>
-[ X =
-<span class="math display">\[\begin{bmatrix}
+<p><span class="math display">\[
+X =
+\left[
+\begin{array}{cccc}
 x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} \\
 x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
-\end{bmatrix}\]</span>
-<p>]</p>
+\end{array}
+\right]
+\]</span></p>
 <p>y la variable respuesta es:</p>
-[ Y =
-<span class="math display">\[\begin{bmatrix}
+<p><span class="math display">\[
+Y =
+\left[
+\begin{array}{c}
 y_1 \\
 y_2 \\
 \vdots \\
 y_n
-\end{bmatrix}\]</span>
-<p>]</p>
+\end{array}
+\right]
+\]</span></p>
 <p>En nuestro caso, (Y) representa la variable:</p>
 <pre class="text"><code>accidente_con_victimas</code></pre>
 <p>con dos posibles valores:</p>
@@ -1550,527 +1556,531 @@ Con víctimas   Solo daños
 <span id="cb55-91"><a href="#cb55-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-92"><a href="#cb55-92" aria-hidden="true" tabindex="-1"></a>La matriz de variables predictoras es:</span>
 <span id="cb55-93"><a href="#cb55-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-94"><a href="#cb55-94" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
+<span id="cb55-94"><a href="#cb55-94" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb55-95"><a href="#cb55-95" aria-hidden="true" tabindex="-1"></a>X =</span>
-<span id="cb55-96"><a href="#cb55-96" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
-<span id="cb55-97"><a href="#cb55-97" aria-hidden="true" tabindex="-1"></a>x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} <span class="sc">\\</span></span>
-<span id="cb55-98"><a href="#cb55-98" aria-hidden="true" tabindex="-1"></a>x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} <span class="sc">\\</span></span>
-<span id="cb55-99"><a href="#cb55-99" aria-hidden="true" tabindex="-1"></a>\vdots &amp; \vdots &amp; \ddots &amp; \vdots <span class="sc">\\</span></span>
-<span id="cb55-100"><a href="#cb55-100" aria-hidden="true" tabindex="-1"></a>x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}</span>
-<span id="cb55-101"><a href="#cb55-101" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
-<span id="cb55-102"><a href="#cb55-102" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
-<span id="cb55-103"><a href="#cb55-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-104"><a href="#cb55-104" aria-hidden="true" tabindex="-1"></a>y la variable respuesta es:</span>
+<span id="cb55-96"><a href="#cb55-96" aria-hidden="true" tabindex="-1"></a>\left[</span>
+<span id="cb55-97"><a href="#cb55-97" aria-hidden="true" tabindex="-1"></a>\begin{array}{cccc}</span>
+<span id="cb55-98"><a href="#cb55-98" aria-hidden="true" tabindex="-1"></a>x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} <span class="sc">\\</span></span>
+<span id="cb55-99"><a href="#cb55-99" aria-hidden="true" tabindex="-1"></a>x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} <span class="sc">\\</span></span>
+<span id="cb55-100"><a href="#cb55-100" aria-hidden="true" tabindex="-1"></a>\vdots &amp; \vdots &amp; \ddots &amp; \vdots <span class="sc">\\</span></span>
+<span id="cb55-101"><a href="#cb55-101" aria-hidden="true" tabindex="-1"></a>x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}</span>
+<span id="cb55-102"><a href="#cb55-102" aria-hidden="true" tabindex="-1"></a>\end{array}</span>
+<span id="cb55-103"><a href="#cb55-103" aria-hidden="true" tabindex="-1"></a>\right]</span>
+<span id="cb55-104"><a href="#cb55-104" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb55-105"><a href="#cb55-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-106"><a href="#cb55-106" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
-<span id="cb55-107"><a href="#cb55-107" aria-hidden="true" tabindex="-1"></a>Y =</span>
-<span id="cb55-108"><a href="#cb55-108" aria-hidden="true" tabindex="-1"></a>\begin{bmatrix}</span>
-<span id="cb55-109"><a href="#cb55-109" aria-hidden="true" tabindex="-1"></a>y_1 <span class="sc">\\</span></span>
-<span id="cb55-110"><a href="#cb55-110" aria-hidden="true" tabindex="-1"></a>y_2 <span class="sc">\\</span></span>
-<span id="cb55-111"><a href="#cb55-111" aria-hidden="true" tabindex="-1"></a>\vdots <span class="sc">\\</span></span>
-<span id="cb55-112"><a href="#cb55-112" aria-hidden="true" tabindex="-1"></a>y_n</span>
-<span id="cb55-113"><a href="#cb55-113" aria-hidden="true" tabindex="-1"></a>\end{bmatrix}</span>
-<span id="cb55-114"><a href="#cb55-114" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
-<span id="cb55-115"><a href="#cb55-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-116"><a href="#cb55-116" aria-hidden="true" tabindex="-1"></a>En nuestro caso, <span class="sc">\(</span>Y<span class="sc">\)</span> representa la variable:</span>
-<span id="cb55-117"><a href="#cb55-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-118"><a href="#cb55-118" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-119"><a href="#cb55-119" aria-hidden="true" tabindex="-1"></a><span class="in">accidente_con_victimas</span></span>
-<span id="cb55-120"><a href="#cb55-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-106"><a href="#cb55-106" aria-hidden="true" tabindex="-1"></a>y la variable respuesta es:</span>
+<span id="cb55-107"><a href="#cb55-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-108"><a href="#cb55-108" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb55-109"><a href="#cb55-109" aria-hidden="true" tabindex="-1"></a>Y =</span>
+<span id="cb55-110"><a href="#cb55-110" aria-hidden="true" tabindex="-1"></a>\left[</span>
+<span id="cb55-111"><a href="#cb55-111" aria-hidden="true" tabindex="-1"></a>\begin{array}{c}</span>
+<span id="cb55-112"><a href="#cb55-112" aria-hidden="true" tabindex="-1"></a>y_1 <span class="sc">\\</span></span>
+<span id="cb55-113"><a href="#cb55-113" aria-hidden="true" tabindex="-1"></a>y_2 <span class="sc">\\</span></span>
+<span id="cb55-114"><a href="#cb55-114" aria-hidden="true" tabindex="-1"></a>\vdots <span class="sc">\\</span></span>
+<span id="cb55-115"><a href="#cb55-115" aria-hidden="true" tabindex="-1"></a>y_n</span>
+<span id="cb55-116"><a href="#cb55-116" aria-hidden="true" tabindex="-1"></a>\end{array}</span>
+<span id="cb55-117"><a href="#cb55-117" aria-hidden="true" tabindex="-1"></a>\right]</span>
+<span id="cb55-118"><a href="#cb55-118" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb55-119"><a href="#cb55-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-120"><a href="#cb55-120" aria-hidden="true" tabindex="-1"></a>En nuestro caso, <span class="sc">\(</span>Y<span class="sc">\)</span> representa la variable:</span>
 <span id="cb55-121"><a href="#cb55-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-122"><a href="#cb55-122" aria-hidden="true" tabindex="-1"></a>con dos posibles valores:</span>
-<span id="cb55-123"><a href="#cb55-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-124"><a href="#cb55-124" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-125"><a href="#cb55-125" aria-hidden="true" tabindex="-1"></a><span class="in">Con víctimas</span></span>
-<span id="cb55-126"><a href="#cb55-126" aria-hidden="true" tabindex="-1"></a><span class="in">Solo daños</span></span>
-<span id="cb55-127"><a href="#cb55-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-128"><a href="#cb55-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-129"><a href="#cb55-129" aria-hidden="true" tabindex="-1"></a>Cuando convertimos esta variable en forma binaria, podemos escribir:</span>
-<span id="cb55-130"><a href="#cb55-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-131"><a href="#cb55-131" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
-<span id="cb55-132"><a href="#cb55-132" aria-hidden="true" tabindex="-1"></a>Y_i =</span>
-<span id="cb55-133"><a href="#cb55-133" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
-<span id="cb55-134"><a href="#cb55-134" aria-hidden="true" tabindex="-1"></a>1, &amp; \text{si el accidente tiene víctimas} <span class="sc">\\</span></span>
-<span id="cb55-135"><a href="#cb55-135" aria-hidden="true" tabindex="-1"></a>0, &amp; \text{si el accidente es de solo daños}</span>
-<span id="cb55-136"><a href="#cb55-136" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
-<span id="cb55-137"><a href="#cb55-137" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
-<span id="cb55-138"><a href="#cb55-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-139"><a href="#cb55-139" aria-hidden="true" tabindex="-1"></a>Esta codificación será útil para modelos como la regresión logística.</span>
-<span id="cb55-140"><a href="#cb55-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-141"><a href="#cb55-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmo general de preparación de datos</span></span>
+<span id="cb55-122"><a href="#cb55-122" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-123"><a href="#cb55-123" aria-hidden="true" tabindex="-1"></a><span class="in">accidente_con_victimas</span></span>
+<span id="cb55-124"><a href="#cb55-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-125"><a href="#cb55-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-126"><a href="#cb55-126" aria-hidden="true" tabindex="-1"></a>con dos posibles valores:</span>
+<span id="cb55-127"><a href="#cb55-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-128"><a href="#cb55-128" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-129"><a href="#cb55-129" aria-hidden="true" tabindex="-1"></a><span class="in">Con víctimas</span></span>
+<span id="cb55-130"><a href="#cb55-130" aria-hidden="true" tabindex="-1"></a><span class="in">Solo daños</span></span>
+<span id="cb55-131"><a href="#cb55-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-132"><a href="#cb55-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-133"><a href="#cb55-133" aria-hidden="true" tabindex="-1"></a>Cuando convertimos esta variable en forma binaria, podemos escribir:</span>
+<span id="cb55-134"><a href="#cb55-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-135"><a href="#cb55-135" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
+<span id="cb55-136"><a href="#cb55-136" aria-hidden="true" tabindex="-1"></a>Y_i =</span>
+<span id="cb55-137"><a href="#cb55-137" aria-hidden="true" tabindex="-1"></a>\begin{cases}</span>
+<span id="cb55-138"><a href="#cb55-138" aria-hidden="true" tabindex="-1"></a>1, &amp; \text{si el accidente tiene víctimas} <span class="sc">\\</span></span>
+<span id="cb55-139"><a href="#cb55-139" aria-hidden="true" tabindex="-1"></a>0, &amp; \text{si el accidente es de solo daños}</span>
+<span id="cb55-140"><a href="#cb55-140" aria-hidden="true" tabindex="-1"></a>\end{cases}</span>
+<span id="cb55-141"><a href="#cb55-141" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
 <span id="cb55-142"><a href="#cb55-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-143"><a href="#cb55-143" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-144"><a href="#cb55-144" aria-hidden="true" tabindex="-1"></a><span class="in">Algoritmo: Preparación de datos para aprendizaje automático</span></span>
-<span id="cb55-145"><a href="#cb55-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-146"><a href="#cb55-146" aria-hidden="true" tabindex="-1"></a><span class="in">Entrada:</span></span>
-<span id="cb55-147"><a href="#cb55-147" aria-hidden="true" tabindex="-1"></a><span class="in">  - Base de datos cruda</span></span>
-<span id="cb55-148"><a href="#cb55-148" aria-hidden="true" tabindex="-1"></a><span class="in">  - Diccionario de variables</span></span>
-<span id="cb55-149"><a href="#cb55-149" aria-hidden="true" tabindex="-1"></a><span class="in">  - Pregunta de investigación o predicción</span></span>
-<span id="cb55-150"><a href="#cb55-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-151"><a href="#cb55-151" aria-hidden="true" tabindex="-1"></a><span class="in">Proceso:</span></span>
-<span id="cb55-152"><a href="#cb55-152" aria-hidden="true" tabindex="-1"></a><span class="in">  1. Leer la base de datos.</span></span>
-<span id="cb55-153"><a href="#cb55-153" aria-hidden="true" tabindex="-1"></a><span class="in">  2. Revisar dimensiones, nombres y tipos de variables.</span></span>
-<span id="cb55-154"><a href="#cb55-154" aria-hidden="true" tabindex="-1"></a><span class="in">  3. Seleccionar variables relevantes.</span></span>
-<span id="cb55-155"><a href="#cb55-155" aria-hidden="true" tabindex="-1"></a><span class="in">  4. Identificar la variable respuesta.</span></span>
-<span id="cb55-156"><a href="#cb55-156" aria-hidden="true" tabindex="-1"></a><span class="in">  5. Transformar variables cuando sea necesario.</span></span>
-<span id="cb55-157"><a href="#cb55-157" aria-hidden="true" tabindex="-1"></a><span class="in">  6. Convertir variables categóricas al tipo adecuado.</span></span>
-<span id="cb55-158"><a href="#cb55-158" aria-hidden="true" tabindex="-1"></a><span class="in">  7. Revisar datos faltantes.</span></span>
-<span id="cb55-159"><a href="#cb55-159" aria-hidden="true" tabindex="-1"></a><span class="in">  8. Eliminar o imputar registros incompletos.</span></span>
-<span id="cb55-160"><a href="#cb55-160" aria-hidden="true" tabindex="-1"></a><span class="in">  9. Guardar una base preparada.</span></span>
-<span id="cb55-161"><a href="#cb55-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-162"><a href="#cb55-162" aria-hidden="true" tabindex="-1"></a><span class="in">Salida:</span></span>
-<span id="cb55-163"><a href="#cb55-163" aria-hidden="true" tabindex="-1"></a><span class="in">  - Base limpia y lista para análisis exploratorio y modelado</span></span>
-<span id="cb55-164"><a href="#cb55-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-143"><a href="#cb55-143" aria-hidden="true" tabindex="-1"></a>Esta codificación será útil para modelos como la regresión logística.</span>
+<span id="cb55-144"><a href="#cb55-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-145"><a href="#cb55-145" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmo general de preparación de datos</span></span>
+<span id="cb55-146"><a href="#cb55-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-147"><a href="#cb55-147" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-148"><a href="#cb55-148" aria-hidden="true" tabindex="-1"></a><span class="in">Algoritmo: Preparación de datos para aprendizaje automático</span></span>
+<span id="cb55-149"><a href="#cb55-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-150"><a href="#cb55-150" aria-hidden="true" tabindex="-1"></a><span class="in">Entrada:</span></span>
+<span id="cb55-151"><a href="#cb55-151" aria-hidden="true" tabindex="-1"></a><span class="in">  - Base de datos cruda</span></span>
+<span id="cb55-152"><a href="#cb55-152" aria-hidden="true" tabindex="-1"></a><span class="in">  - Diccionario de variables</span></span>
+<span id="cb55-153"><a href="#cb55-153" aria-hidden="true" tabindex="-1"></a><span class="in">  - Pregunta de investigación o predicción</span></span>
+<span id="cb55-154"><a href="#cb55-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-155"><a href="#cb55-155" aria-hidden="true" tabindex="-1"></a><span class="in">Proceso:</span></span>
+<span id="cb55-156"><a href="#cb55-156" aria-hidden="true" tabindex="-1"></a><span class="in">  1. Leer la base de datos.</span></span>
+<span id="cb55-157"><a href="#cb55-157" aria-hidden="true" tabindex="-1"></a><span class="in">  2. Revisar dimensiones, nombres y tipos de variables.</span></span>
+<span id="cb55-158"><a href="#cb55-158" aria-hidden="true" tabindex="-1"></a><span class="in">  3. Seleccionar variables relevantes.</span></span>
+<span id="cb55-159"><a href="#cb55-159" aria-hidden="true" tabindex="-1"></a><span class="in">  4. Identificar la variable respuesta.</span></span>
+<span id="cb55-160"><a href="#cb55-160" aria-hidden="true" tabindex="-1"></a><span class="in">  5. Transformar variables cuando sea necesario.</span></span>
+<span id="cb55-161"><a href="#cb55-161" aria-hidden="true" tabindex="-1"></a><span class="in">  6. Convertir variables categóricas al tipo adecuado.</span></span>
+<span id="cb55-162"><a href="#cb55-162" aria-hidden="true" tabindex="-1"></a><span class="in">  7. Revisar datos faltantes.</span></span>
+<span id="cb55-163"><a href="#cb55-163" aria-hidden="true" tabindex="-1"></a><span class="in">  8. Eliminar o imputar registros incompletos.</span></span>
+<span id="cb55-164"><a href="#cb55-164" aria-hidden="true" tabindex="-1"></a><span class="in">  9. Guardar una base preparada.</span></span>
 <span id="cb55-165"><a href="#cb55-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-166"><a href="#cb55-166" aria-hidden="true" tabindex="-1"></a>La preparación de datos no es un paso secundario. Es una parte central del proceso, porque la calidad del modelo depende directamente de la calidad de los datos.</span>
-<span id="cb55-167"><a href="#cb55-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-168"><a href="#cb55-168" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conjunto de datos de trabajo: ATUS</span></span>
+<span id="cb55-166"><a href="#cb55-166" aria-hidden="true" tabindex="-1"></a><span class="in">Salida:</span></span>
+<span id="cb55-167"><a href="#cb55-167" aria-hidden="true" tabindex="-1"></a><span class="in">  - Base limpia y lista para análisis exploratorio y modelado</span></span>
+<span id="cb55-168"><a href="#cb55-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-169"><a href="#cb55-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-170"><a href="#cb55-170" aria-hidden="true" tabindex="-1"></a>En este capítulo comenzaremos a trabajar con un conjunto de datos real de México: la estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas, conocida como **ATUS**, publicada por INEGI.</span>
+<span id="cb55-170"><a href="#cb55-170" aria-hidden="true" tabindex="-1"></a>La preparación de datos no es un paso secundario. Es una parte central del proceso, porque la calidad del modelo depende directamente de la calidad de los datos.</span>
 <span id="cb55-171"><a href="#cb55-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-172"><a href="#cb55-172" aria-hidden="true" tabindex="-1"></a>ATUS contiene información sobre accidentes de tránsito ocurridos en zonas urbanas y suburbanas. La información tiene cobertura nacional, estatal y municipal, y considera accidentes en caminos de jurisdicción no federal.</span>
+<span id="cb55-172"><a href="#cb55-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conjunto de datos de trabajo: ATUS</span></span>
 <span id="cb55-173"><a href="#cb55-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-174"><a href="#cb55-174" aria-hidden="true" tabindex="-1"></a>Este conjunto de datos es útil para construir ejemplos de aprendizaje automático porque contiene variables como:</span>
+<span id="cb55-174"><a href="#cb55-174" aria-hidden="true" tabindex="-1"></a>En este capítulo comenzaremos a trabajar con un conjunto de datos real de México: la estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas, conocida como **ATUS**, publicada por INEGI.</span>
 <span id="cb55-175"><a href="#cb55-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-176"><a href="#cb55-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>entidad federativa,</span>
-<span id="cb55-177"><a href="#cb55-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>municipio,</span>
-<span id="cb55-178"><a href="#cb55-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>año,</span>
-<span id="cb55-179"><a href="#cb55-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>mes,</span>
-<span id="cb55-180"><a href="#cb55-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>día de la semana,</span>
-<span id="cb55-181"><a href="#cb55-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>hora,</span>
-<span id="cb55-182"><a href="#cb55-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tipo de accidente,</span>
-<span id="cb55-183"><a href="#cb55-183" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>causa presunta,</span>
-<span id="cb55-184"><a href="#cb55-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clase de accidente,</span>
-<span id="cb55-185"><a href="#cb55-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>víctimas.</span>
-<span id="cb55-186"><a href="#cb55-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-187"><a href="#cb55-187" aria-hidden="true" tabindex="-1"></a>Con estos datos podemos formular problemas como:</span>
-<span id="cb55-188"><a href="#cb55-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-189"><a href="#cb55-189" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?</span></span>
+<span id="cb55-176"><a href="#cb55-176" aria-hidden="true" tabindex="-1"></a>ATUS contiene información sobre accidentes de tránsito ocurridos en zonas urbanas y suburbanas. La información tiene cobertura nacional, estatal y municipal, y considera accidentes en caminos de jurisdicción no federal.</span>
+<span id="cb55-177"><a href="#cb55-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-178"><a href="#cb55-178" aria-hidden="true" tabindex="-1"></a>Este conjunto de datos es útil para construir ejemplos de aprendizaje automático porque contiene variables como:</span>
+<span id="cb55-179"><a href="#cb55-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-180"><a href="#cb55-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>entidad federativa,</span>
+<span id="cb55-181"><a href="#cb55-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>municipio,</span>
+<span id="cb55-182"><a href="#cb55-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>año,</span>
+<span id="cb55-183"><a href="#cb55-183" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>mes,</span>
+<span id="cb55-184"><a href="#cb55-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>día de la semana,</span>
+<span id="cb55-185"><a href="#cb55-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>hora,</span>
+<span id="cb55-186"><a href="#cb55-186" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tipo de accidente,</span>
+<span id="cb55-187"><a href="#cb55-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>causa presunta,</span>
+<span id="cb55-188"><a href="#cb55-188" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clase de accidente,</span>
+<span id="cb55-189"><a href="#cb55-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>víctimas.</span>
 <span id="cb55-190"><a href="#cb55-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-191"><a href="#cb55-191" aria-hidden="true" tabindex="-1"></a>Ese será nuestro primer problema práctico.</span>
+<span id="cb55-191"><a href="#cb55-191" aria-hidden="true" tabindex="-1"></a>Con estos datos podemos formular problemas como:</span>
 <span id="cb55-192"><a href="#cb55-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-193"><a href="#cb55-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear la carpeta de datos</span></span>
+<span id="cb55-193"><a href="#cb55-193" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?</span></span>
 <span id="cb55-194"><a href="#cb55-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-195"><a href="#cb55-195" aria-hidden="true" tabindex="-1"></a>Dentro de la carpeta del libro crea una carpeta llamada:</span>
+<span id="cb55-195"><a href="#cb55-195" aria-hidden="true" tabindex="-1"></a>Ese será nuestro primer problema práctico.</span>
 <span id="cb55-196"><a href="#cb55-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-197"><a href="#cb55-197" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-198"><a href="#cb55-198" aria-hidden="true" tabindex="-1"></a><span class="in">datos</span></span>
-<span id="cb55-199"><a href="#cb55-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-197"><a href="#cb55-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear la carpeta de datos</span></span>
+<span id="cb55-198"><a href="#cb55-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-199"><a href="#cb55-199" aria-hidden="true" tabindex="-1"></a>Dentro de la carpeta del libro crea una carpeta llamada:</span>
 <span id="cb55-200"><a href="#cb55-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-201"><a href="#cb55-201" aria-hidden="true" tabindex="-1"></a>La estructura del proyecto debería verse así:</span>
-<span id="cb55-202"><a href="#cb55-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-203"><a href="#cb55-203" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-204"><a href="#cb55-204" aria-hidden="true" tabindex="-1"></a><span class="in">libro-machine-learning-r/</span></span>
-<span id="cb55-205"><a href="#cb55-205" aria-hidden="true" tabindex="-1"></a><span class="in">│</span></span>
-<span id="cb55-206"><a href="#cb55-206" aria-hidden="true" tabindex="-1"></a><span class="in">├── _quarto.yml</span></span>
-<span id="cb55-207"><a href="#cb55-207" aria-hidden="true" tabindex="-1"></a><span class="in">├── index.qmd</span></span>
-<span id="cb55-208"><a href="#cb55-208" aria-hidden="true" tabindex="-1"></a><span class="in">├── 01-introduccion.qmd</span></span>
-<span id="cb55-209"><a href="#cb55-209" aria-hidden="true" tabindex="-1"></a><span class="in">├── 02-preparacion-datos.qmd</span></span>
-<span id="cb55-210"><a href="#cb55-210" aria-hidden="true" tabindex="-1"></a><span class="in">├── 03-analisis-exploratorio.qmd</span></span>
-<span id="cb55-211"><a href="#cb55-211" aria-hidden="true" tabindex="-1"></a><span class="in">│</span></span>
-<span id="cb55-212"><a href="#cb55-212" aria-hidden="true" tabindex="-1"></a><span class="in">├── datos/</span></span>
-<span id="cb55-213"><a href="#cb55-213" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── atus_2024.csv</span></span>
-<span id="cb55-214"><a href="#cb55-214" aria-hidden="true" tabindex="-1"></a><span class="in">│</span></span>
-<span id="cb55-215"><a href="#cb55-215" aria-hidden="true" tabindex="-1"></a><span class="in">└── docs/</span></span>
-<span id="cb55-216"><a href="#cb55-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-217"><a href="#cb55-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-218"><a href="#cb55-218" aria-hidden="true" tabindex="-1"></a>El archivo de datos que usaremos en este capítulo se llamará:</span>
-<span id="cb55-219"><a href="#cb55-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-220"><a href="#cb55-220" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-221"><a href="#cb55-221" aria-hidden="true" tabindex="-1"></a><span class="in">atus_2024.csv</span></span>
-<span id="cb55-222"><a href="#cb55-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-201"><a href="#cb55-201" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-202"><a href="#cb55-202" aria-hidden="true" tabindex="-1"></a><span class="in">datos</span></span>
+<span id="cb55-203"><a href="#cb55-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-204"><a href="#cb55-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-205"><a href="#cb55-205" aria-hidden="true" tabindex="-1"></a>La estructura del proyecto debería verse así:</span>
+<span id="cb55-206"><a href="#cb55-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-207"><a href="#cb55-207" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-208"><a href="#cb55-208" aria-hidden="true" tabindex="-1"></a><span class="in">libro-machine-learning-r/</span></span>
+<span id="cb55-209"><a href="#cb55-209" aria-hidden="true" tabindex="-1"></a><span class="in">│</span></span>
+<span id="cb55-210"><a href="#cb55-210" aria-hidden="true" tabindex="-1"></a><span class="in">├── _quarto.yml</span></span>
+<span id="cb55-211"><a href="#cb55-211" aria-hidden="true" tabindex="-1"></a><span class="in">├── index.qmd</span></span>
+<span id="cb55-212"><a href="#cb55-212" aria-hidden="true" tabindex="-1"></a><span class="in">├── 01-introduccion.qmd</span></span>
+<span id="cb55-213"><a href="#cb55-213" aria-hidden="true" tabindex="-1"></a><span class="in">├── 02-preparacion-datos.qmd</span></span>
+<span id="cb55-214"><a href="#cb55-214" aria-hidden="true" tabindex="-1"></a><span class="in">├── 03-analisis-exploratorio.qmd</span></span>
+<span id="cb55-215"><a href="#cb55-215" aria-hidden="true" tabindex="-1"></a><span class="in">│</span></span>
+<span id="cb55-216"><a href="#cb55-216" aria-hidden="true" tabindex="-1"></a><span class="in">├── datos/</span></span>
+<span id="cb55-217"><a href="#cb55-217" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── atus_2024.csv</span></span>
+<span id="cb55-218"><a href="#cb55-218" aria-hidden="true" tabindex="-1"></a><span class="in">│</span></span>
+<span id="cb55-219"><a href="#cb55-219" aria-hidden="true" tabindex="-1"></a><span class="in">└── docs/</span></span>
+<span id="cb55-220"><a href="#cb55-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-221"><a href="#cb55-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-222"><a href="#cb55-222" aria-hidden="true" tabindex="-1"></a>El archivo de datos que usaremos en este capítulo se llamará:</span>
 <span id="cb55-223"><a href="#cb55-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-224"><a href="#cb55-224" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descarga de los datos</span></span>
-<span id="cb55-225"><a href="#cb55-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-226"><a href="#cb55-226" aria-hidden="true" tabindex="-1"></a>Para este capítulo descarga el archivo CSV de ATUS desde el sitio de INEGI.</span>
+<span id="cb55-224"><a href="#cb55-224" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-225"><a href="#cb55-225" aria-hidden="true" tabindex="-1"></a><span class="in">atus_2024.csv</span></span>
+<span id="cb55-226"><a href="#cb55-226" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-227"><a href="#cb55-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-228"><a href="#cb55-228" aria-hidden="true" tabindex="-1"></a>Una vez descargado, guarda el archivo en la carpeta:</span>
+<span id="cb55-228"><a href="#cb55-228" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descarga de los datos</span></span>
 <span id="cb55-229"><a href="#cb55-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-230"><a href="#cb55-230" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-231"><a href="#cb55-231" aria-hidden="true" tabindex="-1"></a><span class="in">datos/</span></span>
-<span id="cb55-232"><a href="#cb55-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-230"><a href="#cb55-230" aria-hidden="true" tabindex="-1"></a>Para este capítulo descarga el archivo CSV de ATUS desde el sitio de INEGI.</span>
+<span id="cb55-231"><a href="#cb55-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-232"><a href="#cb55-232" aria-hidden="true" tabindex="-1"></a>Una vez descargado, guarda el archivo en la carpeta:</span>
 <span id="cb55-233"><a href="#cb55-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-234"><a href="#cb55-234" aria-hidden="true" tabindex="-1"></a>y cambia su nombre a:</span>
-<span id="cb55-235"><a href="#cb55-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-236"><a href="#cb55-236" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-237"><a href="#cb55-237" aria-hidden="true" tabindex="-1"></a><span class="in">atus_2024.csv</span></span>
-<span id="cb55-238"><a href="#cb55-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-234"><a href="#cb55-234" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-235"><a href="#cb55-235" aria-hidden="true" tabindex="-1"></a><span class="in">datos/</span></span>
+<span id="cb55-236"><a href="#cb55-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-237"><a href="#cb55-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-238"><a href="#cb55-238" aria-hidden="true" tabindex="-1"></a>y cambia su nombre a:</span>
 <span id="cb55-239"><a href="#cb55-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-240"><a href="#cb55-240" aria-hidden="true" tabindex="-1"></a>Este paso es importante para que el código del libro funcione igual en cualquier computadora.</span>
-<span id="cb55-241"><a href="#cb55-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-242"><a href="#cb55-242" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cargar paquetes</span></span>
+<span id="cb55-240"><a href="#cb55-240" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-241"><a href="#cb55-241" aria-hidden="true" tabindex="-1"></a><span class="in">atus_2024.csv</span></span>
+<span id="cb55-242"><a href="#cb55-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-243"><a href="#cb55-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-244"><a href="#cb55-244" aria-hidden="true" tabindex="-1"></a>Primero cargamos los paquetes que usaremos.</span>
+<span id="cb55-244"><a href="#cb55-244" aria-hidden="true" tabindex="-1"></a>Este paso es importante para que el código del libro funcione igual en cualquier computadora.</span>
 <span id="cb55-245"><a href="#cb55-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-248"><a href="#cb55-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-249"><a href="#cb55-249" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb55-250"><a href="#cb55-250" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb55-251"><a href="#cb55-251" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb55-252"><a href="#cb55-252" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb55-253"><a href="#cb55-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-254"><a href="#cb55-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-255"><a href="#cb55-255" aria-hidden="true" tabindex="-1"></a>Si alguno de estos paquetes no está instalado, se puede instalar con:</span>
-<span id="cb55-256"><a href="#cb55-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-257"><a href="#cb55-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb55-258"><a href="#cb55-258" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readr"</span>, <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"stringr"</span>))</span>
-<span id="cb55-259"><a href="#cb55-259" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-246"><a href="#cb55-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cargar paquetes</span></span>
+<span id="cb55-247"><a href="#cb55-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-248"><a href="#cb55-248" aria-hidden="true" tabindex="-1"></a>Primero cargamos los paquetes que usaremos.</span>
+<span id="cb55-249"><a href="#cb55-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-252"><a href="#cb55-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-253"><a href="#cb55-253" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb55-254"><a href="#cb55-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb55-255"><a href="#cb55-255" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb55-256"><a href="#cb55-256" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb55-257"><a href="#cb55-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-258"><a href="#cb55-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-259"><a href="#cb55-259" aria-hidden="true" tabindex="-1"></a>Si alguno de estos paquetes no está instalado, se puede instalar con:</span>
 <span id="cb55-260"><a href="#cb55-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-261"><a href="#cb55-261" aria-hidden="true" tabindex="-1"></a><span class="fu">## Leer el archivo CSV</span></span>
-<span id="cb55-262"><a href="#cb55-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-263"><a href="#cb55-263" aria-hidden="true" tabindex="-1"></a>Definimos la ruta del archivo.</span>
+<span id="cb55-261"><a href="#cb55-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb55-262"><a href="#cb55-262" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readr"</span>, <span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"stringr"</span>))</span>
+<span id="cb55-263"><a href="#cb55-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-264"><a href="#cb55-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-267"><a href="#cb55-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-268"><a href="#cb55-268" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> <span class="st">"datos/atus_2024.csv"</span></span>
-<span id="cb55-269"><a href="#cb55-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-270"><a href="#cb55-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-271"><a href="#cb55-271" aria-hidden="true" tabindex="-1"></a>Antes de leerlo, verificamos si existe.</span>
-<span id="cb55-272"><a href="#cb55-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-275"><a href="#cb55-275" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-276"><a href="#cb55-276" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus)</span>
-<span id="cb55-277"><a href="#cb55-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-278"><a href="#cb55-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-279"><a href="#cb55-279" aria-hidden="true" tabindex="-1"></a>Ahora leemos el archivo.</span>
-<span id="cb55-280"><a href="#cb55-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-283"><a href="#cb55-283" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-284"><a href="#cb55-284" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus)) {</span>
-<span id="cb55-285"><a href="#cb55-285" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb55-286"><a href="#cb55-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> ruta_atus,</span>
-<span id="cb55-287"><a href="#cb55-287" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb55-288"><a href="#cb55-288" aria-hidden="true" tabindex="-1"></a>    <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb55-289"><a href="#cb55-289" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb55-290"><a href="#cb55-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-291"><a href="#cb55-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Archivo leído correctamente."</span>)</span>
-<span id="cb55-292"><a href="#cb55-292" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb55-293"><a href="#cb55-293" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb55-294"><a href="#cb55-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"El archivo atus_2024.csv todavía no está disponible en la carpeta datos."</span>)</span>
-<span id="cb55-295"><a href="#cb55-295" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-296"><a href="#cb55-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-297"><a href="#cb55-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-298"><a href="#cb55-298" aria-hidden="true" tabindex="-1"></a>Si aparece un error, revisa tres cosas:</span>
-<span id="cb55-299"><a href="#cb55-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-300"><a href="#cb55-300" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Que exista la carpeta <span class="in">`datos`</span>.</span>
-<span id="cb55-301"><a href="#cb55-301" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Que el archivo esté dentro de esa carpeta.</span>
-<span id="cb55-302"><a href="#cb55-302" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Que el archivo se llame exactamente <span class="in">`atus_2024.csv`</span>.</span>
+<span id="cb55-265"><a href="#cb55-265" aria-hidden="true" tabindex="-1"></a><span class="fu">## Leer el archivo CSV</span></span>
+<span id="cb55-266"><a href="#cb55-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-267"><a href="#cb55-267" aria-hidden="true" tabindex="-1"></a>Definimos la ruta del archivo.</span>
+<span id="cb55-268"><a href="#cb55-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-271"><a href="#cb55-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-272"><a href="#cb55-272" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> <span class="st">"datos/atus_2024.csv"</span></span>
+<span id="cb55-273"><a href="#cb55-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-274"><a href="#cb55-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-275"><a href="#cb55-275" aria-hidden="true" tabindex="-1"></a>Antes de leerlo, verificamos si existe.</span>
+<span id="cb55-276"><a href="#cb55-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-279"><a href="#cb55-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-280"><a href="#cb55-280" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus)</span>
+<span id="cb55-281"><a href="#cb55-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-282"><a href="#cb55-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-283"><a href="#cb55-283" aria-hidden="true" tabindex="-1"></a>Ahora leemos el archivo.</span>
+<span id="cb55-284"><a href="#cb55-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-287"><a href="#cb55-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-288"><a href="#cb55-288" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus)) {</span>
+<span id="cb55-289"><a href="#cb55-289" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb55-290"><a href="#cb55-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> ruta_atus,</span>
+<span id="cb55-291"><a href="#cb55-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb55-292"><a href="#cb55-292" aria-hidden="true" tabindex="-1"></a>    <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb55-293"><a href="#cb55-293" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb55-294"><a href="#cb55-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-295"><a href="#cb55-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Archivo leído correctamente."</span>)</span>
+<span id="cb55-296"><a href="#cb55-296" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb55-297"><a href="#cb55-297" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb55-298"><a href="#cb55-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"El archivo atus_2024.csv todavía no está disponible en la carpeta datos."</span>)</span>
+<span id="cb55-299"><a href="#cb55-299" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-300"><a href="#cb55-300" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-301"><a href="#cb55-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-302"><a href="#cb55-302" aria-hidden="true" tabindex="-1"></a>Si aparece un error, revisa tres cosas:</span>
 <span id="cb55-303"><a href="#cb55-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-304"><a href="#cb55-304" aria-hidden="true" tabindex="-1"></a><span class="fu">## Primer vistazo a los datos</span></span>
-<span id="cb55-305"><a href="#cb55-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-306"><a href="#cb55-306" aria-hidden="true" tabindex="-1"></a>Revisamos las dimensiones de la base.</span>
+<span id="cb55-304"><a href="#cb55-304" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Que exista la carpeta <span class="in">`datos`</span>.</span>
+<span id="cb55-305"><a href="#cb55-305" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Que el archivo esté dentro de esa carpeta.</span>
+<span id="cb55-306"><a href="#cb55-306" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Que el archivo se llame exactamente <span class="in">`atus_2024.csv`</span>.</span>
 <span id="cb55-307"><a href="#cb55-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-310"><a href="#cb55-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-311"><a href="#cb55-311" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb55-312"><a href="#cb55-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(atus)</span>
-<span id="cb55-313"><a href="#cb55-313" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-314"><a href="#cb55-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-315"><a href="#cb55-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-316"><a href="#cb55-316" aria-hidden="true" tabindex="-1"></a>El primer número indica cuántas filas tiene la base.</span>
-<span id="cb55-317"><a href="#cb55-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-318"><a href="#cb55-318" aria-hidden="true" tabindex="-1"></a>El segundo número indica cuántas columnas tiene.</span>
+<span id="cb55-308"><a href="#cb55-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Primer vistazo a los datos</span></span>
+<span id="cb55-309"><a href="#cb55-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-310"><a href="#cb55-310" aria-hidden="true" tabindex="-1"></a>Revisamos las dimensiones de la base.</span>
+<span id="cb55-311"><a href="#cb55-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-314"><a href="#cb55-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-315"><a href="#cb55-315" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
+<span id="cb55-316"><a href="#cb55-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(atus)</span>
+<span id="cb55-317"><a href="#cb55-317" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-318"><a href="#cb55-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-319"><a href="#cb55-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-320"><a href="#cb55-320" aria-hidden="true" tabindex="-1"></a>Ahora observamos los primeros registros.</span>
+<span id="cb55-320"><a href="#cb55-320" aria-hidden="true" tabindex="-1"></a>El primer número indica cuántas filas tiene la base.</span>
 <span id="cb55-321"><a href="#cb55-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-324"><a href="#cb55-324" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-325"><a href="#cb55-325" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb55-326"><a href="#cb55-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus)</span>
-<span id="cb55-327"><a href="#cb55-327" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-328"><a href="#cb55-328" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-329"><a href="#cb55-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-330"><a href="#cb55-330" aria-hidden="true" tabindex="-1"></a>También podemos revisar los nombres de las variables.</span>
-<span id="cb55-331"><a href="#cb55-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-334"><a href="#cb55-334" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-335"><a href="#cb55-335" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb55-336"><a href="#cb55-336" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
-<span id="cb55-337"><a href="#cb55-337" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-338"><a href="#cb55-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-339"><a href="#cb55-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-340"><a href="#cb55-340" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estandarizar nombres de variables</span></span>
-<span id="cb55-341"><a href="#cb55-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-342"><a href="#cb55-342" aria-hidden="true" tabindex="-1"></a>Para trabajar más cómodamente, convertimos los nombres de las variables a mayúsculas.</span>
+<span id="cb55-322"><a href="#cb55-322" aria-hidden="true" tabindex="-1"></a>El segundo número indica cuántas columnas tiene.</span>
+<span id="cb55-323"><a href="#cb55-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-324"><a href="#cb55-324" aria-hidden="true" tabindex="-1"></a>Ahora observamos los primeros registros.</span>
+<span id="cb55-325"><a href="#cb55-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-328"><a href="#cb55-328" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-329"><a href="#cb55-329" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
+<span id="cb55-330"><a href="#cb55-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus)</span>
+<span id="cb55-331"><a href="#cb55-331" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-332"><a href="#cb55-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-333"><a href="#cb55-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-334"><a href="#cb55-334" aria-hidden="true" tabindex="-1"></a>También podemos revisar los nombres de las variables.</span>
+<span id="cb55-335"><a href="#cb55-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-338"><a href="#cb55-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-339"><a href="#cb55-339" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
+<span id="cb55-340"><a href="#cb55-340" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
+<span id="cb55-341"><a href="#cb55-341" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-342"><a href="#cb55-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-343"><a href="#cb55-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-346"><a href="#cb55-346" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-347"><a href="#cb55-347" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb55-348"><a href="#cb55-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
-<span id="cb55-349"><a href="#cb55-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
-<span id="cb55-350"><a href="#cb55-350" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-351"><a href="#cb55-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-352"><a href="#cb55-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-353"><a href="#cb55-353" aria-hidden="true" tabindex="-1"></a>Esto ayuda a evitar errores por diferencias entre mayúsculas y minúsculas.</span>
-<span id="cb55-354"><a href="#cb55-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-355"><a href="#cb55-355" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variables de interés</span></span>
+<span id="cb55-344"><a href="#cb55-344" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estandarizar nombres de variables</span></span>
+<span id="cb55-345"><a href="#cb55-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-346"><a href="#cb55-346" aria-hidden="true" tabindex="-1"></a>Para trabajar más cómodamente, convertimos los nombres de las variables a mayúsculas.</span>
+<span id="cb55-347"><a href="#cb55-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-350"><a href="#cb55-350" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-351"><a href="#cb55-351" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
+<span id="cb55-352"><a href="#cb55-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
+<span id="cb55-353"><a href="#cb55-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
+<span id="cb55-354"><a href="#cb55-354" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-355"><a href="#cb55-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-356"><a href="#cb55-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-357"><a href="#cb55-357" aria-hidden="true" tabindex="-1"></a>Para nuestro primer problema de clasificación no necesitamos todas las variables.</span>
+<span id="cb55-357"><a href="#cb55-357" aria-hidden="true" tabindex="-1"></a>Esto ayuda a evitar errores por diferencias entre mayúsculas y minúsculas.</span>
 <span id="cb55-358"><a href="#cb55-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-359"><a href="#cb55-359" aria-hidden="true" tabindex="-1"></a>Seleccionaremos algunas que son útiles para iniciar:</span>
+<span id="cb55-359"><a href="#cb55-359" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variables de interés</span></span>
 <span id="cb55-360"><a href="#cb55-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-363"><a href="#cb55-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-364"><a href="#cb55-364" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb55-365"><a href="#cb55-365" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ANIO"</span>,</span>
-<span id="cb55-366"><a href="#cb55-366" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MES"</span>,</span>
-<span id="cb55-367"><a href="#cb55-367" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_ENTIDAD"</span>,</span>
-<span id="cb55-368"><a href="#cb55-368" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_MUNICIPIO"</span>,</span>
-<span id="cb55-369"><a href="#cb55-369" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_HORA"</span>,</span>
-<span id="cb55-370"><a href="#cb55-370" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_DIA"</span>,</span>
-<span id="cb55-371"><a href="#cb55-371" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DIASEMANA"</span>,</span>
-<span id="cb55-372"><a href="#cb55-372" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TIPACCID"</span>,</span>
-<span id="cb55-373"><a href="#cb55-373" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAUSAACCI"</span>,</span>
-<span id="cb55-374"><a href="#cb55-374" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CLASACC"</span></span>
-<span id="cb55-375"><a href="#cb55-375" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-376"><a href="#cb55-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-377"><a href="#cb55-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-378"><a href="#cb55-378" aria-hidden="true" tabindex="-1"></a>Como los nombres de variables pueden cambiar ligeramente entre versiones, verificamos cuáles existen realmente en la base.</span>
-<span id="cb55-379"><a href="#cb55-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-382"><a href="#cb55-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-383"><a href="#cb55-383" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb55-384"><a href="#cb55-384" aria-hidden="true" tabindex="-1"></a>  variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(variables_interes, <span class="fu">names</span>(atus))</span>
-<span id="cb55-385"><a href="#cb55-385" aria-hidden="true" tabindex="-1"></a>  variables_existentes</span>
-<span id="cb55-386"><a href="#cb55-386" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-387"><a href="#cb55-387" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-388"><a href="#cb55-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-389"><a href="#cb55-389" aria-hidden="true" tabindex="-1"></a>Ahora creamos una base reducida.</span>
-<span id="cb55-390"><a href="#cb55-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-393"><a href="#cb55-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-394"><a href="#cb55-394" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb55-395"><a href="#cb55-395" aria-hidden="true" tabindex="-1"></a>  atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
-<span id="cb55-396"><a href="#cb55-396" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
-<span id="cb55-397"><a href="#cb55-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-398"><a href="#cb55-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_base)</span>
-<span id="cb55-399"><a href="#cb55-399" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-400"><a href="#cb55-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-361"><a href="#cb55-361" aria-hidden="true" tabindex="-1"></a>Para nuestro primer problema de clasificación no necesitamos todas las variables.</span>
+<span id="cb55-362"><a href="#cb55-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-363"><a href="#cb55-363" aria-hidden="true" tabindex="-1"></a>Seleccionaremos algunas que son útiles para iniciar:</span>
+<span id="cb55-364"><a href="#cb55-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-367"><a href="#cb55-367" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-368"><a href="#cb55-368" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb55-369"><a href="#cb55-369" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ANIO"</span>,</span>
+<span id="cb55-370"><a href="#cb55-370" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MES"</span>,</span>
+<span id="cb55-371"><a href="#cb55-371" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_ENTIDAD"</span>,</span>
+<span id="cb55-372"><a href="#cb55-372" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_MUNICIPIO"</span>,</span>
+<span id="cb55-373"><a href="#cb55-373" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_HORA"</span>,</span>
+<span id="cb55-374"><a href="#cb55-374" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_DIA"</span>,</span>
+<span id="cb55-375"><a href="#cb55-375" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DIASEMANA"</span>,</span>
+<span id="cb55-376"><a href="#cb55-376" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TIPACCID"</span>,</span>
+<span id="cb55-377"><a href="#cb55-377" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAUSAACCI"</span>,</span>
+<span id="cb55-378"><a href="#cb55-378" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CLASACC"</span></span>
+<span id="cb55-379"><a href="#cb55-379" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-380"><a href="#cb55-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-381"><a href="#cb55-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-382"><a href="#cb55-382" aria-hidden="true" tabindex="-1"></a>Como los nombres de variables pueden cambiar ligeramente entre versiones, verificamos cuáles existen realmente en la base.</span>
+<span id="cb55-383"><a href="#cb55-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-386"><a href="#cb55-386" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-387"><a href="#cb55-387" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
+<span id="cb55-388"><a href="#cb55-388" aria-hidden="true" tabindex="-1"></a>  variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(variables_interes, <span class="fu">names</span>(atus))</span>
+<span id="cb55-389"><a href="#cb55-389" aria-hidden="true" tabindex="-1"></a>  variables_existentes</span>
+<span id="cb55-390"><a href="#cb55-390" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-391"><a href="#cb55-391" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-392"><a href="#cb55-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-393"><a href="#cb55-393" aria-hidden="true" tabindex="-1"></a>Ahora creamos una base reducida.</span>
+<span id="cb55-394"><a href="#cb55-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-397"><a href="#cb55-397" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-398"><a href="#cb55-398" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
+<span id="cb55-399"><a href="#cb55-399" aria-hidden="true" tabindex="-1"></a>  atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
+<span id="cb55-400"><a href="#cb55-400" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
 <span id="cb55-401"><a href="#cb55-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-402"><a href="#cb55-402" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diccionario inicial de variables</span></span>
-<span id="cb55-403"><a href="#cb55-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-404"><a href="#cb55-404" aria-hidden="true" tabindex="-1"></a>Para trabajar con datos reales es necesario construir un pequeño diccionario de variables.</span>
+<span id="cb55-402"><a href="#cb55-402" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_base)</span>
+<span id="cb55-403"><a href="#cb55-403" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-404"><a href="#cb55-404" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-405"><a href="#cb55-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-406"><a href="#cb55-406" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable <span class="pp">|</span> Descripción didáctica <span class="pp">|</span></span>
-<span id="cb55-407"><a href="#cb55-407" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
-<span id="cb55-408"><a href="#cb55-408" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ANIO`</span> <span class="pp">|</span> Año del accidente <span class="pp">|</span></span>
-<span id="cb55-409"><a href="#cb55-409" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`MES`</span> <span class="pp">|</span> Mes del accidente <span class="pp">|</span></span>
-<span id="cb55-410"><a href="#cb55-410" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_ENTIDAD`</span> <span class="pp">|</span> Clave de la entidad federativa <span class="pp">|</span></span>
-<span id="cb55-411"><a href="#cb55-411" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_MUNICIPIO`</span> <span class="pp">|</span> Clave del municipio <span class="pp">|</span></span>
-<span id="cb55-412"><a href="#cb55-412" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_HORA`</span> <span class="pp">|</span> Hora del accidente <span class="pp">|</span></span>
-<span id="cb55-413"><a href="#cb55-413" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_DIA`</span> <span class="pp">|</span> Día del mes <span class="pp">|</span></span>
-<span id="cb55-414"><a href="#cb55-414" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`DIASEMANA`</span> <span class="pp">|</span> Día de la semana <span class="pp">|</span></span>
-<span id="cb55-415"><a href="#cb55-415" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`TIPACCID`</span> <span class="pp">|</span> Tipo de accidente <span class="pp">|</span></span>
-<span id="cb55-416"><a href="#cb55-416" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`CAUSAACCI`</span> <span class="pp">|</span> Causa presunta del accidente <span class="pp">|</span></span>
-<span id="cb55-417"><a href="#cb55-417" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`CLASACC`</span> <span class="pp">|</span> Clase del accidente <span class="pp">|</span></span>
-<span id="cb55-418"><a href="#cb55-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-419"><a href="#cb55-419" aria-hidden="true" tabindex="-1"></a>La variable más importante para este primer ejemplo será:</span>
-<span id="cb55-420"><a href="#cb55-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-421"><a href="#cb55-421" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-422"><a href="#cb55-422" aria-hidden="true" tabindex="-1"></a><span class="in">CLASACC</span></span>
-<span id="cb55-423"><a href="#cb55-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-406"><a href="#cb55-406" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diccionario inicial de variables</span></span>
+<span id="cb55-407"><a href="#cb55-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-408"><a href="#cb55-408" aria-hidden="true" tabindex="-1"></a>Para trabajar con datos reales es necesario construir un pequeño diccionario de variables.</span>
+<span id="cb55-409"><a href="#cb55-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-410"><a href="#cb55-410" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable <span class="pp">|</span> Descripción didáctica <span class="pp">|</span></span>
+<span id="cb55-411"><a href="#cb55-411" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb55-412"><a href="#cb55-412" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ANIO`</span> <span class="pp">|</span> Año del accidente <span class="pp">|</span></span>
+<span id="cb55-413"><a href="#cb55-413" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`MES`</span> <span class="pp">|</span> Mes del accidente <span class="pp">|</span></span>
+<span id="cb55-414"><a href="#cb55-414" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_ENTIDAD`</span> <span class="pp">|</span> Clave de la entidad federativa <span class="pp">|</span></span>
+<span id="cb55-415"><a href="#cb55-415" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_MUNICIPIO`</span> <span class="pp">|</span> Clave del municipio <span class="pp">|</span></span>
+<span id="cb55-416"><a href="#cb55-416" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_HORA`</span> <span class="pp">|</span> Hora del accidente <span class="pp">|</span></span>
+<span id="cb55-417"><a href="#cb55-417" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ID_DIA`</span> <span class="pp">|</span> Día del mes <span class="pp">|</span></span>
+<span id="cb55-418"><a href="#cb55-418" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`DIASEMANA`</span> <span class="pp">|</span> Día de la semana <span class="pp">|</span></span>
+<span id="cb55-419"><a href="#cb55-419" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`TIPACCID`</span> <span class="pp">|</span> Tipo de accidente <span class="pp">|</span></span>
+<span id="cb55-420"><a href="#cb55-420" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`CAUSAACCI`</span> <span class="pp">|</span> Causa presunta del accidente <span class="pp">|</span></span>
+<span id="cb55-421"><a href="#cb55-421" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`CLASACC`</span> <span class="pp">|</span> Clase del accidente <span class="pp">|</span></span>
+<span id="cb55-422"><a href="#cb55-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-423"><a href="#cb55-423" aria-hidden="true" tabindex="-1"></a>La variable más importante para este primer ejemplo será:</span>
 <span id="cb55-424"><a href="#cb55-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-425"><a href="#cb55-425" aria-hidden="true" tabindex="-1"></a>porque la usaremos para construir una variable respuesta.</span>
-<span id="cb55-426"><a href="#cb55-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-427"><a href="#cb55-427" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisión de la variable `CLASACC`</span></span>
+<span id="cb55-425"><a href="#cb55-425" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-426"><a href="#cb55-426" aria-hidden="true" tabindex="-1"></a><span class="in">CLASACC</span></span>
+<span id="cb55-427"><a href="#cb55-427" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-428"><a href="#cb55-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-429"><a href="#cb55-429" aria-hidden="true" tabindex="-1"></a>Primero revisamos los valores de la variable <span class="in">`CLASACC`</span>.</span>
+<span id="cb55-429"><a href="#cb55-429" aria-hidden="true" tabindex="-1"></a>porque la usaremos para construir una variable respuesta.</span>
 <span id="cb55-430"><a href="#cb55-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-433"><a href="#cb55-433" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-434"><a href="#cb55-434" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
-<span id="cb55-435"><a href="#cb55-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_base<span class="sc">$</span>CLASACC, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
-<span id="cb55-436"><a href="#cb55-436" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-437"><a href="#cb55-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-438"><a href="#cb55-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-439"><a href="#cb55-439" aria-hidden="true" tabindex="-1"></a>La variable <span class="in">`CLASACC`</span> permite identificar la clase del accidente.</span>
-<span id="cb55-440"><a href="#cb55-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-441"><a href="#cb55-441" aria-hidden="true" tabindex="-1"></a>Para fines didácticos, vamos a transformar esta variable en una nueva variable binaria:</span>
+<span id="cb55-431"><a href="#cb55-431" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisión de la variable `CLASACC`</span></span>
+<span id="cb55-432"><a href="#cb55-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-433"><a href="#cb55-433" aria-hidden="true" tabindex="-1"></a>Primero revisamos los valores de la variable <span class="in">`CLASACC`</span>.</span>
+<span id="cb55-434"><a href="#cb55-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-437"><a href="#cb55-437" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-438"><a href="#cb55-438" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
+<span id="cb55-439"><a href="#cb55-439" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_base<span class="sc">$</span>CLASACC, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
+<span id="cb55-440"><a href="#cb55-440" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-441"><a href="#cb55-441" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-442"><a href="#cb55-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-443"><a href="#cb55-443" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-444"><a href="#cb55-444" aria-hidden="true" tabindex="-1"></a><span class="in">Con víctimas</span></span>
-<span id="cb55-445"><a href="#cb55-445" aria-hidden="true" tabindex="-1"></a><span class="in">Solo daños</span></span>
-<span id="cb55-446"><a href="#cb55-446" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-447"><a href="#cb55-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-448"><a href="#cb55-448" aria-hidden="true" tabindex="-1"></a>Esta será nuestra primera variable respuesta para clasificación.</span>
-<span id="cb55-449"><a href="#cb55-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-450"><a href="#cb55-450" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear una variable respuesta</span></span>
+<span id="cb55-443"><a href="#cb55-443" aria-hidden="true" tabindex="-1"></a>La variable <span class="in">`CLASACC`</span> permite identificar la clase del accidente.</span>
+<span id="cb55-444"><a href="#cb55-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-445"><a href="#cb55-445" aria-hidden="true" tabindex="-1"></a>Para fines didácticos, vamos a transformar esta variable en una nueva variable binaria:</span>
+<span id="cb55-446"><a href="#cb55-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-447"><a href="#cb55-447" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-448"><a href="#cb55-448" aria-hidden="true" tabindex="-1"></a><span class="in">Con víctimas</span></span>
+<span id="cb55-449"><a href="#cb55-449" aria-hidden="true" tabindex="-1"></a><span class="in">Solo daños</span></span>
+<span id="cb55-450"><a href="#cb55-450" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-451"><a href="#cb55-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-452"><a href="#cb55-452" aria-hidden="true" tabindex="-1"></a>Primero convertimos <span class="in">`CLASACC`</span> a texto para evitar problemas si viene como número o como etiqueta.</span>
+<span id="cb55-452"><a href="#cb55-452" aria-hidden="true" tabindex="-1"></a>Esta será nuestra primera variable respuesta para clasificación.</span>
 <span id="cb55-453"><a href="#cb55-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-456"><a href="#cb55-456" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-457"><a href="#cb55-457" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
-<span id="cb55-458"><a href="#cb55-458" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
-<span id="cb55-459"><a href="#cb55-459" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb55-460"><a href="#cb55-460" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">as.character</span>(CLASACC),</span>
-<span id="cb55-461"><a href="#cb55-461" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(CLASACC_TXT),</span>
-<span id="cb55-462"><a href="#cb55-462" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
-<span id="cb55-463"><a href="#cb55-463" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb55-464"><a href="#cb55-464" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb55-465"><a href="#cb55-465" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb55-466"><a href="#cb55-466" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daã"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb55-467"><a href="#cb55-467" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daÃ"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb55-468"><a href="#cb55-468" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb55-469"><a href="#cb55-469" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb55-470"><a href="#cb55-470" aria-hidden="true" tabindex="-1"></a>        CLASACC_TXT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb55-471"><a href="#cb55-471" aria-hidden="true" tabindex="-1"></a>        CLASACC_TXT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"3"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb55-472"><a href="#cb55-472" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb55-473"><a href="#cb55-473" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb55-474"><a href="#cb55-474" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-475"><a href="#cb55-475" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-476"><a href="#cb55-476" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-477"><a href="#cb55-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-478"><a href="#cb55-478" aria-hidden="true" tabindex="-1"></a>Revisamos la nueva variable.</span>
-<span id="cb55-479"><a href="#cb55-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-482"><a href="#cb55-482" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-483"><a href="#cb55-483" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb55-484"><a href="#cb55-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
-<span id="cb55-485"><a href="#cb55-485" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-486"><a href="#cb55-486" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-487"><a href="#cb55-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-488"><a href="#cb55-488" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nota importante sobre la codificación</span></span>
-<span id="cb55-489"><a href="#cb55-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-490"><a href="#cb55-490" aria-hidden="true" tabindex="-1"></a>Cuando se trabaja con bases reales, las categorías pueden venir codificadas de distintas formas.</span>
+<span id="cb55-454"><a href="#cb55-454" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear una variable respuesta</span></span>
+<span id="cb55-455"><a href="#cb55-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-456"><a href="#cb55-456" aria-hidden="true" tabindex="-1"></a>Primero convertimos <span class="in">`CLASACC`</span> a texto para evitar problemas si viene como número o como etiqueta.</span>
+<span id="cb55-457"><a href="#cb55-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-460"><a href="#cb55-460" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-461"><a href="#cb55-461" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
+<span id="cb55-462"><a href="#cb55-462" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
+<span id="cb55-463"><a href="#cb55-463" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb55-464"><a href="#cb55-464" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">as.character</span>(CLASACC),</span>
+<span id="cb55-465"><a href="#cb55-465" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(CLASACC_TXT),</span>
+<span id="cb55-466"><a href="#cb55-466" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
+<span id="cb55-467"><a href="#cb55-467" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb55-468"><a href="#cb55-468" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb55-469"><a href="#cb55-469" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb55-470"><a href="#cb55-470" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daã"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb55-471"><a href="#cb55-471" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daÃ"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb55-472"><a href="#cb55-472" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb55-473"><a href="#cb55-473" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb55-474"><a href="#cb55-474" aria-hidden="true" tabindex="-1"></a>        CLASACC_TXT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb55-475"><a href="#cb55-475" aria-hidden="true" tabindex="-1"></a>        CLASACC_TXT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"3"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb55-476"><a href="#cb55-476" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb55-477"><a href="#cb55-477" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb55-478"><a href="#cb55-478" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb55-479"><a href="#cb55-479" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-480"><a href="#cb55-480" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-481"><a href="#cb55-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-482"><a href="#cb55-482" aria-hidden="true" tabindex="-1"></a>Revisamos la nueva variable.</span>
+<span id="cb55-483"><a href="#cb55-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-486"><a href="#cb55-486" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-487"><a href="#cb55-487" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb55-488"><a href="#cb55-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
+<span id="cb55-489"><a href="#cb55-489" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-490"><a href="#cb55-490" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-491"><a href="#cb55-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-492"><a href="#cb55-492" aria-hidden="true" tabindex="-1"></a>Por ejemplo, una variable puede venir como:</span>
+<span id="cb55-492"><a href="#cb55-492" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nota importante sobre la codificación</span></span>
 <span id="cb55-493"><a href="#cb55-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-494"><a href="#cb55-494" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-495"><a href="#cb55-495" aria-hidden="true" tabindex="-1"></a><span class="in">Fatal</span></span>
-<span id="cb55-496"><a href="#cb55-496" aria-hidden="true" tabindex="-1"></a><span class="in">No fatal</span></span>
-<span id="cb55-497"><a href="#cb55-497" aria-hidden="true" tabindex="-1"></a><span class="in">Solo daños</span></span>
-<span id="cb55-498"><a href="#cb55-498" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-499"><a href="#cb55-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-500"><a href="#cb55-500" aria-hidden="true" tabindex="-1"></a>o como códigos:</span>
-<span id="cb55-501"><a href="#cb55-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-502"><a href="#cb55-502" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb55-503"><a href="#cb55-503" aria-hidden="true" tabindex="-1"></a><span class="in">1, 2, 3</span></span>
-<span id="cb55-504"><a href="#cb55-504" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-494"><a href="#cb55-494" aria-hidden="true" tabindex="-1"></a>Cuando se trabaja con bases reales, las categorías pueden venir codificadas de distintas formas.</span>
+<span id="cb55-495"><a href="#cb55-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-496"><a href="#cb55-496" aria-hidden="true" tabindex="-1"></a>Por ejemplo, una variable puede venir como:</span>
+<span id="cb55-497"><a href="#cb55-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-498"><a href="#cb55-498" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-499"><a href="#cb55-499" aria-hidden="true" tabindex="-1"></a><span class="in">Fatal</span></span>
+<span id="cb55-500"><a href="#cb55-500" aria-hidden="true" tabindex="-1"></a><span class="in">No fatal</span></span>
+<span id="cb55-501"><a href="#cb55-501" aria-hidden="true" tabindex="-1"></a><span class="in">Solo daños</span></span>
+<span id="cb55-502"><a href="#cb55-502" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-503"><a href="#cb55-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-504"><a href="#cb55-504" aria-hidden="true" tabindex="-1"></a>o como códigos:</span>
 <span id="cb55-505"><a href="#cb55-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-506"><a href="#cb55-506" aria-hidden="true" tabindex="-1"></a>Por eso, siempre se debe consultar la documentación de la base de datos antes de modelar.</span>
-<span id="cb55-507"><a href="#cb55-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-508"><a href="#cb55-508" aria-hidden="true" tabindex="-1"></a>En este libro iremos documentando las transformaciones para que el análisis sea claro y reproducible.</span>
+<span id="cb55-506"><a href="#cb55-506" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb55-507"><a href="#cb55-507" aria-hidden="true" tabindex="-1"></a><span class="in">1, 2, 3</span></span>
+<span id="cb55-508"><a href="#cb55-508" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-509"><a href="#cb55-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-510"><a href="#cb55-510" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eliminar registros sin variable respuesta</span></span>
+<span id="cb55-510"><a href="#cb55-510" aria-hidden="true" tabindex="-1"></a>Por eso, siempre se debe consultar la documentación de la base de datos antes de modelar.</span>
 <span id="cb55-511"><a href="#cb55-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-512"><a href="#cb55-512" aria-hidden="true" tabindex="-1"></a>Para entrenar un modelo de clasificación necesitamos que la variable respuesta esté definida.</span>
+<span id="cb55-512"><a href="#cb55-512" aria-hidden="true" tabindex="-1"></a>En este libro iremos documentando las transformaciones para que el análisis sea claro y reproducible.</span>
 <span id="cb55-513"><a href="#cb55-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-514"><a href="#cb55-514" aria-hidden="true" tabindex="-1"></a>Eliminamos los registros donde no se pudo construir la variable <span class="in">`accidente_con_victimas`</span>.</span>
+<span id="cb55-514"><a href="#cb55-514" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eliminar registros sin variable respuesta</span></span>
 <span id="cb55-515"><a href="#cb55-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-518"><a href="#cb55-518" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-519"><a href="#cb55-519" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb55-520"><a href="#cb55-520" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb55-521"><a href="#cb55-521" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
-<span id="cb55-522"><a href="#cb55-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-523"><a href="#cb55-523" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span>
-<span id="cb55-524"><a href="#cb55-524" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-525"><a href="#cb55-525" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-516"><a href="#cb55-516" aria-hidden="true" tabindex="-1"></a>Para entrenar un modelo de clasificación necesitamos que la variable respuesta esté definida.</span>
+<span id="cb55-517"><a href="#cb55-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-518"><a href="#cb55-518" aria-hidden="true" tabindex="-1"></a>Eliminamos los registros donde no se pudo construir la variable <span class="in">`accidente_con_victimas`</span>.</span>
+<span id="cb55-519"><a href="#cb55-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-522"><a href="#cb55-522" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-523"><a href="#cb55-523" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb55-524"><a href="#cb55-524" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
+<span id="cb55-525"><a href="#cb55-525" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
 <span id="cb55-526"><a href="#cb55-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-527"><a href="#cb55-527" aria-hidden="true" tabindex="-1"></a><span class="fu">## Convertir variables categóricas</span></span>
-<span id="cb55-528"><a href="#cb55-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-529"><a href="#cb55-529" aria-hidden="true" tabindex="-1"></a>Algunas variables deben tratarse como categorías y no como números.</span>
+<span id="cb55-527"><a href="#cb55-527" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span>
+<span id="cb55-528"><a href="#cb55-528" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-529"><a href="#cb55-529" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-530"><a href="#cb55-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-531"><a href="#cb55-531" aria-hidden="true" tabindex="-1"></a>Por ejemplo, la entidad federativa y el municipio son códigos, pero no representan cantidades numéricas.</span>
+<span id="cb55-531"><a href="#cb55-531" aria-hidden="true" tabindex="-1"></a><span class="fu">## Convertir variables categóricas</span></span>
 <span id="cb55-532"><a href="#cb55-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-533"><a href="#cb55-533" aria-hidden="true" tabindex="-1"></a>No tiene sentido decir que la entidad 20 es “el doble” de la entidad 10.</span>
+<span id="cb55-533"><a href="#cb55-533" aria-hidden="true" tabindex="-1"></a>Algunas variables deben tratarse como categorías y no como números.</span>
 <span id="cb55-534"><a href="#cb55-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-535"><a href="#cb55-535" aria-hidden="true" tabindex="-1"></a>Por eso convertimos algunas variables a factor.</span>
+<span id="cb55-535"><a href="#cb55-535" aria-hidden="true" tabindex="-1"></a>Por ejemplo, la entidad federativa y el municipio son códigos, pero no representan cantidades numéricas.</span>
 <span id="cb55-536"><a href="#cb55-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-539"><a href="#cb55-539" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-540"><a href="#cb55-540" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb55-541"><a href="#cb55-541" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb55-542"><a href="#cb55-542" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb55-543"><a href="#cb55-543" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_ENTIDAD =</span> <span class="fu">as.factor</span>(ID_ENTIDAD),</span>
-<span id="cb55-544"><a href="#cb55-544" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_MUNICIPIO =</span> <span class="fu">as.factor</span>(ID_MUNICIPIO),</span>
-<span id="cb55-545"><a href="#cb55-545" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb55-546"><a href="#cb55-546" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb55-547"><a href="#cb55-547" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb55-548"><a href="#cb55-548" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
-<span id="cb55-549"><a href="#cb55-549" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">as.factor</span>(accidente_con_victimas)</span>
-<span id="cb55-550"><a href="#cb55-550" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-551"><a href="#cb55-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-552"><a href="#cb55-552" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>(atus_modelo)</span>
-<span id="cb55-553"><a href="#cb55-553" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-554"><a href="#cb55-554" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-537"><a href="#cb55-537" aria-hidden="true" tabindex="-1"></a>No tiene sentido decir que la entidad 20 es “el doble” de la entidad 10.</span>
+<span id="cb55-538"><a href="#cb55-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-539"><a href="#cb55-539" aria-hidden="true" tabindex="-1"></a>Por eso convertimos algunas variables a factor.</span>
+<span id="cb55-540"><a href="#cb55-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-543"><a href="#cb55-543" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-544"><a href="#cb55-544" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb55-545"><a href="#cb55-545" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
+<span id="cb55-546"><a href="#cb55-546" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb55-547"><a href="#cb55-547" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_ENTIDAD =</span> <span class="fu">as.factor</span>(ID_ENTIDAD),</span>
+<span id="cb55-548"><a href="#cb55-548" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_MUNICIPIO =</span> <span class="fu">as.factor</span>(ID_MUNICIPIO),</span>
+<span id="cb55-549"><a href="#cb55-549" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
+<span id="cb55-550"><a href="#cb55-550" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
+<span id="cb55-551"><a href="#cb55-551" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
+<span id="cb55-552"><a href="#cb55-552" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
+<span id="cb55-553"><a href="#cb55-553" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">as.factor</span>(accidente_con_victimas)</span>
+<span id="cb55-554"><a href="#cb55-554" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb55-555"><a href="#cb55-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-556"><a href="#cb55-556" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisión de datos faltantes</span></span>
-<span id="cb55-557"><a href="#cb55-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-558"><a href="#cb55-558" aria-hidden="true" tabindex="-1"></a>Los datos faltantes son comunes en bases reales.</span>
+<span id="cb55-556"><a href="#cb55-556" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>(atus_modelo)</span>
+<span id="cb55-557"><a href="#cb55-557" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-558"><a href="#cb55-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-559"><a href="#cb55-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-560"><a href="#cb55-560" aria-hidden="true" tabindex="-1"></a>Calculamos cuántos valores faltantes tiene cada variable.</span>
+<span id="cb55-560"><a href="#cb55-560" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisión de datos faltantes</span></span>
 <span id="cb55-561"><a href="#cb55-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-564"><a href="#cb55-564" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-565"><a href="#cb55-565" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb55-566"><a href="#cb55-566" aria-hidden="true" tabindex="-1"></a>  faltantes <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(atus_modelo))</span>
-<span id="cb55-567"><a href="#cb55-567" aria-hidden="true" tabindex="-1"></a>  faltantes</span>
-<span id="cb55-568"><a href="#cb55-568" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-569"><a href="#cb55-569" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-570"><a href="#cb55-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-571"><a href="#cb55-571" aria-hidden="true" tabindex="-1"></a>También podemos calcular el porcentaje de faltantes.</span>
-<span id="cb55-572"><a href="#cb55-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-575"><a href="#cb55-575" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-576"><a href="#cb55-576" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb55-577"><a href="#cb55-577" aria-hidden="true" tabindex="-1"></a>  porcentaje_faltantes <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(atus_modelo)) <span class="sc">/</span> <span class="fu">nrow</span>(atus_modelo), <span class="dv">2</span>)</span>
-<span id="cb55-578"><a href="#cb55-578" aria-hidden="true" tabindex="-1"></a>  porcentaje_faltantes</span>
-<span id="cb55-579"><a href="#cb55-579" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-580"><a href="#cb55-580" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-581"><a href="#cb55-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-582"><a href="#cb55-582" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección final de variables para el primer modelo</span></span>
-<span id="cb55-583"><a href="#cb55-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-584"><a href="#cb55-584" aria-hidden="true" tabindex="-1"></a>Para iniciar de forma sencilla, seleccionaremos pocas variables.</span>
+<span id="cb55-562"><a href="#cb55-562" aria-hidden="true" tabindex="-1"></a>Los datos faltantes son comunes en bases reales.</span>
+<span id="cb55-563"><a href="#cb55-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-564"><a href="#cb55-564" aria-hidden="true" tabindex="-1"></a>Calculamos cuántos valores faltantes tiene cada variable.</span>
+<span id="cb55-565"><a href="#cb55-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-568"><a href="#cb55-568" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-569"><a href="#cb55-569" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb55-570"><a href="#cb55-570" aria-hidden="true" tabindex="-1"></a>  faltantes <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(atus_modelo))</span>
+<span id="cb55-571"><a href="#cb55-571" aria-hidden="true" tabindex="-1"></a>  faltantes</span>
+<span id="cb55-572"><a href="#cb55-572" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-573"><a href="#cb55-573" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-574"><a href="#cb55-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-575"><a href="#cb55-575" aria-hidden="true" tabindex="-1"></a>También podemos calcular el porcentaje de faltantes.</span>
+<span id="cb55-576"><a href="#cb55-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-579"><a href="#cb55-579" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-580"><a href="#cb55-580" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb55-581"><a href="#cb55-581" aria-hidden="true" tabindex="-1"></a>  porcentaje_faltantes <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(atus_modelo)) <span class="sc">/</span> <span class="fu">nrow</span>(atus_modelo), <span class="dv">2</span>)</span>
+<span id="cb55-582"><a href="#cb55-582" aria-hidden="true" tabindex="-1"></a>  porcentaje_faltantes</span>
+<span id="cb55-583"><a href="#cb55-583" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-584"><a href="#cb55-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-585"><a href="#cb55-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-588"><a href="#cb55-588" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-589"><a href="#cb55-589" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb55-590"><a href="#cb55-590" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb55-591"><a href="#cb55-591" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb55-592"><a href="#cb55-592" aria-hidden="true" tabindex="-1"></a>      accidente_con_victimas,</span>
-<span id="cb55-593"><a href="#cb55-593" aria-hidden="true" tabindex="-1"></a>      MES,</span>
-<span id="cb55-594"><a href="#cb55-594" aria-hidden="true" tabindex="-1"></a>      ID_HORA,</span>
-<span id="cb55-595"><a href="#cb55-595" aria-hidden="true" tabindex="-1"></a>      DIASEMANA,</span>
-<span id="cb55-596"><a href="#cb55-596" aria-hidden="true" tabindex="-1"></a>      TIPACCID,</span>
-<span id="cb55-597"><a href="#cb55-597" aria-hidden="true" tabindex="-1"></a>      CAUSAACCI</span>
-<span id="cb55-598"><a href="#cb55-598" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-599"><a href="#cb55-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-600"><a href="#cb55-600" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_ml)</span>
-<span id="cb55-601"><a href="#cb55-601" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-602"><a href="#cb55-602" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-586"><a href="#cb55-586" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección final de variables para el primer modelo</span></span>
+<span id="cb55-587"><a href="#cb55-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-588"><a href="#cb55-588" aria-hidden="true" tabindex="-1"></a>Para iniciar de forma sencilla, seleccionaremos pocas variables.</span>
+<span id="cb55-589"><a href="#cb55-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-592"><a href="#cb55-592" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-593"><a href="#cb55-593" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb55-594"><a href="#cb55-594" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
+<span id="cb55-595"><a href="#cb55-595" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb55-596"><a href="#cb55-596" aria-hidden="true" tabindex="-1"></a>      accidente_con_victimas,</span>
+<span id="cb55-597"><a href="#cb55-597" aria-hidden="true" tabindex="-1"></a>      MES,</span>
+<span id="cb55-598"><a href="#cb55-598" aria-hidden="true" tabindex="-1"></a>      ID_HORA,</span>
+<span id="cb55-599"><a href="#cb55-599" aria-hidden="true" tabindex="-1"></a>      DIASEMANA,</span>
+<span id="cb55-600"><a href="#cb55-600" aria-hidden="true" tabindex="-1"></a>      TIPACCID,</span>
+<span id="cb55-601"><a href="#cb55-601" aria-hidden="true" tabindex="-1"></a>      CAUSAACCI</span>
+<span id="cb55-602"><a href="#cb55-602" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb55-603"><a href="#cb55-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-604"><a href="#cb55-604" aria-hidden="true" tabindex="-1"></a>También revisamos sus dimensiones.</span>
-<span id="cb55-605"><a href="#cb55-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-608"><a href="#cb55-608" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-609"><a href="#cb55-609" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
-<span id="cb55-610"><a href="#cb55-610" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(atus_ml)</span>
-<span id="cb55-611"><a href="#cb55-611" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-612"><a href="#cb55-612" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-613"><a href="#cb55-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-614"><a href="#cb55-614" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eliminar registros incompletos</span></span>
-<span id="cb55-615"><a href="#cb55-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-616"><a href="#cb55-616" aria-hidden="true" tabindex="-1"></a>Para este primer ejemplo eliminaremos registros incompletos.</span>
+<span id="cb55-604"><a href="#cb55-604" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_ml)</span>
+<span id="cb55-605"><a href="#cb55-605" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-606"><a href="#cb55-606" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-607"><a href="#cb55-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-608"><a href="#cb55-608" aria-hidden="true" tabindex="-1"></a>También revisamos sus dimensiones.</span>
+<span id="cb55-609"><a href="#cb55-609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-612"><a href="#cb55-612" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-613"><a href="#cb55-613" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
+<span id="cb55-614"><a href="#cb55-614" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(atus_ml)</span>
+<span id="cb55-615"><a href="#cb55-615" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-616"><a href="#cb55-616" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-617"><a href="#cb55-617" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-620"><a href="#cb55-620" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-621"><a href="#cb55-621" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
-<span id="cb55-622"><a href="#cb55-622" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(atus_ml)</span>
-<span id="cb55-623"><a href="#cb55-623" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(atus_ml)</span>
-<span id="cb55-624"><a href="#cb55-624" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-625"><a href="#cb55-625" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-626"><a href="#cb55-626" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-627"><a href="#cb55-627" aria-hidden="true" tabindex="-1"></a>En capítulos posteriores veremos estrategias más cuidadosas para tratar datos faltantes.</span>
-<span id="cb55-628"><a href="#cb55-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-629"><a href="#cb55-629" aria-hidden="true" tabindex="-1"></a><span class="fu">## Guardar la base preparada</span></span>
+<span id="cb55-618"><a href="#cb55-618" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eliminar registros incompletos</span></span>
+<span id="cb55-619"><a href="#cb55-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-620"><a href="#cb55-620" aria-hidden="true" tabindex="-1"></a>Para este primer ejemplo eliminaremos registros incompletos.</span>
+<span id="cb55-621"><a href="#cb55-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-624"><a href="#cb55-624" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-625"><a href="#cb55-625" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
+<span id="cb55-626"><a href="#cb55-626" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(atus_ml)</span>
+<span id="cb55-627"><a href="#cb55-627" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(atus_ml)</span>
+<span id="cb55-628"><a href="#cb55-628" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-629"><a href="#cb55-629" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-630"><a href="#cb55-630" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-631"><a href="#cb55-631" aria-hidden="true" tabindex="-1"></a>Guardamos la base limpia para usarla en capítulos posteriores.</span>
+<span id="cb55-631"><a href="#cb55-631" aria-hidden="true" tabindex="-1"></a>En capítulos posteriores veremos estrategias más cuidadosas para tratar datos faltantes.</span>
 <span id="cb55-632"><a href="#cb55-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-635"><a href="#cb55-635" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-636"><a href="#cb55-636" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
-<span id="cb55-637"><a href="#cb55-637" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(atus_ml, <span class="st">"datos/atus_ml_preparado.csv"</span>)</span>
-<span id="cb55-638"><a href="#cb55-638" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-639"><a href="#cb55-639" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-640"><a href="#cb55-640" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-641"><a href="#cb55-641" aria-hidden="true" tabindex="-1"></a>Este archivo será útil para el capítulo de análisis exploratorio y para los primeros modelos de clasificación.</span>
-<span id="cb55-642"><a href="#cb55-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-643"><a href="#cb55-643" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumen del capítulo</span></span>
+<span id="cb55-633"><a href="#cb55-633" aria-hidden="true" tabindex="-1"></a><span class="fu">## Guardar la base preparada</span></span>
+<span id="cb55-634"><a href="#cb55-634" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-635"><a href="#cb55-635" aria-hidden="true" tabindex="-1"></a>Guardamos la base limpia para usarla en capítulos posteriores.</span>
+<span id="cb55-636"><a href="#cb55-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-639"><a href="#cb55-639" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-640"><a href="#cb55-640" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
+<span id="cb55-641"><a href="#cb55-641" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(atus_ml, <span class="st">"datos/atus_ml_preparado.csv"</span>)</span>
+<span id="cb55-642"><a href="#cb55-642" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-643"><a href="#cb55-643" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-644"><a href="#cb55-644" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-645"><a href="#cb55-645" aria-hidden="true" tabindex="-1"></a>En este capítulo iniciamos el trabajo con datos reales.</span>
+<span id="cb55-645"><a href="#cb55-645" aria-hidden="true" tabindex="-1"></a>Este archivo será útil para el capítulo de análisis exploratorio y para los primeros modelos de clasificación.</span>
 <span id="cb55-646"><a href="#cb55-646" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-647"><a href="#cb55-647" aria-hidden="true" tabindex="-1"></a>Aprendimos a:</span>
+<span id="cb55-647"><a href="#cb55-647" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumen del capítulo</span></span>
 <span id="cb55-648"><a href="#cb55-648" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-649"><a href="#cb55-649" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>leer una base CSV;</span>
-<span id="cb55-650"><a href="#cb55-650" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>revisar dimensiones y nombres de variables;</span>
-<span id="cb55-651"><a href="#cb55-651" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>seleccionar variables de interés;</span>
-<span id="cb55-652"><a href="#cb55-652" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>construir una variable respuesta;</span>
-<span id="cb55-653"><a href="#cb55-653" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>transformar variables categóricas;</span>
-<span id="cb55-654"><a href="#cb55-654" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>revisar datos faltantes;</span>
-<span id="cb55-655"><a href="#cb55-655" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>crear una base preparada para aprendizaje automático;</span>
-<span id="cb55-656"><a href="#cb55-656" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>representar matemáticamente una base de datos para modelado.</span>
-<span id="cb55-657"><a href="#cb55-657" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-658"><a href="#cb55-658" aria-hidden="true" tabindex="-1"></a>En el siguiente capítulo realizaremos el análisis exploratorio de los datos preparados.</span>
+<span id="cb55-649"><a href="#cb55-649" aria-hidden="true" tabindex="-1"></a>En este capítulo iniciamos el trabajo con datos reales.</span>
+<span id="cb55-650"><a href="#cb55-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-651"><a href="#cb55-651" aria-hidden="true" tabindex="-1"></a>Aprendimos a:</span>
+<span id="cb55-652"><a href="#cb55-652" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-653"><a href="#cb55-653" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>leer una base CSV;</span>
+<span id="cb55-654"><a href="#cb55-654" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>revisar dimensiones y nombres de variables;</span>
+<span id="cb55-655"><a href="#cb55-655" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>seleccionar variables de interés;</span>
+<span id="cb55-656"><a href="#cb55-656" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>construir una variable respuesta;</span>
+<span id="cb55-657"><a href="#cb55-657" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>transformar variables categóricas;</span>
+<span id="cb55-658"><a href="#cb55-658" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>revisar datos faltantes;</span>
+<span id="cb55-659"><a href="#cb55-659" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>crear una base preparada para aprendizaje automático;</span>
+<span id="cb55-660"><a href="#cb55-660" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>representar matemáticamente una base de datos para modelado.</span>
+<span id="cb55-661"><a href="#cb55-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-662"><a href="#cb55-662" aria-hidden="true" tabindex="-1"></a>En el siguiente capítulo realizaremos el análisis exploratorio de los datos preparados.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
