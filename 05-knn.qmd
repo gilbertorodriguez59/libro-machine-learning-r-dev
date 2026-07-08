@@ -5,6 +5,13 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 
 ## Objetivos del capítulo
 
@@ -57,6 +64,13 @@ datos_ejemplo <- data.frame(
 datos_ejemplo
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ```{r}
 library(ggplot2)
 
@@ -69,6 +83,13 @@ ggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +
     color = "Clase"
   )
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Distancia euclidiana
 
@@ -149,6 +170,13 @@ distancia <- sqrt((x1 - x2)^2 + (y1 - y2)^2)
 distancia
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ## Estandarización de variables
 
 Como k-NN depende de distancias, es importante que las variables estén en escalas comparables.
@@ -197,12 +225,26 @@ library(class)
 library(tidyr)
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ## Cargar la base preparada
 
 ```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 file.exists(ruta_atus_ml)
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ```{r}
 if (file.exists(ruta_atus_ml)) {
@@ -213,6 +255,13 @@ if (file.exists(ruta_atus_ml)) {
   print("No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.")
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Selección de una muestra para k-NN
 
@@ -225,6 +274,13 @@ if (!is.null(atus_ml)) {
   dim(atus_knn_base)
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Preparar variables para k-NN
 
@@ -243,12 +299,26 @@ if (exists("atus_knn_base")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ```{r}
 if (exists("atus_knn_base")) {
   table(atus_knn_base$accidente_con_victimas)
   round(100 * prop.table(table(atus_knn_base$accidente_con_victimas)), 2)
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Crear variables dummy
 
@@ -263,11 +333,25 @@ if (exists("atus_knn_base")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ```{r}
 if (exists("atus_knn_base")) {
   y <- atus_knn_base$accidente_con_victimas
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## División en entrenamiento y prueba
 
@@ -283,6 +367,13 @@ if (exists("matriz_predictoras") && exists("y")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ```{r}
 if (exists("x_entrenamiento") && exists("x_prueba")) {
   data.frame(
@@ -295,6 +386,13 @@ if (exists("x_entrenamiento") && exists("x_prueba")) {
   )
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Estandarización de variables
 
@@ -309,6 +407,13 @@ if (exists("x_entrenamiento") && exists("x_prueba")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ## Ajuste del modelo k-NN con k = 5
 
 ```{r}
@@ -321,6 +426,13 @@ if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
   )
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Matriz de confusión
 
@@ -337,6 +449,13 @@ if (exists("pred_knn_5")) {
   matriz_confusion_knn_5
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Métricas de evaluación
 
@@ -360,6 +479,13 @@ if (exists("matriz_confusion_knn_5")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ## Comparación con distintos valores de k
 
 ```{r}
@@ -381,6 +507,13 @@ calcular_metricas <- function(real, predicho) {
   data.frame(exactitud = exactitud, sensibilidad = sensibilidad, especificidad = especificidad)
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ```{r}
 if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
@@ -407,6 +540,13 @@ if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
+
 ```{r}
 if (exists("resultados_knn")) {
   resultados_largos <- resultados_knn |>
@@ -427,6 +567,13 @@ if (exists("resultados_knn")) {
     )
 }
 ```
+
+**Explicación del código.**  
+Este bloque aplica el flujo de k-NN: prepara variables numéricas, estandariza, calcula vecinos cercanos, genera predicciones o evalúa el desempeño del clasificador.
+
+**Interpretación del resultado.**  
+El resultado muestra cómo se comporta k-NN con los datos. En este método son clave la escala de las variables, el valor de $k$ y el equilibrio entre exactitud, sensibilidad y especificidad.
+
 
 ## Comparación conceptual con regresión logística
 

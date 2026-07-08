@@ -5,6 +5,13 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 
 ## Objetivos del capítulo
 
@@ -116,11 +123,25 @@ library(ggplot2)
 library(stringr)
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 Si alguno no está instalado:
 
 ```{r, eval=FALSE}
 install.packages(c("readr", "dplyr", "ggplot2", "stringr"))
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Leer el archivo CSV
 
@@ -128,6 +149,13 @@ install.packages(c("readr", "dplyr", "ggplot2", "stringr"))
 ruta_atus <- "datos/atus_2024.csv"
 file.exists(ruta_atus)
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ```{r}
 if (file.exists(ruta_atus)) {
@@ -143,6 +171,13 @@ if (file.exists(ruta_atus)) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ## Primer vistazo a los datos
 
 ```{r}
@@ -153,6 +188,13 @@ if (!is.null(atus)) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ## Estandarizar nombres de variables
 
 ```{r}
@@ -161,6 +203,13 @@ if (!is.null(atus)) {
   names(atus)
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Variables de interés
 
@@ -172,12 +221,26 @@ variables_interes <- c(
 )
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ```{r}
 if (!is.null(atus)) {
   variables_existentes <- intersect(variables_interes, names(atus))
   variables_existentes
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ```{r}
 if (!is.null(atus)) {
@@ -187,6 +250,13 @@ if (!is.null(atus)) {
   head(atus_base)
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Diccionario inicial de variables
 
@@ -211,6 +281,13 @@ if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ## Crear una variable respuesta
 
 ```{r}
@@ -233,11 +310,25 @@ if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ```{r}
 if (exists("atus_modelo")) {
   table(atus_modelo$accidente_con_victimas, useNA = "ifany")
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Eliminar registros sin variable respuesta
 
@@ -249,6 +340,13 @@ if (exists("atus_modelo")) {
   table(atus_modelo$accidente_con_victimas)
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Convertir variables categóricas
 
@@ -269,6 +367,13 @@ if (exists("atus_modelo")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ## Revisión de datos faltantes
 
 ```{r}
@@ -277,11 +382,25 @@ if (exists("atus_modelo")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ```{r}
 if (exists("atus_modelo")) {
   round(100 * colSums(is.na(atus_modelo)) / nrow(atus_modelo), 2)
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Selección final de variables para el primer modelo
 
@@ -301,12 +420,26 @@ if (exists("atus_modelo")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ```{r}
 if (exists("atus_ml")) {
   atus_ml <- na.omit(atus_ml)
   dim(atus_ml)
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Guardar la base preparada
 
@@ -315,6 +448,13 @@ if (exists("atus_ml")) {
   write_csv(atus_ml, "datos/atus_ml_preparado.csv")
 }
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Resumen del capítulo
 

@@ -5,6 +5,13 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 
 ## Objetivos del capítulo
 
@@ -38,6 +45,13 @@ if (pm10 > 75) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 En aprendizaje automático no le damos al sistema una regla fija. Le damos datos.
 
 ```{r}
@@ -51,6 +65,13 @@ datos <- data.frame(
 
 datos
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Variables predictoras y variable respuesta
 
@@ -188,6 +209,13 @@ ggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +
   )
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ## División entre entrenamiento y prueba
 
 ```{r}
@@ -203,12 +231,26 @@ entrenamiento
 prueba
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ## Primer clasificador sencillo basado en una regla
 
 ```{r}
 datos$prediccion_regla <- ifelse(datos$pm10 > 75, "Alta", "Baja")
 datos[, c("pm10", "clase", "prediccion_regla")]
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ```{r}
 tabla_confusion <- table(
@@ -219,10 +261,24 @@ tabla_confusion <- table(
 tabla_confusion
 ```
 
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
+
 ```{r}
 exactitud <- mean(datos$clase == datos$prediccion_regla)
 exactitud
 ```
+
+**Explicación del código.**  
+Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+
+**Interpretación del resultado.**  
+La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+
 
 ## Conclusión
 

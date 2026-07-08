@@ -16,6 +16,12 @@ book:
     - 04-regresion-logistica.qmd
     - 05-knn.qmd
 
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+
 format:
   html:
     theme: cosmo

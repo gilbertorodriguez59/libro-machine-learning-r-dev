@@ -5,6 +5,13 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 
 ## Objetivos del capítulo
 
@@ -160,6 +167,13 @@ ggplot(datos_logistica, aes(x = z, y = p)) +
   labs(title = "Función logística", x = "z", y = "Probabilidad")
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Cargar paquetes
 
 ```{r}
@@ -168,12 +182,26 @@ library(dplyr)
 library(ggplot2)
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Cargar la base preparada
 
 ```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 file.exists(ruta_atus_ml)
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ```{r}
 if (file.exists(ruta_atus_ml)) {
@@ -184,6 +212,13 @@ if (file.exists(ruta_atus_ml)) {
   print("No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.")
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ## Preparar variables para el modelo
 
@@ -202,6 +237,13 @@ if (!is.null(atus_ml)) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## División en entrenamiento y prueba
 
 ```{r}
@@ -213,6 +255,13 @@ if (exists("atus_modelo")) {
   prueba <- atus_modelo[-indices_entrenamiento, ]
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ```{r}
 if (exists("entrenamiento") && exists("prueba")) {
@@ -227,6 +276,13 @@ if (exists("entrenamiento") && exists("prueba")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Ajustar el modelo de regresión logística
 
 ```{r}
@@ -239,11 +295,25 @@ if (exists("entrenamiento")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ```{r}
 if (exists("modelo_logistico")) {
   summary(modelo_logistico)
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 Nota didáctica: si aparece el mensaje “1 not defined because of singularities”, significa que una categoría no pudo estimarse de forma independiente.
 
@@ -259,6 +329,13 @@ if (exists("modelo_logistico") && exists("prueba")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## De probabilidades a clases
 
 ```{r}
@@ -273,6 +350,13 @@ if (exists("prueba")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Matriz de confusión
 
 ```{r}
@@ -285,6 +369,13 @@ if (exists("prueba")) {
   matriz_confusion_05
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ## Métricas de evaluación
 
@@ -302,6 +393,13 @@ if (exists("matriz_confusion_05")) {
   )
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ## Fórmulas de evaluación para clasificación binaria
 
@@ -352,6 +450,13 @@ if (exists("VP")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Clasificación con punto de corte 0.3
 
 ```{r}
@@ -365,6 +470,13 @@ if (exists("prueba")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ```{r}
 if (exists("prueba")) {
   matriz_confusion_03 <- table(
@@ -374,6 +486,13 @@ if (exists("prueba")) {
   matriz_confusion_03
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ```{r}
 if (exists("matriz_confusion_03")) {
@@ -395,6 +514,13 @@ if (exists("matriz_confusion_03")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Comparación de puntos de corte
 
 ```{r}
@@ -407,6 +533,13 @@ if (exists("exactitud") && exists("exactitud_03")) {
   )
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ## Distribución de probabilidades predichas
 
@@ -423,6 +556,13 @@ if (exists("prueba")) {
 }
 ```
 
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
+
 ## Odds ratios
 
 ```{r}
@@ -435,6 +575,13 @@ if (exists("modelo_logistico")) {
   head(odds_ratios, 15)
 }
 ```
+
+**Explicación del código.**  
+Este bloque forma parte del flujo de modelado con regresión logística: prepara variables, ajusta el modelo, predice probabilidades, convierte probabilidades en clases o calcula métricas de evaluación.
+
+**Interpretación del resultado.**  
+El resultado debe interpretarse en función del problema de clasificación: detectar accidentes con víctimas. Por ello no basta con mirar la exactitud; también son importantes la sensibilidad, la especificidad y la matriz de confusión.
+
 
 ## Conclusión
 
