@@ -17,6 +17,7 @@ book:
     - 03-analisis-exploratorio.qmd
     - 04-regresion-logistica.qmd
     - 05-knn.qmd
+    - 06-arboles-decision.qmd
 
 execute:
   echo: true

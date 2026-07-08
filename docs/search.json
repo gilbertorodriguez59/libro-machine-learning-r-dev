@@ -998,5 +998,245 @@
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
+  },
+  {
+    "objectID": "06-arboles-decision.html",
+    "href": "06-arboles-decision.html",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "",
+    "text": "6.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#objetivos-del-capítulo",
+    "href": "06-arboles-decision.html#objetivos-del-capítulo",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "",
+    "text": "Explicar la idea básica de un árbol de decisión.\nIdentificar nodos, ramas, reglas de decisión y hojas terminales.\nComprender el papel de la impureza de Gini en problemas de clasificación.\nAjustar un árbol de clasificación en R usando datos reales.\nEvaluar el desempeño del árbol mediante matriz de confusión, exactitud, sensibilidad y especificidad.\nInterpretar las reglas más importantes del modelo.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#introducción",
+    "href": "06-arboles-decision.html#introducción",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.2 Introducción",
+    "text": "6.2 Introducción\nUn árbol de decisión es un modelo de aprendizaje supervisado que clasifica observaciones mediante una secuencia de preguntas.\nEn lugar de usar una sola ecuación, como en la regresión logística, un árbol va dividiendo los datos en grupos cada vez más homogéneos. Cada división se basa en una variable predictora.\nEn este capítulo seguiremos con la misma pregunta práctica:\n\n¿Podemos clasificar si un accidente de tránsito tendrá víctimas o será solo de daños materiales?\n\nLa variable respuesta será nuevamente accidente_con_victimas.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#idea-intuitiva-del-árbol-de-decisión",
+    "href": "06-arboles-decision.html#idea-intuitiva-del-árbol-de-decisión",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.3 Idea intuitiva del árbol de decisión",
+    "text": "6.3 Idea intuitiva del árbol de decisión\nUn árbol de decisión funciona como una serie de preguntas del tipo:\n¿El accidente fue colisión con peatón?\n  Sí  -&gt; mayor probabilidad de víctimas\n  No  -&gt; hacer otra pregunta\n\n¿La causa presunta fue conductor?\n  Sí  -&gt; hacer otra pregunta\n  No  -&gt; clasificar según el grupo observado\nCada pregunta divide los datos en subconjuntos. El objetivo es que, al final del proceso, las hojas del árbol contengan observaciones lo más parecidas posible entre sí.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#elementos-de-un-árbol-de-decisión",
+    "href": "06-arboles-decision.html#elementos-de-un-árbol-de-decisión",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.4 Elementos de un árbol de decisión",
+    "text": "6.4 Elementos de un árbol de decisión\nLos principales elementos son:\n\n\n\nElemento\nDescripción\n\n\n\n\nNodo raíz\nPrimera división del árbol\n\n\nNodo interno\nPregunta intermedia usada para seguir dividiendo\n\n\nRama\nCamino que se sigue dependiendo de la respuesta\n\n\nHoja terminal\nResultado final de clasificación\n\n\nProfundidad\nNúmero de niveles del árbol",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#fundamento-matemático-impureza-de-gini",
+    "href": "06-arboles-decision.html#fundamento-matemático-impureza-de-gini",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.5 Fundamento matemático: impureza de Gini",
+    "text": "6.5 Fundamento matemático: impureza de Gini\nEn clasificación, un árbol busca dividir los datos para formar grupos cada vez más puros.\nUna medida común de impureza es el índice de Gini:\n\\[\nGini(t) = 1 - \\sum_{k=1}^{K} p_{k}^{2}\n\\]\nDonde:\n\n\\(t\\) representa un nodo del árbol.\n\\(K\\) es el número de clases.\n\\(p_k\\) es la proporción de observaciones de la clase \\(k\\) dentro del nodo.\n\nSi un nodo contiene observaciones muy mezcladas, su impureza es alta. Si casi todas las observaciones pertenecen a una sola clase, su impureza es baja.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#ejemplo-sencillo-de-impureza",
+    "href": "06-arboles-decision.html#ejemplo-sencillo-de-impureza",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.6 Ejemplo sencillo de impureza",
+    "text": "6.6 Ejemplo sencillo de impureza\nSupongamos un nodo con 10 accidentes:\n\n7 son de solo daños.\n3 son con víctimas.\n\nEntonces:\n\\[\np_{solo\\ daños} = 0.7\n\\]\n\\[\np_{con\\ víctimas} = 0.3\n\\]\nLa impureza de Gini es:\n\\[\nGini = 1 - (0.7^2 + 0.3^2) = 1 - (0.49 + 0.09) = 0.42\n\\]\nEn R:\n\n\nCódigo\np_solo_danos &lt;- 0.7\np_con_victimas &lt;- 0.3\n\ngini &lt;- 1 - (p_solo_danos^2 + p_con_victimas^2)\ngini\n\n\n[1] 0.42\n\n\nInterpretación del resultado.\nEl valor 0.42 indica que el nodo todavía tiene mezcla entre clases. Un árbol buscaría una división que reduzca esa impureza.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#algoritmo-general-de-un-árbol-de-decisión",
+    "href": "06-arboles-decision.html#algoritmo-general-de-un-árbol-de-decisión",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.7 Algoritmo general de un árbol de decisión",
+    "text": "6.7 Algoritmo general de un árbol de decisión\nAlgoritmo: Árbol de decisión para clasificación\n\nEntrada:\n- Base de datos de entrenamiento\n- Variable respuesta\n- Variables predictoras\n\nProceso:\n1. Iniciar con todos los datos en el nodo raíz.\n2. Evaluar posibles divisiones usando las variables predictoras.\n3. Elegir la división que reduzca más la impureza.\n4. Repetir el proceso en cada nuevo nodo.\n5. Detener el crecimiento del árbol según criterios de control.\n6. Clasificar cada hoja según la clase mayoritaria.\n\nSalida:\n- Árbol entrenado\n- Reglas de decisión\n- Predicciones\n- Métricas de evaluación",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#cargar-paquetes-y-datos",
+    "href": "06-arboles-decision.html#cargar-paquetes-y-datos",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.8 Cargar paquetes y datos",
+    "text": "6.8 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(rpart)\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nfile.exists(ruta_atus_ml)\n\n\n[1] TRUE\n\n\n\n\nCódigo\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"\n\n\nInterpretación del resultado.\nSi el archivo existe, se carga la base preparada. Esta base contiene la variable respuesta y las variables predictoras que hemos utilizado en capítulos anteriores.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#selección-de-una-muestra",
+    "href": "06-arboles-decision.html#selección-de-una-muestra",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.9 Selección de una muestra",
+    "text": "6.9 Selección de una muestra\nPara que el capítulo pueda ejecutarse con rapidez en cualquier computadora, usaremos una muestra de la base.\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  set.seed(123)\n  tamano_muestra &lt;- min(20000, nrow(atus_ml))\n  atus_arbol &lt;- atus_ml |&gt;\n    sample_n(tamano_muestra)\n\n  data.frame(\n    filas = nrow(atus_arbol),\n    columnas = ncol(atus_arbol)\n  )\n}\n\n\n  filas columnas\n1 20000        6\n\n\nExplicación del código.\nsample_n() selecciona una muestra aleatoria. Esto hace más ágil el entrenamiento del árbol y evita saturar el PDF.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#preparar-variables",
+    "href": "06-arboles-decision.html#preparar-variables",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.10 Preparar variables",
+    "text": "6.10 Preparar variables\n\n\nCódigo\nif (exists(\"atus_arbol\")) {\n  atus_arbol &lt;- atus_arbol |&gt;\n    mutate(\n      accidente_con_victimas = factor(\n        accidente_con_victimas,\n        levels = c(\"Con víctimas\", \"Solo daños\")\n      ),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n\n  round(100 * prop.table(table(atus_arbol$accidente_con_victimas)), 2)\n}\n\n\n\nCon víctimas   Solo daños \n        17.2         82.8 \n\n\nInterpretación del resultado.\nLa tabla muestra el porcentaje de accidentes con víctimas y de solo daños dentro de la muestra. Como en los capítulos anteriores, la clase “Solo daños” suele ser mayoritaria.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#división-en-entrenamiento-y-prueba",
+    "href": "06-arboles-decision.html#división-en-entrenamiento-y-prueba",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.11 División en entrenamiento y prueba",
+    "text": "6.11 División en entrenamiento y prueba\n\n\nCódigo\nif (exists(\"atus_arbol\")) {\n  set.seed(123)\n  n &lt;- nrow(atus_arbol)\n  indices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\n\n  entrenamiento &lt;- atus_arbol[indices_entrenamiento, ]\n  prueba &lt;- atus_arbol[-indices_entrenamiento, ]\n\n  data.frame(\n    conjunto = c(\"Entrenamiento\", \"Prueba\"),\n    registros = c(nrow(entrenamiento), nrow(prueba)),\n    porcentaje = c(\n      round(100 * nrow(entrenamiento) / nrow(atus_arbol), 2),\n      round(100 * nrow(prueba) / nrow(atus_arbol), 2)\n    )\n  )\n}\n\n\n       conjunto registros porcentaje\n1 Entrenamiento     14000         70\n2        Prueba      6000         30\n\n\nInterpretación del resultado.\nEl conjunto de entrenamiento se usa para construir el árbol. El conjunto de prueba se reserva para evaluar qué tan bien clasifica datos no usados durante el entrenamiento.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#ajustar-el-árbol-de-clasificación",
+    "href": "06-arboles-decision.html#ajustar-el-árbol-de-clasificación",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.12 Ajustar el árbol de clasificación",
+    "text": "6.12 Ajustar el árbol de clasificación\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  modelo_arbol &lt;- rpart(\n    accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    method = \"class\",\n    control = rpart.control(\n      cp = 0.001,\n      minsplit = 50,\n      maxdepth = 5\n    )\n  )\n\n  modelo_arbol\n}\n\n\nn= 14000 \n\nnode), split, n, loss, yval, (yprob)\n      * denotes terminal node\n\n 1) root 14000 2405 Solo daños (0.17178571 0.82821429)  \n   2) TIPACCID=Caída de pasajero,Colisión con animal,Colisión con ciclista,Colisión con ferrocarril,Colisión con motocicleta,Colisión con peatón (atropellamiento),Volcadura 3321 1614 Solo daños (0.48599819 0.51400181)  \n     4) TIPACCID=Caída de pasajero,Colisión con peatón (atropellamiento) 447    0 Con víctimas (1.00000000 0.00000000) *\n     5) TIPACCID=Colisión con animal,Colisión con ciclista,Colisión con ferrocarril,Colisión con motocicleta,Volcadura 2874 1167 Solo daños (0.40605428 0.59394572)  \n      10) TIPACCID=Colisión con ciclista 117   39 Con víctimas (0.66666667 0.33333333)  \n        20) DIASEMANA=Miercoles,Viernes 24    1 Con víctimas (0.95833333 0.04166667) *\n        21) DIASEMANA=Domingo,Jueves,lunes,Martes,Sabado 93   38 Con víctimas (0.59139785 0.40860215)  \n          42) MES=01,02,03,04,05,08,11 57   16 Con víctimas (0.71929825 0.28070175) *\n          43) MES=06,07,09,10,12 36   14 Solo daños (0.38888889 0.61111111) *\n      11) TIPACCID=Colisión con animal,Colisión con ferrocarril,Colisión con motocicleta,Volcadura 2757 1089 Solo daños (0.39499456 0.60500544)  \n        22) MES=01,02,03,04,05,06,08,10,12 2084  855 Solo daños (0.41026871 0.58973129) *\n        23) MES=07,09,11 673  234 Solo daños (0.34769688 0.65230312)  \n          46) CAUSAACCI=Falla del vehículo,Mala condición del camino,Otra 36   15 Con víctimas (0.58333333 0.41666667) *\n          47) CAUSAACCI=Conductor,Peatón o pasajero 637  213 Solo daños (0.33437991 0.66562009) *\n   3) TIPACCID=Certificado cero,Colisión con objeto fijo,Colisión con vehículo automotor,Incendio,Otro,Salida del camino 10679  791 Solo daños (0.07407061 0.92592939) *\n\n\nExplicación del código.\nLa función rpart() ajusta un árbol de clasificación. El argumento method = \"class\" indica que la variable respuesta es categórica. Los parámetros de control ayudan a evitar un árbol demasiado grande.\nInterpretación del resultado.\nEl objeto modelo_arbol contiene las reglas aprendidas por el árbol. Cada división intenta separar mejor los accidentes con víctimas de los accidentes de solo daños.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#tabla-de-complejidad-del-árbol",
+    "href": "06-arboles-decision.html#tabla-de-complejidad-del-árbol",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.13 Tabla de complejidad del árbol",
+    "text": "6.13 Tabla de complejidad del árbol\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  printcp(modelo_arbol)\n}\n\n\n\nClassification tree:\nrpart(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento, method = \"class\", \n    control = rpart.control(cp = 0.001, minsplit = 50, maxdepth = 5))\n\nVariables actually used in tree construction:\n[1] CAUSAACCI DIASEMANA MES       TIPACCID \n\nRoot node error: 2405/14000 = 0.17179\n\nn= 14000 \n\n         CP nsplit rel error  xerror     xstd\n1 0.0929314      0   1.00000 1.00000 0.018557\n2 0.0162162      2   0.81414 0.81538 0.017075\n3 0.0016632      3   0.79792 0.79709 0.016913\n4 0.0012474      5   0.79459 0.80915 0.017020\n5 0.0010000      7   0.79210 0.80748 0.017005\n\n\nExplicación del código.\nprintcp() muestra una tabla de complejidad. Esta tabla ayuda a identificar si el árbol puede simplificarse mediante poda.\nInterpretación del resultado.\nUn árbol muy grande puede memorizar patrones del conjunto de entrenamiento y generalizar mal. La tabla de complejidad permite observar el equilibrio entre tamaño del árbol y error estimado.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#visualizar-el-árbol",
+    "href": "06-arboles-decision.html#visualizar-el-árbol",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.14 Visualizar el árbol",
+    "text": "6.14 Visualizar el árbol\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  plot(modelo_arbol, uniform = TRUE, margin = 0.1)\n  text(modelo_arbol, use.n = TRUE, all = TRUE, cex = 0.7)\n}\n\n\n\n\n\n\n\n\n\nInterpretación del resultado.\nLa figura muestra las reglas principales del árbol. En cada nodo se observa una condición de decisión y en las hojas aparece la clase final asignada.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#importancia-de-variables",
+    "href": "06-arboles-decision.html#importancia-de-variables",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.15 Importancia de variables",
+    "text": "6.15 Importancia de variables\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  importancia &lt;- modelo_arbol$variable.importance\n\n  if (!is.null(importancia)) {\n    importancia_variables &lt;- data.frame(\n      variable = names(importancia),\n      importancia = as.numeric(importancia)\n    ) |&gt;\n      arrange(desc(importancia))\n\n    importancia_variables\n  }\n}\n\n\n   variable  importancia\n1  TIPACCID 1149.1885629\n2 CAUSAACCI   47.5833732\n3       MES    8.8010721\n4 DIASEMANA    5.1370968\n5   ID_HORA    0.2676434\n\n\n\n\nCódigo\nif (exists(\"importancia_variables\")) {\n  ggplot(importancia_variables, aes(x = reorder(variable, importancia), y = importancia)) +\n    geom_col() +\n    coord_flip() +\n    labs(\n      title = \"Importancia de variables en el árbol de decisión\",\n      x = \"Variable\",\n      y = \"Importancia\"\n    )\n}\n\n\n\n\n\n\n\n\n\nInterpretación del resultado.\nLas variables con mayor importancia son las que más ayudaron al árbol a separar las clases. Esta información facilita explicar el modelo a estudiantes, tomadores de decisiones o usuarios no técnicos.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#predicción-de-clases",
+    "href": "06-arboles-decision.html#predicción-de-clases",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.16 Predicción de clases",
+    "text": "6.16 Predicción de clases\n\n\nCódigo\nif (exists(\"modelo_arbol\") && exists(\"prueba\")) {\n  pred_arbol_clase &lt;- predict(\n    modelo_arbol,\n    newdata = prueba,\n    type = \"class\"\n  )\n\n  head(data.frame(\n    real = prueba$accidente_con_victimas,\n    predicho = pred_arbol_clase\n  ))\n}\n\n\n        real   predicho\n1 Solo daños Solo daños\n2 Solo daños Solo daños\n3 Solo daños Solo daños\n4 Solo daños Solo daños\n5 Solo daños Solo daños\n6 Solo daños Solo daños\n\n\nInterpretación del resultado.\nLa tabla compara algunas clases reales contra las clases predichas por el árbol.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#matriz-de-confusión",
+    "href": "06-arboles-decision.html#matriz-de-confusión",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.17 Matriz de confusión",
+    "text": "6.17 Matriz de confusión\n\n\nCódigo\nif (exists(\"pred_arbol_clase\")) {\n  pred_arbol_clase &lt;- factor(pred_arbol_clase, levels = c(\"Con víctimas\", \"Solo daños\"))\n  real_arbol &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz_confusion_arbol &lt;- table(\n    Real = real_arbol,\n    Predicho = pred_arbol_clase\n  )\n\n  matriz_confusion_arbol\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          220        814\n  Solo daños             25       4941\n\n\nInterpretación del resultado.\nLa diagonal principal contiene los aciertos. Los valores fuera de la diagonal representan errores de clasificación.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#métricas-de-evaluación",
+    "href": "06-arboles-decision.html#métricas-de-evaluación",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.18 Métricas de evaluación",
+    "text": "6.18 Métricas de evaluación\n\n\nCódigo\ncalcular_metricas &lt;- function(real, predicho) {\n  real &lt;- factor(real, levels = c(\"Con víctimas\", \"Solo daños\"))\n  predicho &lt;- factor(predicho, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz[\"Solo daños\", \"Solo daños\"]\n\n  data.frame(\n    exactitud = (VP + VN) / (VP + FN + FP + VN),\n    sensibilidad = VP / (VP + FN),\n    especificidad = VN / (VN + FP)\n  )\n}\n\n\n\n\nCódigo\nif (exists(\"pred_arbol_clase\")) {\n  metricas_arbol &lt;- calcular_metricas(real_arbol, pred_arbol_clase)\n  metricas_arbol\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8601667     0.212766     0.9949658\n\n\nInterpretación del resultado.\nLa exactitud mide el porcentaje total de aciertos. La sensibilidad mide qué proporción de accidentes con víctimas fueron detectados correctamente. La especificidad mide qué proporción de accidentes de solo daños fueron identificados correctamente.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#predicción-con-probabilidades",
+    "href": "06-arboles-decision.html#predicción-con-probabilidades",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.19 Predicción con probabilidades",
+    "text": "6.19 Predicción con probabilidades\nAdemás de predecir una clase, el árbol puede estimar probabilidades.\n\n\nCódigo\nif (exists(\"modelo_arbol\") && exists(\"prueba\")) {\n  pred_arbol_prob &lt;- predict(\n    modelo_arbol,\n    newdata = prueba,\n    type = \"prob\"\n  )\n\n  head(pred_arbol_prob)\n}\n\n\n  Con víctimas Solo daños\n1   0.07407061  0.9259294\n2   0.41026871  0.5897313\n3   0.07407061  0.9259294\n4   0.07407061  0.9259294\n5   0.33437991  0.6656201\n6   0.07407061  0.9259294\n\n\nInterpretación del resultado.\nCada fila contiene la probabilidad estimada de pertenecer a cada clase. Esto permite modificar el punto de corte, como hicimos con la regresión logística.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#cambiar-el-punto-de-corte",
+    "href": "06-arboles-decision.html#cambiar-el-punto-de-corte",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.20 Cambiar el punto de corte",
+    "text": "6.20 Cambiar el punto de corte\nSi queremos detectar más accidentes con víctimas, podemos usar un punto de corte menor que 0.5.\n\n\nCódigo\nif (exists(\"pred_arbol_prob\")) {\n  prob_victimas &lt;- pred_arbol_prob[, \"Con víctimas\"]\n\n  pred_arbol_03 &lt;- ifelse(\n    prob_victimas &gt;= 0.3,\n    \"Con víctimas\",\n    \"Solo daños\"\n  )\n\n  pred_arbol_03 &lt;- factor(pred_arbol_03, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz_confusion_arbol_03 &lt;- table(\n    Real = real_arbol,\n    Predicho = pred_arbol_03\n  )\n\n  matriz_confusion_arbol_03\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          683        351\n  Solo daños            742       4224\n\n\n\n\nCódigo\nif (exists(\"pred_arbol_03\")) {\n  metricas_arbol_03 &lt;- calcular_metricas(real_arbol, pred_arbol_03)\n\n  comparacion_cortes &lt;- rbind(\n    data.frame(punto_corte = 0.5, metricas_arbol),\n    data.frame(punto_corte = 0.3, metricas_arbol_03)\n  )\n\n  comparacion_cortes\n}\n\n\n  punto_corte exactitud sensibilidad especificidad\n1         0.5 0.8601667    0.2127660     0.9949658\n2         0.3 0.8178333    0.6605416     0.8505840\n\n\nInterpretación del resultado.\nReducir el punto de corte puede aumentar la sensibilidad, aunque normalmente disminuye la especificidad. En problemas de seguridad vial, este intercambio debe analizarse con cuidado.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#comparación-conceptual-con-modelos-anteriores",
+    "href": "06-arboles-decision.html#comparación-conceptual-con-modelos-anteriores",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.21 Comparación conceptual con modelos anteriores",
+    "text": "6.21 Comparación conceptual con modelos anteriores\n\n\n\n\n\n\n\n\n\nAspecto\nRegresión logística\nk-NN\nÁrbol de decisión\n\n\n\n\nTipo de modelo\nParamétrico\nNo paramétrico\nNo paramétrico\n\n\nProduce reglas explícitas\nParcialmente\nNo\nSí\n\n\nUsa distancias\nNo\nSí\nNo\n\n\nRequiere escalamiento\nNo siempre\nSí\nNo\n\n\nInterpretabilidad\nAlta\nMedia o baja\nAlta\n\n\nManeja variables categóricas\nSí, con codificación\nRequiere dummies\nSí",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#ventajas-y-limitaciones",
+    "href": "06-arboles-decision.html#ventajas-y-limitaciones",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.22 Ventajas y limitaciones",
+    "text": "6.22 Ventajas y limitaciones\nLos árboles de decisión tienen ventajas importantes:\n\nSon fáciles de explicar.\nProducen reglas interpretables.\nPueden trabajar con variables numéricas y categóricas.\nNo requieren estandarizar variables.\n\nPero también tienen limitaciones:\n\nPueden sobreajustarse si crecen demasiado.\nSon sensibles a cambios pequeños en los datos.\nUn solo árbol puede ser menos preciso que métodos de ensamble como Random Forest.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "06-arboles-decision.html#conclusión",
+    "href": "06-arboles-decision.html#conclusión",
+    "title": "6  Árboles de decisión para clasificación",
+    "section": "6.23 Conclusión",
+    "text": "6.23 Conclusión\nLos árboles de decisión son modelos muy útiles para introducir clasificación interpretable. A diferencia de k-NN, no dependen de distancias ni requieren escalamiento. Además, permiten obtener reglas de decisión fáciles de comunicar.\nEn el siguiente capítulo se puede extender esta idea hacia métodos de ensamble, especialmente Random Forest, que combina muchos árboles para mejorar la estabilidad y el desempeño predictivo.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
+    ]
   }
 ]
