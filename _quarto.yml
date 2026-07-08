@@ -36,7 +36,7 @@ format:
 
   pdf:
     documentclass: book
-    output-file: libro-machine-learning-r.pdf
+    output-file: Aprendizaje-y-Clasificación-Automática-con-R.pdf
     toc: true
     toc-title: "Índice general"
     number-sections: true
