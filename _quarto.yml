@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: docs
 
+lang: es
+
 book:
   title: "Aprendizaje y Clasificación Automática con R"
   subtitle: "Un enfoque práctico con datos abiertos reales"
@@ -21,6 +23,7 @@ execute:
   warning: false
   message: false
   freeze: auto
+  fig_crop: false
 
 format:
   html:
@@ -30,9 +33,11 @@ format:
     code-fold: true
     code-tools: true
     html-math-method: mathjax
+
   pdf:
     documentclass: book
     toc: true
+    toc-title: "Índice general"
     number-sections: true
     colorlinks: true
     geometry:
@@ -40,3 +45,7 @@ format:
     fontsize: 11pt
     keep-tex: true
     pdf-engine: lualatex
+    include-in-header:
+      text: |
+        \renewcommand{\contentsname}{Índice general}
+        \renewcommand{\chaptername}{Capítulo}

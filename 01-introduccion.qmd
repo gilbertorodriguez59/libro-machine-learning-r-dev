@@ -2,15 +2,18 @@
 
 ```{r}
 #| include: false
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  dev = "png",
+  dpi = 120,
+  fig.width = 7,
+  fig.height = 4.5,
+  fig.align = "center",
+  out.width = "90%"
+)
 ```
-
-**Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
-
-**Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
 
 
 ## Objetivos del capítulo
@@ -27,13 +30,13 @@ Al finalizar este capítulo, el lector será capaz de:
 
 El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.
 
-La idea central será:
+En la programación tradicional, una persona define reglas. En aprendizaje automático, en cambio, proporcionamos ejemplos para que un algoritmo aprenda una relación entre variables de entrada y una salida esperada.
 
 > Aprender Machine Learning haciendo proyectos con datos reales.
 
 ## Programación tradicional contra aprendizaje automático
 
-En la programación tradicional, una persona escribe reglas explícitas.
+Supongamos que queremos clasificar un día como de contaminación alta o baja usando una regla fija basada en PM10.
 
 ```{r}
 pm10 <- 85
@@ -46,13 +49,12 @@ if (pm10 > 75) {
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+Se define el valor de PM10 y se aplica una regla condicional. Si `pm10` es mayor que 75, R imprime “Contaminación alta”; si no, imprime “Contaminación baja”.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
+Este ejemplo muestra programación tradicional: la decisión depende de una regla escrita manualmente. En aprendizaje automático, la regla no se escribe directamente; se aprende a partir de datos.
 
-
-En aprendizaje automático no le damos al sistema una regla fija. Le damos datos.
+Ahora construyamos una pequeña base de ejemplo.
 
 ```{r}
 datos <- data.frame(
@@ -60,26 +62,34 @@ datos <- data.frame(
   pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),
   temperatura = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),
   humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),
-  clase = c("Baja", "Alta", "Baja", "Alta", "Baja", "Alta", "Baja", "Alta", "Baja", "Alta", "Baja", "Alta")
+  clase = c("Baja", "Alta", "Baja", "Alta", "Baja", "Alta",
+            "Baja", "Alta", "Baja", "Alta", "Baja", "Alta")
 )
 
 datos
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+Se crea una tabla con 12 días. Cada fila contiene variables ambientales (`pm10`, `temperatura` y `humedad`) y una variable de salida llamada `clase`.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
+La tabla representa ejemplos históricos. En aprendizaje supervisado, estos ejemplos permiten aprender una relación entre variables predictoras y una clase conocida.
 
 ## Variables predictoras y variable respuesta
 
-La **variable respuesta** es la variable que queremos predecir.
+La **variable respuesta** es la variable que queremos predecir. En el ejemplo anterior es `clase`.
 
-Las **variables predictoras** son las variables que usamos como entrada para el modelo.
+Las **variables predictoras** son las variables que usamos como entrada para el modelo. En el ejemplo son `pm10`, `temperatura` y `humedad`.
 
-En el ejemplo anterior, la variable respuesta es `clase`, y las variables predictoras son `pm10`, `temperatura` y `humedad`.
+## Tipos principales de aprendizaje automático
+
+En una primera aproximación podemos hablar de tres grandes tipos:
+
+1. Aprendizaje supervisado.
+2. Aprendizaje no supervisado.
+3. Aprendizaje por refuerzo.
+
+Este libro se concentrará principalmente en los dos primeros.
 
 ## Notación básica para aprendizaje automático
 
@@ -97,7 +107,7 @@ x_{n1} & x_{n2} & \cdots & x_{np}
 \right]
 $$
 
-donde $n$ es el número de observaciones, $p$ es el número de variables predictoras y $x_{ij}$ representa el valor de la variable $j$ en la observación $i$.
+donde $x_{ij}$ representa el valor de la variable $j$ en la observación $i$.
 
 La variable respuesta se representa como:
 
@@ -118,8 +128,6 @@ El objetivo general del aprendizaje supervisado es encontrar una función $f$ qu
 $$
 \hat{y} = f(x_1, x_2, \ldots, x_p)
 $$
-
-donde $\hat{y}$ es la predicción del modelo, $x_1, x_2, \ldots, x_p$ son las variables predictoras, y $f$ es la función aprendida a partir de los datos.
 
 ## Algoritmo general de aprendizaje supervisado
 
@@ -147,32 +155,15 @@ Salida:
 
 ## Aprendizaje supervisado
 
-El aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.
-
-Dentro del aprendizaje supervisado hay dos tareas muy importantes:
-
-- clasificación;
-- regresión.
+El aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida. Dentro de este tipo de aprendizaje hay dos tareas principales: **clasificación** y **regresión**.
 
 ## Clasificación
 
-La clasificación se utiliza cuando la variable respuesta es categórica.
-
-Ejemplos:
-
-- Alta o baja contaminación.
-- Accidente con víctimas o solo daños.
-- Tumor benigno o maligno.
+La clasificación se utiliza cuando la variable respuesta es categórica. Algunos ejemplos son alta o baja contaminación, accidente con víctimas o solo daños, tumor benigno o maligno, y correo deseado o no deseado.
 
 ## Regresión
 
-La regresión se utiliza cuando la variable respuesta es numérica.
-
-Ejemplos:
-
-- Predecir concentración de PM10.
-- Predecir temperatura.
-- Predecir ventas.
+La regresión se utiliza cuando la variable respuesta es numérica, por ejemplo: concentración de PM10, temperatura, ventas o número de accidentes.
 
 ## Aprendizaje no supervisado
 
@@ -210,11 +201,10 @@ ggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+La función `ggplot()` construye una gráfica de dispersión. En el eje horizontal se coloca `pm10`, en el eje vertical `temperatura` y el color representa la clase.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
+La gráfica muestra que los días de contaminación alta tienden a ubicarse en la zona de mayor PM10 y mayor temperatura. Esta separación visual ilustra la idea de clasificación.
 
 ## División entre entrenamiento y prueba
 
@@ -232,11 +222,10 @@ prueba
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+`set.seed()` permite reproducir la misma selección aleatoria. Después se toma aproximadamente 70% de las filas para entrenamiento y 30% para prueba.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
+El conjunto de entrenamiento se usa para aprender patrones. El conjunto de prueba permite revisar si el modelo funcionaría con datos no vistos.
 
 ## Primer clasificador sencillo basado en una regla
 
@@ -246,11 +235,10 @@ datos[, c("pm10", "clase", "prediccion_regla")]
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+Se crea una nueva columna llamada `prediccion_regla`. La regla clasifica como “Alta” cuando PM10 es mayor que 75.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
+La tabla permite comparar la clase real con una predicción generada por una regla simple.
 
 ```{r}
 tabla_confusion <- table(
@@ -262,11 +250,10 @@ tabla_confusion
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+La función `table()` cruza la clase real con la clase predicha.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
+La diagonal principal contiene los aciertos. Los valores fuera de la diagonal serían errores de clasificación.
 
 ```{r}
 exactitud <- mean(datos$clase == datos$prediccion_regla)
@@ -274,12 +261,11 @@ exactitud
 ```
 
 **Explicación del código.**  
-Este bloque muestra una operación básica en R para construir, revisar o transformar datos.
+Se compara cada predicción con la clase real y se calcula la proporción de aciertos.
 
 **Interpretación del resultado.**  
-La salida ayuda a verificar que el procedimiento se realizó correctamente y prepara el camino para el análisis posterior.
-
+La exactitud indica qué proporción de observaciones fueron clasificadas correctamente. En datos reales los resultados suelen ser más complejos.
 
 ## Conclusión
 
-El aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos. En el siguiente capítulo comenzaremos con una parte fundamental: la preparación de datos reales.
+El aprendizaje automático permite construir modelos que aprenden patrones a partir de datos. En este capítulo vimos la diferencia entre reglas manuales y aprendizaje a partir de ejemplos.

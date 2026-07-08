@@ -2,53 +2,34 @@
 
 ```{r}
 #| include: false
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = "png", dpi = 120, fig.width = 7, fig.height = 4.5)
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  dev = "png",
+  dpi = 120,
+  fig.width = 7,
+  fig.height = 4.5,
+  fig.align = "center",
+  out.width = "90%"
+)
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de:
-
-- Explicar qué es el análisis exploratorio de datos.
-- Cargar una base preparada previamente.
-- Revisar la estructura de un conjunto de datos.
-- Analizar la distribución de una variable respuesta.
-- Construir tablas de frecuencia.
-- Elaborar gráficas de barras con `ggplot2`.
-- Interpretar patrones iniciales antes de construir modelos.
+Al finalizar este capítulo, el lector será capaz de cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas e interpretar patrones iniciales.
 
 ## Introducción
 
-Después de preparar los datos, el siguiente paso en un proyecto de aprendizaje automático es explorarlos.
-
-El **análisis exploratorio de datos**, también conocido como *Exploratory Data Analysis* o **EDA**, consiste en revisar, resumir, visualizar e interpretar los datos antes de construir modelos.
+El **análisis exploratorio de datos** permite revisar la estructura de la base, detectar patrones iniciales e identificar posibles problemas antes de construir modelos.
 
 ## Fundamento matemático del análisis exploratorio
 
-Si una variable categórica tiene categorías $c_1, c_2, \ldots, c_k$, la frecuencia absoluta de una categoría $c_j$ se puede representar como:
+Si una variable categórica tiene categorías $c_1, c_2, \ldots, c_k$, la frecuencia absoluta de una categoría $c_j$ se representa como:
 
 $$
 n_j = \sum_{i=1}^{n} I(y_i = c_j)
-$$
-
-donde $I(y_i = c_j)$ es una función indicadora:
-
-$$
-I(y_i = c_j) =
-\left\{
-\begin{array}{ll}
-1, & \text{si } y_i = c_j \\
-0, & \text{si } y_i \neq c_j
-\end{array}
-\right.
 $$
 
 La proporción de la categoría $c_j$ es:
@@ -57,35 +38,7 @@ $$
 p_j = \frac{n_j}{n}
 $$
 
-En nuestro caso, una proporción importante es:
-
-$$
-p_{\text{víctimas}} =
-\frac{\text{número de accidentes con víctimas}}
-{\text{número total de accidentes}}
-$$
-
-## Proporciones condicionales
-
-Podemos estudiar la proporción de accidentes con víctimas dado un tipo de accidente:
-
-$$
-P(\text{Con víctimas} \mid \text{Tipo de accidente})
-$$
-
-De forma empírica, esta proporción se calcula como:
-
-$$
-\hat{P}(\text{Con víctimas} \mid T = t)
-=
-\frac{
-\text{número de accidentes con víctimas del tipo } t
-}{
-\text{número total de accidentes del tipo } t
-}
-$$
-
-## Algoritmo general del análisis exploratorio
+## Algoritmo general
 
 ```text
 Algoritmo: Análisis exploratorio de datos
@@ -98,12 +51,10 @@ Entrada:
 Proceso:
   1. Revisar dimensiones de la base.
   2. Revisar nombres y tipos de variables.
-  3. Calcular frecuencias de la variable respuesta.
-  4. Calcular proporciones de la variable respuesta.
-  5. Analizar variables temporales, categóricas y numéricas.
-  6. Construir gráficas exploratorias.
-  7. Cruzar variables predictoras con la variable respuesta.
-  8. Identificar patrones, desbalances y posibles problemas.
+  3. Calcular frecuencias y proporciones.
+  4. Construir gráficas exploratorias.
+  5. Cruzar variables predictoras con la variable respuesta.
+  6. Identificar patrones y posibles problemas.
 
 Salida:
   - Tablas descriptivas
@@ -111,34 +62,16 @@ Salida:
   - Primeras hipótesis sobre los datos
 ```
 
-## Cargar paquetes
+## Cargar paquetes y base
 
 ```{r}
 library(readr)
 library(dplyr)
 library(ggplot2)
-```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
-## Cargar la base preparada
-
-```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 file.exists(ruta_atus_ml)
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ```{r}
 if (file.exists(ruta_atus_ml)) {
@@ -150,13 +83,6 @@ if (file.exists(ruta_atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Preparar variables para el análisis exploratorio
 
 ```{r}
@@ -164,6 +90,8 @@ if (!is.null(atus_ml)) {
   atus_ml <- atus_ml |>
     mutate(
       ID_HORA_NUM = as.numeric(ID_HORA),
+      MES_NUM = as.numeric(MES),
+      MES_FACTOR = factor(sprintf("%02d", MES_NUM), levels = sprintf("%02d", 1:12)),
       DIASEMANA = factor(
         DIASEMANA,
         levels = c("lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
@@ -177,30 +105,21 @@ if (!is.null(atus_ml)) {
 ```
 
 **Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
+Se crean variables ordenadas para hora, mes y día de la semana. `MES_FACTOR` evita que la gráfica mensual genere una categoría `NA`.
 
 ## Primer vistazo a la base
 
 ```{r}
 if (!is.null(atus_ml)) {
-  dim(atus_ml)
-  head(atus_ml)
-  names(atus_ml)
+  data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
-## Estructura de los datos
+```{r}
+if (!is.null(atus_ml)) {
+  head(atus_ml)
+}
+```
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -208,46 +127,23 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Distribución de la variable respuesta
 
 ```{r}
 if (!is.null(atus_ml)) {
-  table(atus_ml$accidente_con_victimas)
+  tabla_clase <- table(atus_ml$accidente_con_victimas)
+  tabla_clase
 }
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ```{r}
 if (!is.null(atus_ml)) {
-  round(100 * prop.table(table(atus_ml$accidente_con_victimas)), 2)
+  round(100 * prop.table(tabla_clase), 2)
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
 **Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
-## Interpretación de la variable respuesta
-
-En esta base se observa un desbalance importante: aproximadamente 82.56% de los accidentes corresponden a solo daños, mientras que 17.44% corresponden a accidentes con víctimas.
-
-## Gráfica de la variable respuesta
+La base está desbalanceada: hay muchos más accidentes de solo daños que accidentes con víctimas.
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -261,35 +157,21 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Accidentes por mes
 
 ```{r}
 if (!is.null(atus_ml)) {
   accidentes_mes <- atus_ml |>
-    count(MES) |>
-    arrange(as.numeric(MES))
+    count(MES_FACTOR, name = "n") |>
+    arrange(MES_FACTOR)
 
   accidentes_mes
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ```{r}
 if (!is.null(atus_ml)) {
-  ggplot(accidentes_mes, aes(x = factor(MES, levels = sort(unique(as.numeric(MES)))), y = n)) +
+  ggplot(accidentes_mes, aes(x = MES_FACTOR, y = n)) +
     geom_col() +
     labs(
       title = "Número de accidentes por mes",
@@ -299,31 +181,20 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
 **Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
+La gráfica muestra variaciones mensuales sin crear una categoría `NA`.
 
 ## Accidentes por hora del día
 
 ```{r}
 if (!is.null(atus_ml)) {
   accidentes_hora <- atus_ml |>
-    count(ID_HORA_NUM) |>
+    count(ID_HORA_NUM, name = "n") |>
     arrange(ID_HORA_NUM)
 
   accidentes_hora
 }
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -338,31 +209,17 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Accidentes por día de la semana
 
 ```{r}
 if (!is.null(atus_ml)) {
   accidentes_dia <- atus_ml |>
-    count(DIASEMANA) |>
+    count(DIASEMANA, name = "n") |>
     arrange(DIASEMANA)
 
   accidentes_dia
 }
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -377,31 +234,17 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Accidentes por tipo de accidente
 
 ```{r}
 if (!is.null(atus_ml)) {
   accidentes_tipo <- atus_ml |>
-    count(TIPACCID) |>
+    count(TIPACCID, name = "n") |>
     arrange(desc(n))
 
-  accidentes_tipo
+  accidentes_tipo |> head(10)
 }
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -419,38 +262,21 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Accidentes por causa presunta
 
 ```{r}
 if (!is.null(atus_ml)) {
   accidentes_causa <- atus_ml |>
-    count(CAUSAACCI) |>
+    count(CAUSAACCI, name = "n") |>
     arrange(desc(n))
 
   accidentes_causa
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ```{r}
 if (!is.null(atus_ml)) {
-  accidentes_causa_top <- accidentes_causa |>
-    slice_max(n, n = 10)
-
-  ggplot(accidentes_causa_top, aes(x = reorder(CAUSAACCI, n), y = n)) +
+  ggplot(accidentes_causa, aes(x = reorder(CAUSAACCI, n), y = n)) +
     geom_col() +
     coord_flip() +
     labs(
@@ -460,13 +286,6 @@ if (!is.null(atus_ml)) {
     )
 }
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ## Relación entre tipo de accidente y presencia de víctimas
 
@@ -492,12 +311,8 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
 **Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
+Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detectar tipos de accidente con mayor proporción relativa de víctimas.
 
 ## Relación entre hora y presencia de víctimas
 
@@ -515,13 +330,6 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Relación entre día de la semana y presencia de víctimas
 
 ```{r}
@@ -537,13 +345,6 @@ if (!is.null(atus_ml)) {
     )
 }
 ```
-
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
 
 ## Tabla resumen por clase
 
@@ -563,15 +364,6 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Explicación del código.**  
-Este bloque realiza una operación de análisis exploratorio: carga datos, transforma variables, calcula frecuencias o construye una gráfica. La finalidad es conocer mejor la estructura de la base antes de modelar.
-
-**Interpretación del resultado.**  
-La salida debe leerse como una evidencia descriptiva: ayuda a identificar patrones, desbalances, categorías frecuentes o relaciones preliminares entre variables. No implica causalidad, pero orienta el análisis posterior.
-
-
 ## Conclusión
 
-En este capítulo aprendimos a cargar una base preparada, revisar dimensiones, analizar la variable respuesta, construir tablas de frecuencia, graficar accidentes por mes, hora, día, tipo y causa, e interpretar patrones iniciales.
-
-En el siguiente capítulo construiremos nuestro primer modelo supervisado para clasificación: una **regresión logística**.
+En este capítulo aprendimos a cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas y detectar patrones iniciales.
