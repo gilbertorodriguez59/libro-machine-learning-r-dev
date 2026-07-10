@@ -1,21 +1,5 @@
 # Regresión logística para clasificación
 
-```{r}
-#| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE,
-  dev = "png",
-  dpi = 120,
-  fig.width = 7,
-  fig.height = 4.5,
-  fig.align = "center",
-  out.width = "90%"
-)
-```
-
-
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de ajustar una regresión logística, predecir probabilidades, construir una matriz de confusión e interpretar métricas de clasificación.
@@ -33,8 +17,7 @@ La variable que queremos predecir es `accidente_con_victimas`.
 La regresión logística utiliza una función que convierte cualquier valor real en una probabilidad entre 0 y 1:
 
 $$
-p =
-\frac{1}{1 + e^{-z}}
+p = \frac{1}{1 + e^{-z}}
 $$
 
 donde:
@@ -43,69 +26,50 @@ $$
 z = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_px_p
 $$
 
-## Fundamento matemático
-
-En clasificación binaria, la respuesta puede representarse como:
-
-$$
-Y_i =
-\left\{
-\begin{array}{ll}
-1, & \text{si el accidente tiene víctimas} \\
-0, & \text{si el accidente es de solo daños}
-\end{array}
-\right.
-$$
-
-La regresión logística estima $P(Y_i = 1 \mid X_i) = \hat{p}_i$ y clasifica con un punto de corte $c$.
-
 ## Algoritmo de regresión logística
 
 ```text
-Algoritmo: Regresión logística para clasificación binaria
-
 Entrada:
-  - Matriz de variables predictoras X
-  - Variable respuesta binaria Y
-  - Punto de corte c
+- Matriz de variables predictoras X.
+- Variable respuesta binaria Y.
+- Punto de corte c.
 
 Proceso:
-  1. Codificar la variable respuesta como 0 y 1.
-  2. Estimar los coeficientes beta.
-  3. Calcular probabilidades con la función logística.
-  4. Convertir probabilidades en clases usando c.
-  5. Evaluar predicciones con matriz de confusión.
-
-Salida:
-  - Probabilidades predichas
-  - Clases predichas
-  - Métricas de evaluación
+1. Codificar la variable respuesta como 0 y 1.
+2. Estimar los coeficientes beta.
+3. Calcular probabilidades con la función logística.
+4. Convertir probabilidades en clases usando c.
+5. Evaluar predicciones con matriz de confusión.
 ```
 
 ## Visualización de la función logística
 
 ```{r}
+#| message: false
+#| warning: false
+library(readr)
+library(dplyr)
+library(ggplot2)
+source("util_graficas.R")
+
 z <- seq(-10, 10, length.out = 200)
 p <- 1 / (1 + exp(-z))
 datos_logistica <- data.frame(z = z, p = p)
 
-library(ggplot2)
-
 ggplot(datos_logistica, aes(x = z, y = p)) +
-  geom_line(linewidth = 1) +
-  labs(title = "Función logística", x = "z", y = "Probabilidad")
+  geom_line(linewidth = 1.1, color = col_azul) +
+  labs(
+    title = "Función logística",
+    subtitle = "Transforma valores reales en probabilidades",
+    x = "z",
+    y = "Probabilidad"
+  ) +
+  tema_libro()
 ```
 
-**Interpretación del resultado.**  
-La curva tiene forma de “S”. Para valores muy negativos de $z$, la probabilidad se acerca a 0. Para valores muy positivos, se acerca a 1.
-
-## Cargar paquetes y datos
+## Cargar datos
 
 ```{r}
-library(readr)
-library(dplyr)
-library(ggplot2)
-
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 file.exists(ruta_atus_ml)
 ```
@@ -134,7 +98,6 @@ if (!is.null(atus_ml)) {
       ID_HORA = as.numeric(ID_HORA),
       accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
     )
-
   table(atus_modelo$accidente_con_victimas)
 }
 ```
@@ -146,6 +109,7 @@ if (exists("atus_modelo")) {
   set.seed(123)
   n <- nrow(atus_modelo)
   indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
+
   entrenamiento <- atus_modelo[indices_entrenamiento, ]
   prueba <- atus_modelo[-indices_entrenamiento, ]
 
@@ -179,9 +143,6 @@ if (exists("modelo_logistico")) {
 }
 ```
 
-**Interpretación del resultado.**  
-Se muestran solo los primeros coeficientes para no saturar el PDF. Los coeficientes indican cambios en el logit respecto a categorías de referencia.
-
 ## Predicción de probabilidades
 
 ```{r}
@@ -195,9 +156,6 @@ if (exists("modelo_logistico") && exists("prueba")) {
   head(prueba |> select(accidente_con_victimas, victimas_binaria, probabilidad_victimas))
 }
 ```
-
-**Interpretación del resultado.**  
-Cada valor de `probabilidad_victimas` estima la probabilidad de que el accidente tenga víctimas.
 
 ## De probabilidades a clases
 
@@ -221,13 +179,9 @@ if (exists("prueba")) {
     Real = prueba$accidente_con_victimas,
     Predicho = prueba$prediccion_05
   )
-
   matriz_confusion_05
 }
 ```
-
-**Interpretación del resultado.**  
-La diagonal contiene clasificaciones correctas. Los falsos negativos son accidentes con víctimas predichos como solo daños.
 
 ## Métricas de evaluación
 
@@ -244,7 +198,6 @@ if (exists("matriz_confusion_05")) {
     sensibilidad = VP / (VP + FN),
     especificidad = VN / (VN + FP)
   )
-
   metricas_05
 }
 ```
@@ -258,15 +211,14 @@ if (exists("prueba")) {
     "Con víctimas",
     "Solo daños"
   )
+
   prueba$prediccion_03 <- factor(prueba$prediccion_03, levels = c("Con víctimas", "Solo daños"))
 
-  matriz_confusion_03 <- table(Real = prueba$accidente_con_victimas, Predicho = prueba$prediccion_03)
-  matriz_confusion_03
-}
-```
+  matriz_confusion_03 <- table(
+    Real = prueba$accidente_con_victimas,
+    Predicho = prueba$prediccion_03
+  )
 
-```{r}
-if (exists("matriz_confusion_03")) {
   VP_03 <- matriz_confusion_03["Con víctimas", "Con víctimas"]
   FN_03 <- matriz_confusion_03["Con víctimas", "Solo daños"]
   FP_03 <- matriz_confusion_03["Solo daños", "Con víctimas"]
@@ -283,21 +235,20 @@ if (exists("matriz_confusion_03")) {
 }
 ```
 
-**Interpretación del resultado.**  
-Bajar el punto de corte suele aumentar la sensibilidad, aunque puede disminuir la especificidad. En seguridad vial, detectar más accidentes con víctimas puede ser más importante que maximizar la exactitud.
-
 ## Distribución de probabilidades predichas
 
 ```{r}
 if (exists("prueba")) {
   ggplot(prueba, aes(x = probabilidad_victimas, fill = accidente_con_victimas)) +
-    geom_histogram(bins = 30, alpha = 0.7, position = "identity") +
+    geom_histogram(bins = 30, alpha = 0.75, position = "identity") +
+    escala_clases_fill(name = "Clase real") +
     labs(
       title = "Distribución de probabilidades predichas",
+      subtitle = "Modelo de regresión logística",
       x = "Probabilidad predicha de accidente con víctimas",
-      y = "Frecuencia",
-      fill = "Clase real"
-    )
+      y = "Frecuencia"
+    ) +
+    tema_libro()
 }
 ```
 
@@ -309,7 +260,6 @@ if (exists("modelo_logistico")) {
     variable = names(coef(modelo_logistico)),
     odds_ratio = exp(coef(modelo_logistico))
   )
-
   head(odds_ratios, 12)
 }
 ```

@@ -1,38 +1,29 @@
 # k vecinos más cercanos, k-NN
 
-```{r}
-#| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE,
-  dev = "png",
-  dpi = 120,
-  fig.width = 7,
-  fig.height = 4.5,
-  fig.align = "center",
-  out.width = "90%"
-)
-```
-
-
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de explicar k-NN, preparar datos para este método, estandarizar variables, construir una matriz de confusión y evaluar el desempeño.
 
 ## Introducción
 
-k-NN significa *k-Nearest Neighbors* o k vecinos más cercanos.
-
-> Para clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.
+k-NN significa *k-Nearest Neighbors* o k vecinos más cercanos. Para clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.
 
 ## Idea intuitiva del método
 
-El algoritmo k-NN calcula distancias, encuentra los $k$ vecinos más cercanos, revisa sus clases y asigna la clase más frecuente.
+El algoritmo k-NN calcula distancias, encuentra los \(k\) vecinos más cercanos, revisa sus clases y asigna la clase más frecuente.
 
 ## Ejemplo sencillo con puntos
 
 ```{r}
+#| message: false
+#| warning: false
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(class)
+library(tidyr)
+source("util_graficas.R")
+
 datos_ejemplo <- data.frame(
   hora = c(8, 9, 10, 18, 19, 20, 22, 23),
   mes = c(1, 1, 2, 6, 6, 7, 12, 12),
@@ -47,38 +38,31 @@ datos_ejemplo
 ```
 
 ```{r}
-library(ggplot2)
-
 ggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +
-  geom_point(size = 4) +
+  geom_point(size = 4, alpha = 0.9) +
+  escala_clases_color() +
   labs(
     title = "Ejemplo intuitivo de k-NN",
+    subtitle = "Clasificación mediante cercanía entre observaciones",
     x = "Hora",
     y = "Mes",
     color = "Clase"
-  )
+  ) +
+  tema_libro()
 ```
-
-**Interpretación del resultado.**  
-La gráfica muestra dos grupos separados. Una nueva observación se clasificaría según los puntos más cercanos.
 
 ## Distancia euclidiana
 
-Para dos puntos $A = (x_1, y_1)$ y $B = (x_2, y_2)$, la distancia euclidiana es:
+Para dos puntos \(A=(x_1,y_1)\) y \(B=(x_2,y_2)\), la distancia euclidiana es:
 
 $$
-d(A,B) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}
+d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
 $$
 
-En general, para $p$ variables:
+En general, para \(p\) variables:
 
 $$
-d(x_0, x_i)
-=
-\sqrt{
-\sum_{j=1}^{p}
-(x_{0j} - x_{ij})^2
-}
+d(x_0,x_i)=\sqrt{\sum_{j=1}^{p}(x_{0j}-x_{ij})^2}
 $$
 
 ## Ejemplo de cálculo de distancia
@@ -86,59 +70,24 @@ $$
 ```{r}
 x1 <- 8
 y1 <- 1
-
 x2 <- 10
 y2 <- 2
 
 distancia <- sqrt((x1 - x2)^2 + (y1 - y2)^2)
-
 distancia
 ```
-
-**Interpretación del resultado.**  
-Entre menor sea la distancia, más parecidas son las observaciones en las variables consideradas.
 
 ## Estandarización de variables
 
 Como k-NN depende de distancias, las variables deben estar en escalas comparables.
 
 $$
-z_{ij}
-=
-\frac{x_{ij} - \bar{x}_j}{s_j}
+z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j}
 $$
 
-## Algoritmo k-NN
-
-```text
-Algoritmo: k vecinos más cercanos
-
-Entrada:
-  - Matriz de entrenamiento X
-  - Clases de entrenamiento Y
-  - Nueva observación x_0
-  - Número de vecinos k
-
-Proceso:
-  1. Estandarizar las variables predictoras.
-  2. Calcular distancias.
-  3. Ordenar distancias.
-  4. Seleccionar los k vecinos más cercanos.
-  5. Asignar la clase más frecuente.
-
-Salida:
-  - Clase predicha
-```
-
-## Cargar paquetes y datos
+## Cargar datos
 
 ```{r}
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(class)
-library(tidyr)
-
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 file.exists(ruta_atus_ml)
 ```
@@ -159,7 +108,6 @@ if (file.exists(ruta_atus_ml)) {
 if (!is.null(atus_ml)) {
   set.seed(123)
   tamano_muestra <- min(12000, nrow(atus_ml))
-
   atus_knn_base <- atus_ml |>
     sample_n(tamano_muestra)
 
@@ -189,9 +137,6 @@ if (exists("atus_knn_base")) {
 }
 ```
 
-**Interpretación del resultado.**  
-La muestra mantiene una clase mayoritaria: “Solo daños”. Por eso evaluaremos sensibilidad y especificidad, no solo exactitud.
-
 ## Crear variables dummy
 
 ```{r}
@@ -220,7 +165,6 @@ if (exists("matriz_predictoras") && exists("y")) {
 
   x_entrenamiento <- matriz_predictoras[indices_entrenamiento, ]
   x_prueba <- matriz_predictoras[-indices_entrenamiento, ]
-
   y_entrenamiento <- y[indices_entrenamiento]
   y_prueba <- y[-indices_entrenamiento]
 
@@ -279,7 +223,6 @@ if (exists("pred_knn_5")) {
 calcular_metricas <- function(real, predicho) {
   real <- factor(real, levels = c("Con víctimas", "Solo daños"))
   predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
-
   matriz <- table(Real = real, Predicho = predicho)
 
   VP <- matriz["Con víctimas", "Con víctimas"]
@@ -337,20 +280,20 @@ if (exists("resultados_knn")) {
       values_to = "valor"
     )
 
-  ggplot(resultados_largos, aes(x = k, y = valor, group = metrica)) +
-    geom_line() +
+  ggplot(resultados_largos, aes(x = k, y = valor, color = metrica, group = metrica)) +
+    geom_line(linewidth = 1) +
     geom_point(size = 3) +
     scale_x_continuous(breaks = valores_k) +
     labs(
       title = "Comparación de métricas para distintos valores de k",
+      subtitle = "Exactitud, sensibilidad y especificidad",
       x = "Valor de k",
-      y = "Valor de la métrica"
-    )
+      y = "Valor de la métrica",
+      color = "Métrica"
+    ) +
+    tema_libro()
 }
 ```
-
-**Interpretación del resultado.**  
-Cambiar $k$ modifica el equilibrio entre sensibilidad, especificidad y exactitud. No existe un valor universalmente mejor; debe elegirse según el objetivo del problema.
 
 ## Comparación conceptual con regresión logística
 
@@ -364,4 +307,4 @@ Cambiar $k$ modifica el equilibrio entre sensibilidad, especificidad y exactitud
 
 ## Conclusión
 
-k-NN es un método intuitivo y útil para introducir clasificación basada en similitud. Su desempeño depende del valor de $k$, del escalamiento de las variables y de la calidad de las variables predictoras.
+k-NN es un método intuitivo y útil para introducir clasificación basada en similitud. Su desempeño depende del valor de \(k\), del escalamiento de las variables y de la calidad de las variables predictoras.

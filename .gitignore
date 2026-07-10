@@ -1,3 +1,10 @@
 /.quarto/
 **/*.quarto_ipynb
 .Rproj.user
+datos/*.csv
+datos/*.zip
+datos/*.xlsx
+pdf_temp/
+pdf_build/
+*.RData
+*.rds

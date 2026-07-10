@@ -1,21 +1,5 @@
 # Preparación de datos reales
 
-```{r}
-#| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE,
-  dev = "png",
-  dpi = 120,
-  fig.width = 7,
-  fig.height = 4.5,
-  fig.align = "center",
-  out.width = "90%"
-)
-```
-
-
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.
@@ -30,70 +14,39 @@ Llamaremos **datos crudos** a la base tal como se obtiene de la fuente original.
 
 ## Representación matemática de una base preparada
 
-Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras $X$ y una variable respuesta $Y$.
+Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras \(X\) y una variable respuesta \(Y\).
 
-$$
-X =
-\left[
-\begin{array}{cccc}
-x_{11} & x_{12} & \cdots & x_{1p} \\
-x_{21} & x_{22} & \cdots & x_{2p} \\
-\vdots & \vdots & \ddots & \vdots \\
-x_{n1} & x_{n2} & \cdots & x_{np}
-\end{array}
-\right]
-$$
+En nuestro caso, \(Y\) representa la variable `accidente_con_victimas`.
 
-$$
-Y =
-\left[
-\begin{array}{c}
-y_1 \\
-y_2 \\
-\vdots \\
-y_n
-\end{array}
-\right]
-$$
-
-En nuestro caso, $Y$ representa la variable `accidente_con_victimas`.
-
-$$
-Y_i =
-\left\{
-\begin{array}{ll}
-1, & \text{si el accidente tiene víctimas} \\
-0, & \text{si el accidente es de solo daños}
-\end{array}
-\right.
-$$
+```text
+Y_i = 1 si el accidente tiene víctimas.
+Y_i = 0 si el accidente es de solo daños.
+```
 
 ## Algoritmo general de preparación de datos
 
 ```text
-Algoritmo: Preparación de datos para aprendizaje automático
-
 Entrada:
-  - Base de datos cruda
-  - Diccionario de variables
-  - Pregunta de predicción
+- Base de datos cruda.
+- Diccionario de variables.
+- Pregunta de predicción.
 
 Proceso:
-  1. Leer la base de datos.
-  2. Revisar dimensiones, nombres y tipos de variables.
-  3. Seleccionar variables relevantes.
-  4. Identificar la variable respuesta.
-  5. Transformar variables cuando sea necesario.
-  6. Revisar datos faltantes.
-  7. Guardar una base preparada.
+1. Leer la base de datos.
+2. Revisar dimensiones, nombres y tipos de variables.
+3. Seleccionar variables relevantes.
+4. Identificar la variable respuesta.
+5. Transformar variables cuando sea necesario.
+6. Revisar datos faltantes.
+7. Guardar una base preparada.
 
 Salida:
-  - Base limpia y lista para análisis exploratorio y modelado
+- Base limpia y lista para análisis exploratorio y modelado.
 ```
 
 ## Conjunto de datos de trabajo: ATUS
 
-Trabajaremos con **Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas**, conocido como ATUS, publicado por INEGI.
+Trabajaremos con **Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas**, conocido como **ATUS**, publicado por INEGI.
 
 La pregunta práctica será:
 
@@ -101,19 +54,23 @@ La pregunta práctica será:
 
 ## Crear la carpeta de datos
 
-Dentro de la carpeta del libro crea una carpeta llamada `datos`. El archivo de datos debe llamarse `datos/atus_2024.csv`.
+Dentro de la carpeta del libro crea una carpeta llamada `datos`. El archivo de datos debe llamarse:
+
+```text
+datos/atus_2024.csv
+```
 
 ## Cargar paquetes
 
 ```{r}
+#| message: false
+#| warning: false
 library(readr)
 library(dplyr)
 library(ggplot2)
 library(stringr)
+source("util_graficas.R")
 ```
-
-**Explicación del código.**  
-`readr` permite leer archivos CSV, `dplyr` permite transformar tablas, `ggplot2` permite graficar y `stringr` facilita trabajar con texto.
 
 ## Leer el archivo CSV
 
@@ -136,9 +93,6 @@ if (file.exists(ruta_atus)) {
 }
 ```
 
-**Interpretación del resultado.**  
-Si aparece el mensaje de carga correcta, se creó el objeto `atus` y podemos continuar.
-
 ## Primer vistazo a los datos
 
 ```{r}
@@ -153,15 +107,6 @@ if (!is.null(atus)) {
 }
 ```
 
-```{r}
-if (!is.null(atus)) {
-  names(atus)
-}
-```
-
-**Interpretación del resultado.**  
-Este paso permite confirmar que la base fue cargada correctamente y que contiene las variables necesarias.
-
 ## Estandarizar nombres de variables
 
 ```{r}
@@ -170,9 +115,6 @@ if (!is.null(atus)) {
   names(atus)
 }
 ```
-
-**Explicación del código.**  
-`toupper()` convierte los nombres de las columnas a mayúsculas. Esto ayuda a evitar errores por diferencias entre mayúsculas y minúsculas.
 
 ## Variables de interés
 
@@ -193,39 +135,32 @@ if (!is.null(atus)) {
 if (!is.null(atus)) {
   atus_base <- atus |>
     select(all_of(variables_existentes))
-
   head(atus_base)
 }
 ```
-
-**Interpretación del resultado.**  
-La base queda más manejable y enfocada en el problema de clasificación.
 
 ## Diccionario inicial de variables
 
 | Variable | Descripción didáctica |
 |---|---|
-| `ANIO` | Año del accidente |
-| `MES` | Mes del accidente |
-| `ID_ENTIDAD` | Clave de la entidad federativa |
-| `ID_MUNICIPIO` | Clave del municipio |
-| `ID_HORA` | Hora del accidente |
-| `ID_DIA` | Día del mes |
-| `DIASEMANA` | Día de la semana |
-| `TIPACCID` | Tipo de accidente |
-| `CAUSAACCI` | Causa presunta del accidente |
-| `CLASACC` | Clase del accidente |
+| ANIO | Año del accidente |
+| MES | Mes del accidente |
+| ID_ENTIDAD | Clave de la entidad federativa |
+| ID_MUNICIPIO | Clave del municipio |
+| ID_HORA | Hora del accidente |
+| ID_DIA | Día del mes |
+| DIASEMANA | Día de la semana |
+| TIPACCID | Tipo de accidente |
+| CAUSAACCI | Causa presunta del accidente |
+| CLASACC | Clase del accidente |
 
-## Revisión de la variable `CLASACC`
+## Revisión de la variable CLASACC
 
 ```{r}
 if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
   table(atus_base$CLASACC, useNA = "ifany")
 }
 ```
-
-**Interpretación del resultado.**  
-`CLASACC` distingue accidentes fatales, no fatales y de solo daños. A partir de esta variable construiremos una respuesta binaria.
 
 ## Crear una variable respuesta
 
@@ -253,25 +188,12 @@ if (exists("atus_modelo")) {
 }
 ```
 
-**Interpretación del resultado.**  
-La tabla muestra cuántos registros quedaron en cada clase. Esta será la variable respuesta del problema de clasificación.
-
-## Eliminar registros sin variable respuesta
-
-```{r}
-if (exists("atus_modelo")) {
-  atus_modelo <- atus_modelo |>
-    filter(!is.na(accidente_con_victimas))
-
-  table(atus_modelo$accidente_con_victimas)
-}
-```
-
 ## Convertir variables categóricas
 
 ```{r}
 if (exists("atus_modelo")) {
   atus_modelo <- atus_modelo |>
+    filter(!is.na(accidente_con_victimas)) |>
     mutate(
       ID_ENTIDAD = as.factor(ID_ENTIDAD),
       ID_MUNICIPIO = as.factor(ID_MUNICIPIO),
@@ -281,25 +203,15 @@ if (exists("atus_modelo")) {
       CAUSAACCI = as.factor(CAUSAACCI),
       accidente_con_victimas = as.factor(accidente_con_victimas)
     )
-
   str(atus_modelo)
 }
 ```
-
-**Interpretación del resultado.**  
-Variables como entidad o municipio son claves de identificación; no deben interpretarse como cantidades numéricas.
 
 ## Revisión de datos faltantes
 
 ```{r}
 if (exists("atus_modelo")) {
   colSums(is.na(atus_modelo))
-}
-```
-
-```{r}
-if (exists("atus_modelo")) {
-  round(100 * colSums(is.na(atus_modelo)) / nrow(atus_modelo), 2)
 }
 ```
 
@@ -315,7 +227,8 @@ if (exists("atus_modelo")) {
       DIASEMANA,
       TIPACCID,
       CAUSAACCI
-    )
+    ) |>
+    na.omit()
 
   head(atus_ml)
 }
@@ -323,7 +236,6 @@ if (exists("atus_modelo")) {
 
 ```{r}
 if (exists("atus_ml")) {
-  atus_ml <- na.omit(atus_ml)
   data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))
 }
 ```
@@ -335,9 +247,6 @@ if (exists("atus_ml")) {
   write_csv(atus_ml, "datos/atus_ml_preparado.csv")
 }
 ```
-
-**Interpretación del resultado.**  
-El archivo `atus_ml_preparado.csv` evita repetir todo el proceso de limpieza en los siguientes capítulos.
 
 ## Resumen del capítulo
 

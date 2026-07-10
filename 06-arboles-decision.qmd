@@ -2,38 +2,19 @@
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de:
-
-- Explicar la idea básica de un árbol de decisión.
-- Interpretar reglas de clasificación tipo “si-entonces”.
-- Entrenar un árbol de decisión en R usando una base real.
-- Generar predicciones sobre un conjunto de prueba.
-- Construir una matriz de confusión.
-- Calcular exactitud, sensibilidad y especificidad.
-- Comparar conceptualmente árboles de decisión con regresión logística y k-NN.
+Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, interpretar reglas tipo si-entonces, entrenar un árbol en R y evaluar su desempeño.
 
 ## Introducción
 
 Los árboles de decisión son modelos de aprendizaje supervisado que clasifican observaciones mediante una secuencia de preguntas.
 
-En este capítulo continuaremos con la base de accidentes de tránsito preparada en los capítulos anteriores. La variable que queremos predecir es:
-
-`accidente_con_victimas`
-
-Esta variable tiene dos clases:
-
-- `Con víctimas`
-- `Solo daños`
-
-La idea central es construir reglas de decisión que permitan clasificar un accidente a partir de variables como mes, hora, día de la semana, tipo de accidente y causa presunta.
+En este capítulo continuaremos con la base de accidentes de tránsito preparada en los capítulos anteriores. La variable que queremos predecir es `accidente_con_victimas`.
 
 ## Idea intuitiva
 
-Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno contiene una pregunta. Cada rama representa una posible respuesta. Cada hoja contiene una predicción.
+Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno contiene una pregunta, cada rama representa una posible respuesta y cada hoja contiene una predicción.
 
-Por ejemplo, un árbol podría formular preguntas como:
-
-```{r ejemplo-preguntas}
+```{r}
 reglas_ejemplo <- data.frame(
   pregunta = c(
     "¿El accidente fue con peatón?",
@@ -50,14 +31,7 @@ reglas_ejemplo <- data.frame(
 reglas_ejemplo
 ```
 
-**Interpretación del resultado.**  
-La tabla muestra ejemplos de preguntas que un árbol de decisión podría utilizar para separar accidentes con víctimas de accidentes de solo daños.
-
 ## Reglas tipo si-entonces
-
-Una ventaja de los árboles de decisión es que pueden expresarse como reglas sencillas.
-
-Por ejemplo:
 
 ```text
 Si el tipo de accidente es colisión con peatón,
@@ -67,8 +41,6 @@ Si el accidente es una colisión con objeto fijo,
 entonces el árbol revisa otras variables como la hora o la causa presunta.
 ```
 
-Estas reglas hacen que los árboles sean útiles en contextos educativos, porque el estudiante puede seguir el razonamiento del modelo paso a paso.
-
 ## Fundamento matemático
 
 Un árbol de decisión busca dividir los datos en grupos más homogéneos. Para clasificación, una medida común de impureza es el índice de Gini.
@@ -77,21 +49,17 @@ $$
 Gini = 1 - \sum_{k=1}^{K} p_k^2
 $$
 
-donde `p_k` representa la proporción de observaciones de la clase `k` dentro de un nodo.
-
-En clasificación binaria, si un nodo contiene dos clases, el índice de Gini puede escribirse como:
+En clasificación binaria:
 
 $$
 Gini = 1 - p_1^2 - p_2^2
 $$
 
-Un valor pequeño indica que el nodo es más puro. Un valor mayor indica que las clases están más mezcladas.
+Un valor pequeño indica que el nodo es más puro.
 
 ## Ejemplo sencillo del índice de Gini
 
-Supongamos que un nodo contiene 80 accidentes de solo daños y 20 accidentes con víctimas.
-
-```{r ejemplo-gini}
+```{r}
 p_solo_danios <- 80 / 100
 p_con_victimas <- 20 / 100
 
@@ -99,14 +67,9 @@ gini <- 1 - p_solo_danios^2 - p_con_victimas^2
 gini
 ```
 
-**Interpretación del resultado.**  
-El índice de Gini mide qué tan mezcladas están las clases dentro de un nodo. Si todas las observaciones fueran de una sola clase, el valor sería cero.
-
 ## Algoritmo general
 
 ```text
-Algoritmo: Árbol de decisión para clasificación
-
 Entrada:
 - Base de datos con variables predictoras.
 - Variable respuesta categórica.
@@ -118,26 +81,24 @@ Proceso:
 4. Detener el crecimiento del árbol mediante criterios de control.
 5. Asignar una clase a cada hoja.
 6. Evaluar el modelo con datos de prueba.
-
-Salida:
-- Árbol entrenado.
-- Reglas de decisión.
-- Predicciones.
-- Métricas de evaluación.
 ```
 
 ## Cargar paquetes y datos
 
-```{r cargar-paquetes}
+```{r}
+#| message: false
+#| warning: false
 library(readr)
 library(dplyr)
 library(rpart)
-```
+library(ggplot2)
+source("util_graficas.R")
 
-```{r cargar-datos}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 file.exists(ruta_atus_ml)
+```
 
+```{r}
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -147,14 +108,9 @@ if (file.exists(ruta_atus_ml)) {
 }
 ```
 
-**Interpretación del resultado.**  
-Si aparece el mensaje de carga correcta, podemos continuar con el entrenamiento del árbol de decisión.
-
 ## Usar la base completa
 
-En este capítulo usaremos la base completa. Para evitar que el árbol crezca demasiado, controlaremos su complejidad durante el entrenamiento.
-
-```{r base-completa}
+```{r}
 if (!is.null(atus_ml)) {
   atus_arbol_base <- atus_ml
   data.frame(
@@ -164,12 +120,9 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-**Interpretación del resultado.**  
-Se conserva toda la base preparada. El control del tamaño del árbol se realizará mediante parámetros del modelo, no reduciendo el número de registros.
-
 ## Preparar variables
 
-```{r preparar-variables}
+```{r}
 if (exists("atus_arbol_base")) {
   atus_arbol_base <- atus_arbol_base |>
     mutate(
@@ -189,21 +142,11 @@ if (exists("atus_arbol_base")) {
 }
 ```
 
-```{r proporcion-clases}
-if (exists("atus_arbol_base")) {
-  round(100 * prop.table(table(atus_arbol_base$accidente_con_victimas)), 2)
-}
-```
-
-**Interpretación del resultado.**  
-La base está desbalanceada: la clase `Solo daños` es mayoritaria. Por eso no conviene evaluar el modelo solo con exactitud.
-
 ## División en entrenamiento y prueba
 
-```{r division-entrenamiento-prueba}
+```{r}
 if (exists("atus_arbol_base")) {
   set.seed(123)
-
   n <- nrow(atus_arbol_base)
   indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
 
@@ -221,14 +164,9 @@ if (exists("atus_arbol_base")) {
 }
 ```
 
-**Interpretación del resultado.**  
-El conjunto de entrenamiento se usa para construir el árbol. El conjunto de prueba se usa para evaluar el desempeño con datos no utilizados durante el entrenamiento.
-
 ## Ajustar el árbol de decisión
 
-El árbol se ajusta con toda la base de entrenamiento, pero se limita su crecimiento para evitar sobreajuste y para facilitar la generación del libro en HTML y PDF.
-
-```{r ajustar-arbol}
+```{r}
 if (exists("entrenamiento")) {
   modelo_arbol <- rpart(
     accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
@@ -244,23 +182,17 @@ if (exists("entrenamiento")) {
 }
 ```
 
-**Interpretación del resultado.**  
-El modelo queda entrenado. Los parámetros de control impiden que el árbol crezca de forma excesiva.
-
 ## Tabla de complejidad
 
-```{r tabla-complejidad}
+```{r}
 if (exists("modelo_arbol")) {
   printcp(modelo_arbol)
 }
 ```
 
-**Interpretación del resultado.**  
-La tabla de complejidad muestra cómo cambia el error del árbol conforme se permiten más divisiones.
-
 ## Importancia de variables
 
-```{r importancia-variables}
+```{r}
 if (exists("modelo_arbol")) {
   importancia <- modelo_arbol$variable.importance
 
@@ -270,28 +202,39 @@ if (exists("modelo_arbol")) {
       importancia = as.numeric(importancia),
       row.names = NULL
     )
-
     importancia_df <- importancia_df[order(-importancia_df$importancia), ]
     importancia_df
   }
 }
 ```
 
-**Interpretación del resultado.**  
-Las variables con mayor importancia son las que más contribuyen a separar las clases dentro del árbol.
+```{r}
+if (exists("importancia_df")) {
+  ggplot(importancia_df, aes(x = reorder(variable, importancia), y = importancia)) +
+    geom_col(fill = col_azul, width = 0.75) +
+    coord_flip() +
+    labs(
+      title = "Importancia de variables en el árbol de decisión",
+      subtitle = "Variables más útiles para separar clases",
+      x = "Variable",
+      y = "Importancia"
+    ) +
+    tema_libro()
+}
+```
 
 ## Gráfica opcional del árbol
 
-La gráfica completa del árbol puede ser pesada al generar PDF. Por eso se deja como código opcional. El lector puede ejecutarla manualmente en RStudio.
+La gráfica completa del árbol puede ser pesada al generar PDF. Por eso se deja como código opcional para ejecutar manualmente en RStudio.
 
-```{r grafica-arbol-opcional, eval=FALSE}
+```{r eval=FALSE}
 plot(modelo_arbol, uniform = TRUE, margin = 0.1)
 text(modelo_arbol, use.n = TRUE, cex = 0.7)
 ```
 
 ## Predicción sobre el conjunto de prueba
 
-```{r prediccion-arbol}
+```{r}
 if (exists("modelo_arbol") && exists("prueba")) {
   pred_arbol <- predict(
     modelo_arbol,
@@ -303,12 +246,9 @@ if (exists("modelo_arbol") && exists("prueba")) {
 }
 ```
 
-**Interpretación del resultado.**  
-Cada valor predicho corresponde a la clase que el árbol asigna a una observación del conjunto de prueba.
-
 ## Matriz de confusión
 
-```{r matriz-confusion-arbol}
+```{r}
 if (exists("pred_arbol")) {
   pred_arbol <- factor(pred_arbol, levels = c("Con víctimas", "Solo daños"))
   real_arbol <- factor(prueba$accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
@@ -322,12 +262,9 @@ if (exists("pred_arbol")) {
 }
 ```
 
-**Interpretación del resultado.**  
-La diagonal principal contiene los aciertos. Los valores fuera de la diagonal representan errores de clasificación.
-
 ## Métricas de evaluación
 
-```{r funcion-metricas-arbol}
+```{r}
 calcular_metricas_arbol <- function(real, predicho) {
   real <- factor(real, levels = c("Con víctimas", "Solo daños"))
   predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
@@ -345,21 +282,16 @@ calcular_metricas_arbol <- function(real, predicho) {
     especificidad = VN / (VN + FP)
   )
 }
-```
 
-```{r metricas-arbol}
 if (exists("pred_arbol")) {
   metricas_arbol <- calcular_metricas_arbol(real_arbol, pred_arbol)
   metricas_arbol
 }
 ```
 
-**Interpretación del resultado.**  
-La exactitud mide la proporción total de clasificaciones correctas. La sensibilidad mide la capacidad para detectar accidentes con víctimas. La especificidad mide la capacidad para detectar accidentes de solo daños.
-
 ## Probabilidades predichas
 
-```{r probabilidades-arbol}
+```{r}
 if (exists("modelo_arbol") && exists("prueba")) {
   probabilidades_arbol <- predict(
     modelo_arbol,
@@ -371,14 +303,9 @@ if (exists("modelo_arbol") && exists("prueba")) {
 }
 ```
 
-**Interpretación del resultado.**  
-El árbol también puede producir probabilidades estimadas de pertenencia a cada clase.
-
 ## Resumen de nodos del árbol
 
-Para evitar salidas demasiado largas, mostramos solo los primeros nodos del árbol.
-
-```{r resumen-nodos}
+```{r}
 if (exists("modelo_arbol")) {
   frame_arbol <- modelo_arbol$frame
   resumen_nodos <- data.frame(
@@ -394,9 +321,6 @@ if (exists("modelo_arbol")) {
 }
 ```
 
-**Interpretación del resultado.**  
-La tabla muestra algunos nodos del árbol. Los nodos marcados como `<leaf>` son hojas, es decir, puntos finales donde se asigna una clase.
-
 ## Comparación conceptual con otros métodos
 
 | Aspecto | Regresión logística | k-NN | Árbol de decisión |
@@ -408,26 +332,6 @@ La tabla muestra algunos nodos del árbol. Los nodos marcados como `<leaf>` son 
 | Produce reglas explícitas | Parcialmente | No | Sí |
 | Maneja no linealidad | Limitado | Sí | Sí |
 
-## Ventajas y desventajas
-
-### Ventajas
-
-- Son fáciles de explicar.
-- Generan reglas claras.
-- No requieren estandarizar variables.
-- Pueden manejar relaciones no lineales.
-- Funcionan con variables numéricas y categóricas.
-
-### Desventajas
-
-- Pueden sobreajustarse si crecen demasiado.
-- Pequeños cambios en los datos pueden modificar la estructura del árbol.
-- Un solo árbol puede tener menor desempeño que métodos de ensamble como Random Forest.
-
 ## Conclusión
 
-Los árboles de decisión son modelos intuitivos, visuales e interpretables. Permiten clasificar observaciones mediante reglas tipo si-entonces.
-
-En este capítulo usamos un árbol de decisión para clasificar accidentes de tránsito según la presencia de víctimas. También calculamos una matriz de confusión y métricas de evaluación.
-
-Este capítulo prepara el camino para estudiar modelos más potentes basados en muchos árboles, como Random Forest.
+Los árboles de decisión son modelos intuitivos, visuales e interpretables. Permiten clasificar observaciones mediante reglas tipo si-entonces. Este capítulo prepara el camino para estudiar modelos más potentes basados en muchos árboles, como Random Forest.
