@@ -9,13 +9,7 @@ book:
   subtitle: "Un enfoque práctico con datos abiertos reales"
   author: "MI Jesús Gilberto Rodríguez Escobedo"
   date: today
-  site-url: "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
-  repo-url: "https://github.com/gilbertorodriguez59/libro-machine-learning-r"
   downloads: [pdf]
-  page-footer:
-    left: "© MI Jesús Gilberto Rodríguez Escobedo"
-    center: "Aprendizaje y Clasificación Automática con R"
-    right: "Licencia CC BY-NC-SA 4.0"
   chapters:
     - index.qmd
     - 00-licencia-y-citacion.qmd
@@ -25,6 +19,9 @@ book:
     - 04-regresion-logistica.qmd
     - 05-knn.qmd
     - 06-arboles-decision.qmd
+  page-footer:
+    left: "Aprendizaje y Clasificación Automática con R"
+    right: "MI Jesús Gilberto Rodríguez Escobedo"
 
 execute:
   echo: true
@@ -35,16 +32,13 @@ execute:
 
 format:
   html:
-    theme:
-      - cosmo
-      - styles.css
+    theme: cosmo
+    css: styles.css
     toc: true
     number-sections: true
     code-fold: true
     code-tools: true
     html-math-method: mathjax
-    smooth-scroll: true
-    link-external-newwindow: true
 
   pdf:
     documentclass: book
@@ -59,16 +53,18 @@ format:
     pdf-engine: lualatex
     include-in-header:
       text: |
+        \renewcommand{\contentsname}{Índice general}
+        \renewcommand{\chaptername}{Capítulo}
         \usepackage{xcolor}
         \definecolor{azulLibro}{HTML}{0B3D91}
         \definecolor{turquesaLibro}{HTML}{00A6A6}
-        \renewcommand{\contentsname}{Índice general}
-        \renewcommand{\chaptername}{Capítulo}
-        \usepackage{fancyhdr}
-        \pagestyle{fancy}
-        \fancyhf{}
-        \fancyhead[LE,RO]{\textcolor{azulLibro}{\thepage}}
-        \fancyhead[LO]{\textcolor{azulLibro}{Aprendizaje y Clasificación Automática con R}}
-        \fancyhead[RE]{\textcolor{azulLibro}{MI Jesús Gilberto Rodríguez Escobedo}}
-        \renewcommand{\headrulewidth}{0.4pt}
-        \renewcommand{\headrule}{\hbox to\headwidth{\color{turquesaLibro}\leaders\hrule height \headrulewidth\hfill}}
+        \usepackage{titlesec}
+        \titleformat{\chapter}[display]
+          {\normalfont\huge\bfseries\color{azulLibro}}
+          {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+        \titleformat{\section}
+          {\normalfont\Large\bfseries\color{azulLibro}}
+          {\thesection}{1em}{}
+        \titleformat{\subsection}
+          {\normalfont\large\bfseries\color{turquesaLibro}}
+          {\thesubsection}{1em}{}
