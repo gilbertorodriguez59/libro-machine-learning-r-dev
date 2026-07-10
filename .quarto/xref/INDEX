@@ -1,29 +1,29 @@
 {
-  "index.qmd": {
-    "index.html": "390a0ed1"
-  },
   "01-introduccion.qmd": {
-    "01-introduccion.html": "9a7483a6"
+    "01-introduccion.html": "f15f1b3b"
   },
-  "02-preparacion-datos.qmd": {
-    "02-preparacion-datos.html": "5683a4d4"
-  },
-  "03-analisis-exploratorio.qmd": {
-    "03-analisis-exploratorio.html": "3b61342e"
-  },
-  "04-regresion-logistica.qmd": {
-    "04-regresion-logistica.html": "6d3337da"
-  },
-  "05-knn.qmd": {
-    "05-knn.html": "2d07b746"
-  },
-  "06-arboles-decision.qmd": {
-    "06-arboles-decision.html": "f29d2d1d"
+  "index.qmd": {
+    "index.html": "923efeab"
   },
   "00-licencia-y-citacion.qmd": {
-    "00-licencia-y-citacion.html": "427ee3be"
+    "00-licencia-y-citacion.html": "16b89a88"
+  },
+  "02-preparacion-datos.qmd": {
+    "02-preparacion-datos.html": "89a7ad2a"
+  },
+  "03-analisis-exploratorio.qmd": {
+    "03-analisis-exploratorio.html": "9a54bc23"
+  },
+  "04-regresion-logistica.qmd": {
+    "04-regresion-logistica.html": "8c9e5b2c"
+  },
+  "05-knn.qmd": {
+    "05-knn.html": "e5ba6e09"
+  },
+  "06-arboles-decision.qmd": {
+    "06-arboles-decision.html": "b012047b"
   },
   "07-random-forest.qmd": {
-    "07-random-forest.html": "75840860"
+    "07-random-forest.html": "fe53e491"
   }
 }

@@ -1224,7 +1224,7 @@
     "href": "07-random-forest.html#cargar-paquetes-y-datos",
     "title": "8  Random Forest para clasificación",
     "section": "8.7 Cargar paquetes y datos",
-    "text": "8.7 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ranger)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nfile.exists(ruta_atus_ml)\n\n\n[1] FALSE\n\n\n\n\nCódigo\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\"",
+    "text": "8.7 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ranger)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nfile.exists(ruta_atus_ml)\n\n\n[1] TRUE\n\n\n\n\nCódigo\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1234,7 +1234,7 @@
     "href": "07-random-forest.html#selección-de-una-muestra-de-trabajo",
     "title": "8  Random Forest para clasificación",
     "section": "8.8 Selección de una muestra de trabajo",
-    "text": "8.8 Selección de una muestra de trabajo\nRandom Forest puede entrenarse con bases grandes, pero para que el libro sea reproducible y rápido de generar en HTML y PDF, trabajaremos con una muestra amplia y controlada.\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  set.seed(123)\n  tamano_muestra &lt;- min(30000, nrow(atus_ml))\n  atus_rf_base &lt;- atus_ml |&gt;\n    sample_n(tamano_muestra)\n\n  data.frame(\n    filas = nrow(atus_rf_base),\n    columnas = ncol(atus_rf_base)\n  )\n}",
+    "text": "8.8 Selección de una muestra de trabajo\nRandom Forest puede entrenarse con bases grandes, pero para que el libro sea reproducible y rápido de generar en HTML y PDF, trabajaremos con una muestra amplia y controlada.\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  set.seed(123)\n  tamano_muestra &lt;- min(30000, nrow(atus_ml))\n  atus_rf_base &lt;- atus_ml |&gt;\n    sample_n(tamano_muestra)\n\n  data.frame(\n    filas = nrow(atus_rf_base),\n    columnas = ncol(atus_rf_base)\n  )\n}\n\n\n  filas columnas\n1 30000        6",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1244,7 +1244,7 @@
     "href": "07-random-forest.html#preparar-variables",
     "title": "8  Random Forest para clasificación",
     "section": "8.9 Preparar variables",
-    "text": "8.9 Preparar variables\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  atus_rf_base &lt;- atus_rf_base |&gt;\n    mutate(\n      accidente_con_victimas = factor(\n        accidente_con_victimas,\n        levels = c(\"Con víctimas\", \"Solo daños\")\n      ),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n\n  str(atus_rf_base)\n}",
+    "text": "8.9 Preparar variables\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  atus_rf_base &lt;- atus_rf_base |&gt;\n    mutate(\n      accidente_con_victimas = factor(\n        accidente_con_victimas,\n        levels = c(\"Con víctimas\", \"Solo daños\")\n      ),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n\n  str(atus_rf_base)\n}\n\n\ntibble [30,000 × 6] (S3: tbl_df/tbl/data.frame)\n $ accidente_con_victimas: Factor w/ 2 levels \"Con víctimas\",..: 2 1 2 2 2 2 2 2 1 2 ...\n $ MES                   : Factor w/ 12 levels \"01\",\"02\",\"03\",..: 8 8 2 6 3 9 12 2 5 3 ...\n $ ID_HORA               : num [1:30000] 17 12 19 15 17 18 4 23 20 19 ...\n $ DIASEMANA             : Factor w/ 7 levels \"Domingo\",\"Jueves\",..: 4 4 1 6 2 1 1 5 1 6 ...\n $ TIPACCID              : Factor w/ 13 levels \"Caída de pasajero\",..: 9 8 9 6 6 7 9 6 4 9 ...\n $ CAUSAACCI             : Factor w/ 6 levels \"Certificado cero\",..: 2 2 2 2 2 2 2 2 2 2 ...",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1254,7 +1254,7 @@
     "href": "07-random-forest.html#distribución-de-la-variable-respuesta",
     "title": "8  Random Forest para clasificación",
     "section": "8.10 Distribución de la variable respuesta",
-    "text": "8.10 Distribución de la variable respuesta\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  tabla_clases_rf &lt;- table(atus_rf_base$accidente_con_victimas)\n  tabla_clases_rf\n}\n\n\n\n\nCódigo\nif (exists(\"tabla_clases_rf\")) {\n  round(100 * prop.table(tabla_clases_rf), 2)\n}\n\n\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  ggplot(atus_rf_base, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +\n    geom_bar(width = 0.7) +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Distribución de la variable respuesta\",\n      subtitle = \"Muestra de trabajo para Random Forest\",\n      x = \"Clase\",\n      y = \"Número de accidentes\",\n      fill = \"Clase\"\n    ) +\n    tema_libro() +\n    theme(legend.position = \"none\")\n}",
+    "text": "8.10 Distribución de la variable respuesta\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  tabla_clases_rf &lt;- table(atus_rf_base$accidente_con_victimas)\n  tabla_clases_rf\n}\n\n\n\nCon víctimas   Solo daños \n        5168        24832 \n\n\n\n\nCódigo\nif (exists(\"tabla_clases_rf\")) {\n  round(100 * prop.table(tabla_clases_rf), 2)\n}\n\n\n\nCon víctimas   Solo daños \n       17.23        82.77 \n\n\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  ggplot(atus_rf_base, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +\n    geom_bar(width = 0.7) +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Distribución de la variable respuesta\",\n      subtitle = \"Muestra de trabajo para Random Forest\",\n      x = \"Clase\",\n      y = \"Número de accidentes\",\n      fill = \"Clase\"\n    ) +\n    tema_libro() +\n    theme(legend.position = \"none\")\n}",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1264,7 +1264,7 @@
     "href": "07-random-forest.html#división-en-entrenamiento-y-prueba",
     "title": "8  Random Forest para clasificación",
     "section": "8.11 División en entrenamiento y prueba",
-    "text": "8.11 División en entrenamiento y prueba\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  set.seed(123)\n  n &lt;- nrow(atus_rf_base)\n  indices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\n\n  entrenamiento &lt;- atus_rf_base[indices_entrenamiento, ]\n  prueba &lt;- atus_rf_base[-indices_entrenamiento, ]\n\n  data.frame(\n    conjunto = c(\"Entrenamiento\", \"Prueba\"),\n    registros = c(nrow(entrenamiento), nrow(prueba)),\n    porcentaje = c(\n      round(100 * nrow(entrenamiento) / nrow(atus_rf_base), 2),\n      round(100 * nrow(prueba) / nrow(atus_rf_base), 2)\n    )\n  )\n}",
+    "text": "8.11 División en entrenamiento y prueba\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  set.seed(123)\n  n &lt;- nrow(atus_rf_base)\n  indices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\n\n  entrenamiento &lt;- atus_rf_base[indices_entrenamiento, ]\n  prueba &lt;- atus_rf_base[-indices_entrenamiento, ]\n\n  data.frame(\n    conjunto = c(\"Entrenamiento\", \"Prueba\"),\n    registros = c(nrow(entrenamiento), nrow(prueba)),\n    porcentaje = c(\n      round(100 * nrow(entrenamiento) / nrow(atus_rf_base), 2),\n      round(100 * nrow(prueba) / nrow(atus_rf_base), 2)\n    )\n  )\n}\n\n\n       conjunto registros porcentaje\n1 Entrenamiento     21000         70\n2        Prueba      9000         30",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1274,7 +1274,7 @@
     "href": "07-random-forest.html#ajustar-el-modelo-random-forest",
     "title": "8  Random Forest para clasificación",
     "section": "8.12 Ajustar el modelo Random Forest",
-    "text": "8.12 Ajustar el modelo Random Forest\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  set.seed(123)\n\n  modelo_rf &lt;- ranger(\n    formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    num.trees = 200,\n    mtry = 3,\n    min.node.size = 20,\n    importance = \"impurity\",\n    probability = TRUE,\n    classification = TRUE,\n    seed = 123\n  )\n}\n\n\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  modelo_rf\n}",
+    "text": "8.12 Ajustar el modelo Random Forest\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  set.seed(123)\n\n  modelo_rf &lt;- ranger(\n    formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    num.trees = 200,\n    mtry = 3,\n    min.node.size = 20,\n    importance = \"impurity\",\n    probability = TRUE,\n    classification = TRUE,\n    seed = 123\n  )\n}\n\n\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  modelo_rf\n}\n\n\nRanger result\n\nCall:\n ranger(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA +      TIPACCID + CAUSAACCI, data = entrenamiento, num.trees = 200,      mtry = 3, min.node.size = 20, importance = \"impurity\", probability = TRUE,      classification = TRUE, seed = 123) \n\nType:                             Probability estimation \nNumber of trees:                  200 \nSample size:                      21000 \nNumber of independent variables:  5 \nMtry:                             3 \nTarget node size:                 20 \nVariable importance mode:         impurity \nSplitrule:                        gini \nOOB prediction error (Brier s.):  0.1066668",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1284,7 +1284,7 @@
     "href": "07-random-forest.html#importancia-de-variables",
     "title": "8  Random Forest para clasificación",
     "section": "8.13 Importancia de variables",
-    "text": "8.13 Importancia de variables\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  importancia_rf &lt;- data.frame(\n    variable = names(modelo_rf$variable.importance),\n    importancia = as.numeric(modelo_rf$variable.importance)\n  ) |&gt;\n    arrange(desc(importancia))\n\n  importancia_rf\n}\n\n\n\n\nCódigo\nif (exists(\"importancia_rf\")) {\n  importancia_top &lt;- importancia_rf |&gt;\n    slice_head(n = 10)\n\n  ggplot(importancia_top, aes(x = reorder(variable, importancia), y = importancia)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    coord_flip() +\n    labs(\n      title = \"Importancia de variables en Random Forest\",\n      subtitle = \"Variables más influyentes en la clasificación\",\n      x = \"Variable\",\n      y = \"Importancia\"\n    ) +\n    tema_libro()\n}",
+    "text": "8.13 Importancia de variables\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  importancia_rf &lt;- data.frame(\n    variable = names(modelo_rf$variable.importance),\n    importancia = as.numeric(modelo_rf$variable.importance)\n  ) |&gt;\n    arrange(desc(importancia))\n\n  importancia_rf\n}\n\n\n   variable importancia\n1  TIPACCID   1608.8347\n2   ID_HORA    416.7870\n3       MES    324.9780\n4 DIASEMANA    234.4944\n5 CAUSAACCI    220.5923\n\n\n\n\nCódigo\nif (exists(\"importancia_rf\")) {\n  importancia_top &lt;- importancia_rf |&gt;\n    slice_head(n = 10)\n\n  ggplot(importancia_top, aes(x = reorder(variable, importancia), y = importancia)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    coord_flip() +\n    labs(\n      title = \"Importancia de variables en Random Forest\",\n      subtitle = \"Variables más influyentes en la clasificación\",\n      x = \"Variable\",\n      y = \"Importancia\"\n    ) +\n    tema_libro()\n}",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1294,7 +1294,7 @@
     "href": "07-random-forest.html#predicción-en-el-conjunto-de-prueba",
     "title": "8  Random Forest para clasificación",
     "section": "8.14 Predicción en el conjunto de prueba",
-    "text": "8.14 Predicción en el conjunto de prueba\n\n\nCódigo\nif (exists(\"modelo_rf\") && exists(\"prueba\")) {\n  predicciones_rf &lt;- predict(modelo_rf, data = prueba)\n\n  probabilidades_rf &lt;- predicciones_rf$predictions[, \"Con víctimas\"]\n\n  clases_rf &lt;- colnames(predicciones_rf$predictions)[\n    max.col(predicciones_rf$predictions, ties.method = \"first\")\n  ]\n\n  clases_rf &lt;- factor(clases_rf, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  head(data.frame(\n    real = prueba$accidente_con_victimas,\n    probabilidad_con_victimas = probabilidades_rf,\n    clase_predicha = clases_rf\n  ))\n}",
+    "text": "8.14 Predicción en el conjunto de prueba\n\n\nCódigo\nif (exists(\"modelo_rf\") && exists(\"prueba\")) {\n  predicciones_rf &lt;- predict(modelo_rf, data = prueba)\n\n  probabilidades_rf &lt;- predicciones_rf$predictions[, \"Con víctimas\"]\n\n  clases_rf &lt;- colnames(predicciones_rf$predictions)[\n    max.col(predicciones_rf$predictions, ties.method = \"first\")\n  ]\n\n  clases_rf &lt;- factor(clases_rf, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  head(data.frame(\n    real = prueba$accidente_con_victimas,\n    probabilidad_con_victimas = probabilidades_rf,\n    clase_predicha = clases_rf\n  ))\n}\n\n\n        real probabilidad_con_victimas clase_predicha\n1 Solo daños                0.04273607     Solo daños\n2 Solo daños                0.11542958     Solo daños\n3 Solo daños                0.44741621     Solo daños\n4 Solo daños                0.07628208     Solo daños\n5 Solo daños                0.07690148     Solo daños\n6 Solo daños                0.18326694     Solo daños",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1304,7 +1304,7 @@
     "href": "07-random-forest.html#matriz-de-confusión",
     "title": "8  Random Forest para clasificación",
     "section": "8.15 Matriz de confusión",
-    "text": "8.15 Matriz de confusión\n\n\nCódigo\nif (exists(\"clases_rf\")) {\n  real_rf &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz_confusion_rf &lt;- table(\n    Real = real_rf,\n    Predicho = clases_rf\n  )\n\n  matriz_confusion_rf\n}",
+    "text": "8.15 Matriz de confusión\n\n\nCódigo\nif (exists(\"clases_rf\")) {\n  real_rf &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz_confusion_rf &lt;- table(\n    Real = real_rf,\n    Predicho = clases_rf\n  )\n\n  matriz_confusion_rf\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          475        991\n  Solo daños            265       7269",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -1314,7 +1314,7 @@
     "href": "07-random-forest.html#métricas-de-evaluación",
     "title": "8  Random Forest para clasificación",
     "section": "8.16 Métricas de evaluación",
-    "text": "8.16 Métricas de evaluación\n\n\nCódigo\ncalcular_metricas_rf &lt;- function(real, predicho) {\n  real &lt;- factor(real, levels = c(\"Con víctimas\", \"Solo daños\"))\n  predicho &lt;- factor(predicho, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz[\"Solo daños\", \"Solo daños\"]\n\n  data.frame(\n    exactitud = (VP + VN) / (VP + FN + FP + VN),\n    sensibilidad = VP / (VP + FN),\n    especificidad = VN / (VN + FP)\n  )\n}\n\nif (exists(\"real_rf\") && exists(\"clases_rf\")) {\n  metricas_rf &lt;- calcular_metricas_rf(real_rf, clases_rf)\n  metricas_rf\n}",
+    "text": "8.16 Métricas de evaluación\n\n\nCódigo\ncalcular_metricas_rf &lt;- function(real, predicho) {\n  real &lt;- factor(real, levels = c(\"Con víctimas\", \"Solo daños\"))\n  predicho &lt;- factor(predicho, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz[\"Solo daños\", \"Solo daños\"]\n\n  data.frame(\n    exactitud = (VP + VN) / (VP + FN + FP + VN),\n    sensibilidad = VP / (VP + FN),\n    especificidad = VN / (VN + FP)\n  )\n}\n\nif (exists(\"real_rf\") && exists(\"clases_rf\")) {\n  metricas_rf &lt;- calcular_metricas_rf(real_rf, clases_rf)\n  metricas_rf\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8604444    0.3240109     0.9648261",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
