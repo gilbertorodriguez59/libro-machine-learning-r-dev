@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Preparación de datos reales – Aprendizaje y Clasificación Automática con R</title>
+<title>2&nbsp; Preparación de datos reales – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-preparacion-datos.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-preparacion-datos.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Presentación</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -164,43 +164,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -213,16 +213,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">3.2</span> Introducción</a></li>
-  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">3.3</span> Cargar paquetes</a></li>
-  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">3.4</span> Leer el archivo CSV</a></li>
-  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">3.5</span> Primer vistazo a los datos</a></li>
-  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">3.6</span> Variables de interés</a></li>
-  <li><a href="#crear-variable-respuesta" id="toc-crear-variable-respuesta" class="nav-link" data-scroll-target="#crear-variable-respuesta"><span class="header-section-number">3.7</span> Crear variable respuesta</a></li>
-  <li><a href="#preparar-variables-finales" id="toc-preparar-variables-finales" class="nav-link" data-scroll-target="#preparar-variables-finales"><span class="header-section-number">3.8</span> Preparar variables finales</a></li>
-  <li><a href="#guardar-base-preparada" id="toc-guardar-base-preparada" class="nav-link" data-scroll-target="#guardar-base-preparada"><span class="header-section-number">3.9</span> Guardar base preparada</a></li>
-  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">3.10</span> Resumen del capítulo</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.2</span> Introducción</a></li>
+  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">2.3</span> Cargar paquetes</a></li>
+  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">2.4</span> Leer el archivo CSV</a></li>
+  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">2.5</span> Primer vistazo a los datos</a></li>
+  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">2.6</span> Variables de interés</a></li>
+  <li><a href="#crear-variable-respuesta" id="toc-crear-variable-respuesta" class="nav-link" data-scroll-target="#crear-variable-respuesta"><span class="header-section-number">2.7</span> Crear variable respuesta</a></li>
+  <li><a href="#preparar-variables-finales" id="toc-preparar-variables-finales" class="nav-link" data-scroll-target="#preparar-variables-finales"><span class="header-section-number">2.8</span> Preparar variables finales</a></li>
+  <li><a href="#guardar-base-preparada" id="toc-guardar-base-preparada" class="nav-link" data-scroll-target="#guardar-base-preparada"><span class="header-section-number">2.9</span> Guardar base preparada</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">2.10</span> Resumen del capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></h1>
 </div>
 
 
@@ -248,16 +248,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.</p>
 </section>
-<section id="introducción" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">3.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> Introducción</h2>
 <p>En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.</p>
 </section>
-<section id="cargar-paquetes" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">3.3</span> Cargar paquetes</h2>
+<section id="cargar-paquetes" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">2.3</span> Cargar paquetes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -269,8 +269,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="leer-el-archivo-csv" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">3.4</span> Leer el archivo CSV</h2>
+<section id="leer-el-archivo-csv" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">2.4</span> Leer el archivo CSV</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -295,8 +295,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="primer-vistazo-a-los-datos" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">3.5</span> Primer vistazo a los datos</h2>
+<section id="primer-vistazo-a-los-datos" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">2.5</span> Primer vistazo a los datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -325,8 +325,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="variables-de-interés" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">3.6</span> Variables de interés</h2>
+<section id="variables-de-interés" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">2.6</span> Variables de interés</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -353,8 +353,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="crear-variable-respuesta" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="crear-variable-respuesta"><span class="header-section-number">3.7</span> Crear variable respuesta</h2>
+<section id="crear-variable-respuesta" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="crear-variable-respuesta"><span class="header-section-number">2.7</span> Crear variable respuesta</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -383,8 +383,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="preparar-variables-finales" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="preparar-variables-finales"><span class="header-section-number">3.8</span> Preparar variables finales</h2>
+<section id="preparar-variables-finales" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="preparar-variables-finales"><span class="header-section-number">2.8</span> Preparar variables finales</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -410,8 +410,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="guardar-base-preparada" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="guardar-base-preparada"><span class="header-section-number">3.9</span> Guardar base preparada</h2>
+<section id="guardar-base-preparada" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="guardar-base-preparada"><span class="header-section-number">2.9</span> Guardar base preparada</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -422,8 +422,8 @@ Con víctimas   Solo daños
 </details>
 </div>
 </section>
-<section id="resumen-del-capítulo" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">3.10</span> Resumen del capítulo</h2>
+<section id="resumen-del-capítulo" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">2.10</span> Resumen del capítulo</h2>
 <p>En este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.</p>
 
 
@@ -833,29 +833,16 @@ Con víctimas   Solo daños
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./01-introduccion.html" class="pagination-link" aria-label="¿Qué es el aprendizaje automático?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./03-analisis-exploratorio.html" class="pagination-link" aria-label="Análisis exploratorio de datos">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Aprendizaje y Clasificación Automática con R</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>MI Jesús Gilberto Rodríguez Escobedo</p>
-</div>
-  </div>
-</footer>
 
 
 

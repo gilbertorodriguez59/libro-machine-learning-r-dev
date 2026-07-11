@@ -10,9 +10,6 @@ book:
   author: "MI Jesús Gilberto Rodríguez Escobedo"
   date: today
   downloads: [pdf]
-  page-footer:
-    left: "Aprendizaje y Clasificación Automática con R"
-    right: "MI Jesús Gilberto Rodríguez Escobedo"
   chapters:
     - index.qmd
     - 00-licencia-y-citacion.qmd
@@ -31,6 +28,13 @@ execute:
   freeze: auto
   fig_crop: false
 
+knitr:
+  opts_chunk:
+    dev: "png"
+    dpi: 150
+    fig.width: 7
+    fig.height: 4.5
+
 format:
   html:
     theme: cosmo
@@ -40,21 +44,35 @@ format:
     code-fold: true
     code-tools: false
     html-math-method: mathjax
-    fig-width: 8
-    fig-height: 5
 
   pdf:
     documentclass: book
+    pdf-engine: lualatex
     toc: true
     toc-title: "Índice general"
     number-sections: true
     colorlinks: true
     geometry:
-      - margin=2.4cm
+      - margin=2.5cm
     fontsize: 11pt
     keep-tex: true
-    pdf-engine: lualatex
+    code-block-bg: "#F3F7FA"
+    code-block-border-left: "#0B4F6C"
     include-in-header:
       text: |
+        \usepackage{xcolor}
+        \usepackage{titlesec}
+        \definecolor{AzulLibro}{HTML}{0B4F6C}
+        \definecolor{TurquesaLibro}{HTML}{0EA5A8}
+        \definecolor{GrisTexto}{HTML}{374151}
         \renewcommand{\contentsname}{Índice general}
         \renewcommand{\chaptername}{Capítulo}
+        \titleformat{\chapter}[display]
+          {\normalfont\huge\bfseries\color{AzulLibro}}
+          {\chaptername\ \thechapter}{16pt}{\Huge}
+        \titleformat{\section}
+          {\normalfont\Large\bfseries\color{AzulLibro}}
+          {\thesection}{1em}{}
+        \titleformat{\subsection}
+          {\normalfont\large\bfseries\color{TurquesaLibro}}
+          {\thesubsection}{1em}{}

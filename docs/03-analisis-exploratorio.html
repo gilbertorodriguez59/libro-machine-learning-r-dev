@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Análisis exploratorio de datos – Aprendizaje y Clasificación Automática con R</title>
+<title>3&nbsp; Análisis exploratorio de datos – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-analisis-exploratorio.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-analisis-exploratorio.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Presentación</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -164,43 +164,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -213,15 +213,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">4.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#cargar-paquetes-y-base" id="toc-cargar-paquetes-y-base" class="nav-link" data-scroll-target="#cargar-paquetes-y-base"><span class="header-section-number">4.2</span> Cargar paquetes y base</a></li>
-  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">4.3</span> Preparar variables</a></li>
-  <li><a href="#distribución-de-la-variable-respuesta" id="toc-distribución-de-la-variable-respuesta" class="nav-link" data-scroll-target="#distribución-de-la-variable-respuesta"><span class="header-section-number">4.4</span> Distribución de la variable respuesta</a></li>
-  <li><a href="#accidentes-por-mes" id="toc-accidentes-por-mes" class="nav-link" data-scroll-target="#accidentes-por-mes"><span class="header-section-number">4.5</span> Accidentes por mes</a></li>
-  <li><a href="#accidentes-por-hora-del-día" id="toc-accidentes-por-hora-del-día" class="nav-link" data-scroll-target="#accidentes-por-hora-del-día"><span class="header-section-number">4.6</span> Accidentes por hora del día</a></li>
-  <li><a href="#tipos-de-accidente-más-frecuentes" id="toc-tipos-de-accidente-más-frecuentes" class="nav-link" data-scroll-target="#tipos-de-accidente-más-frecuentes"><span class="header-section-number">4.7</span> Tipos de accidente más frecuentes</a></li>
-  <li><a href="#proporción-por-tipo-de-accidente" id="toc-proporción-por-tipo-de-accidente" class="nav-link" data-scroll-target="#proporción-por-tipo-de-accidente"><span class="header-section-number">4.8</span> Proporción por tipo de accidente</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">4.9</span> Conclusión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#cargar-paquetes-y-base" id="toc-cargar-paquetes-y-base" class="nav-link" data-scroll-target="#cargar-paquetes-y-base"><span class="header-section-number">3.2</span> Cargar paquetes y base</a></li>
+  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">3.3</span> Preparar variables</a></li>
+  <li><a href="#distribución-de-la-variable-respuesta" id="toc-distribución-de-la-variable-respuesta" class="nav-link" data-scroll-target="#distribución-de-la-variable-respuesta"><span class="header-section-number">3.4</span> Distribución de la variable respuesta</a></li>
+  <li><a href="#accidentes-por-mes" id="toc-accidentes-por-mes" class="nav-link" data-scroll-target="#accidentes-por-mes"><span class="header-section-number">3.5</span> Accidentes por mes</a></li>
+  <li><a href="#accidentes-por-hora-del-día" id="toc-accidentes-por-hora-del-día" class="nav-link" data-scroll-target="#accidentes-por-hora-del-día"><span class="header-section-number">3.6</span> Accidentes por hora del día</a></li>
+  <li><a href="#tipos-de-accidente-más-frecuentes" id="toc-tipos-de-accidente-más-frecuentes" class="nav-link" data-scroll-target="#tipos-de-accidente-más-frecuentes"><span class="header-section-number">3.7</span> Tipos de accidente más frecuentes</a></li>
+  <li><a href="#proporción-por-tipo-de-accidente" id="toc-proporción-por-tipo-de-accidente" class="nav-link" data-scroll-target="#proporción-por-tipo-de-accidente"><span class="header-section-number">3.8</span> Proporción por tipo de accidente</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">3.9</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></h1>
 </div>
 
 
@@ -247,12 +247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">4.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas e interpretar patrones iniciales.</p>
 </section>
-<section id="cargar-paquetes-y-base" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="cargar-paquetes-y-base"><span class="header-section-number">4.2</span> Cargar paquetes y base</h2>
+<section id="cargar-paquetes-y-base" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="cargar-paquetes-y-base"><span class="header-section-number">3.2</span> Cargar paquetes y base</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -275,8 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="preparar-variables" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">4.3</span> Preparar variables</h2>
+<section id="preparar-variables" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">3.3</span> Preparar variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -292,8 +292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="distribución-de-la-variable-respuesta" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="distribución-de-la-variable-respuesta"><span class="header-section-number">4.4</span> Distribución de la variable respuesta</h2>
+<section id="distribución-de-la-variable-respuesta" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="distribución-de-la-variable-respuesta"><span class="header-section-number">3.4</span> Distribución de la variable respuesta</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -331,8 +331,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="accidentes-por-mes" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="accidentes-por-mes"><span class="header-section-number">4.5</span> Accidentes por mes</h2>
+<section id="accidentes-por-mes" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="accidentes-por-mes"><span class="header-section-number">3.5</span> Accidentes por mes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -379,8 +379,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="accidentes-por-hora-del-día" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="accidentes-por-hora-del-día"><span class="header-section-number">4.6</span> Accidentes por hora del día</h2>
+<section id="accidentes-por-hora-del-día" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="accidentes-por-hora-del-día"><span class="header-section-number">3.6</span> Accidentes por hora del día</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -403,8 +403,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="tipos-de-accidente-más-frecuentes" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="tipos-de-accidente-más-frecuentes"><span class="header-section-number">4.7</span> Tipos de accidente más frecuentes</h2>
+<section id="tipos-de-accidente-más-frecuentes" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="tipos-de-accidente-más-frecuentes"><span class="header-section-number">3.7</span> Tipos de accidente más frecuentes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -427,8 +427,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="proporción-por-tipo-de-accidente" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="proporción-por-tipo-de-accidente"><span class="header-section-number">4.8</span> Proporción por tipo de accidente</h2>
+<section id="proporción-por-tipo-de-accidente" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="proporción-por-tipo-de-accidente"><span class="header-section-number">3.8</span> Proporción por tipo de accidente</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -453,8 +453,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">4.9</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">3.9</span> Conclusión</h2>
 <p>El análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.</p>
 
 
@@ -864,29 +864,16 @@ Con víctimas   Solo daños
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./02-preparacion-datos.html" class="pagination-link" aria-label="Preparación de datos reales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04-regresion-logistica.html" class="pagination-link" aria-label="Regresión logística para clasificación">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Aprendizaje y Clasificación Automática con R</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>MI Jesús Gilberto Rodríguez Escobedo</p>
-</div>
-  </div>
-</footer>
 
 
 
