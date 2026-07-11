@@ -10,6 +10,9 @@ book:
   author: "MI Jesús Gilberto Rodríguez Escobedo"
   date: today
   downloads: [pdf]
+  page-footer:
+    left: "Aprendizaje y Clasificación Automática con R"
+    right: "MI Jesús Gilberto Rodríguez Escobedo"
   chapters:
     - index.qmd
     - 00-licencia-y-citacion.qmd
@@ -20,9 +23,6 @@ book:
     - 05-knn.qmd
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd
-  page-footer:
-    left: "© 2026 MI Jesús Gilberto Rodríguez Escobedo"
-    right: "Libro abierto elaborado con Quarto y R"
 
 execute:
   echo: true
@@ -50,7 +50,7 @@ format:
     number-sections: true
     colorlinks: true
     geometry:
-      - margin=2.5cm
+      - margin=2.4cm
     fontsize: 11pt
     keep-tex: true
     pdf-engine: lualatex

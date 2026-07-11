@@ -2,71 +2,23 @@
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de explicar la idea básica de Random Forest, comprender por qué combinar muchos árboles mejora la clasificación, entrenar un modelo en R, interpretar importancia de variables, generar predicciones y evaluar el modelo.
+Al finalizar este capítulo, el lector será capaz de explicar Random Forest, entrenar un modelo en R, interpretar importancia de variables y evaluar desempeño.
 
 ## Introducción
 
-En el capítulo anterior estudiamos árboles de decisión. Aunque son fáciles de interpretar, un solo árbol puede ser inestable: pequeños cambios en los datos pueden producir un árbol distinto.
-
-**Random Forest** resuelve este problema combinando muchos árboles de decisión. Cada árbol aprende sobre una muestra aleatoria de los datos y usando subconjuntos aleatorios de variables. Después, las predicciones individuales se combinan.
-
-En clasificación, la idea es que la clase final se determina por votación mayoritaria entre los árboles.
-
-## Idea intuitiva
-
-Podemos pensar en Random Forest como un comité de expertos.
-
-- Cada árbol es un experto.
-- Cada experto observa una parte aleatoria de los datos.
-- Cada experto genera una predicción.
-- La decisión final surge de combinar todas las predicciones.
+Random Forest combina muchos árboles de decisión. Cada árbol aprende sobre una muestra aleatoria de los datos y la predicción final se obtiene por votación mayoritaria.
 
 ## Fundamento matemático
 
-Supongamos que construimos \(B\) árboles. Si el árbol \(b\) predice una clase \(\hat{y}^{(b)}(x)\) para la observación \(x\), la predicción final del bosque es:
+Si se construyen $B$ árboles, la predicción final es:
 
 $$
-\hat{y}(x) = \text{moda}\{\hat{y}^{(1)}(x), \hat{y}^{(2)}(x), \ldots, \hat{y}^{(B)}(x)\}
+\hat{y}(x)=\text{moda}\{\hat{y}^{(1)}(x),\hat{y}^{(2)}(x),\ldots,\hat{y}^{(B)}(x)\}
 $$
-
-Si queremos una probabilidad estimada para la clase "Con víctimas", podemos usar la proporción de árboles que votan por esa clase:
-
-$$
-\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} I(\hat{y}^{(b)}(x)=1)
-$$
-
-## ¿Por qué funciona mejor que un solo árbol?
-
-Random Forest introduce dos fuentes de aleatoriedad:
-
-1. **Bootstrap**: cada árbol se entrena con una muestra aleatoria con reemplazo.
-2. **Selección aleatoria de variables**: en cada división del árbol solo se considera un subconjunto aleatorio de variables.
-
-Esto hace que los árboles sean distintos entre sí. Al combinar muchos árboles, el modelo final suele generalizar mejor.
-
-## Algoritmo general
-
-```text
-Entrada:
-- Base de datos con variables predictoras.
-- Variable respuesta categórica.
-- Número de árboles B.
-- Número de variables candidatas por división mtry.
-
-Proceso:
-1. Tomar una muestra bootstrap de los datos.
-2. Construir un árbol de decisión.
-3. En cada división, considerar solo un subconjunto aleatorio de variables.
-4. Repetir el proceso para construir muchos árboles.
-5. Combinar las predicciones por votación mayoritaria.
-6. Evaluar el modelo en datos de prueba.
-```
 
 ## Cargar paquetes y datos
 
 ```{r}
-#| message: false
-#| warning: false
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -74,10 +26,6 @@ library(ranger)
 source("util_graficas.R")
 
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-file.exists(ruta_atus_ml)
-```
-
-```{r}
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -87,58 +35,17 @@ if (file.exists(ruta_atus_ml)) {
 }
 ```
 
-## Selección de una muestra de trabajo
-
-Random Forest puede entrenarse con bases grandes, pero para que el libro sea reproducible y rápido de generar en HTML y PDF, trabajaremos con una muestra amplia y controlada.
+## Muestra de trabajo
 
 ```{r}
 if (!is.null(atus_ml)) {
   set.seed(123)
-  tamano_muestra <- min(30000, nrow(atus_ml))
-  atus_rf_base <- atus_ml |>
-    sample_n(tamano_muestra)
-
-  data.frame(
-    filas = nrow(atus_rf_base),
-    columnas = ncol(atus_rf_base)
-  )
-}
-```
-
-## Preparar variables
-
-```{r}
-if (exists("atus_rf_base")) {
-  atus_rf_base <- atus_rf_base |>
+  atus_rf_base <- atus_ml |> sample_n(min(30000, nrow(atus_ml))) |>
     mutate(
-      accidente_con_victimas = factor(
-        accidente_con_victimas,
-        levels = c("Con víctimas", "Solo daños")
-      ),
-      MES = as.factor(MES),
-      ID_HORA = as.numeric(ID_HORA),
-      DIASEMANA = as.factor(DIASEMANA),
-      TIPACCID = as.factor(TIPACCID),
-      CAUSAACCI = as.factor(CAUSAACCI)
-    ) |>
-    na.omit()
-
-  str(atus_rf_base)
-}
-```
-
-## Distribución de la variable respuesta
-
-```{r}
-if (exists("atus_rf_base")) {
-  tabla_clases_rf <- table(atus_rf_base$accidente_con_victimas)
-  tabla_clases_rf
-}
-```
-
-```{r}
-if (exists("tabla_clases_rf")) {
-  round(100 * prop.table(tabla_clases_rf), 2)
+      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
+      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)
+    ) |> na.omit()
+  data.frame(filas = nrow(atus_rf_base), columnas = ncol(atus_rf_base))
 }
 ```
 
@@ -148,15 +55,8 @@ if (exists("atus_rf_base")) {
     geom_bar(width = 0.7) +
     escala_clases_fill() +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(
-      title = "Distribución de la variable respuesta",
-      subtitle = "Muestra de trabajo para Random Forest",
-      x = "Clase",
-      y = "Número de accidentes",
-      fill = "Clase"
-    ) +
-    tema_libro() +
-    theme(legend.position = "none")
+    labs(title = "Distribución de la variable respuesta", subtitle = "Muestra para Random Forest", x = "Clase", y = "Número de accidentes") +
+    tema_libro() + theme(legend.position = "none")
 }
 ```
 
@@ -165,47 +65,28 @@ if (exists("atus_rf_base")) {
 ```{r}
 if (exists("atus_rf_base")) {
   set.seed(123)
-  n <- nrow(atus_rf_base)
-  indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
-
-  entrenamiento <- atus_rf_base[indices_entrenamiento, ]
-  prueba <- atus_rf_base[-indices_entrenamiento, ]
-
-  data.frame(
-    conjunto = c("Entrenamiento", "Prueba"),
-    registros = c(nrow(entrenamiento), nrow(prueba)),
-    porcentaje = c(
-      round(100 * nrow(entrenamiento) / nrow(atus_rf_base), 2),
-      round(100 * nrow(prueba) / nrow(atus_rf_base), 2)
-    )
-  )
+  idx <- sample(1:nrow(atus_rf_base), size = round(0.7*nrow(atus_rf_base)))
+  entrenamiento <- atus_rf_base[idx, ]
+  prueba <- atus_rf_base[-idx, ]
+  data.frame(conjunto=c("Entrenamiento","Prueba"), registros=c(nrow(entrenamiento), nrow(prueba)))
 }
 ```
 
-## Ajustar el modelo Random Forest
+## Ajustar Random Forest
 
 ```{r}
-#| message: false
-#| warning: false
 if (exists("entrenamiento")) {
   set.seed(123)
-
   modelo_rf <- ranger(
-    formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
+    accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
     data = entrenamiento,
     num.trees = 200,
     mtry = 3,
     min.node.size = 20,
     importance = "impurity",
     probability = TRUE,
-    classification = TRUE,
     seed = 123
   )
-}
-```
-
-```{r}
-if (exists("modelo_rf")) {
   modelo_rf
 }
 ```
@@ -214,95 +95,43 @@ if (exists("modelo_rf")) {
 
 ```{r}
 if (exists("modelo_rf")) {
-  importancia_rf <- data.frame(
-    variable = names(modelo_rf$variable.importance),
-    importancia = as.numeric(modelo_rf$variable.importance)
-  ) |>
+  importancia_rf <- data.frame(variable = names(modelo_rf$variable.importance), importancia = as.numeric(modelo_rf$variable.importance)) |>
     arrange(desc(importancia))
-
   importancia_rf
 }
 ```
 
 ```{r}
 if (exists("importancia_rf")) {
-  importancia_top <- importancia_rf |>
-    slice_head(n = 10)
-
-  ggplot(importancia_top, aes(x = reorder(variable, importancia), y = importancia)) +
+  ggplot(importancia_rf, aes(x = reorder(variable, importancia), y = importancia)) +
     geom_col(fill = col_azul, width = 0.75) +
     coord_flip() +
-    labs(
-      title = "Importancia de variables en Random Forest",
-      subtitle = "Variables más influyentes en la clasificación",
-      x = "Variable",
-      y = "Importancia"
-    ) +
+    labs(title = "Importancia de variables en Random Forest", x = "Variable", y = "Importancia") +
     tema_libro()
 }
 ```
 
-## Predicción en el conjunto de prueba
+## Predicción y métricas
 
 ```{r}
-if (exists("modelo_rf") && exists("prueba")) {
+if (exists("modelo_rf")) {
   predicciones_rf <- predict(modelo_rf, data = prueba)
-
   probabilidades_rf <- predicciones_rf$predictions[, "Con víctimas"]
-
-  clases_rf <- colnames(predicciones_rf$predictions)[
-    max.col(predicciones_rf$predictions, ties.method = "first")
-  ]
-
+  clases_rf <- colnames(predicciones_rf$predictions)[max.col(predicciones_rf$predictions, ties.method = "first")]
   clases_rf <- factor(clases_rf, levels = c("Con víctimas", "Solo daños"))
-
-  head(data.frame(
-    real = prueba$accidente_con_victimas,
-    probabilidad_con_victimas = probabilidades_rf,
-    clase_predicha = clases_rf
-  ))
-}
-```
-
-## Matriz de confusión
-
-```{r}
-if (exists("clases_rf")) {
   real_rf <- factor(prueba$accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
-
-  matriz_confusion_rf <- table(
-    Real = real_rf,
-    Predicho = clases_rf
-  )
-
+  matriz_confusion_rf <- table(Real = real_rf, Predicho = clases_rf)
   matriz_confusion_rf
 }
 ```
 
-## Métricas de evaluación
-
 ```{r}
-calcular_metricas_rf <- function(real, predicho) {
-  real <- factor(real, levels = c("Con víctimas", "Solo daños"))
-  predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
-
-  matriz <- table(Real = real, Predicho = predicho)
-
-  VP <- matriz["Con víctimas", "Con víctimas"]
-  FN <- matriz["Con víctimas", "Solo daños"]
-  FP <- matriz["Solo daños", "Con víctimas"]
-  VN <- matriz["Solo daños", "Solo daños"]
-
-  data.frame(
-    exactitud = (VP + VN) / (VP + FN + FP + VN),
-    sensibilidad = VP / (VP + FN),
-    especificidad = VN / (VN + FP)
-  )
-}
-
-if (exists("real_rf") && exists("clases_rf")) {
-  metricas_rf <- calcular_metricas_rf(real_rf, clases_rf)
-  metricas_rf
+if (exists("matriz_confusion_rf")) {
+  VP <- matriz_confusion_rf["Con víctimas", "Con víctimas"]
+  FN <- matriz_confusion_rf["Con víctimas", "Solo daños"]
+  FP <- matriz_confusion_rf["Solo daños", "Con víctimas"]
+  VN <- matriz_confusion_rf["Solo daños", "Solo daños"]
+  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))
 }
 ```
 
@@ -310,52 +139,15 @@ if (exists("real_rf") && exists("clases_rf")) {
 
 ```{r}
 if (exists("probabilidades_rf")) {
-  datos_prob_rf <- data.frame(
-    probabilidad = probabilidades_rf,
-    clase_real = real_rf
-  )
-
+  datos_prob_rf <- data.frame(probabilidad = probabilidades_rf, clase_real = real_rf)
   ggplot(datos_prob_rf, aes(x = probabilidad, fill = clase_real)) +
     geom_histogram(bins = 30, alpha = 0.75, position = "identity") +
     escala_clases_fill(name = "Clase real") +
-    labs(
-      title = "Distribución de probabilidades predichas",
-      subtitle = "Random Forest",
-      x = "Probabilidad predicha de 'Con víctimas'",
-      y = "Frecuencia"
-    ) +
+    labs(title = "Distribución de probabilidades predichas", subtitle = "Random Forest", x = "Probabilidad predicha de 'Con víctimas'", y = "Frecuencia") +
     tema_libro()
 }
 ```
 
-## Comparación conceptual con otros métodos
-
-| Aspecto | Regresión logística | k-NN | Árbol de decisión | Random Forest |
-|---|---|---|---|---|
-| Tipo de modelo | Paramétrico | No paramétrico | No paramétrico | Ensamble |
-| Interpretabilidad | Alta | Media o baja | Alta | Media |
-| Usa distancias | No | Sí | No | No |
-| Requiere escalamiento | No siempre | Sí | No | No |
-| Produce reglas explícitas | Parcialmente | No | Sí | No directamente |
-| Desempeño predictivo | Bueno | Variable | Bueno | Muy bueno |
-
-## Ventajas y desventajas
-
-### Ventajas
-
-- Suele tener muy buen desempeño predictivo.
-- Reduce el sobreajuste de un árbol individual.
-- Puede manejar relaciones no lineales.
-- Funciona con variables numéricas y categóricas.
-- Proporciona importancia de variables.
-
-### Desventajas
-
-- Es menos interpretable que un árbol simple.
-- Puede requerir más tiempo de cómputo.
-- El ajuste de hiperparámetros puede influir en el desempeño.
-- Un bosque grande puede ser pesado para algunos equipos.
-
 ## Conclusión
 
-Random Forest es uno de los métodos más potentes y versátiles de clasificación. Conserva la intuición básica de los árboles de decisión, pero mejora la estabilidad y la capacidad predictiva al combinar muchos árboles.
+Random Forest mejora la estabilidad y la capacidad predictiva de un solo árbol al combinar muchos árboles. Es uno de los métodos más útiles para clasificación aplicada.

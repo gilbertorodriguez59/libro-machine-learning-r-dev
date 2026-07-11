@@ -2,309 +2,112 @@
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de explicar k-NN, preparar datos para este método, estandarizar variables, construir una matriz de confusión y evaluar el desempeño.
+Al finalizar este capítulo, el lector será capaz de explicar k-NN, preparar datos para este método, estandarizar variables y evaluar el desempeño.
 
-## Introducción
+## Idea intuitiva
 
-k-NN significa *k-Nearest Neighbors* o k vecinos más cercanos. Para clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.
-
-## Idea intuitiva del método
-
-El algoritmo k-NN calcula distancias, encuentra los \(k\) vecinos más cercanos, revisa sus clases y asigna la clase más frecuente.
-
-## Ejemplo sencillo con puntos
+k-NN clasifica una nueva observación según la clase más común entre sus vecinos más cercanos.
 
 ```{r}
-#| message: false
-#| warning: false
-library(readr)
-library(dplyr)
 library(ggplot2)
 library(class)
+library(dplyr)
 library(tidyr)
+library(readr)
 source("util_graficas.R")
 
 datos_ejemplo <- data.frame(
   hora = c(8, 9, 10, 18, 19, 20, 22, 23),
   mes = c(1, 1, 2, 6, 6, 7, 12, 12),
-  clase = c(
-    "Solo daños", "Solo daños", "Solo daños",
-    "Con víctimas", "Con víctimas", "Con víctimas",
-    "Con víctimas", "Con víctimas"
-  )
+  clase = c("Solo daños", "Solo daños", "Solo daños", "Con víctimas", "Con víctimas", "Con víctimas", "Con víctimas", "Con víctimas")
 )
 
-datos_ejemplo
-```
-
-```{r}
 ggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +
-  geom_point(size = 4, alpha = 0.9) +
+  geom_point(size = 4) +
   escala_clases_color() +
-  labs(
-    title = "Ejemplo intuitivo de k-NN",
-    subtitle = "Clasificación mediante cercanía entre observaciones",
-    x = "Hora",
-    y = "Mes",
-    color = "Clase"
-  ) +
+  labs(title = "Ejemplo intuitivo de k-NN", x = "Hora", y = "Mes", color = "Clase") +
   tema_libro()
 ```
 
 ## Distancia euclidiana
 
-Para dos puntos \(A=(x_1,y_1)\) y \(B=(x_2,y_2)\), la distancia euclidiana es:
-
 $$
 d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
 $$
 
-En general, para \(p\) variables:
-
-$$
-d(x_0,x_i)=\sqrt{\sum_{j=1}^{p}(x_{0j}-x_{ij})^2}
-$$
-
-## Ejemplo de cálculo de distancia
-
 ```{r}
-x1 <- 8
-y1 <- 1
-x2 <- 10
-y2 <- 2
-
-distancia <- sqrt((x1 - x2)^2 + (y1 - y2)^2)
-distancia
+sqrt((8 - 10)^2 + (1 - 2)^2)
 ```
 
-## Estandarización de variables
-
-Como k-NN depende de distancias, las variables deben estar en escalas comparables.
-
-$$
-z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j}
-$$
-
-## Cargar datos
+## Cargar y preparar datos
 
 ```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-file.exists(ruta_atus_ml)
-```
-
-```{r}
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
-  print("Base preparada cargada correctamente.")
-} else {
-  atus_ml <- NULL
-  print("No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.")
-}
-```
-
-## Selección de una muestra
-
-```{r}
-if (!is.null(atus_ml)) {
   set.seed(123)
-  tamano_muestra <- min(12000, nrow(atus_ml))
-  atus_knn_base <- atus_ml |>
-    sample_n(tamano_muestra)
-
-  data.frame(
-    filas = nrow(atus_knn_base),
-    columnas = ncol(atus_knn_base)
-  )
-}
-```
-
-## Preparar variables
-
-```{r}
-if (exists("atus_knn_base")) {
-  atus_knn_base <- atus_knn_base |>
+  atus_knn_base <- atus_ml |> sample_n(min(12000, nrow(atus_ml))) |>
     mutate(
       accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
-      MES = as.factor(MES),
-      ID_HORA = as.numeric(ID_HORA),
-      DIASEMANA = as.factor(DIASEMANA),
-      TIPACCID = as.factor(TIPACCID),
-      CAUSAACCI = as.factor(CAUSAACCI)
-    ) |>
-    na.omit()
-
-  round(100 * prop.table(table(atus_knn_base$accidente_con_victimas)), 2)
+      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)
+    ) |> na.omit()
 }
 ```
 
-## Crear variables dummy
+## Modelo k-NN
 
 ```{r}
 if (exists("atus_knn_base")) {
-  matriz_predictoras <- model.matrix(
-    ~ ID_HORA + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1,
-    data = atus_knn_base
-  )
-
+  matriz_predictoras <- model.matrix(~ ID_HORA + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1, data = atus_knn_base)
   y <- atus_knn_base$accidente_con_victimas
-
-  data.frame(
-    filas = nrow(matriz_predictoras),
-    columnas = ncol(matriz_predictoras)
-  )
-}
-```
-
-## División en entrenamiento y prueba
-
-```{r}
-if (exists("matriz_predictoras") && exists("y")) {
   set.seed(123)
-  n <- nrow(matriz_predictoras)
-  indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
-
-  x_entrenamiento <- matriz_predictoras[indices_entrenamiento, ]
-  x_prueba <- matriz_predictoras[-indices_entrenamiento, ]
-  y_entrenamiento <- y[indices_entrenamiento]
-  y_prueba <- y[-indices_entrenamiento]
-
-  data.frame(
-    conjunto = c("Entrenamiento", "Prueba"),
-    registros = c(nrow(x_entrenamiento), nrow(x_prueba))
-  )
-}
-```
-
-## Estandarización
-
-```{r}
-if (exists("x_entrenamiento") && exists("x_prueba")) {
+  idx <- sample(1:nrow(matriz_predictoras), size = round(0.7*nrow(matriz_predictoras)))
+  x_entrenamiento <- matriz_predictoras[idx, ]
+  x_prueba <- matriz_predictoras[-idx, ]
+  y_entrenamiento <- y[idx]
+  y_prueba <- y[-idx]
   medias <- apply(x_entrenamiento, 2, mean)
-  desviaciones <- apply(x_entrenamiento, 2, sd)
-  desviaciones[desviaciones == 0] <- 1
-
+  desviaciones <- apply(x_entrenamiento, 2, sd); desviaciones[desviaciones == 0] <- 1
   x_entrenamiento_esc <- scale(x_entrenamiento, center = medias, scale = desviaciones)
   x_prueba_esc <- scale(x_prueba, center = medias, scale = desviaciones)
+  pred_knn_5 <- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = 5)
+  table(Real = y_prueba, Predicho = pred_knn_5)
 }
 ```
 
-## Modelo k-NN con k = 5
-
-```{r}
-if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
-  pred_knn_5 <- knn(
-    train = x_entrenamiento_esc,
-    test = x_prueba_esc,
-    cl = y_entrenamiento,
-    k = 5
-  )
-}
-```
-
-## Matriz de confusión
-
-```{r}
-if (exists("pred_knn_5")) {
-  pred_knn_5 <- factor(pred_knn_5, levels = c("Con víctimas", "Solo daños"))
-  y_prueba <- factor(y_prueba, levels = c("Con víctimas", "Solo daños"))
-
-  matriz_confusion_knn_5 <- table(
-    Real = y_prueba,
-    Predicho = pred_knn_5
-  )
-
-  matriz_confusion_knn_5
-}
-```
-
-## Métricas de evaluación
+## Comparación de valores de k
 
 ```{r}
 calcular_metricas <- function(real, predicho) {
-  real <- factor(real, levels = c("Con víctimas", "Solo daños"))
-  predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
-  matriz <- table(Real = real, Predicho = predicho)
-
-  VP <- matriz["Con víctimas", "Con víctimas"]
-  FN <- matriz["Con víctimas", "Solo daños"]
-  FP <- matriz["Solo daños", "Con víctimas"]
-  VN <- matriz["Solo daños", "Solo daños"]
-
-  data.frame(
-    exactitud = (VP + VN) / (VP + FN + FP + VN),
-    sensibilidad = VP / (VP + FN),
-    especificidad = VN / (VN + FP)
-  )
+  real <- factor(real, levels = c("Con víctimas", "Solo daños")); predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
+  m <- table(Real = real, Predicho = predicho)
+  VP <- m["Con víctimas", "Con víctimas"]; FN <- m["Con víctimas", "Solo daños"]; FP <- m["Solo daños", "Con víctimas"]; VN <- m["Solo daños", "Solo daños"]
+  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))
 }
-
-if (exists("matriz_confusion_knn_5")) {
-  metricas_knn_5 <- calcular_metricas(y_prueba, pred_knn_5)
-  metricas_knn_5$k <- 5
-  metricas_knn_5 |> select(k, exactitud, sensibilidad, especificidad)
-}
-```
-
-## Comparación con distintos valores de k
-
-```{r}
-if (exists("x_entrenamiento_esc") && exists("x_prueba_esc")) {
-  valores_k <- c(3, 5, 11)
+if (exists("x_entrenamiento_esc")) {
+  valores_k <- c(3,5,11)
   resultados_knn <- data.frame()
-
   for (k_actual in valores_k) {
-    pred_actual <- knn(
-      train = x_entrenamiento_esc,
-      test = x_prueba_esc,
-      cl = y_entrenamiento,
-      k = k_actual
-    )
-
-    metricas_actuales <- calcular_metricas(y_prueba, pred_actual)
-    metricas_actuales$k <- k_actual
-    resultados_knn <- rbind(resultados_knn, metricas_actuales)
+    pred_actual <- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = k_actual)
+    tmp <- calcular_metricas(y_prueba, pred_actual); tmp$k <- k_actual
+    resultados_knn <- rbind(resultados_knn, tmp)
   }
-
-  resultados_knn <- resultados_knn |>
-    select(k, exactitud, sensibilidad, especificidad)
-
+  resultados_knn <- resultados_knn |> select(k, exactitud, sensibilidad, especificidad)
   resultados_knn
 }
 ```
 
 ```{r}
 if (exists("resultados_knn")) {
-  resultados_largos <- resultados_knn |>
-    pivot_longer(
-      cols = c(exactitud, sensibilidad, especificidad),
-      names_to = "metrica",
-      values_to = "valor"
-    )
-
+  resultados_largos <- resultados_knn |> pivot_longer(cols = c(exactitud, sensibilidad, especificidad), names_to = "metrica", values_to = "valor")
   ggplot(resultados_largos, aes(x = k, y = valor, color = metrica, group = metrica)) +
-    geom_line(linewidth = 1) +
-    geom_point(size = 3) +
-    scale_x_continuous(breaks = valores_k) +
-    labs(
-      title = "Comparación de métricas para distintos valores de k",
-      subtitle = "Exactitud, sensibilidad y especificidad",
-      x = "Valor de k",
-      y = "Valor de la métrica",
-      color = "Métrica"
-    ) +
+    geom_line(linewidth = 1.1) + geom_point(size = 3) +
+    scale_color_manual(values = c(exactitud = col_azul, sensibilidad = col_coral, especificidad = col_turquesa)) +
+    labs(title = "Comparación de métricas para distintos valores de k", x = "Valor de k", y = "Valor") +
     tema_libro()
 }
 ```
 
-## Comparación conceptual con regresión logística
-
-| Aspecto | Regresión logística | k-NN |
-|---|---|---|
-| Tipo de modelo | Paramétrico | No paramétrico |
-| Produce modelo explícito | Sí | No en el mismo sentido |
-| Usa distancias | No | Sí |
-| Requiere escalamiento | No siempre | Sí |
-| Interpretable | Alta | Media o baja |
-
 ## Conclusión
 
-k-NN es un método intuitivo y útil para introducir clasificación basada en similitud. Su desempeño depende del valor de \(k\), del escalamiento de las variables y de la calidad de las variables predictoras.
+k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de $k$, del escalamiento y de la calidad de las variables predictoras.

@@ -8,63 +8,9 @@ Al finalizar este capítulo, el lector será capaz de leer una base real, selecc
 
 En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.
 
-## Datos crudos y datos preparados
-
-Llamaremos **datos crudos** a la base tal como se obtiene de la fuente original. Llamaremos **datos preparados** a la base que ya fue revisada, transformada y organizada para un propósito específico.
-
-## Representación matemática de una base preparada
-
-Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras \(X\) y una variable respuesta \(Y\).
-
-En nuestro caso, \(Y\) representa la variable `accidente_con_victimas`.
-
-```text
-Y_i = 1 si el accidente tiene víctimas.
-Y_i = 0 si el accidente es de solo daños.
-```
-
-## Algoritmo general de preparación de datos
-
-```text
-Entrada:
-- Base de datos cruda.
-- Diccionario de variables.
-- Pregunta de predicción.
-
-Proceso:
-1. Leer la base de datos.
-2. Revisar dimensiones, nombres y tipos de variables.
-3. Seleccionar variables relevantes.
-4. Identificar la variable respuesta.
-5. Transformar variables cuando sea necesario.
-6. Revisar datos faltantes.
-7. Guardar una base preparada.
-
-Salida:
-- Base limpia y lista para análisis exploratorio y modelado.
-```
-
-## Conjunto de datos de trabajo: ATUS
-
-Trabajaremos con **Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas**, conocido como **ATUS**, publicado por INEGI.
-
-La pregunta práctica será:
-
-> ¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?
-
-## Crear la carpeta de datos
-
-Dentro de la carpeta del libro crea una carpeta llamada `datos`. El archivo de datos debe llamarse:
-
-```text
-datos/atus_2024.csv
-```
-
 ## Cargar paquetes
 
 ```{r}
-#| message: false
-#| warning: false
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -77,15 +23,9 @@ source("util_graficas.R")
 ```{r}
 ruta_atus <- "datos/atus_2024.csv"
 file.exists(ruta_atus)
-```
 
-```{r}
 if (file.exists(ruta_atus)) {
-  atus <- read_csv(
-    file = ruta_atus,
-    show_col_types = FALSE,
-    locale = locale(encoding = "UTF-8")
-  )
+  atus <- read_csv(file = ruta_atus, show_col_types = FALSE, locale = locale(encoding = "UTF-8"))
   print("Archivo leído correctamente.")
 } else {
   atus <- NULL
@@ -98,152 +38,70 @@ if (file.exists(ruta_atus)) {
 ```{r}
 if (!is.null(atus)) {
   data.frame(filas = nrow(atus), columnas = ncol(atus))
-}
-```
-
-```{r}
-if (!is.null(atus)) {
   head(atus)
-}
-```
-
-## Estandarizar nombres de variables
-
-```{r}
-if (!is.null(atus)) {
-  names(atus) <- toupper(names(atus))
-  names(atus)
 }
 ```
 
 ## Variables de interés
 
 ```{r}
-variables_interes <- c(
-  "ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO",
-  "ID_HORA", "ID_DIA", "DIASEMANA",
-  "TIPACCID", "CAUSAACCI", "CLASACC"
-)
+variables_interes <- c("ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO", "ID_HORA", "ID_DIA", "DIASEMANA", "TIPACCID", "CAUSAACCI", "CLASACC")
 
 if (!is.null(atus)) {
+  names(atus) <- toupper(names(atus))
   variables_existentes <- intersect(variables_interes, names(atus))
-  variables_existentes
-}
-```
-
-```{r}
-if (!is.null(atus)) {
-  atus_base <- atus |>
-    select(all_of(variables_existentes))
+  atus_base <- atus |> select(all_of(variables_existentes))
   head(atus_base)
 }
 ```
 
-## Diccionario inicial de variables
-
-| Variable | Descripción didáctica |
-|---|---|
-| ANIO | Año del accidente |
-| MES | Mes del accidente |
-| ID_ENTIDAD | Clave de la entidad federativa |
-| ID_MUNICIPIO | Clave del municipio |
-| ID_HORA | Hora del accidente |
-| ID_DIA | Día del mes |
-| DIASEMANA | Día de la semana |
-| TIPACCID | Tipo de accidente |
-| CAUSAACCI | Causa presunta del accidente |
-| CLASACC | Clase del accidente |
-
-## Revisión de la variable CLASACC
-
-```{r}
-if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
-  table(atus_base$CLASACC, useNA = "ifany")
-}
-```
-
-## Crear una variable respuesta
+## Crear variable respuesta
 
 ```{r}
 if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
   atus_modelo <- atus_base |>
     mutate(
-      CLASACC_TXT = as.character(CLASACC),
-      CLASACC_TXT = str_to_lower(CLASACC_TXT),
+      CLASACC_TXT = str_to_lower(as.character(CLASACC)),
       accidente_con_victimas = case_when(
         str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
         str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
         str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
         str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
         str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
-        CLASACC_TXT %in% c("1", "2") ~ "Con víctimas",
-        CLASACC_TXT %in% c("3") ~ "Solo daños",
         TRUE ~ NA_character_
       )
-    )
-}
+    ) |>
+    filter(!is.na(accidente_con_victimas))
 
-if (exists("atus_modelo")) {
-  table(atus_modelo$accidente_con_victimas, useNA = "ifany")
-}
-```
-
-## Convertir variables categóricas
-
-```{r}
-if (exists("atus_modelo")) {
-  atus_modelo <- atus_modelo |>
-    filter(!is.na(accidente_con_victimas)) |>
-    mutate(
-      ID_ENTIDAD = as.factor(ID_ENTIDAD),
-      ID_MUNICIPIO = as.factor(ID_MUNICIPIO),
-      MES = as.factor(MES),
-      DIASEMANA = as.factor(DIASEMANA),
-      TIPACCID = as.factor(TIPACCID),
-      CAUSAACCI = as.factor(CAUSAACCI),
-      accidente_con_victimas = as.factor(accidente_con_victimas)
-    )
-  str(atus_modelo)
+  table(atus_modelo$accidente_con_victimas)
 }
 ```
 
-## Revisión de datos faltantes
-
-```{r}
-if (exists("atus_modelo")) {
-  colSums(is.na(atus_modelo))
-}
-```
-
-## Selección final de variables para el primer modelo
+## Preparar variables finales
 
 ```{r}
 if (exists("atus_modelo")) {
   atus_ml <- atus_modelo |>
-    select(
-      accidente_con_victimas,
-      MES,
-      ID_HORA,
-      DIASEMANA,
-      TIPACCID,
-      CAUSAACCI
+    mutate(
+      MES = as.factor(MES),
+      ID_HORA = as.character(ID_HORA),
+      DIASEMANA = as.factor(DIASEMANA),
+      TIPACCID = as.factor(TIPACCID),
+      CAUSAACCI = as.factor(CAUSAACCI),
+      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
     ) |>
+    select(accidente_con_victimas, MES, ID_HORA, DIASEMANA, TIPACCID, CAUSAACCI) |>
     na.omit()
 
-  head(atus_ml)
-}
-```
-
-```{r}
-if (exists("atus_ml")) {
   data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))
 }
 ```
 
-## Guardar la base preparada
+## Guardar base preparada
 
 ```{r}
 if (exists("atus_ml")) {
+  if (!dir.exists("datos")) dir.create("datos")
   write_csv(atus_ml, "datos/atus_ml_preparado.csv")
 }
 ```

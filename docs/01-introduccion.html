@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; ¿Qué es el aprendizaje automático? – Aprendizaje y Clasificación Automática con R</title>
+<title>2&nbsp; ¿Qué es el aprendizaje automático? – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-introduccion.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-introduccion.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -181,7 +181,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Presentación</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Presentación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -193,43 +193,43 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -242,18 +242,16 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">1.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">1.2</span> Introducción</a></li>
-  <li><a href="#programación-tradicional-contra-aprendizaje-automático" id="toc-programación-tradicional-contra-aprendizaje-automático" class="nav-link" data-scroll-target="#programación-tradicional-contra-aprendizaje-automático"><span class="header-section-number">1.3</span> Programación tradicional contra aprendizaje automático</a></li>
-  <li><a href="#primer-conjunto-de-datos-didáctico" id="toc-primer-conjunto-de-datos-didáctico" class="nav-link" data-scroll-target="#primer-conjunto-de-datos-didáctico"><span class="header-section-number">1.4</span> Primer conjunto de datos didáctico</a></li>
-  <li><a href="#variables-predictoras-y-variable-respuesta" id="toc-variables-predictoras-y-variable-respuesta" class="nav-link" data-scroll-target="#variables-predictoras-y-variable-respuesta"><span class="header-section-number">1.5</span> Variables predictoras y variable respuesta</a></li>
-  <li><a href="#tipos-principales-de-aprendizaje-automático" id="toc-tipos-principales-de-aprendizaje-automático" class="nav-link" data-scroll-target="#tipos-principales-de-aprendizaje-automático"><span class="header-section-number">1.6</span> Tipos principales de aprendizaje automático</a></li>
-  <li><a href="#notación-básica-para-aprendizaje-automático" id="toc-notación-básica-para-aprendizaje-automático" class="nav-link" data-scroll-target="#notación-básica-para-aprendizaje-automático"><span class="header-section-number">1.7</span> Notación básica para aprendizaje automático</a></li>
-  <li><a href="#flujo-general-de-un-proyecto-de-aprendizaje-automático" id="toc-flujo-general-de-un-proyecto-de-aprendizaje-automático" class="nav-link" data-scroll-target="#flujo-general-de-un-proyecto-de-aprendizaje-automático"><span class="header-section-number">1.8</span> Flujo general de un proyecto de aprendizaje automático</a></li>
-  <li><a href="#primer-ejemplo-visual-en-r" id="toc-primer-ejemplo-visual-en-r" class="nav-link" data-scroll-target="#primer-ejemplo-visual-en-r"><span class="header-section-number">1.9</span> Primer ejemplo visual en R</a></li>
-  <li><a href="#división-entre-entrenamiento-y-prueba" id="toc-división-entre-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-entre-entrenamiento-y-prueba"><span class="header-section-number">1.10</span> División entre entrenamiento y prueba</a></li>
-  <li><a href="#primer-clasificador-sencillo-basado-en-una-regla" id="toc-primer-clasificador-sencillo-basado-en-una-regla" class="nav-link" data-scroll-target="#primer-clasificador-sencillo-basado-en-una-regla"><span class="header-section-number">1.11</span> Primer clasificador sencillo basado en una regla</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">1.12</span> Conclusión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.2</span> Introducción</a></li>
+  <li><a href="#programación-tradicional-contra-aprendizaje-automático" id="toc-programación-tradicional-contra-aprendizaje-automático" class="nav-link" data-scroll-target="#programación-tradicional-contra-aprendizaje-automático"><span class="header-section-number">2.3</span> Programación tradicional contra aprendizaje automático</a></li>
+  <li><a href="#variables-predictoras-y-variable-respuesta" id="toc-variables-predictoras-y-variable-respuesta" class="nav-link" data-scroll-target="#variables-predictoras-y-variable-respuesta"><span class="header-section-number">2.4</span> Variables predictoras y variable respuesta</a></li>
+  <li><a href="#tipos-principales-de-aprendizaje-automático" id="toc-tipos-principales-de-aprendizaje-automático" class="nav-link" data-scroll-target="#tipos-principales-de-aprendizaje-automático"><span class="header-section-number">2.5</span> Tipos principales de aprendizaje automático</a></li>
+  <li><a href="#notación-básica" id="toc-notación-básica" class="nav-link" data-scroll-target="#notación-básica"><span class="header-section-number">2.6</span> Notación básica</a></li>
+  <li><a href="#primer-ejemplo-visual-en-r" id="toc-primer-ejemplo-visual-en-r" class="nav-link" data-scroll-target="#primer-ejemplo-visual-en-r"><span class="header-section-number">2.7</span> Primer ejemplo visual en R</a></li>
+  <li><a href="#división-entre-entrenamiento-y-prueba" id="toc-división-entre-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-entre-entrenamiento-y-prueba"><span class="header-section-number">2.8</span> División entre entrenamiento y prueba</a></li>
+  <li><a href="#primer-clasificador-basado-en-una-regla" id="toc-primer-clasificador-basado-en-una-regla" class="nav-link" data-scroll-target="#primer-clasificador-basado-en-una-regla"><span class="header-section-number">2.9</span> Primer clasificador basado en una regla</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">2.10</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -262,7 +260,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></h1>
 </div>
 
 
@@ -279,37 +277,32 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">1.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de explicar qué es el aprendizaje automático, diferenciarlo de la programación tradicional e identificar problemas de clasificación, regresión y agrupamiento.</p>
 </section>
-<section id="introducción" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> Introducción</h2>
 <p>El aprendizaje automático, también conocido como <em>Machine Learning</em>, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.</p>
-<p>En la programación tradicional, una persona define reglas. En aprendizaje automático, en cambio, proporcionamos ejemplos para que un algoritmo aprenda una relación entre variables de entrada y una salida esperada.</p>
+<p>En la programación tradicional, una persona define reglas. En aprendizaje automático, proporcionamos ejemplos para que un algoritmo aprenda una relación entre variables de entrada y una salida esperada.</p>
 </section>
-<section id="programación-tradicional-contra-aprendizaje-automático" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="programación-tradicional-contra-aprendizaje-automático"><span class="header-section-number">1.3</span> Programación tradicional contra aprendizaje automático</h2>
+<section id="programación-tradicional-contra-aprendizaje-automático" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="programación-tradicional-contra-aprendizaje-automático"><span class="header-section-number">2.3</span> Programación tradicional contra aprendizaje automático</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pm10 <span class="ot">&lt;-</span> <span class="dv">85</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm10 <span class="sc">&gt;</span> <span class="dv">75</span>) {</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación alta"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación baja"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm10 <span class="sc">&gt;</span> <span class="dv">75</span>) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación alta"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Contaminación baja"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Contaminación alta"</code></pre>
 </div>
 </div>
-<p><strong>Interpretación del resultado.</strong><br>
-Este ejemplo muestra programación tradicional: la decisión depende de una regla escrita manualmente. En aprendizaje automático, la regla se aprende a partir de datos.</p>
-</section>
-<section id="primer-conjunto-de-datos-didáctico" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="primer-conjunto-de-datos-didáctico"><span class="header-section-number">1.4</span> Primer conjunto de datos didáctico</h2>
+<p><strong>Interpretación.</strong> Este ejemplo muestra programación tradicional: la decisión depende de una regla escrita manualmente.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -318,11 +311,9 @@ Este ejemplo muestra programación tradicional: la decisión depende de una regl
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pm10 =</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">88</span>, <span class="dv">55</span>, <span class="dv">120</span>, <span class="dv">63</span>, <span class="dv">95</span>, <span class="dv">38</span>, <span class="dv">110</span>, <span class="dv">72</span>, <span class="dv">130</span>, <span class="dv">47</span>, <span class="dv">99</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperatura =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">24</span>, <span class="dv">29</span>, <span class="dv">21</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">32</span>, <span class="dv">23</span>, <span class="dv">30</span>),</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">humedad =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">55</span>, <span class="dv">33</span>, <span class="dv">65</span>, <span class="dv">29</span>, <span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">34</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">clase =</span> <span class="fu">c</span>(<span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">clase =</span> <span class="fu">c</span>(<span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>, <span class="st">"Alta"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   dia pm10 temperatura humedad clase
@@ -341,59 +332,44 @@ Este ejemplo muestra programación tradicional: la decisión depende de una regl
 </div>
 </div>
 </section>
-<section id="variables-predictoras-y-variable-respuesta" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="variables-predictoras-y-variable-respuesta"><span class="header-section-number">1.5</span> Variables predictoras y variable respuesta</h2>
-<p>La variable respuesta es la variable que queremos predecir. En el ejemplo anterior es <code>clase</code>. Las variables predictoras son las variables que usamos como entrada: <code>pm10</code>, <code>temperatura</code> y <code>humedad</code>.</p>
+<section id="variables-predictoras-y-variable-respuesta" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="variables-predictoras-y-variable-respuesta"><span class="header-section-number">2.4</span> Variables predictoras y variable respuesta</h2>
+<p>La <strong>variable respuesta</strong> es la variable que queremos predecir. Las <strong>variables predictoras</strong> son las variables que usamos como entrada para el modelo.</p>
 </section>
-<section id="tipos-principales-de-aprendizaje-automático" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="tipos-principales-de-aprendizaje-automático"><span class="header-section-number">1.6</span> Tipos principales de aprendizaje automático</h2>
+<section id="tipos-principales-de-aprendizaje-automático" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="tipos-principales-de-aprendizaje-automático"><span class="header-section-number">2.5</span> Tipos principales de aprendizaje automático</h2>
 <ol type="1">
 <li>Aprendizaje supervisado.</li>
 <li>Aprendizaje no supervisado.</li>
 <li>Aprendizaje por refuerzo.</li>
 </ol>
-<p>Este libro se concentrará principalmente en los dos primeros.</p>
 </section>
-<section id="notación-básica-para-aprendizaje-automático" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="notación-básica-para-aprendizaje-automático"><span class="header-section-number">1.7</span> Notación básica para aprendizaje automático</h2>
-<p>Supongamos que tenemos (n) observaciones y (p) variables predictoras. Podemos representar los datos mediante una matriz (X) y una variable respuesta (Y).</p>
+<section id="notación-básica" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="notación-básica"><span class="header-section-number">2.6</span> Notación básica</h2>
+<p>Supongamos que tenemos <span class="math inline">\(n\)</span> observaciones y <span class="math inline">\(p\)</span> variables predictoras. Podemos representar los datos mediante una matriz <span class="math inline">\(X\)</span> y una variable respuesta <span class="math inline">\(Y\)</span>.</p>
 <p><span class="math display">\[
-\hat{y} = f(x_1, x_2, \ldots, x_p)
+\hat{y}=f(x_1,x_2,\ldots,x_p)
 \]</span></p>
-<p>El objetivo del aprendizaje supervisado es encontrar una función (f) que permita aproximar la respuesta.</p>
 </section>
-<section id="flujo-general-de-un-proyecto-de-aprendizaje-automático" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="flujo-general-de-un-proyecto-de-aprendizaje-automático"><span class="header-section-number">1.8</span> Flujo general de un proyecto de aprendizaje automático</h2>
-<pre class="text"><code>1. Plantear el problema.
-2. Conseguir los datos.
-3. Entender las variables.
-4. Limpiar los datos.
-5. Explorar los datos.
-6. Dividir en entrenamiento y prueba.
-7. Entrenar el modelo.
-8. Evaluar el modelo.
-9. Interpretar los resultados.
-10. Comunicar hallazgos.</code></pre>
-</section>
-<section id="primer-ejemplo-visual-en-r" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="primer-ejemplo-visual-en-r"><span class="header-section-number">1.9</span> Primer ejemplo visual en R</h2>
+<section id="primer-ejemplo-visual-en-r" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="primer-ejemplo-visual-en-r"><span class="header-section-number">2.7</span> Primer ejemplo visual en R</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> pm10, <span class="at">y =</span> temperatura, <span class="at">color =</span> clase)) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">escala_clases_color</span>() <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ejemplo inicial de clasificación"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Clasificación de contaminación alta o baja"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PM10"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temperatura"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Clase"</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_libro</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> pm10, <span class="at">y =</span> temperatura, <span class="at">color =</span> clase)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">escala_clases_color</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ejemplo inicial de clasificación"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Clasificación de contaminación alta o baja"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PM10"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temperatura"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Clase"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_libro</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -403,21 +379,18 @@ Este ejemplo muestra programación tradicional: la decisión depende de una regl
 </div>
 </div>
 </div>
-<p><strong>Interpretación del resultado.</strong><br>
-La gráfica muestra que los días de contaminación alta tienden a ubicarse en la zona de mayor PM10 y mayor temperatura.</p>
 </section>
-<section id="división-entre-entrenamiento-y-prueba" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="división-entre-entrenamiento-y-prueba"><span class="header-section-number">1.10</span> División entre entrenamiento y prueba</h2>
+<section id="división-entre-entrenamiento-y-prueba" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="división-entre-entrenamiento-y-prueba"><span class="header-section-number">2.8</span> División entre entrenamiento y prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>entrenamiento <span class="ot">&lt;-</span> datos[indices_entrenamiento, ]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> datos[<span class="sc">-</span>indices_entrenamiento, ]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>entrenamiento</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>entrenamiento <span class="ot">&lt;-</span> datos[indices_entrenamiento, ]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> datos[<span class="sc">-</span>indices_entrenamiento, ]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>entrenamiento</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   dia pm10 temperatura humedad clase
@@ -432,7 +405,7 @@ La gráfica muestra que los días de contaminación alta tienden a ubicarse en l
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prueba</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prueba</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  dia pm10 temperatura humedad clase
@@ -443,39 +416,14 @@ La gráfica muestra que los días de contaminación alta tienden a ubicarse en l
 </div>
 </div>
 </section>
-<section id="primer-clasificador-sencillo-basado-en-una-regla" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="primer-clasificador-sencillo-basado-en-una-regla"><span class="header-section-number">1.11</span> Primer clasificador sencillo basado en una regla</h2>
+<section id="primer-clasificador-basado-en-una-regla" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="primer-clasificador-basado-en-una-regla"><span class="header-section-number">2.9</span> Primer clasificador basado en una regla</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>prediccion_regla <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>pm10 <span class="sc">&gt;</span> <span class="dv">75</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>datos[, <span class="fu">c</span>(<span class="st">"pm10"</span>, <span class="st">"clase"</span>, <span class="st">"prediccion_regla"</span>)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>   pm10 clase prediccion_regla
-1    42  Baja             Baja
-2    88  Alta             Alta
-3    55  Baja             Baja
-4   120  Alta             Alta
-5    63  Baja             Baja
-6    95  Alta             Alta
-7    38  Baja             Baja
-8   110  Alta             Alta
-9    72  Baja             Baja
-10  130  Alta             Alta
-11   47  Baja             Baja
-12   99  Alta             Alta</code></pre>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tabla_confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Real =</span> datos<span class="sc">$</span>clase,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Predicho =</span> datos<span class="sc">$</span>prediccion_regla</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>tabla_confusion</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>prediccion_regla <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>pm10 <span class="sc">&gt;</span> <span class="dv">75</span>, <span class="st">"Alta"</span>, <span class="st">"Baja"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tabla_confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> datos<span class="sc">$</span>clase, <span class="at">Predicho =</span> datos<span class="sc">$</span>prediccion_regla)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>tabla_confusion</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Predicho
@@ -483,20 +431,17 @@ Real   Alta Baja
   Alta    6    0
   Baja    0    6</code></pre>
 </div>
-</div>
-<div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>exactitud <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos<span class="sc">$</span>clase <span class="sc">==</span> datos<span class="sc">$</span>prediccion_regla)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>exactitud</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(datos<span class="sc">$</span>clase <span class="sc">==</span> datos<span class="sc">$</span>prediccion_regla)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="1.12">
-<h2 data-number="1.12" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">1.12</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">2.10</span> Conclusión</h2>
 <p>El aprendizaje automático permite construir modelos que aprenden patrones a partir de datos. En este capítulo vimos la diferencia entre reglas manuales y aprendizaje a partir de ejemplos.</p>
 
 
@@ -911,7 +856,7 @@ Real   Alta Baja
   </div>
   <div class="nav-page nav-page-next">
       <a href="./02-preparacion-datos.html" class="pagination-link" aria-label="Preparación de datos reales">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -919,13 +864,13 @@ Real   Alta Baja
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2026 MI Jesús Gilberto Rodríguez Escobedo</p>
+<p>Aprendizaje y Clasificación Automática con R</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Libro abierto elaborado con Quarto y R</p>
+<p>MI Jesús Gilberto Rodríguez Escobedo</p>
 </div>
   </div>
 </footer>

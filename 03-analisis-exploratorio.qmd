@@ -4,39 +4,15 @@
 
 Al finalizar este capítulo, el lector será capaz de cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas e interpretar patrones iniciales.
 
-## Introducción
-
-El análisis exploratorio de datos permite revisar la estructura de la base, detectar patrones iniciales e identificar posibles problemas antes de construir modelos.
-
-## Fundamento matemático del análisis exploratorio
-
-Si una variable categórica tiene categorías \(c_1, c_2, \ldots, c_k\), la frecuencia absoluta de una categoría \(c_j\) se representa como:
-
-$$
-n_j = \sum_{i=1}^{n} I(y_i = c_j)
-$$
-
-La proporción de la categoría \(c_j\) es:
-
-$$
-p_j = \frac{n_j}{n}
-$$
-
 ## Cargar paquetes y base
 
 ```{r}
-#| message: false
-#| warning: false
 library(readr)
 library(dplyr)
 library(ggplot2)
 source("util_graficas.R")
 
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-file.exists(ruta_atus_ml)
-```
-
-```{r}
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -46,7 +22,7 @@ if (file.exists(ruta_atus_ml)) {
 }
 ```
 
-## Preparar variables para el análisis exploratorio
+## Preparar variables
 
 ```{r}
 if (!is.null(atus_ml)) {
@@ -55,29 +31,8 @@ if (!is.null(atus_ml)) {
       ID_HORA_NUM = as.numeric(ID_HORA),
       MES_NUM = as.numeric(MES),
       MES_FACTOR = factor(sprintf("%02d", MES_NUM), levels = sprintf("%02d", 1:12)),
-      DIASEMANA = factor(
-        DIASEMANA,
-        levels = c("lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
-      ),
-      accidente_con_victimas = factor(
-        accidente_con_victimas,
-        levels = c("Con víctimas", "Solo daños")
-      )
+      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
     )
-}
-```
-
-## Primer vistazo a la base
-
-```{r}
-if (!is.null(atus_ml)) {
-  data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))
-}
-```
-
-```{r}
-if (!is.null(atus_ml)) {
-  head(atus_ml)
 }
 ```
 
@@ -87,11 +42,6 @@ if (!is.null(atus_ml)) {
 if (!is.null(atus_ml)) {
   tabla_clase <- table(atus_ml$accidente_con_victimas)
   tabla_clase
-}
-```
-
-```{r}
-if (!is.null(atus_ml)) {
   round(100 * prop.table(tabla_clase), 2)
 }
 ```
@@ -102,43 +52,27 @@ if (!is.null(atus_ml)) {
     geom_bar(width = 0.7) +
     escala_clases_fill() +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(
-      title = "Distribución de accidentes según presencia de víctimas",
-      subtitle = "Base ATUS preparada",
-      x = "Clase del accidente",
-      y = "Número de accidentes",
-      fill = "Clase"
-    ) +
+    labs(title = "Distribución de accidentes según presencia de víctimas", subtitle = "Comparación entre clases", x = "Clase", y = "Número de accidentes", fill = "Clase") +
     tema_libro() +
     theme(legend.position = "none")
 }
 ```
 
-**Interpretación del resultado.**  
-La base está desbalanceada: hay muchos más accidentes de solo daños que accidentes con víctimas.
-
 ## Accidentes por mes
 
 ```{r}
 if (!is.null(atus_ml)) {
-  accidentes_mes <- atus_ml |>
-    count(MES_FACTOR, name = "n") |>
-    arrange(MES_FACTOR)
+  accidentes_mes <- atus_ml |> count(MES_FACTOR, name = "n") |> arrange(MES_FACTOR)
   accidentes_mes
 }
 ```
 
 ```{r}
-if (!is.null(atus_ml)) {
+if (exists("accidentes_mes")) {
   ggplot(accidentes_mes, aes(x = MES_FACTOR, y = n)) +
     geom_col(fill = col_azul, width = 0.75) +
-    scale_y_continuous(labels = etiqueta_numero, expand = expansion(mult = c(0, 0.08))) +
-    labs(
-      title = "Número de accidentes por mes",
-      subtitle = "Distribución mensual de registros ATUS",
-      x = "Mes",
-      y = "Número de accidentes"
-    ) +
+    scale_y_continuous(labels = etiqueta_numero) +
+    labs(title = "Número de accidentes por mes", subtitle = "Base ATUS preparada", x = "Mes", y = "Número de accidentes") +
     tema_libro()
 }
 ```
@@ -147,151 +81,46 @@ if (!is.null(atus_ml)) {
 
 ```{r}
 if (!is.null(atus_ml)) {
-  accidentes_hora <- atus_ml |>
-    count(ID_HORA_NUM, name = "n") |>
-    arrange(ID_HORA_NUM)
-  accidentes_hora
-}
-```
-
-```{r}
-if (!is.null(atus_ml)) {
+  accidentes_hora <- atus_ml |> count(ID_HORA_NUM, name = "n") |> arrange(ID_HORA_NUM)
   ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +
     geom_col(fill = col_turquesa, width = 0.75) +
     scale_x_continuous(breaks = 0:23) +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(
-      title = "Número de accidentes por hora del día",
-      subtitle = "Distribución horaria de accidentes",
-      x = "Hora del día",
-      y = "Número de accidentes"
-    ) +
+    labs(title = "Número de accidentes por hora del día", x = "Hora del día", y = "Número de accidentes") +
     tema_libro()
 }
 ```
 
-## Accidentes por día de la semana
+## Tipos de accidente más frecuentes
 
 ```{r}
 if (!is.null(atus_ml)) {
-  accidentes_dia <- atus_ml |>
-    count(DIASEMANA, name = "n") |>
-    arrange(DIASEMANA)
-  accidentes_dia
-}
-```
-
-```{r}
-if (!is.null(atus_ml)) {
-  ggplot(accidentes_dia, aes(x = DIASEMANA, y = n)) +
+  accidentes_tipo_top <- atus_ml |> count(TIPACCID, name = "n") |> slice_max(n, n = 10)
+  ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +
     geom_col(fill = col_azul, width = 0.75) +
     coord_flip() +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(
-      title = "Número de accidentes por día de la semana",
-      subtitle = "Comparación semanal",
-      x = "Día de la semana",
-      y = "Número de accidentes"
-    ) +
+    labs(title = "Tipos de accidente más frecuentes", x = "Tipo de accidente", y = "Número de accidentes") +
     tema_libro()
 }
 ```
 
-## Accidentes por tipo de accidente
+## Proporción por tipo de accidente
 
 ```{r}
 if (!is.null(atus_ml)) {
-  accidentes_tipo <- atus_ml |>
-    count(TIPACCID, name = "n") |>
-    arrange(desc(n))
-  accidentes_tipo |> head(10)
-}
-```
-
-```{r}
-if (!is.null(atus_ml)) {
-  accidentes_tipo_top <- accidentes_tipo |>
-    slice_max(n, n = 10)
-
-  ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +
-    geom_col(fill = col_turquesa, width = 0.75) +
-    coord_flip() +
-    scale_y_continuous(labels = etiqueta_numero) +
-    labs(
-      title = "Tipos de accidente más frecuentes",
-      subtitle = "Diez categorías con mayor número de registros",
-      x = "Tipo de accidente",
-      y = "Número de accidentes"
-    ) +
-    tema_libro()
-}
-```
-
-## Relación entre tipo de accidente y presencia de víctimas
-
-```{r}
-if (!is.null(atus_ml)) {
-  tipos_top <- atus_ml |>
-    count(TIPACCID) |>
-    slice_max(n, n = 10) |>
-    pull(TIPACCID)
-
-  atus_tipo_top <- atus_ml |>
-    filter(TIPACCID %in% tipos_top)
-
+  tipos_top <- atus_ml |> count(TIPACCID) |> slice_max(n, n = 10) |> pull(TIPACCID)
+  atus_tipo_top <- atus_ml |> filter(TIPACCID %in% tipos_top)
   ggplot(atus_tipo_top, aes(x = TIPACCID, fill = accidente_con_victimas)) +
     geom_bar(position = "fill") +
     coord_flip() +
     escala_clases_fill() +
     scale_y_continuous(labels = etiqueta_porcentaje) +
-    labs(
-      title = "Proporción de accidentes con víctimas según tipo",
-      subtitle = "Comparación relativa por tipo de accidente",
-      x = "Tipo de accidente",
-      y = "Proporción",
-      fill = "Clase"
-    ) +
+    labs(title = "Proporción de accidentes con víctimas según tipo de accidente", x = "Tipo de accidente", y = "Proporción", fill = "Clase") +
     tema_libro()
-}
-```
-
-## Relación entre hora y presencia de víctimas
-
-```{r}
-if (!is.null(atus_ml)) {
-  ggplot(atus_ml, aes(x = ID_HORA_NUM, fill = accidente_con_victimas)) +
-    geom_bar(position = "fill") +
-    scale_x_continuous(breaks = 0:23) +
-    scale_y_continuous(labels = etiqueta_porcentaje) +
-    escala_clases_fill() +
-    labs(
-      title = "Proporción de accidentes con víctimas por hora",
-      subtitle = "Comparación relativa por hora del día",
-      x = "Hora del día",
-      y = "Proporción",
-      fill = "Clase"
-    ) +
-    tema_libro()
-}
-```
-
-## Tabla resumen por clase
-
-```{r}
-if (!is.null(atus_ml)) {
-  resumen_clase <- atus_ml |>
-    group_by(accidente_con_victimas) |>
-    summarise(
-      total = n(),
-      hora_promedio = mean(ID_HORA_NUM, na.rm = TRUE),
-      hora_minima = min(ID_HORA_NUM, na.rm = TRUE),
-      hora_maxima = max(ID_HORA_NUM, na.rm = TRUE),
-      .groups = "drop"
-    )
-  resumen_clase
 }
 ```
 
 ## Conclusión
 
-En este capítulo aprendimos a cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas y detectar patrones iniciales.
+El análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.

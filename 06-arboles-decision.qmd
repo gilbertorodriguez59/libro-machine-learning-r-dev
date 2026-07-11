@@ -2,103 +2,29 @@
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, interpretar reglas tipo si-entonces, entrenar un árbol en R y evaluar su desempeño.
+Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, entrenarlo en R y evaluar su desempeño.
 
 ## Introducción
 
-Los árboles de decisión son modelos de aprendizaje supervisado que clasifican observaciones mediante una secuencia de preguntas.
-
-En este capítulo continuaremos con la base de accidentes de tránsito preparada en los capítulos anteriores. La variable que queremos predecir es `accidente_con_victimas`.
-
-## Idea intuitiva
-
-Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno contiene una pregunta, cada rama representa una posible respuesta y cada hoja contiene una predicción.
-
-```{r}
-reglas_ejemplo <- data.frame(
-  pregunta = c(
-    "¿El accidente fue con peatón?",
-    "¿Ocurrió de noche?",
-    "¿La causa presunta fue el conductor?"
-  ),
-  posible_decision = c(
-    "Mayor posibilidad de víctimas",
-    "Revisar el patrón horario",
-    "Analizar junto con el tipo de accidente"
-  )
-)
-
-reglas_ejemplo
-```
-
-## Reglas tipo si-entonces
-
-```text
-Si el tipo de accidente es colisión con peatón,
-entonces aumenta la posibilidad de que el accidente tenga víctimas.
-
-Si el accidente es una colisión con objeto fijo,
-entonces el árbol revisa otras variables como la hora o la causa presunta.
-```
+Los árboles de decisión clasifican observaciones mediante una secuencia de preguntas. Son interpretables y pueden expresarse como reglas tipo si-entonces.
 
 ## Fundamento matemático
 
-Un árbol de decisión busca dividir los datos en grupos más homogéneos. Para clasificación, una medida común de impureza es el índice de Gini.
+Una medida común de impureza es el índice de Gini:
 
 $$
-Gini = 1 - \sum_{k=1}^{K} p_k^2
+Gini=1-\sum_{k=1}^{K}p_k^2
 $$
-
-En clasificación binaria:
-
-$$
-Gini = 1 - p_1^2 - p_2^2
-$$
-
-Un valor pequeño indica que el nodo es más puro.
-
-## Ejemplo sencillo del índice de Gini
-
-```{r}
-p_solo_danios <- 80 / 100
-p_con_victimas <- 20 / 100
-
-gini <- 1 - p_solo_danios^2 - p_con_victimas^2
-gini
-```
-
-## Algoritmo general
-
-```text
-Entrada:
-- Base de datos con variables predictoras.
-- Variable respuesta categórica.
-
-Proceso:
-1. Elegir una variable para dividir los datos.
-2. Seleccionar la división que produce grupos más homogéneos.
-3. Repetir el proceso en cada nuevo grupo.
-4. Detener el crecimiento del árbol mediante criterios de control.
-5. Asignar una clase a cada hoja.
-6. Evaluar el modelo con datos de prueba.
-```
 
 ## Cargar paquetes y datos
 
 ```{r}
-#| message: false
-#| warning: false
 library(readr)
 library(dplyr)
 library(rpart)
-library(ggplot2)
 source("util_graficas.R")
 
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-file.exists(ruta_atus_ml)
-```
-
-```{r}
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -112,226 +38,80 @@ if (file.exists(ruta_atus_ml)) {
 
 ```{r}
 if (!is.null(atus_ml)) {
-  atus_arbol_base <- atus_ml
-  data.frame(
-    filas = nrow(atus_arbol_base),
-    columnas = ncol(atus_arbol_base)
-  )
-}
-```
-
-## Preparar variables
-
-```{r}
-if (exists("atus_arbol_base")) {
-  atus_arbol_base <- atus_arbol_base |>
+  atus_arbol_base <- atus_ml |>
     mutate(
-      accidente_con_victimas = factor(
-        accidente_con_victimas,
-        levels = c("Con víctimas", "Solo daños")
-      ),
-      MES = as.factor(MES),
-      ID_HORA = as.numeric(ID_HORA),
-      DIASEMANA = as.factor(DIASEMANA),
-      TIPACCID = as.factor(TIPACCID),
-      CAUSAACCI = as.factor(CAUSAACCI)
-    ) |>
-    na.omit()
-
-  table(atus_arbol_base$accidente_con_victimas)
+      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
+      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)
+    ) |> na.omit()
+  data.frame(filas = nrow(atus_arbol_base), columnas = ncol(atus_arbol_base))
 }
 ```
 
-## División en entrenamiento y prueba
+## División y entrenamiento
 
 ```{r}
 if (exists("atus_arbol_base")) {
   set.seed(123)
-  n <- nrow(atus_arbol_base)
-  indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
-
-  entrenamiento <- atus_arbol_base[indices_entrenamiento, ]
-  prueba <- atus_arbol_base[-indices_entrenamiento, ]
-
-  data.frame(
-    conjunto = c("Entrenamiento", "Prueba"),
-    registros = c(nrow(entrenamiento), nrow(prueba)),
-    porcentaje = c(
-      round(100 * nrow(entrenamiento) / nrow(atus_arbol_base), 2),
-      round(100 * nrow(prueba) / nrow(atus_arbol_base), 2)
-    )
-  )
-}
-```
-
-## Ajustar el árbol de decisión
-
-```{r}
-if (exists("entrenamiento")) {
+  idx <- sample(1:nrow(atus_arbol_base), size = round(0.7*nrow(atus_arbol_base)))
+  entrenamiento <- atus_arbol_base[idx, ]
+  prueba <- atus_arbol_base[-idx, ]
   modelo_arbol <- rpart(
     accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
     data = entrenamiento,
     method = "class",
-    control = rpart.control(
-      cp = 0.005,
-      minsplit = 1000,
-      minbucket = 300,
-      maxdepth = 5
-    )
+    control = rpart.control(cp = 0.005, minsplit = 1000, minbucket = 300, maxdepth = 5)
   )
 }
 ```
 
-## Tabla de complejidad
+## Complejidad e importancia
 
 ```{r}
-if (exists("modelo_arbol")) {
-  printcp(modelo_arbol)
-}
+if (exists("modelo_arbol")) printcp(modelo_arbol)
 ```
-
-## Importancia de variables
 
 ```{r}
 if (exists("modelo_arbol")) {
   importancia <- modelo_arbol$variable.importance
-
   if (!is.null(importancia)) {
-    importancia_df <- data.frame(
-      variable = names(importancia),
-      importancia = as.numeric(importancia),
-      row.names = NULL
-    )
+    importancia_df <- data.frame(variable = names(importancia), importancia = as.numeric(importancia), row.names = NULL)
     importancia_df <- importancia_df[order(-importancia_df$importancia), ]
     importancia_df
   }
 }
 ```
 
-```{r}
-if (exists("importancia_df")) {
-  ggplot(importancia_df, aes(x = reorder(variable, importancia), y = importancia)) +
-    geom_col(fill = col_azul, width = 0.75) +
-    coord_flip() +
-    labs(
-      title = "Importancia de variables en el árbol de decisión",
-      subtitle = "Variables más útiles para separar clases",
-      x = "Variable",
-      y = "Importancia"
-    ) +
-    tema_libro()
-}
-```
-
 ## Gráfica opcional del árbol
 
-La gráfica completa del árbol puede ser pesada al generar PDF. Por eso se deja como código opcional para ejecutar manualmente en RStudio.
+La gráfica completa del árbol puede ser pesada en PDF. El lector puede ejecutarla manualmente en RStudio.
 
 ```{r eval=FALSE}
 plot(modelo_arbol, uniform = TRUE, margin = 0.1)
 text(modelo_arbol, use.n = TRUE, cex = 0.7)
 ```
 
-## Predicción sobre el conjunto de prueba
+## Predicción y métricas
 
 ```{r}
-if (exists("modelo_arbol") && exists("prueba")) {
-  pred_arbol <- predict(
-    modelo_arbol,
-    newdata = prueba,
-    type = "class"
-  )
-
-  head(pred_arbol)
-}
-```
-
-## Matriz de confusión
-
-```{r}
-if (exists("pred_arbol")) {
-  pred_arbol <- factor(pred_arbol, levels = c("Con víctimas", "Solo daños"))
+if (exists("modelo_arbol")) {
+  pred_arbol <- predict(modelo_arbol, newdata = prueba, type = "class")
   real_arbol <- factor(prueba$accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
-
-  matriz_confusion_arbol <- table(
-    Real = real_arbol,
-    Predicho = pred_arbol
-  )
-
+  pred_arbol <- factor(pred_arbol, levels = c("Con víctimas", "Solo daños"))
+  matriz_confusion_arbol <- table(Real = real_arbol, Predicho = pred_arbol)
   matriz_confusion_arbol
 }
 ```
 
-## Métricas de evaluación
-
 ```{r}
-calcular_metricas_arbol <- function(real, predicho) {
-  real <- factor(real, levels = c("Con víctimas", "Solo daños"))
-  predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
-
-  matriz <- table(Real = real, Predicho = predicho)
-
-  VP <- matriz["Con víctimas", "Con víctimas"]
-  FN <- matriz["Con víctimas", "Solo daños"]
-  FP <- matriz["Solo daños", "Con víctimas"]
-  VN <- matriz["Solo daños", "Solo daños"]
-
-  data.frame(
-    exactitud = (VP + VN) / (VP + FN + FP + VN),
-    sensibilidad = VP / (VP + FN),
-    especificidad = VN / (VN + FP)
-  )
-}
-
-if (exists("pred_arbol")) {
-  metricas_arbol <- calcular_metricas_arbol(real_arbol, pred_arbol)
-  metricas_arbol
+if (exists("matriz_confusion_arbol")) {
+  VP <- matriz_confusion_arbol["Con víctimas", "Con víctimas"]
+  FN <- matriz_confusion_arbol["Con víctimas", "Solo daños"]
+  FP <- matriz_confusion_arbol["Solo daños", "Con víctimas"]
+  VN <- matriz_confusion_arbol["Solo daños", "Solo daños"]
+  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))
 }
 ```
-
-## Probabilidades predichas
-
-```{r}
-if (exists("modelo_arbol") && exists("prueba")) {
-  probabilidades_arbol <- predict(
-    modelo_arbol,
-    newdata = prueba,
-    type = "prob"
-  )
-
-  head(probabilidades_arbol)
-}
-```
-
-## Resumen de nodos del árbol
-
-```{r}
-if (exists("modelo_arbol")) {
-  frame_arbol <- modelo_arbol$frame
-  resumen_nodos <- data.frame(
-    nodo = row.names(frame_arbol),
-    variable = frame_arbol$var,
-    n = frame_arbol$n,
-    perdida = frame_arbol$dev,
-    yval = frame_arbol$yval,
-    row.names = NULL
-  )
-
-  head(resumen_nodos, 10)
-}
-```
-
-## Comparación conceptual con otros métodos
-
-| Aspecto | Regresión logística | k-NN | Árbol de decisión |
-|---|---|---|---|
-| Tipo de modelo | Paramétrico | No paramétrico | No paramétrico |
-| Interpretabilidad | Alta | Media o baja | Alta |
-| Usa distancias | No | Sí | No |
-| Requiere escalamiento | No siempre | Sí | No |
-| Produce reglas explícitas | Parcialmente | No | Sí |
-| Maneja no linealidad | Limitado | Sí | Sí |
 
 ## Conclusión
 
-Los árboles de decisión son modelos intuitivos, visuales e interpretables. Permiten clasificar observaciones mediante reglas tipo si-entonces. Este capítulo prepara el camino para estudiar modelos más potentes basados en muchos árboles, como Random Forest.
+Los árboles de decisión son modelos intuitivos, visuales e interpretables. Este capítulo prepara el camino para modelos basados en muchos árboles, como Random Forest.
