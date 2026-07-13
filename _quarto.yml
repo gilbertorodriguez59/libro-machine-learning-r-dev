@@ -34,6 +34,7 @@ knitr:
     dpi: 150
     fig.width: 7
     fig.height: 4.5
+    out.width: "92%"
 
 format:
   html:
@@ -52,27 +53,33 @@ format:
     toc-title: "Índice general"
     number-sections: true
     colorlinks: true
-    geometry:
-      - margin=2.5cm
     fontsize: 11pt
+    geometry:
+      - margin=2.3cm
     keep-tex: true
-    code-block-bg: "#F3F7FA"
-    code-block-border-left: "#0B4F6C"
+    code-overflow: wrap
+    highlight-style: github
     include-in-header:
       text: |
         \usepackage{xcolor}
+        \usepackage{fvextra}
+        \usepackage{tcolorbox}
         \usepackage{titlesec}
-        \definecolor{AzulLibro}{HTML}{0B4F6C}
-        \definecolor{TurquesaLibro}{HTML}{0EA5A8}
-        \definecolor{GrisTexto}{HTML}{374151}
+        \usepackage{fontspec}
+        \definecolor{azulLibro}{HTML}{1F4E79}
+        \definecolor{turquesaLibro}{HTML}{19A7AE}
+        \definecolor{grisCodigo}{HTML}{F3F6FA}
+        \definecolor{bordeCodigo}{HTML}{B7C7D9}
+        \definecolor{coralLibro}{HTML}{D95D39}
+        \fvset{breaklines=true,breakanywhere=true,fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{bordeCodigo},baselinestretch=1.02}
+        \titleformat{\chapter}[display]
+          {\normalfont\Huge\bfseries\color{azulLibro}}
+          {\chaptertitlename\ \thechapter}{12pt}{\Huge}
+        \titleformat{\section}
+          {\normalfont\Large\bfseries\color{azulLibro}}
+          {\thesection}{0.8em}{}
+        \titleformat{\subsection}
+          {\normalfont\large\bfseries\color{turquesaLibro}}
+          {\thesubsection}{0.8em}{}
         \renewcommand{\contentsname}{Índice general}
         \renewcommand{\chaptername}{Capítulo}
-        \titleformat{\chapter}[display]
-          {\normalfont\huge\bfseries\color{AzulLibro}}
-          {\chaptername\ \thechapter}{16pt}{\Huge}
-        \titleformat{\section}
-          {\normalfont\Large\bfseries\color{AzulLibro}}
-          {\thesection}{1em}{}
-        \titleformat{\subsection}
-          {\normalfont\large\bfseries\color{TurquesaLibro}}
-          {\thesubsection}{1em}{}

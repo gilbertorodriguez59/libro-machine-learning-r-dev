@@ -10,7 +10,7 @@ En la práctica profesional, los datos reales casi nunca vienen preparados. Ante
 
 ## Cargar paquetes
 
-```{r}
+```{r cargar-paquetes-preparacion}
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -18,9 +18,14 @@ library(stringr)
 source("util_graficas.R")
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se cargan paquetes para leer archivos CSV, transformar datos, trabajar con texto y crear gráficas profesionales.
+:::
+
 ## Leer el archivo CSV
 
-```{r}
+```{r leer-atus}
 ruta_atus <- "datos/atus_2024.csv"
 file.exists(ruta_atus)
 
@@ -33,19 +38,32 @@ if (file.exists(ruta_atus)) {
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+Si aparece `TRUE` y el mensaje de lectura correcta, el archivo está disponible y se puede continuar con la preparación.
+:::
+
 ## Primer vistazo a los datos
 
-```{r}
+```{r vistazo-atus}
 if (!is.null(atus)) {
   data.frame(filas = nrow(atus), columnas = ncol(atus))
   head(atus)
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se revisan las dimensiones de la base y las primeras filas para confirmar que las variables esperadas están presentes.
+:::
+
 ## Variables de interés
 
-```{r}
-variables_interes <- c("ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO", "ID_HORA", "ID_DIA", "DIASEMANA", "TIPACCID", "CAUSAACCI", "CLASACC")
+```{r variables-interes}
+variables_interes <- c(
+  "ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO", "ID_HORA", "ID_DIA",
+  "DIASEMANA", "TIPACCID", "CAUSAACCI", "CLASACC"
+)
 
 if (!is.null(atus)) {
   names(atus) <- toupper(names(atus))
@@ -55,9 +73,14 @@ if (!is.null(atus)) {
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+La base queda reducida a variables útiles para el primer problema de clasificación.
+:::
+
 ## Crear variable respuesta
 
-```{r}
+```{r crear-respuesta}
 if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
   atus_modelo <- atus_base |>
     mutate(
@@ -77,9 +100,14 @@ if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+La variable `CLASACC` se transforma en una respuesta binaria: accidentes con víctimas y accidentes de solo daños.
+:::
+
 ## Preparar variables finales
 
-```{r}
+```{r preparar-variables-finales}
 if (exists("atus_modelo")) {
   atus_ml <- atus_modelo |>
     mutate(
@@ -97,14 +125,24 @@ if (exists("atus_modelo")) {
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+La base final queda lista para análisis exploratorio y modelado. Cada fila representa un accidente y cada columna una variable útil.
+:::
+
 ## Guardar base preparada
 
-```{r}
+```{r guardar-base-preparada}
 if (exists("atus_ml")) {
   if (!dir.exists("datos")) dir.create("datos")
   write_csv(atus_ml, "datos/atus_ml_preparado.csv")
 }
 ```
+
+::: {.callout-note}
+## Explicación del código
+La base preparada se guarda para no repetir todo el proceso de limpieza en los capítulos siguientes.
+:::
 
 ## Resumen del capítulo
 
