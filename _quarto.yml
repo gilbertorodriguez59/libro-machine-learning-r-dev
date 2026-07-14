@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 lang: es
+bibliography: referencias.bib
 
 book:
   title: "Aprendizaje y Clasificación Automática con R"
@@ -20,6 +21,9 @@ book:
     - 05-knn.qmd
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd
+    - 08-evaluacion-modelos.qmd
+  appendices:
+    - referencias.qmd
 
 execute:
   echo: true
@@ -47,39 +51,30 @@ format:
     html-math-method: mathjax
 
   pdf:
-    documentclass: book
+    documentclass: scrbook
+    classoption:
+      - openany
+      - headings=big
     pdf-engine: lualatex
     toc: true
     toc-title: "Índice general"
     number-sections: true
     colorlinks: true
-    fontsize: 11pt
+    linkcolor: blue
+    urlcolor: blue
+    citecolor: blue
+    fontsize: 10.5pt
+    papersize: letter
     geometry:
-      - margin=2.3cm
+      - top=2.35cm
+      - bottom=2.35cm
+      - inner=2.75cm
+      - outer=2.25cm
+      - headsep=0.65cm
     keep-tex: true
     code-overflow: wrap
     highlight-style: github
+    fig-pos: "H"
+    tbl-pos: "H"
     include-in-header:
-      text: |
-        \usepackage{xcolor}
-        \usepackage{fvextra}
-        \usepackage{tcolorbox}
-        \usepackage{titlesec}
-        \usepackage{fontspec}
-        \definecolor{azulLibro}{HTML}{1F4E79}
-        \definecolor{turquesaLibro}{HTML}{19A7AE}
-        \definecolor{grisCodigo}{HTML}{F3F6FA}
-        \definecolor{bordeCodigo}{HTML}{B7C7D9}
-        \definecolor{coralLibro}{HTML}{D95D39}
-        \fvset{breaklines=true,breakanywhere=true,fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{bordeCodigo},baselinestretch=1.02}
-        \titleformat{\chapter}[display]
-          {\normalfont\Huge\bfseries\color{azulLibro}}
-          {\chaptertitlename\ \thechapter}{12pt}{\Huge}
-        \titleformat{\section}
-          {\normalfont\Large\bfseries\color{azulLibro}}
-          {\thesection}{0.8em}{}
-        \titleformat{\subsection}
-          {\normalfont\large\bfseries\color{turquesaLibro}}
-          {\thesubsection}{0.8em}{}
-        \renewcommand{\contentsname}{Índice general}
-        \renewcommand{\chaptername}{Capítulo}
+      - latex/configuracion-pdf.tex

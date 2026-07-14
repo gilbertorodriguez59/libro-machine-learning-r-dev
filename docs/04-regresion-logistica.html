@@ -232,6 +232,29 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -287,7 +310,7 @@ window.Quarto = {
 <p><span class="math display">\[
 p = \frac{1}{1 + e^{-z}}
 \]</span></p>
-<p>donde (z = _0 + _1x_1 + + _px_p).</p>
+<p>donde <span class="math inline">\(z = \beta_0 + \beta_1x_1 + \cdots + \beta_px_p\)</span>.</p>
 </section>
 <section id="visualización-de-la-función-logística" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="visualización-de-la-función-logística"><span class="header-section-number">4.3</span> Visualización de la función logística</h2>
@@ -328,7 +351,7 @@ p = \frac{1}{1 + e^{-z}}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Se genera una secuencia de valores para (z) y se calcula su probabilidad usando la función logística.</p>
+<p>Se genera una secuencia de valores para <span class="math inline">\(z\)</span> y se calcula su probabilidad usando la función logística.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">

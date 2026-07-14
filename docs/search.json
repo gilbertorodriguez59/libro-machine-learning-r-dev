@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.6\nModalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.7 (desarrollo)\nModalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -54,7 +54,7 @@
     "href": "index.html#estructura-actual-del-libro",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Estructura actual del libro",
-    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nRandom Forest.",
+    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nRandom Forest.\nEvaluación, validación y comparación de modelos.",
     "crumbs": [
       "Presentación"
     ]
@@ -65,6 +65,16 @@
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Nota para el lector",
     "text": "Nota para el lector\nLos capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.",
+    "crumbs": [
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "index.html#fuente-principal-de-los-datos",
+    "href": "index.html#fuente-principal-de-los-datos",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "Fuente principal de los datos",
+    "text": "Fuente principal de los datos\nLos ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de Estadística y Geografía 2025). Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.",
     "crumbs": [
       "Presentación"
     ]
@@ -164,7 +174,7 @@
     "href": "01-introduccion.html#notación-básica",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.6 Notación básica",
-    "text": "1.6 Notación básica\nSupongamos que tenemos (n) observaciones y (p) variables predictoras. Podemos representar los datos mediante una matriz (X) y una variable respuesta (Y).\n\\[\n\\hat{y} = f(x_1, x_2, \\ldots, x_p)\n\\]",
+    "text": "1.6 Notación básica\nSupongamos que tenemos \\(n\\) observaciones y \\(p\\) variables predictoras. Podemos representar los datos mediante una matriz \\(X\\) y una variable respuesta \\(Y\\).\n\\[\n\\hat{y} = f(x_1, x_2, \\ldots, x_p)\n\\]",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -214,7 +224,17 @@
     "href": "02-preparacion-datos.html",
     "title": "2  Preparación de datos reales",
     "section": "",
-    "text": "2.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.",
+    "text": "2.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#objetivos-del-capítulo",
+    "href": "02-preparacion-datos.html#objetivos-del-capítulo",
+    "title": "2  Preparación de datos reales",
+    "section": "",
+    "text": "localizar y descargar la base ATUS desde el portal oficial del INEGI;\norganizar los archivos dentro del proyecto Quarto;\nleer y revisar una base real en R;\nseleccionar y transformar variables;\nconstruir una variable respuesta binaria;\nguardar una base preparada para los capítulos de modelado;\ncitar correctamente la fuente de los datos.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -224,7 +244,27 @@
     "href": "02-preparacion-datos.html#introducción",
     "title": "2  Preparación de datos reales",
     "section": "2.2 Introducción",
-    "text": "2.2 Introducción\nEn la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.",
+    "text": "2.2 Introducción\nEn la práctica profesional, los datos casi nunca llegan preparados para aplicar un algoritmo. Antes de modelar debemos conocer su procedencia, revisar su estructura, limpiar valores, transformar variables y documentar cada decisión.\nEn este libro utilizamos la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS) del Instituto Nacional de Estadística y Geografía (Instituto Nacional de Estadística y Geografía 2025). Su objetivo es producir información anual sobre la siniestralidad del transporte terrestre en zonas de jurisdicción no federal, con desglose nacional, estatal y municipal.\n\n\n\n\n\n\nImportanteUso responsable de la información\n\n\n\nLos datos originales son del INEGI. La limpieza, transformación, selección de variables, gráficas, modelos e interpretaciones de este libro son elaboración del autor. No constituyen resultados oficiales ni implican el aval del Instituto.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#descargar-la-base-atus-desde-el-inegi",
+    "href": "02-preparacion-datos.html#descargar-la-base-atus-desde-el-inegi",
+    "title": "2  Preparación de datos reales",
+    "section": "2.3 Descargar la base ATUS desde el INEGI",
+    "text": "2.3 Descargar la base ATUS desde el INEGI\nLa descarga debe realizarse desde el sitio oficial para conservar la procedencia y los metadatos del archivo.\n\nAbra en su navegador el portal de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS):\nhttps://www.inegi.org.mx/programas/accidentes/\nLocalice el apartado Datos abiertos o la opción de descarga correspondiente.\nSeleccione el periodo anual que desea utilizar. Para reproducir los ejemplos de esta versión, elija 2024.\nDescargue el archivo en formato CSV. Es posible que el portal entregue un archivo comprimido en formato ZIP.\nDescomprima el archivo descargado.\nIdentifique el CSV anual y cópielo en la carpeta datos del proyecto.\nPara seguir exactamente los ejemplos, renómbrelo como:\n\natus_2024.csv\nLa estructura mínima del proyecto debe quedar así:\nlibro-machine-learning-r-dev/\n├── _quarto.yml\n├── index.qmd\n├── 02-preparacion-datos.qmd\n├── datos/\n│   └── atus_2024.csv\n└── referencias.bib\n\n\n\n\n\n\nTipOtro año de información\n\n\n\nPuede utilizar un año diferente. En ese caso, cambie el nombre del archivo o modifique la ruta utilizada en el código. Conviene anotar siempre el año de referencia porque los resultados pueden cambiar entre periodos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#cómo-citar-los-datos",
+    "href": "02-preparacion-datos.html#cómo-citar-los-datos",
+    "title": "2  Preparación de datos reales",
+    "section": "2.4 Cómo citar los datos",
+    "text": "2.4 Cómo citar los datos\nLos términos de libre uso del INEGI permiten utilizar, adaptar y publicar su información, pero requieren citar la fuente de origen (Instituto Nacional de Estadística y Geografía 2026).\nEn el texto puede utilizarse una cita como esta:\n\nLos datos proceden de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de Estadística y Geografía 2025).\n\nDebajo de una tabla o gráfica sin transformaciones importantes:\n\nFuente: INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.\n\nCuando exista procesamiento, agrupación, modelado o visualización propia:\n\nFuente: Elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -233,8 +273,18 @@
     "objectID": "02-preparacion-datos.html#cargar-paquetes",
     "href": "02-preparacion-datos.html#cargar-paquetes",
     "title": "2  Preparación de datos reales",
-    "section": "2.3 Cargar paquetes",
-    "text": "2.3 Cargar paquetes\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(stringr)\nsource(\"util_graficas.R\")\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe cargan paquetes para leer archivos CSV, transformar datos, trabajar con texto y crear gráficas profesionales.",
+    "section": "2.5 Cargar paquetes",
+    "text": "2.5 Cargar paquetes\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(stringr)\nsource(\"util_graficas.R\")\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe cargan paquetes para leer archivos CSV, transformar datos, trabajar con texto y crear gráficas. El archivo util_graficas.R contiene funciones visuales comunes para mantener un estilo uniforme en todo el libro.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#localizar-el-archivo",
+    "href": "02-preparacion-datos.html#localizar-el-archivo",
+    "title": "2  Preparación de datos reales",
+    "section": "2.6 Localizar el archivo",
+    "text": "2.6 Localizar el archivo\nEn lugar de depender únicamente de un nombre fijo, el siguiente código busca archivos cuyo nombre comience con atus y termine en .csv.\n\n\nCódigo\narchivos_atus &lt;- list.files(\n  path = \"datos\",\n  pattern = \"^atus.*\\\\.csv$\",\n  full.names = TRUE,\n  ignore.case = TRUE\n)\n\narchivos_atus\n\n\n[1] \"datos/atus_2024.csv\"         \"datos/atus_ml_preparado.csv\"\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nSi aparece al menos una ruta, R encontró un archivo ATUS. Si el resultado es character(0), revise que el archivo esté descomprimido y guardado dentro de la carpeta datos.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -243,8 +293,8 @@
     "objectID": "02-preparacion-datos.html#leer-el-archivo-csv",
     "href": "02-preparacion-datos.html#leer-el-archivo-csv",
     "title": "2  Preparación de datos reales",
-    "section": "2.4 Leer el archivo CSV",
-    "text": "2.4 Leer el archivo CSV\n\n\nCódigo\nruta_atus &lt;- \"datos/atus_2024.csv\"\nfile.exists(ruta_atus)\n\n\n[1] TRUE\n\n\nCódigo\nif (file.exists(ruta_atus)) {\n  atus &lt;- read_csv(file = ruta_atus, show_col_types = FALSE, locale = locale(encoding = \"UTF-8\"))\n  print(\"Archivo leído correctamente.\")\n} else {\n  atus &lt;- NULL\n  print(\"El archivo atus_2024.csv todavía no está disponible en la carpeta datos.\")\n}\n\n\n[1] \"Archivo leído correctamente.\"\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nSi aparece TRUE y el mensaje de lectura correcta, el archivo está disponible y se puede continuar con la preparación.",
+    "section": "2.7 Leer el archivo CSV",
+    "text": "2.7 Leer el archivo CSV\n\n\nCódigo\nif (length(archivos_atus) == 0) {\n  stop(\n    paste(\n      \"No se encontró un archivo ATUS en la carpeta datos.\",\n      \"Descárguelo desde el portal oficial del INEGI y descomprímalo.\"\n    )\n  )\n}\n\nruta_atus &lt;- archivos_atus[1]\n\natus &lt;- read_csv(\n  file = ruta_atus,\n  show_col_types = FALSE,\n  locale = locale(encoding = \"UTF-8\")\n)\n\nmessage(\"Archivo leído: \", ruta_atus)\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe selecciona el primer archivo localizado y se lee con read_csv(). El argumento show_col_types = FALSE evita imprimir mensajes técnicos que distraen de los resultados principales.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -253,48 +303,68 @@
     "objectID": "02-preparacion-datos.html#primer-vistazo-a-los-datos",
     "href": "02-preparacion-datos.html#primer-vistazo-a-los-datos",
     "title": "2  Preparación de datos reales",
-    "section": "2.5 Primer vistazo a los datos",
-    "text": "2.5 Primer vistazo a los datos\n\n\nCódigo\nif (!is.null(atus)) {\n  data.frame(filas = nrow(atus), columnas = ncol(atus))\n  head(atus)\n}\n\n\n# A tibble: 6 × 45\n  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; \n1 Municipal 01         001           2024 01    02      25        01    \n2 Municipal 01         001           2024 01    03      40        01    \n3 Municipal 01         001           2024 01    04      37        01    \n4 Municipal 01         001           2024 01    05      00        01    \n5 Municipal 01         001           2024 01    06      45        01    \n6 Municipal 01         001           2024 01    07      30        01    \n# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,\n#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,\n#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,\n#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,\n#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,\n#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,\n#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe revisan las dimensiones de la base y las primeras filas para confirmar que las variables esperadas están presentes.",
+    "section": "2.8 Primer vistazo a los datos",
+    "text": "2.8 Primer vistazo a los datos\n\n\nCódigo\nresumen_dimensiones &lt;- data.frame(\n  filas = nrow(atus),\n  columnas = ncol(atus)\n)\n\nresumen_dimensiones\n\n\n   filas columnas\n1 390627       45\n\n\nCódigo\nhead(atus)\n\n\n# A tibble: 6 × 45\n  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; \n1 Municipal 01         001           2024 01    02      25        01    \n2 Municipal 01         001           2024 01    03      40        01    \n3 Municipal 01         001           2024 01    04      37        01    \n4 Municipal 01         001           2024 01    05      00        01    \n5 Municipal 01         001           2024 01    06      45        01    \n6 Municipal 01         001           2024 01    07      30        01    \n# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,\n#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,\n#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,\n#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,\n#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,\n#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,\n#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLas filas representan registros de accidentes y las columnas describen sus características temporales, geográficas y operativas. Antes de modelar es indispensable confirmar que las variables esperadas estén disponibles.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#variables-de-interés",
-    "href": "02-preparacion-datos.html#variables-de-interés",
+    "objectID": "02-preparacion-datos.html#normalizar-los-nombres-de-variables",
+    "href": "02-preparacion-datos.html#normalizar-los-nombres-de-variables",
     "title": "2  Preparación de datos reales",
-    "section": "2.6 Variables de interés",
-    "text": "2.6 Variables de interés\n\n\nCódigo\nvariables_interes &lt;- c(\n  \"ANIO\", \"MES\", \"ID_ENTIDAD\", \"ID_MUNICIPIO\", \"ID_HORA\", \"ID_DIA\",\n  \"DIASEMANA\", \"TIPACCID\", \"CAUSAACCI\", \"CLASACC\"\n)\n\nif (!is.null(atus)) {\n  names(atus) &lt;- toupper(names(atus))\n  variables_existentes &lt;- intersect(variables_interes, names(atus))\n  atus_base &lt;- atus |&gt; select(all_of(variables_existentes))\n  head(atus_base)\n}\n\n\n# A tibble: 6 × 10\n   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         \n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            \n1  2024 01    01         001          02      01     lunes     Colisión con veh…\n2  2024 01    01         001          03      01     lunes     Colisión con obj…\n3  2024 01    01         001          04      01     lunes     Colisión con pea…\n4  2024 01    01         001          05      01     lunes     Colisión con obj…\n5  2024 01    01         001          06      01     lunes     Colisión con obj…\n6  2024 01    01         001          07      01     lunes     Colisión con veh…\n# ℹ 2 more variables: CAUSAACCI &lt;chr&gt;, CLASACC &lt;chr&gt;\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa base queda reducida a variables útiles para el primer problema de clasificación.",
+    "section": "2.9 Normalizar los nombres de variables",
+    "text": "2.9 Normalizar los nombres de variables\n\n\nCódigo\nnames(atus) &lt;- toupper(names(atus))\nnames(atus)\n\n\n [1] \"COBERTURA\"    \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ANIO\"         \"MES\"         \n [6] \"ID_HORA\"      \"ID_MINUTO\"    \"ID_DIA\"       \"DIASEMANA\"    \"URBANA\"      \n[11] \"SUBURBANA\"    \"TIPACCID\"     \"AUTOMOVIL\"    \"CAMPASAJ\"     \"MICROBUS\"    \n[16] \"PASCAMION\"    \"OMNIBUS\"      \"TRANVIA\"      \"CAMIONETA\"    \"CAMION\"      \n[21] \"TRACTOR\"      \"FERROCARRI\"   \"MOTOCICLET\"   \"BICICLETA\"    \"OTROVEHIC\"   \n[26] \"CAUSAACCI\"    \"CAPAROD\"      \"SEXO\"         \"ALIENTO\"      \"CINTURON\"    \n[31] \"ID_EDAD\"      \"CONDMUERTO\"   \"CONDHERIDO\"   \"PASAMUERTO\"   \"PASAHERIDO\"  \n[36] \"PEATMUERTO\"   \"PEATHERIDO\"   \"CICLMUERTO\"   \"CICLHERIDO\"   \"OTROMUERTO\"  \n[41] \"OTROHERIDO\"   \"NEMUERTO\"     \"NEHERIDO\"     \"CLASACC\"      \"ESTATUS\"     \n\n\nSe convierten los nombres a mayúsculas para evitar errores por diferencias como Mes, MES o mes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#crear-variable-respuesta",
-    "href": "02-preparacion-datos.html#crear-variable-respuesta",
+    "objectID": "02-preparacion-datos.html#seleccionar-variables-de-interés",
+    "href": "02-preparacion-datos.html#seleccionar-variables-de-interés",
     "title": "2  Preparación de datos reales",
-    "section": "2.7 Crear variable respuesta",
-    "text": "2.7 Crear variable respuesta\n\n\nCódigo\nif (exists(\"atus_base\") && \"CLASACC\" %in% names(atus_base)) {\n  atus_modelo &lt;- atus_base |&gt;\n    mutate(\n      CLASACC_TXT = str_to_lower(as.character(CLASACC)),\n      accidente_con_victimas = case_when(\n        str_detect(CLASACC_TXT, \"sólo daños\") ~ \"Solo daños\",\n        str_detect(CLASACC_TXT, \"solo daños\") ~ \"Solo daños\",\n        str_detect(CLASACC_TXT, \"daños\") ~ \"Solo daños\",\n        str_detect(CLASACC_TXT, \"no fatal\") ~ \"Con víctimas\",\n        str_detect(CLASACC_TXT, \"fatal\") ~ \"Con víctimas\",\n        TRUE ~ NA_character_\n      )\n    ) |&gt;\n    filter(!is.na(accidente_con_victimas))\n\n  table(atus_modelo$accidente_con_victimas)\n}\n\n\n\nCon víctimas   Solo daños \n       68108       322519 \n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa variable CLASACC se transforma en una respuesta binaria: accidentes con víctimas y accidentes de solo daños.",
+    "section": "2.10 Seleccionar variables de interés",
+    "text": "2.10 Seleccionar variables de interés\n\n\nCódigo\nvariables_interes &lt;- c(\n  \"ANIO\", \"MES\", \"ID_ENTIDAD\", \"ID_MUNICIPIO\",\n  \"ID_HORA\", \"ID_DIA\", \"DIASEMANA\", \"TIPACCID\",\n  \"CAUSAACCI\", \"CLASACC\"\n)\n\nvariables_existentes &lt;- intersect(\n  variables_interes,\n  names(atus)\n)\n\nvariables_faltantes &lt;- setdiff(\n  variables_interes,\n  names(atus)\n)\n\natus_base &lt;- atus |&gt;\n  select(all_of(variables_existentes))\n\nvariables_existentes\n\n\n [1] \"ANIO\"         \"MES\"          \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ID_HORA\"     \n [6] \"ID_DIA\"       \"DIASEMANA\"    \"TIPACCID\"     \"CAUSAACCI\"    \"CLASACC\"     \n\n\nCódigo\nvariables_faltantes\n\n\ncharacter(0)\n\n\n\n\n\n\n\n\nAdvertenciaCompruebe el diccionario de datos\n\n\n\nLos nombres y categorías pueden variar entre versiones. Si aparece una variable faltante, consulte los metadatos y el diccionario de datos descargados junto con la base antes de sustituirla.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#preparar-variables-finales",
-    "href": "02-preparacion-datos.html#preparar-variables-finales",
+    "objectID": "02-preparacion-datos.html#crear-la-variable-respuesta",
+    "href": "02-preparacion-datos.html#crear-la-variable-respuesta",
     "title": "2  Preparación de datos reales",
-    "section": "2.8 Preparar variables finales",
-    "text": "2.8 Preparar variables finales\n\n\nCódigo\nif (exists(\"atus_modelo\")) {\n  atus_ml &lt;- atus_modelo |&gt;\n    mutate(\n      MES = as.factor(MES),\n      ID_HORA = as.character(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI),\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n    ) |&gt;\n    select(accidente_con_victimas, MES, ID_HORA, DIASEMANA, TIPACCID, CAUSAACCI) |&gt;\n    na.omit()\n\n  data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))\n}\n\n\n   filas columnas\n1 390627        6\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa base final queda lista para análisis exploratorio y modelado. Cada fila representa un accidente y cada columna una variable útil.",
+    "section": "2.11 Crear la variable respuesta",
+    "text": "2.11 Crear la variable respuesta\nEl primer problema de clasificación distinguirá entre:\n\nCon víctimas: accidentes fatales o no fatales con personas lesionadas o fallecidas.\nSolo daños: accidentes con daños materiales sin víctimas registradas.\n\n\n\nCódigo\natus_modelo &lt;- atus_base |&gt;\n  mutate(\n    CLASACC_TXT = str_to_lower(as.character(CLASACC)),\n    accidente_con_victimas = case_when(\n      str_detect(CLASACC_TXT, \"sólo daños\") ~ \"Solo daños\",\n      str_detect(CLASACC_TXT, \"solo daños\") ~ \"Solo daños\",\n      str_detect(CLASACC_TXT, \"daños\") ~ \"Solo daños\",\n      str_detect(CLASACC_TXT, \"no fatal\") ~ \"Con víctimas\",\n      str_detect(CLASACC_TXT, \"fatal\") ~ \"Con víctimas\",\n      TRUE ~ NA_character_\n    )\n  ) |&gt;\n  filter(!is.na(accidente_con_victimas))\n\ntable(atus_modelo$accidente_con_victimas)\n\n\n\nCon víctimas   Solo daños \n       68108       322519 \n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa variable CLASACC se transforma en una respuesta binaria. case_when() asigna una nueva categoría según el texto encontrado y los registros que no pueden clasificarse se excluyen temporalmente.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#guardar-base-preparada",
-    "href": "02-preparacion-datos.html#guardar-base-preparada",
+    "objectID": "02-preparacion-datos.html#preparar-las-variables-finales",
+    "href": "02-preparacion-datos.html#preparar-las-variables-finales",
     "title": "2  Preparación de datos reales",
-    "section": "2.9 Guardar base preparada",
-    "text": "2.9 Guardar base preparada\n\n\nCódigo\nif (exists(\"atus_ml\")) {\n  if (!dir.exists(\"datos\")) dir.create(\"datos\")\n  write_csv(atus_ml, \"datos/atus_ml_preparado.csv\")\n}\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa base preparada se guarda para no repetir todo el proceso de limpieza en los capítulos siguientes.",
+    "section": "2.12 Preparar las variables finales",
+    "text": "2.12 Preparar las variables finales\n\n\nCódigo\natus_ml &lt;- atus_modelo |&gt;\n  mutate(\n    MES = as.factor(MES),\n    ID_HORA = as.character(ID_HORA),\n    DIASEMANA = as.factor(DIASEMANA),\n    TIPACCID = as.factor(TIPACCID),\n    CAUSAACCI = as.factor(CAUSAACCI),\n    accidente_con_victimas = factor(\n      accidente_con_victimas,\n      levels = c(\"Con víctimas\", \"Solo daños\")\n    )\n  ) |&gt;\n  select(\n    accidente_con_victimas,\n    MES,\n    ID_HORA,\n    DIASEMANA,\n    TIPACCID,\n    CAUSAACCI\n  ) |&gt;\n  na.omit()\n\ndata.frame(\n  filas = nrow(atus_ml),\n  columnas = ncol(atus_ml)\n)\n\n\n   filas columnas\n1 390627        6\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa base final queda lista para el análisis exploratorio y el modelado. Cada fila representa un accidente y cada columna una variable predictora o la respuesta que se desea clasificar.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#guardar-la-base-preparada",
+    "href": "02-preparacion-datos.html#guardar-la-base-preparada",
+    "title": "2  Preparación de datos reales",
+    "section": "2.13 Guardar la base preparada",
+    "text": "2.13 Guardar la base preparada\n\n\nCódigo\nif (!dir.exists(\"datos\")) {\n  dir.create(\"datos\")\n}\n\nwrite_csv(\n  atus_ml,\n  \"datos/atus_ml_preparado.csv\"\n)\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nGuardar la base preparada evita repetir toda la limpieza en los capítulos siguientes y ayuda a mantener reproducible el flujo de trabajo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#lista-de-comprobación",
+    "href": "02-preparacion-datos.html#lista-de-comprobación",
+    "title": "2  Preparación de datos reales",
+    "section": "2.14 Lista de comprobación",
+    "text": "2.14 Lista de comprobación\nAntes de continuar, verifique que:\n\nel archivo proviene del portal oficial del INEGI;\nel año de los datos está documentado;\nel CSV se encuentra dentro de datos;\nlas variables usadas existen en la versión descargada;\nla transformación de CLASACC corresponde con su diccionario;\nlas tablas y gráficas incluyen la fuente;\nel archivo atus_ml_preparado.csv se creó correctamente.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -303,8 +373,8 @@
     "objectID": "02-preparacion-datos.html#resumen-del-capítulo",
     "href": "02-preparacion-datos.html#resumen-del-capítulo",
     "title": "2  Preparación de datos reales",
-    "section": "2.10 Resumen del capítulo",
-    "text": "2.10 Resumen del capítulo\nEn este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.",
+    "section": "2.15 Resumen del capítulo",
+    "text": "2.15 Resumen del capítulo\nEn este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nInstituto Nacional de Estadística y Geografía. 2026. «Términos de libre uso de la información del INEGI». https://www.inegi.org.mx/inegi/terminos.html.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -414,7 +484,7 @@
     "href": "04-regresion-logistica.html#fundamento-matemático",
     "title": "4  Regresión logística para clasificación",
     "section": "4.2 Fundamento matemático",
-    "text": "4.2 Fundamento matemático\nLa regresión logística utiliza la función:\n\\[\np = \\frac{1}{1 + e^{-z}}\n\\]\ndonde (z = _0 + _1x_1 + + _px_p).",
+    "text": "4.2 Fundamento matemático\nLa regresión logística utiliza la función:\n\\[\np = \\frac{1}{1 + e^{-z}}\n\\]\ndonde \\(z = \\beta_0 + \\beta_1x_1 + \\cdots + \\beta_px_p\\).",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -424,7 +494,7 @@
     "href": "04-regresion-logistica.html#visualización-de-la-función-logística",
     "title": "4  Regresión logística para clasificación",
     "section": "4.3 Visualización de la función logística",
-    "text": "4.3 Visualización de la función logística\n\n\nCódigo\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nz &lt;- seq(-10, 10, length.out = 200)\ndatos_logistica &lt;- data.frame(z = z, p = 1 / (1 + exp(-z)))\n\nggplot(datos_logistica, aes(x = z, y = p)) +\n  geom_line(linewidth = 1.2, color = col_azul) +\n  labs(\n    title = \"Función logística\",\n    subtitle = \"Transforma valores reales en probabilidades\",\n    x = \"z\",\n    y = \"Probabilidad\"\n  ) +\n  tema_libro()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe genera una secuencia de valores para (z) y se calcula su probabilidad usando la función logística.\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa curva tiene forma de S. Valores negativos producen probabilidades cercanas a cero y valores positivos probabilidades cercanas a uno.",
+    "text": "4.3 Visualización de la función logística\n\n\nCódigo\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nz &lt;- seq(-10, 10, length.out = 200)\ndatos_logistica &lt;- data.frame(z = z, p = 1 / (1 + exp(-z)))\n\nggplot(datos_logistica, aes(x = z, y = p)) +\n  geom_line(linewidth = 1.2, color = col_azul) +\n  labs(\n    title = \"Función logística\",\n    subtitle = \"Transforma valores reales en probabilidades\",\n    x = \"z\",\n    y = \"Probabilidad\"\n  ) +\n  tema_libro()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe genera una secuencia de valores para \\(z\\) y se calcula su probabilidad usando la función logística.\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa curva tiene forma de S. Valores negativos producen probabilidades cercanas a cero y valores positivos probabilidades cercanas a uno.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -564,7 +634,7 @@
     "href": "05-knn.html#conclusión",
     "title": "5  k vecinos más cercanos, k-NN",
     "section": "5.7 Conclusión",
-    "text": "5.7 Conclusión\nk-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de (k), del escalamiento y de la calidad de las variables predictoras.",
+    "text": "5.7 Conclusión\nk-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de \\(k\\), del escalamiento y de la calidad de las variables predictoras.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -694,7 +764,7 @@
     "href": "07-random-forest.html#fundamento-matemático",
     "title": "7  Random Forest para clasificación",
     "section": "7.3 Fundamento matemático",
-    "text": "7.3 Fundamento matemático\nSi se construyen (B) árboles, la predicción final es:\n\\[\n\\hat{y}(x) = moda\\{\\hat{y}^{(1)}(x), \\hat{y}^{(2)}(x), \\ldots, \\hat{y}^{(B)}(x)\\}\n\\]",
+    "text": "7.3 Fundamento matemático\nSi se construyen \\(B\\) árboles, la predicción final es:\n\\[\n\\hat{y}(x) = moda\\{\\hat{y}^{(1)}(x), \\hat{y}^{(2)}(x), \\ldots, \\hat{y}^{(B)}(x)\\}\n\\]",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -777,6 +847,217 @@
     "text": "7.11 Conclusión\nRandom Forest mejora la estabilidad y la capacidad predictiva de un solo árbol al combinar muchos árboles. Es uno de los métodos más útiles para clasificación aplicada.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html",
+    "href": "08-evaluacion-modelos.html",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "",
+    "text": "8.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#objetivos-del-capítulo",
+    "href": "08-evaluacion-modelos.html#objetivos-del-capítulo",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "",
+    "text": "explicar por qué la exactitud no siempre es suficiente;\nconstruir e interpretar una matriz de confusión;\ncalcular exactitud, sensibilidad, especificidad, precisión y valor F1;\ndistinguir entrenamiento, validación y prueba;\naplicar validación cruzada estratificada;\ncomparar modelos con criterios predictivos y prácticos;\nseleccionar un modelo sin depender de una sola métrica.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#introducción",
+    "href": "08-evaluacion-modelos.html#introducción",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.2 Introducción",
+    "text": "8.2 Introducción\nEntrenar un modelo es apenas la mitad del trabajo. Después debemos responder una pregunta más delicada: ¿qué tan bien funcionará con accidentes que nunca vio durante el aprendizaje?\nUn modelo puede memorizar los datos de entrenamiento y parecer excelente, pero fallar con observaciones nuevas. Por eso la evaluación debe realizarse con datos separados y métricas apropiadas para el objetivo del problema.\nEn este capítulo se utiliza nuevamente la base preparada a partir de ATUS (Instituto Nacional de Estadística y Geografía 2025).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#cargar-los-datos",
+    "href": "08-evaluacion-modelos.html#cargar-los-datos",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.3 Cargar los datos",
+    "text": "8.3 Cargar los datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (!file.exists(ruta_atus_ml)) {\n  stop(\n    paste(\n      \"No se encontró datos/atus_ml_preparado.csv.\",\n      \"Renderice primero el capítulo de preparación de datos.\"\n    )\n  )\n}\n\natus_ml &lt;- read_csv(\n  ruta_atus_ml,\n  show_col_types = FALSE\n)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#preparar-una-muestra-reproducible",
+    "href": "08-evaluacion-modelos.html#preparar-una-muestra-reproducible",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.4 Preparar una muestra reproducible",
+    "text": "8.4 Preparar una muestra reproducible\n\n\nCódigo\nset.seed(123)\n\natus_eval &lt;- atus_ml |&gt;\n  sample_n(min(30000, nrow(atus_ml))) |&gt;\n  mutate(\n    accidente_con_victimas = factor(\n      accidente_con_victimas,\n      levels = c(\"Solo daños\", \"Con víctimas\")\n    ),\n    MES = factor(MES),\n    ID_HORA = as.numeric(ID_HORA),\n    DIASEMANA = factor(DIASEMANA),\n    TIPACCID = factor(TIPACCID),\n    CAUSAACCI = factor(CAUSAACCI)\n  ) |&gt;\n  na.omit()\n\nprop.table(table(atus_eval$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n   0.8277333    0.1722667 \n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa tabla de proporciones permite identificar si una clase es mucho más frecuente que la otra. Cuando existe desbalance, una exactitud alta puede resultar engañosa.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#entrenamiento-validación-y-prueba",
+    "href": "08-evaluacion-modelos.html#entrenamiento-validación-y-prueba",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.5 Entrenamiento, validación y prueba",
+    "text": "8.5 Entrenamiento, validación y prueba\nLos datos pueden dividirse en tres partes:\n\nEntrenamiento: se utiliza para estimar los parámetros del modelo.\nValidación: ayuda a elegir hiperparámetros y comparar alternativas.\nPrueba: se reserva para estimar el desempeño final.\n\nEn ejercicios introductorios es frecuente utilizar entrenamiento y prueba, mientras que la validación se realiza mediante validación cruzada dentro del conjunto de entrenamiento.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#división-estratificada",
+    "href": "08-evaluacion-modelos.html#división-estratificada",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.6 División estratificada",
+    "text": "8.6 División estratificada\nUna división estratificada conserva aproximadamente la proporción de cada clase.\n\n\nCódigo\nset.seed(123)\n\nindices_entrenamiento &lt;- unlist(\n  lapply(\n    split(seq_len(nrow(atus_eval)), atus_eval$accidente_con_victimas),\n    function(indices) {\n      sample(indices, size = floor(0.70 * length(indices)))\n    }\n  )\n)\n\nentrenamiento &lt;- atus_eval[indices_entrenamiento, ]\nprueba &lt;- atus_eval[-indices_entrenamiento, ]\n\nprop.table(table(entrenamiento$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n   0.8277537    0.1722463 \n\n\nCódigo\nprop.table(table(prueba$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n   0.8276858    0.1723142 \n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLos índices se separan por clase y después se toma 70 % de cada grupo. Así se reduce el riesgo de que una clase quede sobrerrepresentada en entrenamiento o prueba.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#matriz-de-confusión",
+    "href": "08-evaluacion-modelos.html#matriz-de-confusión",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.7 Matriz de confusión",
+    "text": "8.7 Matriz de confusión\nPara una clase positiva denominada Con víctimas, la matriz contiene:\n\nVerdadero positivo (VP): el accidente tenía víctimas y el modelo lo detectó.\nFalso negativo (FN): tenía víctimas, pero el modelo lo clasificó como solo daños.\nFalso positivo (FP): era de solo daños, pero el modelo predijo víctimas.\nVerdadero negativo (VN): era de solo daños y se clasificó correctamente.\n\n\n\n\nClase real\nPredicción positiva\nPredicción negativa\n\n\n\n\nPositiva\nVP\nFN\n\n\nNegativa\nFP\nVN\n\n\n\nUn falso negativo puede ser especialmente importante cuando el propósito consiste en identificar accidentes con víctimas.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#métricas-principales",
+    "href": "08-evaluacion-modelos.html#métricas-principales",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.8 Métricas principales",
+    "text": "8.8 Métricas principales\n\n8.8.1 Exactitud\n\\[\n\\text{Exactitud}=\\frac{VP+VN}{VP+FN+FP+VN}\n\\]\nMide la proporción total de predicciones correctas.\n\n\n8.8.2 Sensibilidad\n\\[\n\\text{Sensibilidad}=\\frac{VP}{VP+FN}\n\\]\nMide qué proporción de los accidentes con víctimas fue detectada.\n\n\n8.8.3 Especificidad\n\\[\n\\text{Especificidad}=\\frac{VN}{VN+FP}\n\\]\nMide qué proporción de los accidentes de solo daños fue reconocida correctamente.\n\n\n8.8.4 Precisión\n\\[\n\\text{Precisión}=\\frac{VP}{VP+FP}\n\\]\nIndica qué proporción de las predicciones positivas realmente tenía víctimas.\n\n\n8.8.5 Valor F1\n\\[\nF_1=2\\frac{\\text{Precisión}\\times\\text{Sensibilidad}}\n{\\text{Precisión}+\\text{Sensibilidad}}\n\\]\nEl valor F1 equilibra precisión y sensibilidad.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#función-para-calcular-métricas",
+    "href": "08-evaluacion-modelos.html#función-para-calcular-métricas",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.9 Función para calcular métricas",
+    "text": "8.9 Función para calcular métricas\n\n\nCódigo\ncalcular_metricas &lt;- function(real, predicho, positiva = \"Con víctimas\") {\n  real &lt;- factor(real)\n  predicho &lt;- factor(predicho, levels = levels(real))\n\n  negativas &lt;- setdiff(levels(real), positiva)\n\n  if (length(negativas) != 1) {\n    stop(\"La función requiere exactamente dos clases.\")\n  }\n\n  negativa &lt;- negativas[1]\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[positiva, positiva]\n  FN &lt;- matriz[positiva, negativa]\n  FP &lt;- matriz[negativa, positiva]\n  VN &lt;- matriz[negativa, negativa]\n\n  division_segura &lt;- function(numerador, denominador) {\n    if (\n      is.na(numerador) ||\n      is.na(denominador) ||\n      denominador == 0\n    ) {\n      return(NA_real_)\n    }\n\n    as.numeric(numerador / denominador)\n  }\n\n  exactitud &lt;- division_segura(VP + VN, VP + FN + FP + VN)\n  sensibilidad &lt;- division_segura(VP, VP + FN)\n  especificidad &lt;- division_segura(VN, VN + FP)\n  precision &lt;- division_segura(VP, VP + FP)\n  f1 &lt;- division_segura(\n    2 * precision * sensibilidad,\n    precision + sensibilidad\n  )\n\n  list(\n    matriz = matriz,\n    metricas = data.frame(\n      exactitud = exactitud,\n      sensibilidad = sensibilidad,\n      especificidad = especificidad,\n      precision = precision,\n      f1 = f1\n    )\n  )\n}",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#modelo-de-referencia-regla-mayoritaria",
+    "href": "08-evaluacion-modelos.html#modelo-de-referencia-regla-mayoritaria",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.10 Modelo de referencia: regla mayoritaria",
+    "text": "8.10 Modelo de referencia: regla mayoritaria\nAntes de celebrar un modelo complejo, conviene compararlo con una regla muy simple: predecir siempre la clase más frecuente.\n\n\nCódigo\nclase_mayoritaria &lt;- names(\n  which.max(table(entrenamiento$accidente_con_victimas))\n)\n\nprediccion_referencia &lt;- factor(\n  rep(clase_mayoritaria, nrow(prueba)),\n  levels = levels(entrenamiento$accidente_con_victimas)\n)\n\nresultado_referencia &lt;- calcular_metricas(\n  real = prueba$accidente_con_victimas,\n  predicho = prediccion_referencia\n)\n\nresultado_referencia$matriz\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         7450            0\n  Con víctimas       1551            0\n\n\nCódigo\nresultado_referencia$metricas\n\n\n  exactitud sensibilidad especificidad precision f1\n1 0.8276858            0             1        NA NA\n\n\n\n\n\n\n\n\nNota¿Por qué puede aparecer NA?\n\n\n\nEl modelo de referencia predice únicamente la clase mayoritaria. Si nunca predice la clase positiva Con víctimas, la precisión no puede calcularse porque su denominador es cero. En ese caso R muestra NA, que significa métrica no definida, pero el libro continúa procesándose normalmente.\n\n\n\n\n\n\n\n\nAdvertenciaUna exactitud alta puede engañar\n\n\n\nSi 90 % de los accidentes perteneciera a una sola clase, predecir siempre esa clase produciría 90 % de exactitud sin aprender ninguna relación útil. Por eso deben revisarse sensibilidad, especificidad, precisión y F1.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#evaluar-una-regresión-logística",
+    "href": "08-evaluacion-modelos.html#evaluar-una-regresión-logística",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.11 Evaluar una regresión logística",
+    "text": "8.11 Evaluar una regresión logística\n\n\nCódigo\nmodelo_logistico &lt;- glm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = entrenamiento,\n  family = binomial\n)\n\nprobabilidad_logistica &lt;- predict(\n  modelo_logistico,\n  newdata = prueba,\n  type = \"response\"\n)\n\n# glm() modela la probabilidad del segundo nivel del factor.\nclase_positiva_modelada &lt;- levels(\n  entrenamiento$accidente_con_victimas\n)[2]\n\nprediccion_logistica &lt;- ifelse(\n  probabilidad_logistica &gt;= 0.50,\n  clase_positiva_modelada,\n  levels(entrenamiento$accidente_con_victimas)[1]\n)\n\nprediccion_logistica &lt;- factor(\n  prediccion_logistica,\n  levels = levels(entrenamiento$accidente_con_victimas)\n)\n\nresultado_logistico &lt;- calcular_metricas(\n  real = prueba$accidente_con_victimas,\n  predicho = prediccion_logistica\n)\n\nresultado_logistico$matriz\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         7403           47\n  Con víctimas       1198          353\n\n\nCódigo\nresultado_logistico$metricas\n\n\n  exactitud sensibilidad especificidad precision        f1\n1  0.861682    0.2275951     0.9936913    0.8825 0.3618657\n\n\n\n\n\n\n\n\nImportanteRevise qué clase modela R\n\n\n\nEn una regresión logística binaria, glm() calcula la probabilidad del segundo nivel del factor respuesta. El orden de los niveles debe verificarse antes de transformar probabilidades en clases.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#comparación-inicial",
+    "href": "08-evaluacion-modelos.html#comparación-inicial",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.12 Comparación inicial",
+    "text": "8.12 Comparación inicial\n\n\nCódigo\ncomparacion_inicial &lt;- bind_rows(\n  cbind(\n    modelo = \"Regla mayoritaria\",\n    resultado_referencia$metricas\n  ),\n  cbind(\n    modelo = \"Regresión logística\",\n    resultado_logistico$metricas\n  )\n)\n\ncomparacion_inicial\n\n\n               modelo exactitud sensibilidad especificidad precision        f1\n1   Regla mayoritaria 0.8276858    0.0000000     1.0000000        NA        NA\n2 Regresión logística 0.8616820    0.2275951     0.9936913    0.8825 0.3618657\n\n\n\n\nCódigo\ncomparacion_larga &lt;- comparacion_inicial |&gt;\n  tidyr::pivot_longer(\n    cols = -modelo,\n    names_to = \"metrica\",\n    values_to = \"valor\"\n  )\n\nggplot(\n  comparacion_larga,\n  aes(x = metrica, y = valor, fill = modelo)\n) +\n  geom_col(position = \"dodge\") +\n  scale_y_continuous(\n    limits = c(0, 1),\n    labels = scales::label_percent(accuracy = 1)\n  ) +\n  labs(\n    title = \"Un modelo debe superar una referencia sencilla\",\n    x = \"Métrica\",\n    y = \"Valor\",\n    fill = \"Modelo\"\n  ) +\n  tema_libro()\n\n\n\n\n\nComparación de métricas entre una regla de referencia y la regresión logística.\n\n\n\n\nFuente: Elaboración propia con datos del INEGI, ATUS 2024.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#umbral-de-clasificación",
+    "href": "08-evaluacion-modelos.html#umbral-de-clasificación",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.13 Umbral de clasificación",
+    "text": "8.13 Umbral de clasificación\nEl umbral de 0.50 no es una ley universal. Reducirlo puede aumentar la sensibilidad, aunque también puede generar más falsos positivos.\n\n\nCódigo\numbrales &lt;- seq(0.10, 0.90, by = 0.05)\n\nmetricas_umbral &lt;- lapply(umbrales, function(umbral) {\n  prediccion &lt;- ifelse(\n    probabilidad_logistica &gt;= umbral,\n    clase_positiva_modelada,\n    levels(entrenamiento$accidente_con_victimas)[1]\n  )\n\n  prediccion &lt;- factor(\n    prediccion,\n    levels = levels(entrenamiento$accidente_con_victimas)\n  )\n\n  metricas &lt;- calcular_metricas(\n    prueba$accidente_con_victimas,\n    prediccion\n  )$metricas\n\n  cbind(umbral = umbral, metricas)\n}) |&gt;\n  bind_rows()\n\nmetricas_umbral\n\n\n   umbral exactitud sensibilidad especificidad precision        f1\n1    0.10 0.7351405    0.7878788     0.7241611 0.3729020 0.5062138\n2    0.15 0.7996889    0.7150226     0.8173154 0.4489879 0.5516041\n3    0.20 0.8055772    0.7047066     0.8265772 0.4582809 0.5553862\n4    0.25 0.8182424    0.6834300     0.8463087 0.4807256 0.5644302\n5    0.30 0.8196867    0.6756931     0.8496644 0.4833948 0.5635924\n6    0.35 0.8237974    0.6434558     0.8613423 0.4913836 0.5572306\n7    0.40 0.8447950    0.4455190     0.9279195 0.5627036 0.4973012\n8    0.45 0.8586824    0.2778852     0.9795973 0.7392796 0.4039363\n9    0.50 0.8616820    0.2275951     0.9936913 0.8825000 0.3618657\n10   0.55 0.8602378    0.2127660     0.9950336 0.8991826 0.3441084\n11   0.60 0.8593490    0.1889104     0.9989262 0.9734219 0.3164147\n12   0.65 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n13   0.70 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n14   0.75 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n15   0.80 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n16   0.85 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n17   0.90 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n\n\n\n\n\n\n\n\nNotaDecisión práctica\n\n\n\nEl mejor umbral depende del costo de cada error. Cuando omitir un accidente con víctimas es más grave que generar una alerta adicional, puede priorizarse la sensibilidad.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#validación-cruzada",
+    "href": "08-evaluacion-modelos.html#validación-cruzada",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.14 Validación cruzada",
+    "text": "8.14 Validación cruzada\nLa validación cruzada divide el conjunto de entrenamiento en varios pliegues. Cada pliegue funciona una vez como validación y los restantes como entrenamiento.\nEn validación cruzada de \\(K\\) pliegues:\n\nse divide la muestra en \\(K\\) partes;\nse entrena con \\(K-1\\) partes;\nse evalúa en la parte restante;\nse repite hasta utilizar todos los pliegues;\nse promedian las métricas.\n\n\n8.14.1 Crear pliegues estratificados\n\n\nCódigo\ncrear_pliegues &lt;- function(respuesta, k = 5, semilla = 123) {\n  set.seed(semilla)\n\n  pliegues &lt;- integer(length(respuesta))\n\n  for (clase in levels(factor(respuesta))) {\n    indices &lt;- which(respuesta == clase)\n    etiquetas &lt;- rep(seq_len(k), length.out = length(indices))\n    pliegues[indices] &lt;- sample(etiquetas)\n  }\n\n  pliegues\n}\n\npliegue &lt;- crear_pliegues(\n  entrenamiento$accidente_con_victimas,\n  k = 5\n)\n\ntable(pliegue, entrenamiento$accidente_con_victimas)\n\n\n       \npliegue Solo daños Con víctimas\n      1       3477          724\n      2       3477          724\n      3       3476          723\n      4       3476          723\n      5       3476          723\n\n\n\n\n8.14.2 Validación cruzada de la regresión logística\n\n\nCódigo\nresultados_cv &lt;- lapply(1:5, function(k) {\n  datos_entrenamiento &lt;- entrenamiento[pliegue != k, ]\n  datos_validacion &lt;- entrenamiento[pliegue == k, ]\n\n  modelo &lt;- glm(\n    accidente_con_victimas ~\n      MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = datos_entrenamiento,\n    family = binomial\n  )\n\n  probabilidad &lt;- predict(\n    modelo,\n    newdata = datos_validacion,\n    type = \"response\"\n  )\n\n  clase_modelada &lt;- levels(\n    datos_entrenamiento$accidente_con_victimas\n  )[2]\n\n  prediccion &lt;- ifelse(\n    probabilidad &gt;= 0.50,\n    clase_modelada,\n    levels(datos_entrenamiento$accidente_con_victimas)[1]\n  )\n\n  prediccion &lt;- factor(\n    prediccion,\n    levels = levels(datos_entrenamiento$accidente_con_victimas)\n  )\n\n  metricas &lt;- calcular_metricas(\n    datos_validacion$accidente_con_victimas,\n    prediccion\n  )$metricas\n\n  cbind(pliegue = k, metricas)\n}) |&gt;\n  bind_rows()\n\nresultados_cv\n\n\n  pliegue exactitud sensibilidad especificidad precision        f1\n1       1 0.8631278    0.2389503     0.9930975 0.8781726 0.3756786\n2       2 0.8590812    0.2140884     0.9933851 0.8707865 0.3436807\n3       3 0.8630626    0.2268326     0.9953970 0.9111111 0.3632337\n4       4 0.8637771    0.2406639     0.9933832 0.8832487 0.3782609\n5       5 0.8525839    0.1798064     0.9925201 0.8333333 0.2957907\n\n\n\n\nCódigo\nresumen_cv &lt;- resultados_cv |&gt;\n  summarise(\n    across(\n      where(is.numeric) & !matches(\"pliegue\"),\n      list(media = mean, desviacion = sd),\n      na.rm = TRUE\n    )\n  )\n\nresumen_cv\n\n\n  exactitud_media exactitud_desviacion sensibilidad_media\n1       0.8603265          0.004710052          0.2200683\n  sensibilidad_desviacion especificidad_media especificidad_desviacion\n1              0.02491609           0.9935566              0.001087613\n  precision_media precision_desviacion  f1_media f1_desviacion\n1       0.8753305           0.02799749 0.3513289    0.03392253\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa media resume el desempeño esperado y la desviación estándar muestra su estabilidad. Dos modelos con medias parecidas pueden diferir mucho si uno presenta resultados más variables entre pliegues.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#cómo-comparar-varios-modelos",
+    "href": "08-evaluacion-modelos.html#cómo-comparar-varios-modelos",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.15 Cómo comparar varios modelos",
+    "text": "8.15 Cómo comparar varios modelos\nPara comparar regresión logística, k-NN, árbol de decisión y Random Forest conviene utilizar:\n\nla misma muestra;\nla misma variable respuesta;\nla misma partición de entrenamiento y prueba;\nel mismo criterio para definir la clase positiva;\nlas mismas métricas;\nuna validación cruzada equivalente;\ntiempos de entrenamiento y predicción;\nfacilidad de interpretación.\n\nUna tabla de decisión puede tener esta estructura:\n\n\n\n\n\n\n\n\n\n\n\n\nModelo\nExactitud\nSensibilidad\nEspecificidad\nF1\nInterpretación\nCosto computacional\n\n\n\n\nRegresión logística\n\n\n\n\nAlta\nBajo\n\n\nk-NN\n\n\n\n\nMedia-baja\nMedio\n\n\nÁrbol de decisión\n\n\n\n\nAlta\nBajo\n\n\nRandom Forest\n\n\n\n\nMedia\nAlto",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#selección-del-modelo-final",
+    "href": "08-evaluacion-modelos.html#selección-del-modelo-final",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.16 Selección del modelo final",
+    "text": "8.16 Selección del modelo final\nNo existe un modelo universalmente mejor. La selección depende de la finalidad:\n\nSi se requiere explicar el efecto de las variables, puede preferirse regresión logística.\nSi se necesita una regla visual y fácil de comunicar, un árbol puede ser apropiado.\nSi se prioriza capacidad predictiva y estabilidad, Random Forest puede resultar competitivo.\nSi el costo de los falsos negativos es alto, debe priorizarse sensibilidad.\nSi las alertas falsas son costosas, precisión y especificidad cobran mayor importancia.\n\n\n\n\n\n\n\nImportantePrincipio fundamental\n\n\n\nEl mejor modelo no es necesariamente el que tiene la mayor exactitud, sino el que responde mejor al objetivo, controla los errores relevantes y mantiene un desempeño estable con datos nuevos.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#actividad-guiada",
+    "href": "08-evaluacion-modelos.html#actividad-guiada",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.17 Actividad guiada",
+    "text": "8.17 Actividad guiada\n\nEjecute la regresión logística con umbrales de 0.30, 0.50 y 0.70.\nRegistre la matriz de confusión de cada caso.\nCompare sensibilidad, especificidad, precisión y F1.\nExplique qué umbral elegiría para detectar accidentes con víctimas.\nJustifique su decisión considerando el costo de falsos negativos y falsos positivos.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#actividades-para-el-lector",
+    "href": "08-evaluacion-modelos.html#actividades-para-el-lector",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.18 Actividades para el lector",
+    "text": "8.18 Actividades para el lector\n\nConstruya una función que calcule la exactitud balanceada:\n\\[\n\\text{Exactitud balanceada}=\\frac{\\text{Sensibilidad}+\\text{Especificidad}}{2}\n\\]\nCompare la variabilidad de las métricas en validación cruzada.\nRepita el procedimiento con un árbol de decisión.\nElabore una tabla comparativa con los cuatro modelos estudiados.\nEscriba una recomendación técnica de no más de 200 palabras.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#resumen-del-capítulo",
+    "href": "08-evaluacion-modelos.html#resumen-del-capítulo",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.19 Resumen del capítulo",
+    "text": "8.19 Resumen del capítulo\nEn este capítulo aprendimos que evaluar un modelo requiere datos no utilizados durante el entrenamiento, una clase positiva bien definida y varias métricas. También construimos una regla de referencia, estudiamos el efecto del umbral y aplicamos validación cruzada estratificada. Estas herramientas permiten comparar modelos de forma más justa y elegirlos según el objetivo real del análisis.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "referencias.html",
+    "href": "referencias.html",
+    "title": "Referencias",
+    "section": "",
+    "text": "Reconocimiento de la fuente de datos\nLos datos de accidentes empleados en este libro proceden de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS) del Instituto Nacional de Estadística y Geografía (Instituto Nacional de Estadística y Geografía 2025).\nLos datos originales pertenecen al INEGI. La limpieza, transformación, selección de variables, gráficas, modelos de aprendizaje automático e interpretaciones son elaboración del autor y no constituyen resultados oficiales ni implican el aval del Instituto.",
+    "crumbs": [
+      "Apéndices",
+      "Referencias"
     ]
   }
 ]

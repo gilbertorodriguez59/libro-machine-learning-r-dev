@@ -12,7 +12,7 @@ $$
 p = \frac{1}{1 + e^{-z}}
 $$
 
-donde \(z = \beta_0 + \beta_1x_1 + \cdots + \beta_px_p\).
+donde $z = \beta_0 + \beta_1x_1 + \cdots + \beta_px_p$.
 
 ## Visualización de la función logística
 
@@ -36,7 +36,7 @@ ggplot(datos_logistica, aes(x = z, y = p)) +
 
 ::: {.callout-note}
 ## Explicación del código
-Se genera una secuencia de valores para \(z\) y se calcula su probabilidad usando la función logística.
+Se genera una secuencia de valores para $z$ y se calcula su probabilidad usando la función logística.
 :::
 
 ::: {.callout-tip}

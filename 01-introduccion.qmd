@@ -61,7 +61,7 @@ La variable respuesta es la variable que queremos predecir. Las variables predic
 
 ## Notación básica
 
-Supongamos que tenemos \(n\) observaciones y \(p\) variables predictoras. Podemos representar los datos mediante una matriz \(X\) y una variable respuesta \(Y\).
+Supongamos que tenemos $n$ observaciones y $p$ variables predictoras. Podemos representar los datos mediante una matriz $X$ y una variable respuesta $Y$.
 
 $$
 \hat{y} = f(x_1, x_2, \ldots, x_p)

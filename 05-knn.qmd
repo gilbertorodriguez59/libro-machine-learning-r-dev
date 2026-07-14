@@ -156,4 +156,4 @@ Cambiar k modifica el balance entre exactitud, sensibilidad y especificidad. No 
 
 ## Conclusión
 
-k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de \(k\), del escalamiento y de la calidad de las variables predictoras.
+k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de $k$, del escalamiento y de la calidad de las variables predictoras.

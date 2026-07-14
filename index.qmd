@@ -5,7 +5,7 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.6  
+**Versión:** 0.7 (desarrollo)  
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
@@ -44,7 +44,12 @@ Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de dat
 5. k vecinos más cercanos.
 6. Árboles de decisión.
 7. Random Forest.
+8. Evaluación, validación y comparación de modelos.
 
 ## Nota para el lector {.unnumbered}
 
 Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.
+
+## Fuente principal de los datos {.unnumbered}
+
+Los ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024]. Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.

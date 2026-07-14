@@ -10,7 +10,7 @@ Random Forest combina muchos árboles de decisión. Cada árbol aprende sobre un
 
 ## Fundamento matemático
 
-Si se construyen \(B\) árboles, la predicción final es:
+Si se construyen $B$ árboles, la predicción final es:
 
 $$
 \hat{y}(x) = moda\{\hat{y}^{(1)}(x), \hat{y}^{(2)}(x), \ldots, \hat{y}^{(B)}(x)\}
