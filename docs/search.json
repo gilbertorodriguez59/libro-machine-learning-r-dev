@@ -50,6 +50,16 @@
     ]
   },
   {
+    "objectID": "index.html#cuaderno-completo-de-google-colab",
+    "href": "index.html#cuaderno-completo-de-google-colab",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "Cuaderno completo de Google Colab",
+    "text": "Cuaderno completo de Google Colab\nEl contenido del libro también está disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada código R está separado para ejecutarse paso a paso.\n\nAbrir el cuaderno en Google Colab\nDescargar el archivo .ipynb\nConsultar instrucciones de uso",
+    "crumbs": [
+      "Presentación"
+    ]
+  },
+  {
     "objectID": "index.html#estructura-actual-del-libro",
     "href": "index.html#estructura-actual-del-libro",
     "title": "Aprendizaje y Clasificación Automática con R",
@@ -117,6 +127,46 @@
     "text": "Uso educativo\nEl propósito de este libro es apoyar la enseñanza y el aprendizaje de técnicas de aprendizaje automático con R, usando datos reales y un enfoque didáctico, reproducible y aplicado.",
     "crumbs": [
       "Licencia, autoría y forma de citar"
+    ]
+  },
+  {
+    "objectID": "00-cuaderno-google-colab.html",
+    "href": "00-cuaderno-google-colab.html",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "",
+    "text": "¿Qué contiene el cuaderno?\nAdemás de la versión web y del documento PDF, el libro cuenta con un cuaderno completo de Google Colab. En él, las explicaciones aparecen en celdas de texto y cada bloque de código R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.\nEl cuaderno reproduce el contenido del libro y contiene:",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
+    ]
+  },
+  {
+    "objectID": "00-cuaderno-google-colab.html#qué-contiene-el-cuaderno",
+    "href": "00-cuaderno-google-colab.html#qué-contiene-el-cuaderno",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "",
+    "text": "un índice navegable con todos los capítulos y secciones;\nexplicaciones conceptuales en celdas de texto;\nfórmulas matemáticas;\ncódigos R separados en celdas independientes;\ninstalación y carga de los paquetes necesarios;\npreparación y lectura de los datos ATUS;\nanálisis exploratorio;\nregresión logística;\nk vecinos más cercanos;\nárboles de decisión;\nRandom Forest;\nevaluación y comparación de modelos;\nejercicios, interpretaciones y referencias.",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
+    ]
+  },
+  {
+    "objectID": "00-cuaderno-google-colab.html#cómo-utilizarlo",
+    "href": "00-cuaderno-google-colab.html#cómo-utilizarlo",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "Cómo utilizarlo",
+    "text": "Cómo utilizarlo\n\nAbra el enlace Ejecutar el libro completo en Google Colab.\nInicie sesión con una cuenta de Google, si Colab lo solicita.\nSeleccione Archivo → Guardar una copia en Drive para conservar una copia editable.\nCompruebe que el entorno de ejecución utilice R.\nEjecute primero las celdas de preparación e instalación de paquetes.\nContinúe en orden, ejecutando cada celda con el botón de reproducción o con Shift + Enter.\n\n\n\n\n\n\n\nAdvertenciaEjecución en orden\n\n\n\nAlgunos capítulos utilizan objetos creados en capítulos anteriores. Durante la primera ejecución se recomienda avanzar en el orden establecido y no saltar las celdas de preparación de datos.",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
+    ]
+  },
+  {
+    "objectID": "00-cuaderno-google-colab.html#diferencias-entre-el-libro-web-y-el-cuaderno",
+    "href": "00-cuaderno-google-colab.html#diferencias-entre-el-libro-web-y-el-cuaderno",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "Diferencias entre el libro web y el cuaderno",
+    "text": "Diferencias entre el libro web y el cuaderno\nLa versión web es la opción más cómoda para leer y consultar el contenido. El cuaderno de Colab está pensado para experimentar: permite modificar valores, ejecutar nuevamente los modelos y observar cómo cambian los resultados sin instalar R ni RStudio en la computadora.\n\n\n\n\n\n\nNotaDatos y acceso a internet\n\n\n\nEl cuaderno necesita conexión a internet para instalar paquetes y descargar los archivos de datos cuando no estén disponibles en la sesión. La descarga de ATUS puede tardar debido al tamaño de la base.",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
     ]
   },
   {

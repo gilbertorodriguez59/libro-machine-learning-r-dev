@@ -35,6 +35,15 @@ Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de dat
 - GitHub Pages
 - Quarto Pub
 
+
+## Cuaderno completo de Google Colab {.unnumbered}
+
+El contenido del libro también está disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada código R está separado para ejecutarse paso a paso.
+
+- [Abrir el cuaderno en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r-dev/blob/main/Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
+- [Descargar el archivo `.ipynb`](Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
+- [Consultar instrucciones de uso](00-cuaderno-google-colab.qmd)
+
 ## Estructura actual del libro {.unnumbered}
 
 1. Introducción al aprendizaje automático.
