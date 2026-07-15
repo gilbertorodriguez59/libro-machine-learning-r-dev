@@ -367,7 +367,7 @@
 \makeatother
 \subtitle{Un enfoque práctico con datos abiertos reales}
 \author{MI Jesús Gilberto Rodríguez Escobedo}
-\date{2026-07-13}
+\date{2026-07-14}
 \begin{document}
 \frontmatter
 \maketitle
@@ -459,6 +459,28 @@ aprendizaje automático con un enfoque práctico.
   GitHub Pages
 \item
   Quarto Pub
+\end{itemize}
+
+\section*{Cuaderno completo de Google
+Colab}\label{cuaderno-completo-de-google-colab}
+\addcontentsline{toc}{section}{Cuaderno completo de Google Colab}
+
+\markright{Cuaderno completo de Google Colab}
+
+El contenido del libro también está disponible como un cuaderno
+ejecutable de Google Colab. Las explicaciones se presentan en celdas de
+texto y cada código R está separado para ejecutarse paso a paso.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r-dev/blob/main/Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb}{Abrir
+  el cuaderno en Google Colab}
+\item
+  \href{Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb}{Descargar
+  el archivo \texttt{.ipynb}}
+\item
+  \href{00-cuaderno-google-colab.qmd}{Consultar instrucciones de uso}
 \end{itemize}
 
 \section*{Estructura actual del
@@ -556,6 +578,121 @@ web publicado con Quarto y GitHub Pages.
 El propósito de este libro es apoyar la enseñanza y el aprendizaje de
 técnicas de aprendizaje automático con R, usando datos reales y un
 enfoque didáctico, reproducible y aplicado.
+
+\bookmarksetup{startatroot}
+
+\chapter*{Cuaderno completo para Google
+Colab}\label{cuaderno-completo-para-google-colab}
+\addcontentsline{toc}{chapter}{Cuaderno completo para Google Colab}
+
+\markboth{Cuaderno completo para Google Colab}{Cuaderno completo para
+Google Colab}
+
+Además de la versión web y del documento PDF, el libro cuenta con un
+\textbf{cuaderno completo de Google Colab}. En él, las explicaciones
+aparecen en celdas de texto y cada bloque de código R se encuentra en
+una celda independiente para que pueda ejecutarse paso a paso.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Abrir o descargar el cuaderno}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\textbf{Abrir directamente en Google Colab:}\\
+\href{https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r-dev/blob/main/Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb}{Ejecutar
+el libro completo en Google Colab}
+
+\textbf{Descargar el archivo \texttt{.ipynb}:}\\
+\href{Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb}{Descargar
+el cuaderno completo}
+
+\end{tcolorbox}
+
+\section*{¿Qué contiene el cuaderno?}\label{quuxe9-contiene-el-cuaderno}
+\addcontentsline{toc}{section}{¿Qué contiene el cuaderno?}
+
+\markright{¿Qué contiene el cuaderno?}
+
+El cuaderno reproduce el contenido del libro y contiene:
+
+\begin{itemize}
+\tightlist
+\item
+  un índice navegable con todos los capítulos y secciones;
+\item
+  explicaciones conceptuales en celdas de texto;
+\item
+  fórmulas matemáticas;
+\item
+  códigos R separados en celdas independientes;
+\item
+  instalación y carga de los paquetes necesarios;
+\item
+  preparación y lectura de los datos ATUS;
+\item
+  análisis exploratorio;
+\item
+  regresión logística;
+\item
+  k vecinos más cercanos;
+\item
+  árboles de decisión;
+\item
+  Random Forest;
+\item
+  evaluación y comparación de modelos;
+\item
+  ejercicios, interpretaciones y referencias.
+\end{itemize}
+
+\section*{Cómo utilizarlo}\label{cuxf3mo-utilizarlo}
+\addcontentsline{toc}{section}{Cómo utilizarlo}
+
+\markright{Cómo utilizarlo}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Abra el enlace \textbf{Ejecutar el libro completo en Google Colab}.
+\item
+  Inicie sesión con una cuenta de Google, si Colab lo solicita.
+\item
+  Seleccione \textbf{Archivo → Guardar una copia en Drive} para
+  conservar una copia editable.
+\item
+  Compruebe que el entorno de ejecución utilice \textbf{R}.
+\item
+  Ejecute primero las celdas de preparación e instalación de paquetes.
+\item
+  Continúe en orden, ejecutando cada celda con el botón de reproducción
+  o con \texttt{Shift\ +\ Enter}.
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Ejecución en orden}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Algunos capítulos utilizan objetos creados en capítulos anteriores.
+Durante la primera ejecución se recomienda avanzar en el orden
+establecido y no saltar las celdas de preparación de datos.
+
+\end{tcolorbox}
+
+\section*{Diferencias entre el libro web y el
+cuaderno}\label{diferencias-entre-el-libro-web-y-el-cuaderno}
+\addcontentsline{toc}{section}{Diferencias entre el libro web y el
+cuaderno}
+
+\markright{Diferencias entre el libro web y el cuaderno}
+
+La versión web es la opción más cómoda para leer y consultar el
+contenido. El cuaderno de Colab está pensado para experimentar: permite
+modificar valores, ejecutar nuevamente los modelos y observar cómo
+cambian los resultados sin instalar R ni RStudio en la computadora.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Datos y acceso a internet}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+El cuaderno necesita conexión a internet para instalar paquetes y
+descargar los archivos de datos cuando no estén disponibles en la
+sesión. La descarga de ATUS puede tardar debido al tamaño de la base.
+
+\end{tcolorbox}
 
 \bookmarksetup{startatroot}
 
@@ -3454,6 +3591,1055 @@ varias métricas. También construimos una regla de referencia, estudiamos
 el efecto del umbral y aplicamos validación cruzada estratificada. Estas
 herramientas permiten comparar modelos de forma más justa y elegirlos
 según el objetivo real del análisis.
+
+\bookmarksetup{startatroot}
+
+\chapter{Máquinas de Vectores de Soporte
+(SVM)}\label{muxe1quinas-de-vectores-de-soporte-svm}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-8}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  explicar la idea del hiperplano de separación y del margen máximo;
+\item
+  identificar los vectores de soporte;
+\item
+  distinguir entre una SVM lineal y una SVM con kernel;
+\item
+  comprender el papel de los parámetros \texttt{cost}, \texttt{gamma} y
+  del tipo de kernel;
+\item
+  entrenar modelos SVM en R;
+\item
+  evaluar una SVM mediante una matriz de confusión y métricas de
+  clasificación;
+\item
+  utilizar ponderación de clases cuando la variable respuesta está
+  desbalanceada;
+\item
+  comparar una SVM lineal con una SVM de kernel radial.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n-5}
+
+Las \textbf{máquinas de vectores de soporte}, conocidas como
+\textbf{SVM} por \emph{Support Vector Machines}, son métodos
+supervisados utilizados principalmente para clasificación. Su propósito
+es construir una frontera que separe las clases con el margen más amplio
+posible.
+
+La idea es sencilla de visualizar: si dos grupos pueden separarse
+mediante una línea, existen muchas líneas posibles, pero la SVM busca
+aquella que deja la mayor distancia entre la frontera y las
+observaciones más cercanas de cada clase.
+
+Esas observaciones cercanas reciben el nombre de \textbf{vectores de
+soporte}. Aunque el conjunto de datos contenga miles de registros, los
+vectores de soporte son los que determinan directamente la posición de
+la frontera.
+
+En este capítulo se emplean primero datos simulados para entender la
+geometría del método y después la base preparada de ATUS (Instituto
+Nacional de Estadística y Geografía 2025).
+
+\section{Intuición geométrica}\label{intuiciuxf3n-geomuxe9trica}
+
+Supongamos que cada observación tiene dos variables, \(x_1\) y \(x_2\).
+Una frontera lineal puede escribirse como:
+
+\[
+w_1x_1+w_2x_2+b=0
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(w_1\) y \(w_2\) determinan la orientación de la frontera;
+\item
+  \(b\) desplaza la frontera;
+\item
+  el signo de la expresión determina de qué lado queda cada observación.
+\end{itemize}
+
+La SVM busca una frontera con \textbf{margen máximo}. En una separación
+ideal se desea que:
+
+\[
+y_i(\mathbf{w}^{T}\mathbf{x}_i+b)\geq 1
+\]
+
+para todas las observaciones, donde \(y_i\) representa la clase
+codificada como \(-1\) o \(1\).
+
+El ancho del margen es proporcional a:
+
+\[
+\frac{2}{\lVert\mathbf{w}\rVert}
+\]
+
+Por ello, maximizar el margen equivale a minimizar la magnitud de
+\(\mathbf{w}\).
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Idea esencial}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Una SVM no busca solamente clasificar bien los datos de entrenamiento.
+Busca una frontera que conserve la mayor separación posible entre las
+clases, con la intención de generalizar mejor ante observaciones nuevas.
+
+\end{tcolorbox}
+
+\section{Crear un ejemplo
+didáctico}\label{crear-un-ejemplo-diduxe1ctico}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{120}
+
+\NormalTok{datos\_svm }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{x1 =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n }\SpecialCharTok{/} \DecValTok{2}\NormalTok{, }\AttributeTok{mean =} \SpecialCharTok{{-}}\FloatTok{1.5}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.8}\NormalTok{),}
+         \FunctionTok{rnorm}\NormalTok{(n }\SpecialCharTok{/} \DecValTok{2}\NormalTok{, }\AttributeTok{mean =}  \FloatTok{1.5}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.8}\NormalTok{)),}
+  \AttributeTok{x2 =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n }\SpecialCharTok{/} \DecValTok{2}\NormalTok{, }\AttributeTok{mean =} \SpecialCharTok{{-}}\FloatTok{1.0}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.9}\NormalTok{),}
+         \FunctionTok{rnorm}\NormalTok{(n }\SpecialCharTok{/} \DecValTok{2}\NormalTok{, }\AttributeTok{mean =}  \FloatTok{1.0}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.9}\NormalTok{)),}
+  \AttributeTok{clase =} \FunctionTok{factor}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Clase A"}\NormalTok{, }\StringTok{"Clase B"}\NormalTok{), }\AttributeTok{each =}\NormalTok{ n }\SpecialCharTok{/} \DecValTok{2}\NormalTok{))}
+\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(datos\_svm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>           x1         x2   clase
+#> 1 -1.9483805 -0.8941181 Clase A
+#> 2 -1.6841420 -1.8527272 Clase A
+#> 3 -0.2530333 -1.4415017 Clase A
+#> 4 -1.4435933 -1.2304830 Clase A
+#> 5 -1.3965698  0.6594758 Clase A
+#> 6 -0.1279480 -1.5867549 Clase A
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se generan dos grupos artificiales. El primero se concentra alrededor de
+valores negativos y el segundo alrededor de valores positivos. El
+ejemplo permite observar con claridad la frontera de clasificación.
+
+\end{tcolorbox}
+
+\section{Visualizar las clases}\label{visualizar-las-clases}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(datos\_svm, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x1, }\AttributeTok{y =}\NormalTok{ x2, }\AttributeTok{color =}\NormalTok{ clase)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \FloatTok{2.5}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Datos simulados para clasificación"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Cada punto representa una observación"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Variable x1"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Variable x2"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Clase"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{09-svm_files/figure-pdf/svm-grafica-datos-1.png}
+
+\section{\texorpdfstring{Instalar y cargar el paquete
+\texttt{e1071}}{Instalar y cargar el paquete e1071}}\label{instalar-y-cargar-el-paquete-e1071}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"e1071"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{)) \{}
+  \FunctionTok{install.packages}\NormalTok{(}\StringTok{"e1071"}\NormalTok{, }\AttributeTok{repos =} \StringTok{"https://cloud.r{-}project.org"}\NormalTok{)}
+\NormalTok{\}}
+
+\FunctionTok{library}\NormalTok{(e1071)}
+\end{Highlighting}
+\end{Shaded}
+
+El paquete \texttt{e1071} proporciona la función \texttt{svm()}, que
+permite entrenar modelos lineales y no lineales.
+
+\section{Entrenar una SVM lineal}\label{entrenar-una-svm-lineal}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo\_svm\_lineal }\OtherTok{\textless{}{-}} \FunctionTok{svm}\NormalTok{(}
+\NormalTok{  clase }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ x2,}
+  \AttributeTok{data =}\NormalTok{ datos\_svm,}
+  \AttributeTok{kernel =} \StringTok{"linear"}\NormalTok{,}
+  \AttributeTok{cost =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{scale =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{modelo\_svm\_lineal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Call:
+#> svm(formula = clase ~ x1 + x2, data = datos_svm, kernel = "linear", 
+#>     cost = 1, scale = TRUE)
+#> 
+#> 
+#> Parameters:
+#>    SVM-Type:  C-classification 
+#>  SVM-Kernel:  linear 
+#>        cost:  1 
+#> 
+#> Number of Support Vectors:  14
+\end{verbatim}
+
+Los argumentos principales son:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{kernel\ =\ "linear"}: utiliza una frontera lineal;
+\item
+  \texttt{cost\ =\ 1}: establece la penalización por errores;
+\item
+  \texttt{scale\ =\ TRUE}: estandariza las variables numéricas antes del
+  ajuste.
+\end{itemize}
+
+\section{Identificar los vectores de
+soporte}\label{identificar-los-vectores-de-soporte}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{indices\_soporte }\OtherTok{\textless{}{-}}\NormalTok{ modelo\_svm\_lineal}\SpecialCharTok{$}\NormalTok{index}
+\NormalTok{vectores\_soporte }\OtherTok{\textless{}{-}}\NormalTok{ datos\_svm[indices\_soporte, ]}
+
+\FunctionTok{nrow}\NormalTok{(vectores\_soporte)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(vectores\_soporte)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>             x1          x2   clase
+#> 3  -0.25303335 -1.44150170 Clase A
+#> 6  -0.12794801 -1.58675491 Clase A
+#> 11 -0.52073456  0.30009577 Clase A
+#> 16 -0.07046949  0.01820349 Clase A
+#> 19 -0.93891528  0.71819321 Clase A
+#> 44  0.23516477  1.91693594 Clase A
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los vectores de soporte son las observaciones más influyentes para
+establecer la frontera. Los puntos alejados del margen suelen tener poca
+o ninguna influencia directa sobre su posición.
+
+\end{tcolorbox}
+
+\section{Dibujar la frontera de
+decisión}\label{dibujar-la-frontera-de-decisiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rejilla }\OtherTok{\textless{}{-}} \FunctionTok{expand.grid}\NormalTok{(}
+  \AttributeTok{x1 =} \FunctionTok{seq}\NormalTok{(}\FunctionTok{min}\NormalTok{(datos\_svm}\SpecialCharTok{$}\NormalTok{x1) }\SpecialCharTok{{-}} \FloatTok{0.5}\NormalTok{,}
+           \FunctionTok{max}\NormalTok{(datos\_svm}\SpecialCharTok{$}\NormalTok{x1) }\SpecialCharTok{+} \FloatTok{0.5}\NormalTok{,}
+           \AttributeTok{length.out =} \DecValTok{180}\NormalTok{),}
+  \AttributeTok{x2 =} \FunctionTok{seq}\NormalTok{(}\FunctionTok{min}\NormalTok{(datos\_svm}\SpecialCharTok{$}\NormalTok{x2) }\SpecialCharTok{{-}} \FloatTok{0.5}\NormalTok{,}
+           \FunctionTok{max}\NormalTok{(datos\_svm}\SpecialCharTok{$}\NormalTok{x2) }\SpecialCharTok{+} \FloatTok{0.5}\NormalTok{,}
+           \AttributeTok{length.out =} \DecValTok{180}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{rejilla}\SpecialCharTok{$}\NormalTok{prediccion }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(modelo\_svm\_lineal, }\AttributeTok{newdata =}\NormalTok{ rejilla)}
+
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ rejilla,}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x1, }\AttributeTok{y =}\NormalTok{ x2, }\AttributeTok{fill =}\NormalTok{ prediccion),}
+    \AttributeTok{alpha =} \FloatTok{0.18}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ datos\_svm,}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x1, }\AttributeTok{y =}\NormalTok{ x2, }\AttributeTok{color =}\NormalTok{ clase),}
+    \AttributeTok{size =} \FloatTok{2.2}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ vectores\_soporte,}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x1, }\AttributeTok{y =}\NormalTok{ x2),}
+    \AttributeTok{shape =} \DecValTok{21}\NormalTok{,}
+    \AttributeTok{size =} \DecValTok{4}\NormalTok{,}
+    \AttributeTok{stroke =} \FloatTok{1.1}\NormalTok{,}
+    \AttributeTok{fill =} \ConstantTok{NA}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Frontera de decisión de una SVM lineal"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Los círculos grandes identifican los vectores de soporte"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Variable x1"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Variable x2"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Predicción"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Clase real"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{09-svm_files/figure-pdf/svm-frontera-lineal-1.png}
+
+\section{El parámetro de costo}\label{el-paruxe1metro-de-costo}
+
+El parámetro \texttt{cost} controla la penalización asignada a las
+observaciones clasificadas incorrectamente.
+
+\begin{itemize}
+\tightlist
+\item
+  Un costo pequeño permite más errores y favorece un margen amplio.
+\item
+  Un costo grande penaliza fuertemente los errores y puede producir una
+  frontera más ajustada a los datos de entrenamiento.
+\end{itemize}
+
+No existe un valor universalmente mejor. Debe seleccionarse con
+validación cruzada.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelos\_cost }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(}
+  \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \ControlFlowTok{function}\NormalTok{(valor\_cost) \{}
+    \FunctionTok{svm}\NormalTok{(}
+\NormalTok{      clase }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ x2,}
+      \AttributeTok{data =}\NormalTok{ datos\_svm,}
+      \AttributeTok{kernel =} \StringTok{"linear"}\NormalTok{,}
+      \AttributeTok{cost =}\NormalTok{ valor\_cost,}
+      \AttributeTok{scale =} \ConstantTok{TRUE}
+\NormalTok{    )}
+\NormalTok{  \}}
+\NormalTok{)}
+
+\NormalTok{resumen\_cost }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{cost =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \AttributeTok{vectores\_soporte =} \FunctionTok{vapply}\NormalTok{(}
+\NormalTok{    modelos\_cost,}
+    \ControlFlowTok{function}\NormalTok{(modelo) modelo}\SpecialCharTok{$}\NormalTok{tot.nSV,}
+    \FunctionTok{numeric}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{resumen\_cost}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   cost vectores_soporte
+#> 1  0.1               30
+#> 2  1.0               14
+#> 3 10.0                8
+\end{verbatim}
+
+\section{Cuando una línea no es
+suficiente}\label{cuando-una-luxednea-no-es-suficiente}
+
+Algunos conjuntos de datos no pueden separarse adecuadamente mediante
+una línea o un hiperplano. En esos casos, una SVM puede utilizar una
+función denominada \textbf{kernel}.
+
+El kernel calcula similitudes entre observaciones y permite representar
+fronteras no lineales sin construir explícitamente todas las nuevas
+variables.
+
+Los kernels más utilizados son:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Kernel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Uso general
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Lineal & Cuando la separación es aproximadamente lineal o existen muchas
+variables \\
+Polinomial & Cuando se esperan relaciones de tipo polinómico \\
+Radial & Cuando la frontera puede tener formas curvas y complejas \\
+Sigmoide & Menos frecuente; guarda relación con funciones de
+activación \\
+\end{longtable}
+}
+
+\section{Kernel radial}\label{kernel-radial}
+
+El kernel radial utiliza una función semejante a:
+
+\[
+K(\mathbf{x}_i,\mathbf{x}_j)=
+\exp\left(-\gamma\lVert\mathbf{x}_i-\mathbf{x}_j\rVert^2\right)
+\]
+
+El parámetro \(\gamma\) controla el alcance de la influencia de cada
+observación:
+
+\begin{itemize}
+\tightlist
+\item
+  valores pequeños producen fronteras más suaves;
+\item
+  valores grandes permiten fronteras más locales y complejas.
+\end{itemize}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Riesgo de sobreajuste}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Una combinación de \texttt{cost} y \texttt{gamma} demasiado grande puede
+ajustar muy bien el entrenamiento, pero funcionar peor con datos nuevos.
+La validación cruzada ayuda a evitar esa elección.
+
+\end{tcolorbox}
+
+\bookmarksetup{startatroot}
+
+\chapter{Aplicación con los datos
+ATUS}\label{aplicaciuxf3n-con-los-datos-atus}
+
+\section{Cargar la base preparada}\label{cargar-la-base-preparada}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+  \FunctionTok{stop}\NormalTok{(}
+    \FunctionTok{paste}\NormalTok{(}
+      \StringTok{"No se encontró datos/atus\_ml\_preparado.csv."}\NormalTok{,}
+      \StringTok{"Renderice primero el capítulo de preparación de datos."}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+\NormalTok{  ruta\_atus\_ml,}
+  \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Preparar una muestra
+reproducible}\label{preparar-una-muestra-reproducible-1}
+
+Las SVM pueden requerir bastante memoria y tiempo cuando el conjunto es
+muy grande. Para fines didácticos se utiliza una muestra de hasta 6 000
+accidentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{atus\_svm }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{sample\_n}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{6000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(atus\_ml))) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{transmute}\NormalTok{(}
+    \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{      accidente\_con\_victimas,}
+      \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{)}
+\NormalTok{    ),}
+    \AttributeTok{MES =} \FunctionTok{factor}\NormalTok{(MES),}
+    \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+    \AttributeTok{DIASEMANA =} \FunctionTok{factor}\NormalTok{(DIASEMANA),}
+    \AttributeTok{TIPACCID =} \FunctionTok{factor}\NormalTok{(TIPACCID),}
+    \AttributeTok{CAUSAACCI =} \FunctionTok{factor}\NormalTok{(CAUSAACCI)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{na.omit}\NormalTok{()}
+
+\FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#>   Solo daños Con víctimas 
+#>         0.82         0.18
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota sobre la muestra}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La muestra reduce el tiempo de ejecución y hace posible repetir el
+ejercicio en computadoras personales y en Google Colab. Para un estudio
+definitivo se recomienda evaluar tamaños mayores y documentar los
+recursos computacionales utilizados.
+
+\end{tcolorbox}
+
+\section{Dividir los datos de forma
+estratificada}\label{dividir-los-datos-de-forma-estratificada}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}
+  \FunctionTok{lapply}\NormalTok{(}
+    \FunctionTok{split}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(atus\_svm)), atus\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas),}
+    \ControlFlowTok{function}\NormalTok{(indices) \{}
+      \FunctionTok{sample}\NormalTok{(indices, }\AttributeTok{size =} \FunctionTok{floor}\NormalTok{(}\FloatTok{0.70} \SpecialCharTok{*} \FunctionTok{length}\NormalTok{(indices)))}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{entrenamiento\_svm }\OtherTok{\textless{}{-}}\NormalTok{ atus\_svm[indices\_entrenamiento, ]}
+\NormalTok{prueba\_svm }\OtherTok{\textless{}{-}}\NormalTok{ atus\_svm[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+
+\FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(entrenamiento\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#>   Solo daños Con víctimas 
+#>         0.82         0.18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(prueba\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#>   Solo daños Con víctimas 
+#>         0.82         0.18
+\end{verbatim}
+
+\section{Calcular pesos para las
+clases}\label{calcular-pesos-para-las-clases}
+
+Si una clase aparece con menor frecuencia, la SVM puede recibir pesos
+inversamente proporcionales a sus frecuencias.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{frecuencias }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(entrenamiento\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+
+\NormalTok{pesos\_clase }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(frecuencias) }\SpecialCharTok{/}
+\NormalTok{  (}\FunctionTok{length}\NormalTok{(frecuencias) }\SpecialCharTok{*}\NormalTok{ frecuencias)}
+
+\NormalTok{pesos\_clase }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(pesos\_clase)}
+\FunctionTok{names}\NormalTok{(pesos\_clase) }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(frecuencias)}
+
+\NormalTok{pesos\_clase}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   Solo daños Con víctimas 
+#>    0.6097561    2.7777778
+\end{verbatim}
+
+La clase menos frecuente recibe un peso mayor, de modo que sus errores
+tengan más influencia durante el entrenamiento.
+
+\section{Ajustar una SVM lineal}\label{ajustar-una-svm-lineal}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{modelo\_svm\_atus\_lineal }\OtherTok{\textless{}{-}} \FunctionTok{svm}\NormalTok{(}
+\NormalTok{  accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}
+\NormalTok{    MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+  \AttributeTok{data =}\NormalTok{ entrenamiento\_svm,}
+  \AttributeTok{kernel =} \StringTok{"linear"}\NormalTok{,}
+  \AttributeTok{cost =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{class.weights =}\NormalTok{ pesos\_clase,}
+  \AttributeTok{scale =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{modelo\_svm\_atus\_lineal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Call:
+#> svm(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + 
+#>     TIPACCID + CAUSAACCI, data = entrenamiento_svm, kernel = "linear", 
+#>     cost = 1, class.weights = pesos_clase, scale = TRUE)
+#> 
+#> 
+#> Parameters:
+#>    SVM-Type:  C-classification 
+#>  SVM-Kernel:  linear 
+#>        cost:  1 
+#> 
+#> Number of Support Vectors:  2215
+\end{verbatim}
+
+\section{Realizar predicciones}\label{realizar-predicciones}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prediccion\_svm\_lineal }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  modelo\_svm\_atus\_lineal,}
+  \AttributeTok{newdata =}\NormalTok{ prueba\_svm}
+\NormalTok{)}
+
+\NormalTok{matriz\_svm\_lineal }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+  \AttributeTok{Real =}\NormalTok{ prueba\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{Predicho =}\NormalTok{ prediccion\_svm\_lineal}
+\NormalTok{)}
+
+\NormalTok{matriz\_svm\_lineal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>               Predicho
+#> Real           Solo daños Con víctimas
+#>   Solo daños         1172          304
+#>   Con víctimas         89          235
+\end{verbatim}
+
+\section{Función segura para calcular
+métricas}\label{funciuxf3n-segura-para-calcular-muxe9tricas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metricas\_clasificacion }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}
+\NormalTok{  real,}
+\NormalTok{  predicho,}
+  \AttributeTok{positiva =} \StringTok{"Con víctimas"}
+\NormalTok{) \{}
+\NormalTok{  real }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(real)}
+\NormalTok{  predicho }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(predicho, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(real))}
+
+\NormalTok{  negativa }\OtherTok{\textless{}{-}} \FunctionTok{setdiff}\NormalTok{(}\FunctionTok{levels}\NormalTok{(real), positiva)}
+
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(negativa) }\SpecialCharTok{!=} \DecValTok{1}\NormalTok{) \{}
+    \FunctionTok{stop}\NormalTok{(}\StringTok{"La función requiere exactamente dos clases."}\NormalTok{)}
+\NormalTok{  \}}
+
+\NormalTok{  negativa }\OtherTok{\textless{}{-}}\NormalTok{ negativa[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  matriz }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Real =}\NormalTok{ real, }\AttributeTok{Predicho =}\NormalTok{ predicho)}
+
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz[positiva, positiva]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz[positiva, negativa]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz[negativa, positiva]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz[negativa, negativa]}
+
+\NormalTok{  dividir }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(a, b) \{}
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{is.na}\NormalTok{(a) }\SpecialCharTok{||} \FunctionTok{is.na}\NormalTok{(b) }\SpecialCharTok{||}\NormalTok{ b }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+      \FunctionTok{return}\NormalTok{(}\ConstantTok{NA\_real\_}\NormalTok{)}
+\NormalTok{    \}}
+    \FunctionTok{as.numeric}\NormalTok{(a }\SpecialCharTok{/}\NormalTok{ b)}
+\NormalTok{  \}}
+
+\NormalTok{  exactitud }\OtherTok{\textless{}{-}} \FunctionTok{dividir}\NormalTok{(VP }\SpecialCharTok{+}\NormalTok{ VN, VP }\SpecialCharTok{+}\NormalTok{ FN }\SpecialCharTok{+}\NormalTok{ FP }\SpecialCharTok{+}\NormalTok{ VN)}
+\NormalTok{  sensibilidad }\OtherTok{\textless{}{-}} \FunctionTok{dividir}\NormalTok{(VP, VP }\SpecialCharTok{+}\NormalTok{ FN)}
+\NormalTok{  especificidad }\OtherTok{\textless{}{-}} \FunctionTok{dividir}\NormalTok{(VN, VN }\SpecialCharTok{+}\NormalTok{ FP)}
+\NormalTok{  precision }\OtherTok{\textless{}{-}} \FunctionTok{dividir}\NormalTok{(VP, VP }\SpecialCharTok{+}\NormalTok{ FP)}
+\NormalTok{  f1 }\OtherTok{\textless{}{-}} \FunctionTok{dividir}\NormalTok{(}
+    \DecValTok{2} \SpecialCharTok{*}\NormalTok{ precision }\SpecialCharTok{*}\NormalTok{ sensibilidad,}
+\NormalTok{    precision }\SpecialCharTok{+}\NormalTok{ sensibilidad}
+\NormalTok{  )}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{exactitud =}\NormalTok{ exactitud,}
+    \AttributeTok{sensibilidad =}\NormalTok{ sensibilidad,}
+    \AttributeTok{especificidad =}\NormalTok{ especificidad,}
+    \AttributeTok{precision =}\NormalTok{ precision,}
+    \AttributeTok{f1 =}\NormalTok{ f1}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Evaluar la SVM lineal}\label{evaluar-la-svm-lineal}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metricas\_svm\_lineal }\OtherTok{\textless{}{-}} \FunctionTok{metricas\_clasificacion}\NormalTok{(}
+  \AttributeTok{real =}\NormalTok{ prueba\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{predicho =}\NormalTok{ prediccion\_svm\_lineal}
+\NormalTok{)}
+
+\NormalTok{metricas\_svm\_lineal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud sensibilidad especificidad precision        f1
+#> 1 0.7816667    0.7253086     0.7940379 0.4359926 0.5446118
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La sensibilidad indica la proporción de accidentes con víctimas
+detectada por el modelo. La especificidad indica la proporción de
+accidentes de solo daños reconocida correctamente. Cuando las clases
+están desbalanceadas, estas métricas suelen ser más informativas que la
+exactitud aislada.
+
+\end{tcolorbox}
+
+\section{Ajustar una SVM con kernel
+radial}\label{ajustar-una-svm-con-kernel-radial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{modelo\_svm\_atus\_radial }\OtherTok{\textless{}{-}} \FunctionTok{svm}\NormalTok{(}
+\NormalTok{  accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}
+\NormalTok{    MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+  \AttributeTok{data =}\NormalTok{ entrenamiento\_svm,}
+  \AttributeTok{kernel =} \StringTok{"radial"}\NormalTok{,}
+  \AttributeTok{cost =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{gamma =} \FloatTok{0.03}\NormalTok{,}
+  \AttributeTok{class.weights =}\NormalTok{ pesos\_clase,}
+  \AttributeTok{scale =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{modelo\_svm\_atus\_radial}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Call:
+#> svm(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + 
+#>     TIPACCID + CAUSAACCI, data = entrenamiento_svm, kernel = "radial", 
+#>     cost = 1, gamma = 0.03, class.weights = pesos_clase, scale = TRUE)
+#> 
+#> 
+#> Parameters:
+#>    SVM-Type:  C-classification 
+#>  SVM-Kernel:  radial 
+#>        cost:  1 
+#> 
+#> Number of Support Vectors:  2318
+\end{verbatim}
+
+\section{Evaluar la SVM radial}\label{evaluar-la-svm-radial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prediccion\_svm\_radial }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  modelo\_svm\_atus\_radial,}
+  \AttributeTok{newdata =}\NormalTok{ prueba\_svm}
+\NormalTok{)}
+
+\NormalTok{matriz\_svm\_radial }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+  \AttributeTok{Real =}\NormalTok{ prueba\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{Predicho =}\NormalTok{ prediccion\_svm\_radial}
+\NormalTok{)}
+
+\NormalTok{matriz\_svm\_radial}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>               Predicho
+#> Real           Solo daños Con víctimas
+#>   Solo daños         1180          296
+#>   Con víctimas         93          231
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metricas\_svm\_radial }\OtherTok{\textless{}{-}} \FunctionTok{metricas\_clasificacion}\NormalTok{(}
+  \AttributeTok{real =}\NormalTok{ prueba\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{predicho =}\NormalTok{ prediccion\_svm\_radial}
+\NormalTok{)}
+
+\NormalTok{metricas\_svm\_radial}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud sensibilidad especificidad precision        f1
+#> 1 0.7838889     0.712963      0.799458 0.4383302 0.5428907
+\end{verbatim}
+
+\section{Comparar los dos modelos}\label{comparar-los-dos-modelos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_svm }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{transform}\NormalTok{(metricas\_svm\_lineal, }\AttributeTok{modelo =} \StringTok{"SVM lineal"}\NormalTok{),}
+  \FunctionTok{transform}\NormalTok{(metricas\_svm\_radial, }\AttributeTok{modelo =} \StringTok{"SVM radial"}\NormalTok{)}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(modelo, }\FunctionTok{everything}\NormalTok{())}
+
+\NormalTok{comparacion\_svm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>       modelo exactitud sensibilidad especificidad precision        f1
+#> 1 SVM lineal 0.7816667    0.7253086     0.7940379 0.4359926 0.5446118
+#> 2 SVM radial 0.7838889    0.7129630     0.7994580 0.4383302 0.5428907
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_larga }\OtherTok{\textless{}{-}}\NormalTok{ comparacion\_svm }\SpecialCharTok{|\textgreater{}}
+\NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{pivot\_longer}\NormalTok{(}
+    \AttributeTok{cols =} \SpecialCharTok{{-}}\NormalTok{modelo,}
+    \AttributeTok{names\_to =} \StringTok{"metrica"}\NormalTok{,}
+    \AttributeTok{values\_to =} \StringTok{"valor"}
+\NormalTok{  )}
+
+\FunctionTok{ggplot}\NormalTok{(}
+\NormalTok{  comparacion\_larga,}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ metrica, }\AttributeTok{y =}\NormalTok{ valor, }\AttributeTok{fill =}\NormalTok{ modelo)}
+\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Comparación de modelos SVM"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Resultados sobre el conjunto de prueba"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Métrica"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Valor"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Modelo"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{09-svm_files/figure-pdf/svm-grafica-comparacion-1.png}
+
+\section{Selección de hiperparámetros con validación
+cruzada}\label{selecciuxf3n-de-hiperparuxe1metros-con-validaciuxf3n-cruzada}
+
+La función \texttt{tune.svm()} permite probar diferentes combinaciones
+de hiperparámetros. Para mantener un tiempo razonable se usa una
+cuadrícula pequeña.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{muestra\_ajuste }\OtherTok{\textless{}{-}}\NormalTok{ entrenamiento\_svm }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{sample\_n}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{3000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(entrenamiento\_svm)))}
+
+\NormalTok{ajuste\_svm }\OtherTok{\textless{}{-}} \FunctionTok{tune.svm}\NormalTok{(}
+\NormalTok{  accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}
+\NormalTok{    MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+  \AttributeTok{data =}\NormalTok{ muestra\_ajuste,}
+  \AttributeTok{kernel =} \StringTok{"radial"}\NormalTok{,}
+  \AttributeTok{cost =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+  \AttributeTok{gamma =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.01}\NormalTok{, }\FloatTok{0.03}\NormalTok{, }\FloatTok{0.05}\NormalTok{),}
+  \AttributeTok{tunecontrol =} \FunctionTok{tune.control}\NormalTok{(}\AttributeTok{cross =} \DecValTok{5}\NormalTok{),}
+  \AttributeTok{scale =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{ajuste\_svm}\SpecialCharTok{$}\NormalTok{best.parameters}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   gamma cost
+#> 2  0.03  0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mejor\_modelo\_svm }\OtherTok{\textless{}{-}}\NormalTok{ ajuste\_svm}\SpecialCharTok{$}\NormalTok{best.model}
+
+\NormalTok{prediccion\_mejor\_svm }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  mejor\_modelo\_svm,}
+  \AttributeTok{newdata =}\NormalTok{ prueba\_svm}
+\NormalTok{)}
+
+\NormalTok{metricas\_mejor\_svm }\OtherTok{\textless{}{-}} \FunctionTok{metricas\_clasificacion}\NormalTok{(}
+  \AttributeTok{real =}\NormalTok{ prueba\_svm}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{predicho =}\NormalTok{ prediccion\_mejor\_svm}
+\NormalTok{)}
+
+\NormalTok{metricas\_mejor\_svm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud sensibilidad especificidad precision     f1
+#> 1 0.8533333    0.1851852             1         1 0.3125
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Validación sin fuga de información}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los hiperparámetros deben seleccionarse usando exclusivamente los datos
+de entrenamiento. El conjunto de prueba se reserva para la evaluación
+final.
+
+\end{tcolorbox}
+
+\section{Ventajas y limitaciones}\label{ventajas-y-limitaciones}
+
+\subsection{Ventajas}\label{ventajas}
+
+\begin{itemize}
+\tightlist
+\item
+  puede construir fronteras lineales y no lineales;
+\item
+  funciona bien en espacios con muchas variables;
+\item
+  el margen máximo favorece la generalización;
+\item
+  utiliza principalmente los vectores de soporte para definir la
+  frontera;
+\item
+  permite ponderar clases desbalanceadas.
+\end{itemize}
+
+\subsection{Limitaciones}\label{limitaciones}
+
+\begin{itemize}
+\tightlist
+\item
+  puede ser lenta con conjuntos de datos muy grandes;
+\item
+  requiere elegir kernel e hiperparámetros;
+\item
+  sus resultados son menos interpretables que los de una regresión
+  logística o un árbol pequeño;
+\item
+  la estandarización de variables numéricas es importante;
+\item
+  una búsqueda extensa de hiperparámetros puede consumir muchos
+  recursos.
+\end{itemize}
+
+\section{Recomendaciones prácticas}\label{recomendaciones-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Comience con una SVM lineal como referencia.
+\item
+  Estandarice las variables numéricas.
+\item
+  Use validación cruzada para seleccionar \texttt{cost} y
+  \texttt{gamma}.
+\item
+  Revise sensibilidad, especificidad, precisión y F1, no solo exactitud.
+\item
+  Utilice pesos de clase cuando exista desbalance.
+\item
+  Trabaje inicialmente con una muestra si el conjunto es muy grande.
+\item
+  Evalúe el modelo final una sola vez sobre datos de prueba no
+  utilizados durante el ajuste.
+\end{enumerate}
+
+\section{Actividad guiada}\label{actividad-guiada-1}
+
+Modifique el código para comparar:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cost\ =\ 0.1}, \texttt{1} y \texttt{10} en la SVM lineal;
+\item
+  \texttt{gamma\ =\ 0.01}, \texttt{0.05} y \texttt{0.10} en la SVM
+  radial;
+\item
+  modelos con y sin \texttt{class.weights};
+\item
+  muestras de 3 000 y 6 000 accidentes.
+\end{itemize}
+
+Registre para cada modelo:
+
+\begin{itemize}
+\tightlist
+\item
+  número de vectores de soporte;
+\item
+  tiempo de entrenamiento;
+\item
+  exactitud;
+\item
+  sensibilidad;
+\item
+  especificidad;
+\item
+  precisión;
+\item
+  valor F1.
+\end{itemize}
+
+\section{Ejercicios}\label{ejercicios}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Explique con sus propias palabras qué es un vector de soporte.
+\item
+  ¿Qué diferencia existe entre una frontera lineal y una frontera
+  construida con kernel radial?
+\item
+  ¿Qué ocurre generalmente cuando \texttt{cost} es demasiado grande?
+\item
+  ¿Por qué es importante estandarizar variables numéricas?
+\item
+  Entrene una SVM lineal sin pesos de clase y compare su sensibilidad
+  con el modelo ponderado.
+\item
+  Amplíe la cuadrícula de validación cruzada y explique si el mejor
+  modelo cambia.
+\item
+  Compare la mejor SVM con la regresión logística y Random Forest
+  estudiados anteriormente.
+\item
+  Analice si una mejora pequeña en exactitud justifica una pérdida
+  importante de interpretabilidad.
+\end{enumerate}
+
+\section{Conclusiones}\label{conclusiones}
+
+Las máquinas de vectores de soporte buscan una frontera con margen
+amplio y se apoyan en un subconjunto de observaciones denominado
+vectores de soporte. Mediante kernels pueden representar relaciones no
+lineales y producir modelos predictivos potentes.
+
+Sin embargo, una SVM requiere seleccionar cuidadosamente sus
+hiperparámetros y evaluar su desempeño con datos no utilizados durante
+el entrenamiento. En problemas con clases desbalanceadas, la ponderación
+de clases y el análisis conjunto de sensibilidad, especificidad,
+precisión y F1 son fundamentales.
+
+\textbf{Fuente de los datos de aplicación:} elaboración propia con datos
+del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas
+Urbanas y Suburbanas (ATUS), 2024.
 
 \cleardoublepage
 \phantomsection

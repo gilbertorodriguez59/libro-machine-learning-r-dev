@@ -25,6 +25,7 @@ book:
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd
     - 08-evaluacion-modelos.qmd
+    - 09-svm.qmd
   appendices:
     - referencias.qmd
 
