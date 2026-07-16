@@ -26,6 +26,7 @@ book:
     - 07-random-forest.qmd
     - 08-evaluacion-modelos.qmd
     - 09-svm.qmd
+    - 10-naive-bayes.qmd
   appendices:
     - referencias.qmd
 

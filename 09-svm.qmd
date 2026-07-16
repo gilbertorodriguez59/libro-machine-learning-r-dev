@@ -637,3 +637,8 @@ Las máquinas de vectores de soporte buscan una frontera con margen amplio y se 
 Sin embargo, una SVM requiere seleccionar cuidadosamente sus hiperparámetros y evaluar su desempeño con datos no utilizados durante el entrenamiento. En problemas con clases desbalanceadas, la ponderación de clases y el análisis conjunto de sensibilidad, especificidad, precisión y F1 son fundamentales.
 
 **Fuente de los datos de aplicación:** elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.
+
+
+## Referencias fundamentales de SVM
+
+Las máquinas de vectores de soporte fueron presentadas formalmente por @cortes1995support. El tutorial de @burges1998tutorial desarrolla la intuición geométrica, los márgenes y el uso de kernels. Una introducción aplicada en R puede consultarse en @james2021islr.

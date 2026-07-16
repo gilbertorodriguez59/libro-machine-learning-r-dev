@@ -87,7 +87,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./referencias.html" rel="next">
+<link href="./10-naive-bayes.html" rel="next">
 <link href="./08-evaluacion-modelos.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -269,6 +269,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -331,6 +337,7 @@ window.Quarto = {
   <li><a href="#actividad-guiada" id="toc-actividad-guiada" class="nav-link" data-scroll-target="#actividad-guiada"><span class="header-section-number">10.15</span> Actividad guiada</a></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">10.16</span> Ejercicios</a></li>
   <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">10.17</span> Conclusiones</a></li>
+  <li><a href="#referencias-fundamentales-de-svm" id="toc-referencias-fundamentales-de-svm" class="nav-link" data-scroll-target="#referencias-fundamentales-de-svm"><span class="header-section-number">10.18</span> Referencias fundamentales de SVM</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1283,11 +1290,24 @@ Real           Solo daños Con víctimas
 <p>Las máquinas de vectores de soporte buscan una frontera con margen amplio y se apoyan en un subconjunto de observaciones denominado vectores de soporte. Mediante kernels pueden representar relaciones no lineales y producir modelos predictivos potentes.</p>
 <p>Sin embargo, una SVM requiere seleccionar cuidadosamente sus hiperparámetros y evaluar su desempeño con datos no utilizados durante el entrenamiento. En problemas con clases desbalanceadas, la ponderación de clases y el análisis conjunto de sensibilidad, especificidad, precisión y F1 son fundamentales.</p>
 <p><strong>Fuente de los datos de aplicación:</strong> elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.</p>
+</section>
+<section id="referencias-fundamentales-de-svm" class="level2" data-number="10.18">
+<h2 data-number="10.18" class="anchored" data-anchor-id="referencias-fundamentales-de-svm"><span class="header-section-number">10.18</span> Referencias fundamentales de SVM</h2>
+<p>Las máquinas de vectores de soporte fueron presentadas formalmente por <span class="citation" data-cites="cortes1995support">Cortes y Vapnik (<a href="referencias.html#ref-cortes1995support" role="doc-biblioref">1995</a>)</span>. El tutorial de <span class="citation" data-cites="burges1998tutorial">Burges (<a href="referencias.html#ref-burges1998tutorial" role="doc-biblioref">1998</a>)</span> desarrolla la intuición geométrica, los márgenes y el uso de kernels. Una introducción aplicada en R puede consultarse en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-burges1998tutorial" class="csl-entry" role="listitem">
+Burges, Christopher J. C. 1998. <span>«A Tutorial on Support Vector Machines for Pattern Recognition»</span>. <em>Data Mining and Knowledge Discovery</em> 2: 121-67. <a href="https://doi.org/10.1023/A:1009715923555">https://doi.org/10.1023/A:1009715923555</a>.
+</div>
+<div id="ref-cortes1995support" class="csl-entry" role="listitem">
+Cortes, Corinna, y Vladimir Vapnik. 1995. <span>«Support-Vector Networks»</span>. <em>Machine Learning</em> 20: 273-97. <a href="https://doi.org/10.1007/BF00994018">https://doi.org/10.1007/BF00994018</a>.
+</div>
 <div id="ref-inegi_atus_2024" class="csl-entry" role="listitem">
 Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024»</span>. Instituto Nacional de Estadística y Geografía. <a href="https://www.inegi.org.mx/programas/accidentes/">https://www.inegi.org.mx/programas/accidentes/</a>.
+</div>
+<div id="ref-james2021islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: with Applications in R</em>. 2.ª ed. Springer. <a href="https://doi.org/10.1007/978-1-0716-1418-1">https://doi.org/10.1007/978-1-0716-1418-1</a>.
 </div>
 </div>
 </section>
@@ -1701,8 +1721,8 @@ Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de A
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
-        <span class="nav-page-text">Referencias</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./10-naive-bayes.html" class="pagination-link" aria-label="Clasificador Naive Bayes">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

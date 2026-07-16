@@ -37,5 +37,8 @@
   },
   "09-svm.qmd": {
     "09-svm.html": "b229296a"
+  },
+  "10-naive-bayes.qmd": {
+    "10-naive-bayes.html": "13e7e318"
   }
 }
