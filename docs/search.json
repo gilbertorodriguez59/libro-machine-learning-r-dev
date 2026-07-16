@@ -1280,11 +1280,21 @@
     ]
   },
   {
+    "objectID": "09-svm.html#aplicación-con-los-datos-atus",
+    "href": "09-svm.html#aplicación-con-los-datos-atus",
+    "title": "9  Máquinas de Vectores de Soporte (SVM)",
+    "section": "9.13 Aplicación con los datos ATUS",
+    "text": "9.13 Aplicación con los datos ATUS",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
+    ]
+  },
+  {
     "objectID": "09-svm.html#cargar-la-base-preparada",
     "href": "09-svm.html#cargar-la-base-preparada",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.1 Cargar la base preparada",
-    "text": "10.1 Cargar la base preparada\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (!file.exists(ruta_atus_ml)) {\n  stop(\n    paste(\n      \"No se encontró datos/atus_ml_preparado.csv.\",\n      \"Renderice primero el capítulo de preparación de datos.\"\n    )\n  )\n}\n\natus_ml &lt;- read_csv(\n  ruta_atus_ml,\n  show_col_types = FALSE\n)",
+    "section": "9.14 Cargar la base preparada",
+    "text": "9.14 Cargar la base preparada\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (!file.exists(ruta_atus_ml)) {\n  stop(\n    paste(\n      \"No se encontró datos/atus_ml_preparado.csv.\",\n      \"Renderice primero el capítulo de preparación de datos.\"\n    )\n  )\n}\n\natus_ml &lt;- read_csv(\n  ruta_atus_ml,\n  show_col_types = FALSE\n)",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1293,8 +1303,8 @@
     "objectID": "09-svm.html#preparar-una-muestra-reproducible",
     "href": "09-svm.html#preparar-una-muestra-reproducible",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.2 Preparar una muestra reproducible",
-    "text": "10.2 Preparar una muestra reproducible\nLas SVM pueden requerir bastante memoria y tiempo cuando el conjunto es muy grande. Para fines didácticos se utiliza una muestra de hasta 6 000 accidentes.\n\n\nCódigo\nset.seed(123)\n\natus_svm &lt;- atus_ml |&gt;\n  sample_n(min(6000, nrow(atus_ml))) |&gt;\n  transmute(\n    accidente_con_victimas = factor(\n      accidente_con_victimas,\n      levels = c(\"Solo daños\", \"Con víctimas\")\n    ),\n    MES = factor(MES),\n    ID_HORA = as.numeric(ID_HORA),\n    DIASEMANA = factor(DIASEMANA),\n    TIPACCID = factor(TIPACCID),\n    CAUSAACCI = factor(CAUSAACCI)\n  ) |&gt;\n  na.omit()\n\nprop.table(table(atus_svm$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n        0.82         0.18 \n\n\n\n\n\n\n\n\nNotaNota sobre la muestra\n\n\n\nLa muestra reduce el tiempo de ejecución y hace posible repetir el ejercicio en computadoras personales y en Google Colab. Para un estudio definitivo se recomienda evaluar tamaños mayores y documentar los recursos computacionales utilizados.",
+    "section": "9.15 Preparar una muestra reproducible",
+    "text": "9.15 Preparar una muestra reproducible\nLas SVM pueden requerir bastante memoria y tiempo cuando el conjunto es muy grande. Para fines didácticos se utiliza una muestra de hasta 6 000 accidentes.\n\n\nCódigo\nset.seed(123)\n\natus_svm &lt;- atus_ml |&gt;\n  sample_n(min(6000, nrow(atus_ml))) |&gt;\n  transmute(\n    accidente_con_victimas = factor(\n      accidente_con_victimas,\n      levels = c(\"Solo daños\", \"Con víctimas\")\n    ),\n    MES = factor(MES),\n    ID_HORA = as.numeric(ID_HORA),\n    DIASEMANA = factor(DIASEMANA),\n    TIPACCID = factor(TIPACCID),\n    CAUSAACCI = factor(CAUSAACCI)\n  ) |&gt;\n  na.omit()\n\nprop.table(table(atus_svm$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n        0.82         0.18 \n\n\n\n\n\n\n\n\nNotaNota sobre la muestra\n\n\n\nLa muestra reduce el tiempo de ejecución y hace posible repetir el ejercicio en computadoras personales y en Google Colab. Para un estudio definitivo se recomienda evaluar tamaños mayores y documentar los recursos computacionales utilizados.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1303,8 +1313,8 @@
     "objectID": "09-svm.html#dividir-los-datos-de-forma-estratificada",
     "href": "09-svm.html#dividir-los-datos-de-forma-estratificada",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.3 Dividir los datos de forma estratificada",
-    "text": "10.3 Dividir los datos de forma estratificada\n\n\nCódigo\nset.seed(123)\n\nindices_entrenamiento &lt;- unlist(\n  lapply(\n    split(seq_len(nrow(atus_svm)), atus_svm$accidente_con_victimas),\n    function(indices) {\n      sample(indices, size = floor(0.70 * length(indices)))\n    }\n  )\n)\n\nentrenamiento_svm &lt;- atus_svm[indices_entrenamiento, ]\nprueba_svm &lt;- atus_svm[-indices_entrenamiento, ]\n\nprop.table(table(entrenamiento_svm$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n        0.82         0.18 \n\n\nCódigo\nprop.table(table(prueba_svm$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n        0.82         0.18",
+    "section": "9.16 Dividir los datos de forma estratificada",
+    "text": "9.16 Dividir los datos de forma estratificada\n\n\nCódigo\nset.seed(123)\n\nindices_entrenamiento &lt;- unlist(\n  lapply(\n    split(seq_len(nrow(atus_svm)), atus_svm$accidente_con_victimas),\n    function(indices) {\n      sample(indices, size = floor(0.70 * length(indices)))\n    }\n  )\n)\n\nentrenamiento_svm &lt;- atus_svm[indices_entrenamiento, ]\nprueba_svm &lt;- atus_svm[-indices_entrenamiento, ]\n\nprop.table(table(entrenamiento_svm$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n        0.82         0.18 \n\n\nCódigo\nprop.table(table(prueba_svm$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n        0.82         0.18",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1313,8 +1323,8 @@
     "objectID": "09-svm.html#calcular-pesos-para-las-clases",
     "href": "09-svm.html#calcular-pesos-para-las-clases",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.4 Calcular pesos para las clases",
-    "text": "10.4 Calcular pesos para las clases\nSi una clase aparece con menor frecuencia, la SVM puede recibir pesos inversamente proporcionales a sus frecuencias.\n\n\nCódigo\nfrecuencias &lt;- table(entrenamiento_svm$accidente_con_victimas)\n\npesos_clase &lt;- sum(frecuencias) /\n  (length(frecuencias) * frecuencias)\n\npesos_clase &lt;- as.numeric(pesos_clase)\nnames(pesos_clase) &lt;- names(frecuencias)\n\npesos_clase\n\n\n  Solo daños Con víctimas \n   0.6097561    2.7777778 \n\n\nLa clase menos frecuente recibe un peso mayor, de modo que sus errores tengan más influencia durante el entrenamiento.",
+    "section": "9.17 Calcular pesos para las clases",
+    "text": "9.17 Calcular pesos para las clases\nSi una clase aparece con menor frecuencia, la SVM puede recibir pesos inversamente proporcionales a sus frecuencias.\n\n\nCódigo\nfrecuencias &lt;- table(entrenamiento_svm$accidente_con_victimas)\n\npesos_clase &lt;- sum(frecuencias) /\n  (length(frecuencias) * frecuencias)\n\npesos_clase &lt;- as.numeric(pesos_clase)\nnames(pesos_clase) &lt;- names(frecuencias)\n\npesos_clase\n\n\n  Solo daños Con víctimas \n   0.6097561    2.7777778 \n\n\nLa clase menos frecuente recibe un peso mayor, de modo que sus errores tengan más influencia durante el entrenamiento.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1323,8 +1333,8 @@
     "objectID": "09-svm.html#ajustar-una-svm-lineal",
     "href": "09-svm.html#ajustar-una-svm-lineal",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.5 Ajustar una SVM lineal",
-    "text": "10.5 Ajustar una SVM lineal\n\n\nCódigo\nset.seed(123)\n\nmodelo_svm_atus_lineal &lt;- svm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = entrenamiento_svm,\n  kernel = \"linear\",\n  cost = 1,\n  class.weights = pesos_clase,\n  scale = TRUE\n)\n\nmodelo_svm_atus_lineal\n\n\n\nCall:\nsvm(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento_svm, kernel = \"linear\", \n    cost = 1, class.weights = pesos_clase, scale = TRUE)\n\n\nParameters:\n   SVM-Type:  C-classification \n SVM-Kernel:  linear \n       cost:  1 \n\nNumber of Support Vectors:  2215",
+    "section": "9.18 Ajustar una SVM lineal",
+    "text": "9.18 Ajustar una SVM lineal\n\n\nCódigo\nset.seed(123)\n\nmodelo_svm_atus_lineal &lt;- svm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = entrenamiento_svm,\n  kernel = \"linear\",\n  cost = 1,\n  class.weights = pesos_clase,\n  scale = TRUE\n)\n\nmodelo_svm_atus_lineal\n\n\n\nCall:\nsvm(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento_svm, kernel = \"linear\", \n    cost = 1, class.weights = pesos_clase, scale = TRUE)\n\n\nParameters:\n   SVM-Type:  C-classification \n SVM-Kernel:  linear \n       cost:  1 \n\nNumber of Support Vectors:  2215",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1333,8 +1343,8 @@
     "objectID": "09-svm.html#realizar-predicciones",
     "href": "09-svm.html#realizar-predicciones",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.6 Realizar predicciones",
-    "text": "10.6 Realizar predicciones\n\n\nCódigo\nprediccion_svm_lineal &lt;- predict(\n  modelo_svm_atus_lineal,\n  newdata = prueba_svm\n)\n\nmatriz_svm_lineal &lt;- table(\n  Real = prueba_svm$accidente_con_victimas,\n  Predicho = prediccion_svm_lineal\n)\n\nmatriz_svm_lineal\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         1172          304\n  Con víctimas         89          235",
+    "section": "9.19 Realizar predicciones",
+    "text": "9.19 Realizar predicciones\n\n\nCódigo\nprediccion_svm_lineal &lt;- predict(\n  modelo_svm_atus_lineal,\n  newdata = prueba_svm\n)\n\nmatriz_svm_lineal &lt;- table(\n  Real = prueba_svm$accidente_con_victimas,\n  Predicho = prediccion_svm_lineal\n)\n\nmatriz_svm_lineal\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         1172          304\n  Con víctimas         89          235",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1343,8 +1353,8 @@
     "objectID": "09-svm.html#función-segura-para-calcular-métricas",
     "href": "09-svm.html#función-segura-para-calcular-métricas",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.7 Función segura para calcular métricas",
-    "text": "10.7 Función segura para calcular métricas\n\n\nCódigo\nmetricas_clasificacion &lt;- function(\n  real,\n  predicho,\n  positiva = \"Con víctimas\"\n) {\n  real &lt;- factor(real)\n  predicho &lt;- factor(predicho, levels = levels(real))\n\n  negativa &lt;- setdiff(levels(real), positiva)\n\n  if (length(negativa) != 1) {\n    stop(\"La función requiere exactamente dos clases.\")\n  }\n\n  negativa &lt;- negativa[1]\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[positiva, positiva]\n  FN &lt;- matriz[positiva, negativa]\n  FP &lt;- matriz[negativa, positiva]\n  VN &lt;- matriz[negativa, negativa]\n\n  dividir &lt;- function(a, b) {\n    if (is.na(a) || is.na(b) || b == 0) {\n      return(NA_real_)\n    }\n    as.numeric(a / b)\n  }\n\n  exactitud &lt;- dividir(VP + VN, VP + FN + FP + VN)\n  sensibilidad &lt;- dividir(VP, VP + FN)\n  especificidad &lt;- dividir(VN, VN + FP)\n  precision &lt;- dividir(VP, VP + FP)\n  f1 &lt;- dividir(\n    2 * precision * sensibilidad,\n    precision + sensibilidad\n  )\n\n  data.frame(\n    exactitud = exactitud,\n    sensibilidad = sensibilidad,\n    especificidad = especificidad,\n    precision = precision,\n    f1 = f1\n  )\n}",
+    "section": "9.20 Función segura para calcular métricas",
+    "text": "9.20 Función segura para calcular métricas\n\n\nCódigo\nmetricas_clasificacion &lt;- function(\n  real,\n  predicho,\n  positiva = \"Con víctimas\"\n) {\n  real &lt;- factor(real)\n  predicho &lt;- factor(predicho, levels = levels(real))\n\n  negativa &lt;- setdiff(levels(real), positiva)\n\n  if (length(negativa) != 1) {\n    stop(\"La función requiere exactamente dos clases.\")\n  }\n\n  negativa &lt;- negativa[1]\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[positiva, positiva]\n  FN &lt;- matriz[positiva, negativa]\n  FP &lt;- matriz[negativa, positiva]\n  VN &lt;- matriz[negativa, negativa]\n\n  dividir &lt;- function(a, b) {\n    if (is.na(a) || is.na(b) || b == 0) {\n      return(NA_real_)\n    }\n    as.numeric(a / b)\n  }\n\n  exactitud &lt;- dividir(VP + VN, VP + FN + FP + VN)\n  sensibilidad &lt;- dividir(VP, VP + FN)\n  especificidad &lt;- dividir(VN, VN + FP)\n  precision &lt;- dividir(VP, VP + FP)\n  f1 &lt;- dividir(\n    2 * precision * sensibilidad,\n    precision + sensibilidad\n  )\n\n  data.frame(\n    exactitud = exactitud,\n    sensibilidad = sensibilidad,\n    especificidad = especificidad,\n    precision = precision,\n    f1 = f1\n  )\n}",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1353,8 +1363,8 @@
     "objectID": "09-svm.html#evaluar-la-svm-lineal",
     "href": "09-svm.html#evaluar-la-svm-lineal",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.8 Evaluar la SVM lineal",
-    "text": "10.8 Evaluar la SVM lineal\n\n\nCódigo\nmetricas_svm_lineal &lt;- metricas_clasificacion(\n  real = prueba_svm$accidente_con_victimas,\n  predicho = prediccion_svm_lineal\n)\n\nmetricas_svm_lineal\n\n\n  exactitud sensibilidad especificidad precision        f1\n1 0.7816667    0.7253086     0.7940379 0.4359926 0.5446118\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa sensibilidad indica la proporción de accidentes con víctimas detectada por el modelo. La especificidad indica la proporción de accidentes de solo daños reconocida correctamente. Cuando las clases están desbalanceadas, estas métricas suelen ser más informativas que la exactitud aislada.",
+    "section": "9.21 Evaluar la SVM lineal",
+    "text": "9.21 Evaluar la SVM lineal\n\n\nCódigo\nmetricas_svm_lineal &lt;- metricas_clasificacion(\n  real = prueba_svm$accidente_con_victimas,\n  predicho = prediccion_svm_lineal\n)\n\nmetricas_svm_lineal\n\n\n  exactitud sensibilidad especificidad precision        f1\n1 0.7816667    0.7253086     0.7940379 0.4359926 0.5446118\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa sensibilidad indica la proporción de accidentes con víctimas detectada por el modelo. La especificidad indica la proporción de accidentes de solo daños reconocida correctamente. Cuando las clases están desbalanceadas, estas métricas suelen ser más informativas que la exactitud aislada.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1363,8 +1373,8 @@
     "objectID": "09-svm.html#ajustar-una-svm-con-kernel-radial",
     "href": "09-svm.html#ajustar-una-svm-con-kernel-radial",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.9 Ajustar una SVM con kernel radial",
-    "text": "10.9 Ajustar una SVM con kernel radial\n\n\nCódigo\nset.seed(123)\n\nmodelo_svm_atus_radial &lt;- svm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = entrenamiento_svm,\n  kernel = \"radial\",\n  cost = 1,\n  gamma = 0.03,\n  class.weights = pesos_clase,\n  scale = TRUE\n)\n\nmodelo_svm_atus_radial\n\n\n\nCall:\nsvm(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento_svm, kernel = \"radial\", \n    cost = 1, gamma = 0.03, class.weights = pesos_clase, scale = TRUE)\n\n\nParameters:\n   SVM-Type:  C-classification \n SVM-Kernel:  radial \n       cost:  1 \n\nNumber of Support Vectors:  2318",
+    "section": "9.22 Ajustar una SVM con kernel radial",
+    "text": "9.22 Ajustar una SVM con kernel radial\n\n\nCódigo\nset.seed(123)\n\nmodelo_svm_atus_radial &lt;- svm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = entrenamiento_svm,\n  kernel = \"radial\",\n  cost = 1,\n  gamma = 0.03,\n  class.weights = pesos_clase,\n  scale = TRUE\n)\n\nmodelo_svm_atus_radial\n\n\n\nCall:\nsvm(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento_svm, kernel = \"radial\", \n    cost = 1, gamma = 0.03, class.weights = pesos_clase, scale = TRUE)\n\n\nParameters:\n   SVM-Type:  C-classification \n SVM-Kernel:  radial \n       cost:  1 \n\nNumber of Support Vectors:  2318",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1373,8 +1383,8 @@
     "objectID": "09-svm.html#evaluar-la-svm-radial",
     "href": "09-svm.html#evaluar-la-svm-radial",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.10 Evaluar la SVM radial",
-    "text": "10.10 Evaluar la SVM radial\n\n\nCódigo\nprediccion_svm_radial &lt;- predict(\n  modelo_svm_atus_radial,\n  newdata = prueba_svm\n)\n\nmatriz_svm_radial &lt;- table(\n  Real = prueba_svm$accidente_con_victimas,\n  Predicho = prediccion_svm_radial\n)\n\nmatriz_svm_radial\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         1180          296\n  Con víctimas         93          231\n\n\n\n\nCódigo\nmetricas_svm_radial &lt;- metricas_clasificacion(\n  real = prueba_svm$accidente_con_victimas,\n  predicho = prediccion_svm_radial\n)\n\nmetricas_svm_radial\n\n\n  exactitud sensibilidad especificidad precision        f1\n1 0.7838889     0.712963      0.799458 0.4383302 0.5428907",
+    "section": "9.23 Evaluar la SVM radial",
+    "text": "9.23 Evaluar la SVM radial\n\n\nCódigo\nprediccion_svm_radial &lt;- predict(\n  modelo_svm_atus_radial,\n  newdata = prueba_svm\n)\n\nmatriz_svm_radial &lt;- table(\n  Real = prueba_svm$accidente_con_victimas,\n  Predicho = prediccion_svm_radial\n)\n\nmatriz_svm_radial\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         1180          296\n  Con víctimas         93          231\n\n\n\n\nCódigo\nmetricas_svm_radial &lt;- metricas_clasificacion(\n  real = prueba_svm$accidente_con_victimas,\n  predicho = prediccion_svm_radial\n)\n\nmetricas_svm_radial\n\n\n  exactitud sensibilidad especificidad precision        f1\n1 0.7838889     0.712963      0.799458 0.4383302 0.5428907",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1383,8 +1393,8 @@
     "objectID": "09-svm.html#comparar-los-dos-modelos",
     "href": "09-svm.html#comparar-los-dos-modelos",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.11 Comparar los dos modelos",
-    "text": "10.11 Comparar los dos modelos\n\n\nCódigo\ncomparacion_svm &lt;- bind_rows(\n  transform(metricas_svm_lineal, modelo = \"SVM lineal\"),\n  transform(metricas_svm_radial, modelo = \"SVM radial\")\n) |&gt;\n  select(modelo, everything())\n\ncomparacion_svm\n\n\n      modelo exactitud sensibilidad especificidad precision        f1\n1 SVM lineal 0.7816667    0.7253086     0.7940379 0.4359926 0.5446118\n2 SVM radial 0.7838889    0.7129630     0.7994580 0.4383302 0.5428907\n\n\n\n\nCódigo\ncomparacion_larga &lt;- comparacion_svm |&gt;\n  tidyr::pivot_longer(\n    cols = -modelo,\n    names_to = \"metrica\",\n    values_to = \"valor\"\n  )\n\nggplot(\n  comparacion_larga,\n  aes(x = metrica, y = valor, fill = modelo)\n) +\n  geom_col(position = \"dodge\") +\n  coord_cartesian(ylim = c(0, 1)) +\n  labs(\n    title = \"Comparación de modelos SVM\",\n    subtitle = \"Resultados sobre el conjunto de prueba\",\n    x = \"Métrica\",\n    y = \"Valor\",\n    fill = \"Modelo\"\n  ) +\n  tema_libro()",
+    "section": "9.24 Comparar los dos modelos",
+    "text": "9.24 Comparar los dos modelos\n\n\nCódigo\ncomparacion_svm &lt;- bind_rows(\n  transform(metricas_svm_lineal, modelo = \"SVM lineal\"),\n  transform(metricas_svm_radial, modelo = \"SVM radial\")\n) |&gt;\n  select(modelo, everything())\n\ncomparacion_svm\n\n\n      modelo exactitud sensibilidad especificidad precision        f1\n1 SVM lineal 0.7816667    0.7253086     0.7940379 0.4359926 0.5446118\n2 SVM radial 0.7838889    0.7129630     0.7994580 0.4383302 0.5428907\n\n\n\n\nCódigo\ncomparacion_larga &lt;- comparacion_svm |&gt;\n  tidyr::pivot_longer(\n    cols = -modelo,\n    names_to = \"metrica\",\n    values_to = \"valor\"\n  )\n\nggplot(\n  comparacion_larga,\n  aes(x = metrica, y = valor, fill = modelo)\n) +\n  geom_col(position = \"dodge\") +\n  coord_cartesian(ylim = c(0, 1)) +\n  labs(\n    title = \"Comparación de modelos SVM\",\n    subtitle = \"Resultados sobre el conjunto de prueba\",\n    x = \"Métrica\",\n    y = \"Valor\",\n    fill = \"Modelo\"\n  ) +\n  tema_libro()",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1393,8 +1403,8 @@
     "objectID": "09-svm.html#selección-de-hiperparámetros-con-validación-cruzada",
     "href": "09-svm.html#selección-de-hiperparámetros-con-validación-cruzada",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.12 Selección de hiperparámetros con validación cruzada",
-    "text": "10.12 Selección de hiperparámetros con validación cruzada\nLa función tune.svm() permite probar diferentes combinaciones de hiperparámetros. Para mantener un tiempo razonable se usa una cuadrícula pequeña.\n\n\nCódigo\nset.seed(123)\n\nmuestra_ajuste &lt;- entrenamiento_svm |&gt;\n  sample_n(min(3000, nrow(entrenamiento_svm)))\n\najuste_svm &lt;- tune.svm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = muestra_ajuste,\n  kernel = \"radial\",\n  cost = c(0.5, 1, 2),\n  gamma = c(0.01, 0.03, 0.05),\n  tunecontrol = tune.control(cross = 5),\n  scale = TRUE\n)\n\najuste_svm$best.parameters\n\n\n  gamma cost\n2  0.03  0.5\n\n\n\n\nCódigo\nmejor_modelo_svm &lt;- ajuste_svm$best.model\n\nprediccion_mejor_svm &lt;- predict(\n  mejor_modelo_svm,\n  newdata = prueba_svm\n)\n\nmetricas_mejor_svm &lt;- metricas_clasificacion(\n  real = prueba_svm$accidente_con_victimas,\n  predicho = prediccion_mejor_svm\n)\n\nmetricas_mejor_svm\n\n\n  exactitud sensibilidad especificidad precision     f1\n1 0.8533333    0.1851852             1         1 0.3125\n\n\n\n\n\n\n\n\nAdvertenciaValidación sin fuga de información\n\n\n\nLos hiperparámetros deben seleccionarse usando exclusivamente los datos de entrenamiento. El conjunto de prueba se reserva para la evaluación final.",
+    "section": "9.25 Selección de hiperparámetros con validación cruzada",
+    "text": "9.25 Selección de hiperparámetros con validación cruzada\nLa función tune.svm() permite probar diferentes combinaciones de hiperparámetros. Para mantener un tiempo razonable se usa una cuadrícula pequeña.\n\n\nCódigo\nset.seed(123)\n\nmuestra_ajuste &lt;- entrenamiento_svm |&gt;\n  sample_n(min(3000, nrow(entrenamiento_svm)))\n\najuste_svm &lt;- tune.svm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = muestra_ajuste,\n  kernel = \"radial\",\n  cost = c(0.5, 1, 2),\n  gamma = c(0.01, 0.03, 0.05),\n  tunecontrol = tune.control(cross = 5),\n  scale = TRUE\n)\n\najuste_svm$best.parameters\n\n\n  gamma cost\n2  0.03  0.5\n\n\n\n\nCódigo\nmejor_modelo_svm &lt;- ajuste_svm$best.model\n\nprediccion_mejor_svm &lt;- predict(\n  mejor_modelo_svm,\n  newdata = prueba_svm\n)\n\nmetricas_mejor_svm &lt;- metricas_clasificacion(\n  real = prueba_svm$accidente_con_victimas,\n  predicho = prediccion_mejor_svm\n)\n\nmetricas_mejor_svm\n\n\n  exactitud sensibilidad especificidad precision     f1\n1 0.8533333    0.1851852             1         1 0.3125\n\n\n\n\n\n\n\n\nAdvertenciaValidación sin fuga de información\n\n\n\nLos hiperparámetros deben seleccionarse usando exclusivamente los datos de entrenamiento. El conjunto de prueba se reserva para la evaluación final.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1403,8 +1413,8 @@
     "objectID": "09-svm.html#ventajas-y-limitaciones",
     "href": "09-svm.html#ventajas-y-limitaciones",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.13 Ventajas y limitaciones",
-    "text": "10.13 Ventajas y limitaciones\n\n10.13.1 Ventajas\n\npuede construir fronteras lineales y no lineales;\nfunciona bien en espacios con muchas variables;\nel margen máximo favorece la generalización;\nutiliza principalmente los vectores de soporte para definir la frontera;\npermite ponderar clases desbalanceadas.\n\n\n\n10.13.2 Limitaciones\n\npuede ser lenta con conjuntos de datos muy grandes;\nrequiere elegir kernel e hiperparámetros;\nsus resultados son menos interpretables que los de una regresión logística o un árbol pequeño;\nla estandarización de variables numéricas es importante;\nuna búsqueda extensa de hiperparámetros puede consumir muchos recursos.",
+    "section": "9.26 Ventajas y limitaciones",
+    "text": "9.26 Ventajas y limitaciones\n\n9.26.1 Ventajas\n\npuede construir fronteras lineales y no lineales;\nfunciona bien en espacios con muchas variables;\nel margen máximo favorece la generalización;\nutiliza principalmente los vectores de soporte para definir la frontera;\npermite ponderar clases desbalanceadas.\n\n\n\n9.26.2 Limitaciones\n\npuede ser lenta con conjuntos de datos muy grandes;\nrequiere elegir kernel e hiperparámetros;\nsus resultados son menos interpretables que los de una regresión logística o un árbol pequeño;\nla estandarización de variables numéricas es importante;\nuna búsqueda extensa de hiperparámetros puede consumir muchos recursos.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1413,8 +1423,8 @@
     "objectID": "09-svm.html#recomendaciones-prácticas",
     "href": "09-svm.html#recomendaciones-prácticas",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.14 Recomendaciones prácticas",
-    "text": "10.14 Recomendaciones prácticas\n\nComience con una SVM lineal como referencia.\nEstandarice las variables numéricas.\nUse validación cruzada para seleccionar cost y gamma.\nRevise sensibilidad, especificidad, precisión y F1, no solo exactitud.\nUtilice pesos de clase cuando exista desbalance.\nTrabaje inicialmente con una muestra si el conjunto es muy grande.\nEvalúe el modelo final una sola vez sobre datos de prueba no utilizados durante el ajuste.",
+    "section": "9.27 Recomendaciones prácticas",
+    "text": "9.27 Recomendaciones prácticas\n\nComience con una SVM lineal como referencia.\nEstandarice las variables numéricas.\nUse validación cruzada para seleccionar cost y gamma.\nRevise sensibilidad, especificidad, precisión y F1, no solo exactitud.\nUtilice pesos de clase cuando exista desbalance.\nTrabaje inicialmente con una muestra si el conjunto es muy grande.\nEvalúe el modelo final una sola vez sobre datos de prueba no utilizados durante el ajuste.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1423,8 +1433,8 @@
     "objectID": "09-svm.html#actividad-guiada",
     "href": "09-svm.html#actividad-guiada",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.15 Actividad guiada",
-    "text": "10.15 Actividad guiada\nModifique el código para comparar:\n\ncost = 0.1, 1 y 10 en la SVM lineal;\ngamma = 0.01, 0.05 y 0.10 en la SVM radial;\nmodelos con y sin class.weights;\nmuestras de 3 000 y 6 000 accidentes.\n\nRegistre para cada modelo:\n\nnúmero de vectores de soporte;\ntiempo de entrenamiento;\nexactitud;\nsensibilidad;\nespecificidad;\nprecisión;\nvalor F1.",
+    "section": "9.28 Actividad guiada",
+    "text": "9.28 Actividad guiada\nModifique el código para comparar:\n\ncost = 0.1, 1 y 10 en la SVM lineal;\ngamma = 0.01, 0.05 y 0.10 en la SVM radial;\nmodelos con y sin class.weights;\nmuestras de 3 000 y 6 000 accidentes.\n\nRegistre para cada modelo:\n\nnúmero de vectores de soporte;\ntiempo de entrenamiento;\nexactitud;\nsensibilidad;\nespecificidad;\nprecisión;\nvalor F1.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1433,8 +1443,8 @@
     "objectID": "09-svm.html#ejercicios",
     "href": "09-svm.html#ejercicios",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.16 Ejercicios",
-    "text": "10.16 Ejercicios\n\nExplique con sus propias palabras qué es un vector de soporte.\n¿Qué diferencia existe entre una frontera lineal y una frontera construida con kernel radial?\n¿Qué ocurre generalmente cuando cost es demasiado grande?\n¿Por qué es importante estandarizar variables numéricas?\nEntrene una SVM lineal sin pesos de clase y compare su sensibilidad con el modelo ponderado.\nAmplíe la cuadrícula de validación cruzada y explique si el mejor modelo cambia.\nCompare la mejor SVM con la regresión logística y Random Forest estudiados anteriormente.\nAnalice si una mejora pequeña en exactitud justifica una pérdida importante de interpretabilidad.",
+    "section": "9.29 Ejercicios",
+    "text": "9.29 Ejercicios\n\nExplique con sus propias palabras qué es un vector de soporte.\n¿Qué diferencia existe entre una frontera lineal y una frontera construida con kernel radial?\n¿Qué ocurre generalmente cuando cost es demasiado grande?\n¿Por qué es importante estandarizar variables numéricas?\nEntrene una SVM lineal sin pesos de clase y compare su sensibilidad con el modelo ponderado.\nAmplíe la cuadrícula de validación cruzada y explique si el mejor modelo cambia.\nCompare la mejor SVM con la regresión logística y Random Forest estudiados anteriormente.\nAnalice si una mejora pequeña en exactitud justifica una pérdida importante de interpretabilidad.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1443,8 +1453,8 @@
     "objectID": "09-svm.html#conclusiones",
     "href": "09-svm.html#conclusiones",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.17 Conclusiones",
-    "text": "10.17 Conclusiones\nLas máquinas de vectores de soporte buscan una frontera con margen amplio y se apoyan en un subconjunto de observaciones denominado vectores de soporte. Mediante kernels pueden representar relaciones no lineales y producir modelos predictivos potentes.\nSin embargo, una SVM requiere seleccionar cuidadosamente sus hiperparámetros y evaluar su desempeño con datos no utilizados durante el entrenamiento. En problemas con clases desbalanceadas, la ponderación de clases y el análisis conjunto de sensibilidad, especificidad, precisión y F1 son fundamentales.\nFuente de los datos de aplicación: elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.",
+    "section": "9.30 Conclusiones",
+    "text": "9.30 Conclusiones\nLas máquinas de vectores de soporte buscan una frontera con margen amplio y se apoyan en un subconjunto de observaciones denominado vectores de soporte. Mediante kernels pueden representar relaciones no lineales y producir modelos predictivos potentes.\nSin embargo, una SVM requiere seleccionar cuidadosamente sus hiperparámetros y evaluar su desempeño con datos no utilizados durante el entrenamiento. En problemas con clases desbalanceadas, la ponderación de clases y el análisis conjunto de sensibilidad, especificidad, precisión y F1 son fundamentales.\nFuente de los datos de aplicación: elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]
@@ -1453,8 +1463,8 @@
     "objectID": "09-svm.html#referencias-fundamentales-de-svm",
     "href": "09-svm.html#referencias-fundamentales-de-svm",
     "title": "9  Máquinas de Vectores de Soporte (SVM)",
-    "section": "10.18 Referencias fundamentales de SVM",
-    "text": "10.18 Referencias fundamentales de SVM\nLas máquinas de vectores de soporte fueron presentadas formalmente por Cortes y Vapnik (1995). El tutorial de Burges (1998) desarrolla la intuición geométrica, los márgenes y el uso de kernels. Una introducción aplicada en R puede consultarse en James et al. (2021).\n\n\n\n\nBurges, Christopher J. C. 1998. «A Tutorial on Support Vector Machines for Pattern Recognition». Data Mining and Knowledge Discovery 2: 121-67. https://doi.org/10.1023/A:1009715923555.\n\n\nCortes, Corinna, y Vladimir Vapnik. 1995. «Support-Vector Networks». Machine Learning 20: 273-97. https://doi.org/10.1007/BF00994018.\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
+    "section": "9.31 Referencias fundamentales de SVM",
+    "text": "9.31 Referencias fundamentales de SVM\nLas máquinas de vectores de soporte fueron presentadas formalmente por Cortes y Vapnik (1995). El tutorial de Burges (1998) desarrolla la intuición geométrica, los márgenes y el uso de kernels. Una introducción aplicada en R puede consultarse en James et al. (2021).\n\n\n\n\nBurges, Christopher J. C. 1998. «A Tutorial on Support Vector Machines for Pattern Recognition». Data Mining and Knowledge Discovery 2: 121-67. https://doi.org/10.1023/A:1009715923555.\n\n\nCortes, Corinna, y Vladimir Vapnik. 1995. «Support-Vector Networks». Machine Learning 20: 273-97. https://doi.org/10.1007/BF00994018.\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Máquinas de Vectores de Soporte (SVM)</span>"
     ]

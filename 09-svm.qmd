@@ -255,7 +255,7 @@ El parámetro $\gamma$ controla el alcance de la influencia de cada observación
 Una combinación de `cost` y `gamma` demasiado grande puede ajustar muy bien el entrenamiento, pero funcionar peor con datos nuevos. La validación cruzada ayuda a evitar esa elección.
 :::
 
-# Aplicación con los datos ATUS
+## Aplicación con los datos ATUS
 
 ## Cargar la base preparada
 
