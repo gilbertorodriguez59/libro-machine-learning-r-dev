@@ -50,3 +50,25 @@ La versión web es la opción más cómoda para leer y consultar el contenido. E
 ::: {.callout-note title="Datos y acceso a internet"}
 El cuaderno necesita conexión a internet para instalar paquetes y descargar los archivos de datos cuando no estén disponibles en la sesión. La descarga de ATUS puede tardar debido al tamaño de la base.
 :::
+
+
+## Ejecución autónoma en Google Colab
+
+El cuaderno incluye una celda inicial de **preparación automática** que:
+
+- instala los paquetes de R que hagan falta;
+- define dentro del propio cuaderno todas las funciones gráficas;
+- crea la carpeta `datos`;
+- descarga las bases ATUS desde el repositorio estable cuando no estén presentes;
+- comprueba que los recursos necesarios estén disponibles.
+
+Por esta razón, el usuario no necesita descargar manualmente `util_graficas.R` ni subir archivos auxiliares a Colab.
+
+
+## Instalación automática de paquetes
+
+El cuaderno utiliza la función `cargar_paquete()`. Antes de cargar un paquete, comprueba si está instalado y, cuando hace falta, lo instala automáticamente desde CRAN. Esto evita errores como `there is no package called 'ranger'`.
+
+## Referencias bibliográficas en Colab
+
+En los capítulos Quarto se conservan claves como `@breiman1984classification`, porque Quarto las transforma al generar el libro. En Google Colab esas claves se sustituyen por citas legibles como **Breiman et al. (1984)**, y la bibliografía completa aparece al final del cuaderno.

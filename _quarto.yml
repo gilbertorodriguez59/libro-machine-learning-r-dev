@@ -20,6 +20,7 @@ book:
     - 01-introduccion.qmd
     - 02-preparacion-datos.qmd
     - 03-analisis-exploratorio.qmd
+    - 04-regresion-lineal-multiple.qmd
     - 04-regresion-logistica.qmd
     - 05-knn.qmd
     - 06-arboles-decision.qmd
