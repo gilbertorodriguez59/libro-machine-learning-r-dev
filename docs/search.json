@@ -210,6 +210,16 @@
     ]
   },
   {
+    "objectID": "00-cuaderno-google-colab.html#descarga-automática-de-los-datos",
+    "href": "00-cuaderno-google-colab.html#descarga-automática-de-los-datos",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "Descarga automática de los datos",
+    "text": "Descarga automática de los datos\nPara evitar archivos demasiado grandes dentro del cuaderno, las bases ATUS se publican en formato comprimido .csv.gz. La primera celda de Colab:\n\ndescarga los archivos comprimidos desde GitHub Pages;\nlos descomprime automáticamente;\nguarda los CSV en la carpeta datos;\ncomprueba que quedaron disponibles antes de continuar.\n\nLos archivos publicados son:\n\nrecursos_colab/atus_ml_preparado.csv.gz;\nrecursos_colab/atus_2024.csv.gz.\n\nSi la celda informa un error 404, primero debe publicarse esta versión del sitio para que esos recursos estén disponibles.",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
+    ]
+  },
+  {
     "objectID": "01-introduccion.html",
     "href": "01-introduccion.html",
     "title": "1  ¿Qué es el aprendizaje automático?",

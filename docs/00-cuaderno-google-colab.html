@@ -231,6 +231,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ejecución-autónoma-en-google-colab" id="toc-ejecución-autónoma-en-google-colab" class="nav-link" data-scroll-target="#ejecución-autónoma-en-google-colab">Ejecución autónoma en Google Colab</a></li>
   <li><a href="#instalación-automática-de-paquetes" id="toc-instalación-automática-de-paquetes" class="nav-link" data-scroll-target="#instalación-automática-de-paquetes">Instalación automática de paquetes</a></li>
   <li><a href="#referencias-bibliográficas-en-colab" id="toc-referencias-bibliográficas-en-colab" class="nav-link" data-scroll-target="#referencias-bibliográficas-en-colab">Referencias bibliográficas en Colab</a></li>
+  <li><a href="#descarga-automática-de-los-datos" id="toc-descarga-automática-de-los-datos" class="nav-link" data-scroll-target="#descarga-automática-de-los-datos">Descarga automática de los datos</a></li>
   </ul>
 </nav>
     </div>
@@ -352,6 +353,22 @@ ul.task-list li input[type="checkbox"] {
 <section id="referencias-bibliográficas-en-colab" class="level2">
 <h2 class="anchored" data-anchor-id="referencias-bibliográficas-en-colab">Referencias bibliográficas en Colab</h2>
 <p>En los capítulos Quarto se conservan claves como <code>@breiman1984classification</code>, porque Quarto las transforma al generar el libro. En Google Colab esas claves se sustituyen por citas legibles como <strong>Breiman et al.&nbsp;(1984)</strong>, y la bibliografía completa aparece al final del cuaderno.</p>
+</section>
+<section id="descarga-automática-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="descarga-automática-de-los-datos">Descarga automática de los datos</h2>
+<p>Para evitar archivos demasiado grandes dentro del cuaderno, las bases ATUS se publican en formato comprimido <code>.csv.gz</code>. La primera celda de Colab:</p>
+<ol type="1">
+<li>descarga los archivos comprimidos desde GitHub Pages;</li>
+<li>los descomprime automáticamente;</li>
+<li>guarda los CSV en la carpeta <code>datos</code>;</li>
+<li>comprueba que quedaron disponibles antes de continuar.</li>
+</ol>
+<p>Los archivos publicados son:</p>
+<ul>
+<li><code>recursos_colab/atus_ml_preparado.csv.gz</code>;</li>
+<li><code>recursos_colab/atus_2024.csv.gz</code>.</li>
+</ul>
+<p>Si la celda informa un error 404, primero debe publicarse esta versión del sitio para que esos recursos estén disponibles.</p>
 
 
 </section>

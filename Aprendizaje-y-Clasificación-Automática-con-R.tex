@@ -777,6 +777,42 @@ generar el libro. En Google Colab esas claves se sustituyen por citas
 legibles como \textbf{Breiman et al.~(1984)}, y la bibliografía completa
 aparece al final del cuaderno.
 
+\section*{Descarga automática de los
+datos}\label{descarga-automuxe1tica-de-los-datos}
+\addcontentsline{toc}{section}{Descarga automática de los datos}
+
+\markright{Descarga automática de los datos}
+
+Para evitar archivos demasiado grandes dentro del cuaderno, las bases
+ATUS se publican en formato comprimido \texttt{.csv.gz}. La primera
+celda de Colab:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  descarga los archivos comprimidos desde GitHub Pages;
+\item
+  los descomprime automáticamente;
+\item
+  guarda los CSV en la carpeta \texttt{datos};
+\item
+  comprueba que quedaron disponibles antes de continuar.
+\end{enumerate}
+
+Los archivos publicados son:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{recursos\_colab/atus\_ml\_preparado.csv.gz};
+\item
+  \texttt{recursos\_colab/atus\_2024.csv.gz}.
+\end{itemize}
+
+Si la celda informa un error 404, primero debe publicarse esta versión
+del sitio para que esos recursos estén disponibles.
+
 \bookmarksetup{startatroot}
 
 \chapter{¿Qué es el aprendizaje

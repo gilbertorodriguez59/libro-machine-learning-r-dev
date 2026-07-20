@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: docs
   resources:
+    - recursos_colab/atus_2024.csv.gz
+    - recursos_colab/atus_ml_preparado.csv.gz
     - Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb
 
 lang: es
