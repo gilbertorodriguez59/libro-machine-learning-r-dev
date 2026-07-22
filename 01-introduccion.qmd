@@ -140,7 +140,7 @@ Estos recursos permiten repasar los conceptos principales del capítulo mediante
 
 | Recurso | Utilidad | Abrir o reproducir | Descargar |
 |---|---|---|---|
-| Video explicativo | Introducción audiovisual al aprendizaje automático y a los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=xzTLERULM6s){target="_blank"} | — |
+| Video explicativo | Introducción audiovisual al aprendizaje automático y a los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=N2SkzjT2LpU){target="_blank"} | — |
 | Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pdf){download="capitulo-01-introduccion-aprendizaje-automatico.pdf"} |
 | Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pptx) | [Descargar PPTX](recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pptx){download="capitulo-01-introduccion-aprendizaje-automatico.pptx"} |
 | Infografía | Resumen visual de las ideas fundamentales. | [Ver infografía](recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png){download="capitulo-01-introduccion-aprendizaje-automatico-infografia.png"} |
@@ -150,7 +150,7 @@ Estos recursos permiten repasar los conceptos principales del capítulo mediante
 
 <div class="video-responsive">
   <iframe
-    src="https://www.youtube.com/embed/xzTLERULM6s"
+    src="https://www.youtube.com/embed/N2SkzjT2LpU"
     title="Capítulo 1. Introducción al aprendizaje automático"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
