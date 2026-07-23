@@ -18,6 +18,9 @@ project:
     - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pdf
     - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx
     - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png
+    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf
+    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx
+    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png
 
 lang: es
 bibliography: referencias.bib
