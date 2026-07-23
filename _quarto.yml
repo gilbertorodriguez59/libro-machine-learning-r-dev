@@ -15,6 +15,9 @@ project:
     - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx
     - recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png
     - imagenes/qr-curso-youtube.png
+    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pdf
+    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx
+    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png
 
 lang: es
 bibliography: referencias.bib

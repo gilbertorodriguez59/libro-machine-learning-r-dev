@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.4 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.5 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -600,11 +600,21 @@
     ]
   },
   {
+    "objectID": "03-analisis-exploratorio.html#materiales-complementarios-del-capítulo",
+    "href": "03-analisis-exploratorio.html#materiales-complementarios-del-capítulo",
+    "title": "3  Análisis exploratorio de datos",
+    "section": "3.9 Materiales complementarios del capítulo",
+    "text": "3.9 Materiales complementarios del capítulo\nEstos recursos permiten repasar los conceptos esenciales del análisis exploratorio de datos mediante distintos formatos.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual del análisis exploratorio de datos y de sus principales herramientas.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de conceptos, procedimientos y gráficos del capítulo.\nVer infografía\nDescargar PNG\n\n\n\n\n3.9.1 Video explicativo\n\n \n\n\n\n3.9.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 3\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nEste video forma parte de la lista oficial del curso Aprendizaje y Clasificación Automática con R.\nConsultar todos los videos del curso\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+    ]
+  },
+  {
     "objectID": "03-analisis-exploratorio.html#conclusión",
     "href": "03-analisis-exploratorio.html#conclusión",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.9 Conclusión",
-    "text": "3.9 Conclusión\nEl análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.",
+    "section": "3.10 Conclusión",
+    "text": "3.10 Conclusión\nEl análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
