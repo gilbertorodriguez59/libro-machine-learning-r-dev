@@ -5,7 +5,7 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.10.3 (desarrollo)
+**Versión:** 0.10.4 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
@@ -58,8 +58,17 @@ Este video ofrece una introducción general a la presentación, la licencia de u
 :::
 
 ::: {.content-visible when-format="pdf"}
-**Video disponible en YouTube:**  
-<https://www.youtube.com/watch?v=rNhh4LBgKnw>
+\newpage
+
+### Curso completo en YouTube
+
+Escanea el código QR o abre el enlace para acceder a la lista de reproducción oficial del curso:
+
+\begin{center}
+\includegraphics[width=0.28\textwidth]{imagenes/qr-curso-youtube.png}
+\end{center}
+
+<https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
 :::
 
 ## Materiales complementarios descargables {.unnumbered}
