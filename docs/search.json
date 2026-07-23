@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.6 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.7 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -980,11 +980,21 @@
     ]
   },
   {
+    "objectID": "04-regresion-logistica.html#materiales-complementarios-del-capítulo",
+    "href": "04-regresion-logistica.html#materiales-complementarios-del-capítulo",
+    "title": "5  Regresión logística para clasificación",
+    "section": "5.10 Materiales complementarios del capítulo",
+    "text": "5.10 Materiales complementarios del capítulo\nEstos recursos permiten estudiar la regresión logística desde una perspectiva audiovisual, gráfica y práctica.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual de la regresión logística aplicada a problemas de clasificación.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de los conceptos, la función logística y el proceso de clasificación.\nVer infografía\nDescargar PNG\n\n\n\n\n5.10.1 Video explicativo\n\n \n\n\n\n5.10.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 5\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nEste video forma parte de la lista oficial del curso.\nConsultar todos los videos del curso\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
     "objectID": "04-regresion-logistica.html#conclusión",
     "href": "04-regresion-logistica.html#conclusión",
     "title": "5  Regresión logística para clasificación",
-    "section": "5.10 Conclusión",
-    "text": "5.10 Conclusión\nLa regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.",
+    "section": "5.11 Conclusión",
+    "text": "5.11 Conclusión\nLa regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -993,8 +1003,8 @@
     "objectID": "04-regresion-logistica.html#referencias-fundamentales-de-la-regresión-logística",
     "href": "04-regresion-logistica.html#referencias-fundamentales-de-la-regresión-logística",
     "title": "5  Regresión logística para clasificación",
-    "section": "5.11 Referencias fundamentales de la regresión logística",
-    "text": "5.11 Referencias fundamentales de la regresión logística\nLa formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox (Cox 1958). Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a Hosmer et al. (2013). Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en James et al. (2021).\n\n\n\n\nCox, David R. 1958. «The Regression Analysis of Binary Sequences». Journal of the Royal Statistical Society: Series B (Methodological) 20 (2): 215-42. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x.\n\n\nHosmer, David W., Stanley Lemeshow, y Rodney X. Sturdivant. 2013. Applied Logistic Regression. 3.ª ed. Wiley. https://doi.org/10.1002/9781118548387.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
+    "section": "5.12 Referencias fundamentales de la regresión logística",
+    "text": "5.12 Referencias fundamentales de la regresión logística\nLa formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox (Cox 1958). Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a Hosmer et al. (2013). Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en James et al. (2021).\n\n\n\n\nCox, David R. 1958. «The Regression Analysis of Binary Sequences». Journal of the Royal Statistical Society: Series B (Methodological) 20 (2): 215-42. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x.\n\n\nHosmer, David W., Stanley Lemeshow, y Rodney X. Sturdivant. 2013. Applied Logistic Regression. 3.ª ed. Wiley. https://doi.org/10.1002/9781118548387.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]

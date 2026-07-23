@@ -21,6 +21,9 @@ project:
     - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf
     - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx
     - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png
+    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf
+    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx
+    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png
 
 lang: es
 bibliography: referencias.bib
