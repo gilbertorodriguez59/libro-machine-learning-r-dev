@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.12.8 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.13.0 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages\n\n\n\n&lt;span class=\"hero-badge\"&gt;Edición interactiva ampliada&lt;/span&gt;\n&lt;h2&gt;Aprende Machine Learning haciendo&lt;/h2&gt;\n&lt;p&gt;Libro abierto con código en R, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.&lt;/p&gt;\n&lt;div class=\"hero-actions\"&gt;\n  &lt;a class=\"btn btn-primary btn-lg\" href=\"01-introduccion.html\"&gt;Comenzar el libro&lt;/a&gt;\n  &lt;a class=\"btn btn-danger btn-lg\" href=\"https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q\" target=\"_blank\"&gt;Curso en YouTube&lt;/a&gt;\n  &lt;a class=\"btn btn-outline-primary btn-lg\" href=\"Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb\"&gt;Cuaderno Colab&lt;/a&gt;\n&lt;/div&gt;\n\n\n&lt;img src=\"imagenes/portada-libro-carta.png\" alt=\"Portada del libro\"&gt;\n\n\n\n12 capítulosR reproducibleDatos abiertosVideosShinylivePDF\n\n\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -94,7 +94,7 @@
     "href": "index.html#estructura-actual-del-libro",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Estructura actual del libro",
-    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión lineal simple y múltiple.\nRegresión logística para clasificación.\nk vecinos más cercanos (k-NN).\nÁrboles de decisión.\nRandom Forest.\nEvaluación, validación y comparación de modelos.\nMáquinas de Vectores de Soporte (SVM).\nClasificador Naive Bayes.",
+    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión lineal simple y múltiple.\nRegresión logística para clasificación.\nk vecinos más cercanos (k-NN).\nÁrboles de decisión.\nRandom Forest.\nEvaluación, validación y comparación de modelos.\nMáquinas de Vectores de Soporte (SVM).\nClasificador Naive Bayes.\nRedes neuronales artificiales.\nAgrupamiento con k-means.",
     "crumbs": [
       "Presentación"
     ]
@@ -104,7 +104,7 @@
     "href": "index.html#ruta-prevista-para-los-siguientes-capítulos",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Ruta prevista para los siguientes capítulos",
-    "text": "Ruta prevista para los siguientes capítulos\nLa secuencia prevista, sujeta a revisión conforme avance el libro, es:\n\nRedes neuronales artificiales.\nIntroducción al aprendizaje no supervisado.\nAgrupamiento con k-means.\nAnálisis de Componentes Principales (PCA).\nComparación integral y selección de algoritmos.\nProyecto aplicado final con datos abiertos.",
+    "text": "Ruta prevista para los siguientes capítulos\n\nAnálisis de Componentes Principales (PCA).\n\nReglas de asociación con Apriori.\n\nComparación integral y selección de algoritmos.\n\nProyecto aplicado final con datos abiertos.",
     "crumbs": [
       "Presentación"
     ]
@@ -2577,6 +2577,216 @@
     "text": "12.44 42. Conclusión\nLas redes neuronales artificiales combinan neuronas simples para aprender relaciones complejas.\nSus componentes fundamentales son:\n\nentradas;\npesos;\nsesgos;\nfunciones de activación;\ncapas;\nfunción de pérdida;\noptimización;\nretropropagación.\n\nUna red efectiva no depende solamente de aumentar capas o neuronas. También requiere:\n\ndatos de calidad;\nnormalización correcta;\nvalidación;\nregularización;\nselección cuidadosa de arquitectura;\nevaluación con métricas apropiadas;\ncomparación con modelos más sencillos.\n\nEn el siguiente capítulo podremos abordar métodos no supervisados, comenzando con agrupamiento k-means.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html",
+    "href": "12-kmeans.html",
+    "title": "13  Agrupamiento con k-means",
+    "section": "",
+    "text": "13.1 Objetivos de aprendizaje\nAl finalizar este capítulo podrás:",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#objetivos-de-aprendizaje",
+    "href": "12-kmeans.html#objetivos-de-aprendizaje",
+    "title": "13  Agrupamiento con k-means",
+    "section": "",
+    "text": "distinguir aprendizaje supervisado y no supervisado;\nexplicar intuitivamente el algoritmo k-means;\ncalcular centroides y asignar observaciones a grupos;\nimplementar k-means manualmente y con kmeans();\nseleccionar el número de grupos mediante el método del codo y silhouette;\ninterpretar centroides y perfiles de los grupos;\nreconocer las limitaciones y los errores frecuentes;\naplicar el algoritmo a datos reales.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#del-aprendizaje-supervisado-al-no-supervisado",
+    "href": "12-kmeans.html#del-aprendizaje-supervisado-al-no-supervisado",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.2 1. Del aprendizaje supervisado al no supervisado",
+    "text": "13.2 1. Del aprendizaje supervisado al no supervisado\nEn los capítulos anteriores conocíamos la variable de respuesta. En el aprendizaje no supervisado no existe una etiqueta conocida que indique el grupo correcto. El objetivo es descubrir estructura en los datos.\nEl agrupamiento o clustering reúne observaciones similares y separa observaciones diferentes.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#idea-intuitiva-de-k-means",
+    "href": "12-kmeans.html#idea-intuitiva-de-k-means",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.3 2. Idea intuitiva de k-means",
+    "text": "13.3 2. Idea intuitiva de k-means\nk-means busca dividir las observaciones en \\(k\\) grupos. Cada grupo se representa mediante un centroide, que es el promedio de sus observaciones.\nEl algoritmo repite dos operaciones:\n\nasignar cada observación al centroide más cercano;\nrecalcular los centroides.\n\nEl proceso termina cuando las asignaciones dejan de cambiar o la mejora es muy pequeña.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#función-objetivo",
+    "href": "12-kmeans.html#función-objetivo",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.4 3. Función objetivo",
+    "text": "13.4 3. Función objetivo\nk-means minimiza la suma de cuadrados dentro de los grupos:\n\\[\nWSS=\\sum_{j=1}^{k}\\sum_{\\mathbf{x}_i\\in C_j}\\|\\mathbf{x}_i-\\boldsymbol{\\mu}_j\\|^2\n\\]\nAquí, \\(C_j\\) es el grupo \\(j\\) y \\(\\boldsymbol{\\mu}_j\\) es su centroide.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#ejemplo-manual",
+    "href": "12-kmeans.html#ejemplo-manual",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.5 4. Ejemplo manual",
+    "text": "13.5 4. Ejemplo manual\nConsidera seis puntos:\n\n\n\nPunto\nx\ny\n\n\n\n\nA\n1\n1\n\n\nB\n1.5\n2\n\n\nC\n3\n4\n\n\nD\n5\n7\n\n\nE\n3.5\n5\n\n\nF\n4.5\n5\n\n\n\nSi fijamos \\(k=2\\), elegimos dos centroides iniciales, asignamos cada punto al más cercano y recalculamos los promedios de ambos grupos. Repetimos hasta estabilizar.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#implementación-básica-en-r",
+    "href": "12-kmeans.html#implementación-básica-en-r",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.6 5. Implementación básica en R",
+    "text": "13.6 5. Implementación básica en R\n\ndatos &lt;- data.frame(\n  x = c(1, 1.5, 3, 5, 3.5, 4.5),\n  y = c(1, 2, 4, 7, 5, 5)\n)\n\ndatos\n\n    x y\n1 1.0 1\n2 1.5 2\n3 3.0 4\n4 5.0 7\n5 3.5 5\n6 4.5 5\n\n\n\nset.seed(123)\nmodelo_km &lt;- kmeans(datos, centers = 2, nstart = 25)\nmodelo_km\n\nK-means clustering with 2 clusters of sizes 2, 4\n\nCluster means:\n     x    y\n1 1.25 1.50\n2 4.00 5.25\n\nClustering vector:\n[1] 1 1 2 2 2 2\n\nWithin cluster sum of squares by cluster:\n[1] 0.625 7.250\n (between_SS / total_SS =  78.5 %)\n\nAvailable components:\n\n[1] \"cluster\"      \"centers\"      \"totss\"        \"withinss\"     \"tot.withinss\"\n[6] \"betweenss\"    \"size\"         \"iter\"         \"ifault\"      \n\n\n\ndatos$cluster &lt;- factor(modelo_km$cluster)\nplot(\n  datos$x, datos$y,\n  col = datos$cluster,\n  pch = 19,\n  xlab = \"x\", ylab = \"y\",\n  main = \"Agrupamiento k-means\"\n)\npoints(modelo_km$centers, pch = 8, cex = 2, lwd = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#por-qué-usar-nstart",
+    "href": "12-kmeans.html#por-qué-usar-nstart",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.7 6. ¿Por qué usar nstart?",
+    "text": "13.7 6. ¿Por qué usar nstart?\nk-means depende de los centroides iniciales. nstart = 25 ejecuta el algoritmo varias veces y conserva la solución con menor variación interna.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#escalamiento-de-variables",
+    "href": "12-kmeans.html#escalamiento-de-variables",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.8 7. Escalamiento de variables",
+    "text": "13.8 7. Escalamiento de variables\nSi una variable está medida en miles y otra entre 0 y 10, la primera dominará las distancias. Por ello suele ser necesario estandarizar:\n\\[\nz=\\frac{x-\\bar{x}}{s}\n\\]\n\nX &lt;- scale(iris[, 1:4])\nhead(X)\n\n     Sepal.Length Sepal.Width Petal.Length Petal.Width\n[1,]   -0.8976739  1.01560199    -1.335752   -1.311052\n[2,]   -1.1392005 -0.13153881    -1.335752   -1.311052\n[3,]   -1.3807271  0.32731751    -1.392399   -1.311052\n[4,]   -1.5014904  0.09788935    -1.279104   -1.311052\n[5,]   -1.0184372  1.24503015    -1.335752   -1.311052\n[6,]   -0.5353840  1.93331463    -1.165809   -1.048667",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#aplicación-con-iris",
+    "href": "12-kmeans.html#aplicación-con-iris",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.9 8. Aplicación con iris",
+    "text": "13.9 8. Aplicación con iris\n\nset.seed(2026)\nkm_iris &lt;- kmeans(X, centers = 3, nstart = 50)\n\ntable(\n  Cluster = km_iris$cluster,\n  Especie = iris$Species\n)\n\n       Especie\nCluster setosa versicolor virginica\n      1      0         39        14\n      2     50          0         0\n      3      0         11        36\n\n\nLos números de los clusters no tienen significado previo. El grupo 1 no es mejor ni peor que el grupo 2.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#interpretación-de-centroides",
+    "href": "12-kmeans.html#interpretación-de-centroides",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.10 9. Interpretación de centroides",
+    "text": "13.10 9. Interpretación de centroides\n\nkm_iris$centers\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width\n1  -0.05005221 -0.88042696    0.3465767   0.2805873\n2  -1.01119138  0.85041372   -1.3006301  -1.2507035\n3   1.13217737  0.08812645    0.9928284   1.0141287\n\n\nCada fila representa un perfil promedio estandarizado. Valores positivos indican niveles superiores a la media; valores negativos, inferiores.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#método-del-codo",
+    "href": "12-kmeans.html#método-del-codo",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.11 10. Método del codo",
+    "text": "13.11 10. Método del codo\nEl método del codo compara la suma de cuadrados interna para distintos valores de \\(k\\).\n\nvalores_k &lt;- 1:10\nwss &lt;- numeric(length(valores_k))\n\nfor (i in seq_along(valores_k)) {\n  set.seed(123)\n  ajuste &lt;- kmeans(X, centers = valores_k[i], nstart = 25)\n  wss[i] &lt;- ajuste$tot.withinss\n}\n\nplot(\n  valores_k, wss,\n  type = \"b\",\n  xlab = \"Número de clusters k\",\n  ylab = \"Suma de cuadrados interna\",\n  main = \"Método del codo\"\n)\n\n\n\n\n\n\n\n\nSe busca un punto a partir del cual añadir grupos produce mejoras pequeñas.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#coeficiente-silhouette",
+    "href": "12-kmeans.html#coeficiente-silhouette",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.12 11. Coeficiente silhouette",
+    "text": "13.12 11. Coeficiente silhouette\nSilhouette compara cohesión interna y separación externa. Sus valores se encuentran entre -1 y 1:\n\ncerca de 1: agrupamiento claro;\ncerca de 0: observación fronteriza;\nnegativo: posible asignación incorrecta.\n\n\nif (!requireNamespace(\"cluster\", quietly = TRUE)) {\n  install.packages(\"cluster\", repos = \"https://cloud.r-project.org\")\n}\n\nsil &lt;- cluster::silhouette(km_iris$cluster, dist(X))\nmean(sil[, \"sil_width\"])\nplot(sil)",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#laboratorio-interactivo-k-means",
+    "href": "12-kmeans.html#laboratorio-interactivo-k-means",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.13 12. Laboratorio interactivo k-means",
+    "text": "13.13 12. Laboratorio interactivo k-means\nModifica el número de grupos y observa cómo cambian los centroides y la separación.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 690\n#| components: [viewer]\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Laboratorio interactivo: k-means\"),\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"k\", \"Número de grupos\", 2, 6, 3, 1),\n      sliderInput(\"n\", \"Número de observaciones\", 30, 200, 90, 10),\n      sliderInput(\"disp\", \"Dispersión\", 0.2, 2.0, 0.7, 0.1),\n      numericInput(\"semilla\", \"Semilla\", 123, 1),\n      actionButton(\"actualizar\", \"Generar y agrupar\")\n    ),\n    mainPanel(\n      plotOutput(\"grafica\", height = \"450px\"),\n      tableOutput(\"resumen\")\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  datos &lt;- eventReactive(input$actualizar, {\n    set.seed(input$semilla)\n    centros &lt;- matrix(c(-3,-2, 0,3, 3,-1, -2,4, 4,4, 0,-4), ncol=2, byrow=TRUE)\n    g &lt;- sample(seq_len(input$k), input$n, replace=TRUE)\n    data.frame(\n      x = centros[g,1] + rnorm(input$n, sd=input$disp),\n      y = centros[g,2] + rnorm(input$n, sd=input$disp)\n    )\n  }, ignoreNULL=FALSE)\n\n  ajuste &lt;- reactive({\n    set.seed(input$semilla)\n    kmeans(datos(), centers=input$k, nstart=25)\n  })\n\n  output$grafica &lt;- renderPlot({\n    d &lt;- datos(); km &lt;- ajuste()\n    plot(d$x, d$y, col=km$cluster, pch=19,\n         xlab=\"Variable 1\", ylab=\"Variable 2\",\n         main=paste(\"k-means con k =\", input$k))\n    points(km$centers, pch=8, cex=2.2, lwd=3)\n    grid()\n  })\n\n  output$resumen &lt;- renderTable({\n    km &lt;- ajuste()\n    data.frame(\n      Cluster=seq_len(input$k),\n      Tamaño=as.integer(km$size),\n      Centro_X=round(km$centers[,1],2),\n      Centro_Y=round(km$centers[,2],2)\n    )\n  })\n}\n\nshinyApp(ui, server)",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#ventajas",
+    "href": "12-kmeans.html#ventajas",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.14 13. Ventajas",
+    "text": "13.14 13. Ventajas\n\nsencillo e intuitivo;\nrápido en conjuntos medianos y grandes;\nfácil de visualizar;\nútil para segmentación y exploración;\ndisponible en R base.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#limitaciones",
+    "href": "12-kmeans.html#limitaciones",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.15 14. Limitaciones",
+    "text": "13.15 14. Limitaciones\n\nrequiere fijar \\(k\\);\ndepende de la inicialización;\nes sensible a escalas y valores atípicos;\nfavorece grupos aproximadamente esféricos;\nno maneja bien clusters con densidades muy diferentes;\nsolo trabaja naturalmente con variables numéricas.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#errores-frecuentes",
+    "href": "12-kmeans.html#errores-frecuentes",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.16 15. Errores frecuentes",
+    "text": "13.16 15. Errores frecuentes\n\nNo estandarizar variables.\nElegir \\(k\\) únicamente porque coincide con una expectativa previa.\nEjecutar una sola inicialización.\nInterpretar los números de cluster como categorías ordenadas.\nIncluir identificadores.\nIgnorar valores atípicos.\nConfundir clusters con clases verdaderas.\nDescribir grupos sin revisar sus centroides.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#aplicación-con-datos-reales",
+    "href": "12-kmeans.html#aplicación-con-datos-reales",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.17 16. Aplicación con datos reales",
+    "text": "13.17 16. Aplicación con datos reales\nEn accidentes de tránsito pueden agruparse municipios, horarios o tipos de accidente usando variables como número de víctimas, frecuencia, hora, zona y severidad. El objetivo no es predecir una etiqueta, sino descubrir perfiles semejantes.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#actividad-guiada",
+    "href": "12-kmeans.html#actividad-guiada",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.18 17. Actividad guiada",
+    "text": "13.18 17. Actividad guiada\n\nSelecciona cuatro variables numéricas de un conjunto real.\nTrata valores faltantes.\nEstandariza los datos.\nEvalúa valores de \\(k\\) entre 2 y 10.\nUsa el método del codo.\nCalcula silhouette.\nEntrena el modelo final con nstart = 50.\nInterpreta los centroides.\nAsigna nombres descriptivos a los perfiles.\nExplica las limitaciones del análisis.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#ejercicios",
+    "href": "12-kmeans.html#ejercicios",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.19 18. Ejercicios",
+    "text": "13.19 18. Ejercicios\n\nImplementa una iteración manual de k-means.\nCompara resultados con y sin estandarización.\nCambia la semilla y analiza la estabilidad.\nAgrega valores atípicos.\nCompara \\(k=2\\), \\(k=3\\) y \\(k=5\\).\nContrasta el método del codo y silhouette.\nAplica k-means a datos ambientales o de accidentes.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
+    ]
+  },
+  {
+    "objectID": "12-kmeans.html#conclusión",
+    "href": "12-kmeans.html#conclusión",
+    "title": "13  Agrupamiento con k-means",
+    "section": "13.20 19. Conclusión",
+    "text": "13.20 19. Conclusión\nk-means descubre grupos mediante distancias y centroides. Su utilidad depende de una preparación adecuada, una selección razonada de \\(k\\) y una interpretación basada en los perfiles de cada cluster.\nEn el siguiente capítulo estudiaremos el Análisis de Componentes Principales (PCA) como técnica de reducción de dimensión.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Agrupamiento con k-means</span>"
     ]
   },
   {

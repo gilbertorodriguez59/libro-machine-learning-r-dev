@@ -5,9 +5,31 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.12.8 (desarrollo)
+**Versión:** 0.13.0 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
-**Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
+**Tecnologías:** R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages
+
+
+::: {.hero-libro}
+<div class="hero-grid">
+  <div>
+    <span class="hero-badge">Edición interactiva ampliada</span>
+    <h2>Aprende Machine Learning haciendo</h2>
+    <p>Libro abierto con código en R, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="01-introduccion.html">Comenzar el libro</a>
+      <a class="btn btn-danger btn-lg" href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" target="_blank">Curso en YouTube</a>
+      <a class="btn btn-outline-primary btn-lg" href="Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb">Cuaderno Colab</a>
+    </div>
+  </div>
+  <div class="hero-cover">
+    <img src="imagenes/portada-libro-carta.png" alt="Portada del libro">
+  </div>
+</div>
+<div class="feature-strip">
+  <span>12 capítulos</span><span>R reproducible</span><span>Datos abiertos</span><span>Videos</span><span>Shinylive</span><span>PDF</span>
+</div>
+:::
 
 Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
@@ -134,18 +156,15 @@ Estos materiales complementarios fueron elaborados con apoyo de **NotebookLM de 
 9. Evaluación, validación y comparación de modelos.
 10. Máquinas de Vectores de Soporte (SVM).
 11. Clasificador Naive Bayes.
+12. Redes neuronales artificiales.
+13. Agrupamiento con k-means.
 
 ## Ruta prevista para los siguientes capítulos {.unnumbered}
 
-La secuencia prevista, sujeta a revisión conforme avance el libro, es:
-
-12. Redes neuronales artificiales.
-13. Introducción al aprendizaje no supervisado.
-14. Agrupamiento con k-means.
-15. Análisis de Componentes Principales (PCA).
-16. Comparación integral y selección de algoritmos.
+14. Análisis de Componentes Principales (PCA).  
+15. Reglas de asociación con Apriori.  
+16. Comparación integral y selección de algoritmos.  
 17. Proyecto aplicado final con datos abiertos.
-
 
 ## Nota para el lector {.unnumbered}
 
