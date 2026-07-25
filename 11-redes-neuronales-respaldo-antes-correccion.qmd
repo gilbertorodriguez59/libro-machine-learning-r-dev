@@ -275,14 +275,26 @@ El entrenamiento busca valores de los pesos que minimicen la pérdida.
 La actualización general es:
 
 $$
+$
+w^{\mathrm{nuevo}}
+=
+w^{\mathrm{anterior}}
+$
+w^{\mathrm{nuevo}}
+=
+w^{\mathrm{anterior}}
+-
+$
 w^{\mathrm{nuevo}}
 =
 w^{\mathrm{anterior}}
 -
 \eta\frac{\partial L}{\partial w}
-$$
-
+$
+$
+$
 donde $\eta$ es la tasa de aprendizaje.
+$$
 
 ### Tasa demasiado pequeña
 

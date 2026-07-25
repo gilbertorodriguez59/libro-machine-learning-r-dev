@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.13.0 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages\n\n\n\n&lt;span class=\"hero-badge\"&gt;Edición interactiva ampliada&lt;/span&gt;\n&lt;h2&gt;Aprende Machine Learning haciendo&lt;/h2&gt;\n&lt;p&gt;Libro abierto con código en R, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.&lt;/p&gt;\n&lt;div class=\"hero-actions\"&gt;\n  &lt;a class=\"btn btn-primary btn-lg\" href=\"01-introduccion.html\"&gt;Comenzar el libro&lt;/a&gt;\n  &lt;a class=\"btn btn-danger btn-lg\" href=\"https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q\" target=\"_blank\"&gt;Curso en YouTube&lt;/a&gt;\n  &lt;a class=\"btn btn-outline-primary btn-lg\" href=\"Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb\"&gt;Cuaderno Colab&lt;/a&gt;\n&lt;/div&gt;\n\n\n&lt;img src=\"imagenes/portada-libro-carta.png\" alt=\"Portada del libro\"&gt;\n\n\n\n12 capítulosR reproducibleDatos abiertosVideosShinylivePDF\n\n\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.13.1 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages\n\n\n\n&lt;span class=\"hero-badge\"&gt;Edición interactiva ampliada&lt;/span&gt;\n&lt;h2&gt;Aprende Machine Learning haciendo&lt;/h2&gt;\n&lt;p&gt;Libro abierto con código en R, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.&lt;/p&gt;\n&lt;div class=\"hero-actions\"&gt;\n  &lt;a class=\"btn btn-primary btn-lg\" href=\"01-introduccion.html\"&gt;Comenzar el libro&lt;/a&gt;\n  &lt;a class=\"btn btn-danger btn-lg\" href=\"https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q\" target=\"_blank\"&gt;Curso en YouTube&lt;/a&gt;\n  &lt;a class=\"btn btn-outline-primary btn-lg\" href=\"Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb\"&gt;Cuaderno Colab&lt;/a&gt;\n&lt;/div&gt;\n\n\n&lt;img src=\"imagenes/portada-libro-carta.png\" alt=\"Portada del libro\"&gt;\n\n\n\n12 capítulosR reproducibleDatos abiertosVideosShinylivePDF\n\n\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -860,11 +860,21 @@
     ]
   },
   {
+    "objectID": "04-regresion-lineal-multiple.html#laboratorio-interactivo-regresión-lineal",
+    "href": "04-regresion-lineal-multiple.html#laboratorio-interactivo-regresión-lineal",
+    "title": "4  Regresión lineal simple y múltiple",
+    "section": "4.23 Laboratorio interactivo: regresión lineal",
+    "text": "4.23 Laboratorio interactivo: regresión lineal\nModifica el intercepto, la pendiente y el nivel de ruido para observar cómo cambia la nube de puntos y la recta de regresión.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 700\n#| components: [viewer]\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Laboratorio de regresión lineal\"),\n\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"b0\", \"Intercepto\", -10, 10, 2, 0.5),\n      sliderInput(\"b1\", \"Pendiente\", -5, 5, 1.5, 0.1),\n      sliderInput(\"ruido\", \"Desviación del ruido\", 0, 8, 2, 0.25),\n      sliderInput(\"n\", \"Número de observaciones\", 20, 200, 60, 10),\n      numericInput(\"semilla\", \"Semilla\", 123, min = 1)\n    ),\n\n    mainPanel(\n      plotOutput(\"grafica\", height = \"450px\"),\n      verbatimTextOutput(\"modelo\"),\n      textOutput(\"interpretacion\")\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n\n  datos &lt;- reactive({\n    set.seed(input$semilla)\n    x &lt;- runif(input$n, 0, 10)\n    y &lt;- input$b0 + input$b1 * x +\n      rnorm(input$n, 0, input$ruido)\n    data.frame(x = x, y = y)\n  })\n\n  ajuste &lt;- reactive({\n    lm(y ~ x, data = datos())\n  })\n\n  output$grafica &lt;- renderPlot({\n    d &lt;- datos()\n\n    plot(\n      d$x, d$y,\n      pch = 19,\n      xlab = \"Variable x\",\n      ylab = \"Variable y\",\n      main = \"Datos simulados y recta estimada\"\n    )\n\n    abline(ajuste(), lwd = 3)\n    abline(\n      a = input$b0,\n      b = input$b1,\n      lty = 2,\n      lwd = 2\n    )\n\n    legend(\n      \"topleft\",\n      legend = c(\"Recta estimada\", \"Recta verdadera\"),\n      lty = c(1, 2),\n      lwd = c(3, 2),\n      bty = \"n\"\n    )\n  })\n\n  output$modelo &lt;- renderPrint({\n    coeficientes &lt;- coef(ajuste())\n    r2 &lt;- summary(ajuste())$r.squared\n\n    cat(\"Modelo estimado:\\n\")\n    cat(\n      \"y =\",\n      round(coeficientes[1], 3),\n      \"+\",\n      round(coeficientes[2], 3),\n      \"x\\n\\n\"\n    )\n    cat(\"R² =\", round(r2, 4))\n  })\n\n  output$interpretacion &lt;- renderText({\n    if (input$ruido &lt; 1) {\n      \"Con poco ruido, la recta estimada suele aproximarse mucho a la relación verdadera.\"\n    } else if (input$ruido &lt; 4) {\n      \"El ruido genera dispersión y reduce la precisión del ajuste.\"\n    } else {\n      \"Con ruido alto, la relación es más difícil de identificar y el R² suele disminuir.\"\n    }\n  })\n}\n\nshinyApp(ui, server)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión lineal simple y múltiple</span>"
+    ]
+  },
+  {
     "objectID": "04-regresion-lineal-multiple.html#actividades-para-el-lector",
     "href": "04-regresion-lineal-multiple.html#actividades-para-el-lector",
     "title": "4  Regresión lineal simple y múltiple",
-    "section": "4.23 Actividades para el lector",
-    "text": "4.23 Actividades para el lector\n\nModifique el ejemplo simple y prediga la calificación para 7.5 horas de estudio.\nRetire una variable del modelo ambiental y compare el \\(R^2\\) ajustado y el RMSE.\nAñada una interacción entre temperatura y velocidad del viento.\nAnalice los residuos del modelo múltiple.\nExplique por qué no sería correcto utilizar regresión lineal ordinaria para predecir directamente una categoría como Con víctimas o Solo daños.\nCompare conceptualmente el modelo ATUS de este capítulo con la regresión logística del capítulo siguiente.",
+    "section": "4.24 Actividades para el lector",
+    "text": "4.24 Actividades para el lector\n\nModifique el ejemplo simple y prediga la calificación para 7.5 horas de estudio.\nRetire una variable del modelo ambiental y compare el \\(R^2\\) ajustado y el RMSE.\nAñada una interacción entre temperatura y velocidad del viento.\nAnalice los residuos del modelo múltiple.\nExplique por qué no sería correcto utilizar regresión lineal ordinaria para predecir directamente una categoría como Con víctimas o Solo daños.\nCompare conceptualmente el modelo ATUS de este capítulo con la regresión logística del capítulo siguiente.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión lineal simple y múltiple</span>"
     ]
@@ -873,8 +883,8 @@
     "objectID": "04-regresion-lineal-multiple.html#conclusiones",
     "href": "04-regresion-lineal-multiple.html#conclusiones",
     "title": "4  Regresión lineal simple y múltiple",
-    "section": "4.24 Conclusiones",
-    "text": "4.24 Conclusiones\nLa regresión lineal simple explica una respuesta cuantitativa mediante una variable y la regresión múltiple permite considerar varios factores simultáneamente. Su valor en este libro no se limita a la predicción numérica: proporciona el lenguaje básico para comprender coeficientes, errores, validación y generalización, conceptos que continuarán apareciendo en los algoritmos de clasificación.",
+    "section": "4.25 Conclusiones",
+    "text": "4.25 Conclusiones\nLa regresión lineal simple explica una respuesta cuantitativa mediante una variable y la regresión múltiple permite considerar varios factores simultáneamente. Su valor en este libro no se limita a la predicción numérica: proporciona el lenguaje básico para comprender coeficientes, errores, validación y generalización, conceptos que continuarán apareciendo en los algoritmos de clasificación.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión lineal simple y múltiple</span>"
     ]
@@ -883,8 +893,8 @@
     "objectID": "04-regresion-lineal-multiple.html#materiales-complementarios-del-capítulo",
     "href": "04-regresion-lineal-multiple.html#materiales-complementarios-del-capítulo",
     "title": "4  Regresión lineal simple y múltiple",
-    "section": "4.25 Materiales complementarios del capítulo",
-    "text": "4.25 Materiales complementarios del capítulo\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual de la regresión lineal simple y múltiple.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de conceptos, fórmulas e interpretación.\nVer infografía\nDescargar PNG\n\n\n\n\n4.25.1 Video explicativo\n\n\n\n\n\n4.25.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 4\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nConsultar todos los videos del curso\n\n\n\n\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nMontgomery, Douglas C., Elizabeth A. Peck, y G. Geoffrey Vining. 2021. Introduction to Linear Regression Analysis. 6.ª ed. Wiley.",
+    "section": "4.26 Materiales complementarios del capítulo",
+    "text": "4.26 Materiales complementarios del capítulo\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual de la regresión lineal simple y múltiple.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de conceptos, fórmulas e interpretación.\nVer infografía\nDescargar PNG\n\n\n\n\n4.26.1 Video explicativo\n\n\n\n\n\n4.26.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 4\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nConsultar todos los videos del curso\n\n\n\n\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nMontgomery, Douglas C., Elizabeth A. Peck, y G. Geoffrey Vining. 2021. Introduction to Linear Regression Analysis. 6.ª ed. Wiley.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión lineal simple y múltiple</span>"
     ]
@@ -990,11 +1000,21 @@
     ]
   },
   {
+    "objectID": "04-regresion-logistica.html#laboratorio-interactivo-regresión-logística",
+    "href": "04-regresion-logistica.html#laboratorio-interactivo-regresión-logística",
+    "title": "5  Regresión logística para clasificación",
+    "section": "5.11 Laboratorio interactivo: regresión logística",
+    "text": "5.11 Laboratorio interactivo: regresión logística\nExplora cómo el intercepto, la pendiente y el umbral cambian la probabilidad estimada y la clasificación final.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 720\n#| components: [viewer]\n\nlibrary(shiny)\n\nsigmoide &lt;- function(z) {\n  1 / (1 + exp(-z))\n}\n\nui &lt;- fluidPage(\n  titlePanel(\"Laboratorio de regresión logística\"),\n\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"b0\", \"Intercepto\", -10, 10, -3, 0.25),\n      sliderInput(\"b1\", \"Pendiente\", -5, 5, 1.2, 0.1),\n      sliderInput(\"umbral\", \"Umbral de clasificación\", 0.05, 0.95, 0.5, 0.05),\n      sliderInput(\"xnew\", \"Valor nuevo de x\", -5, 10, 2.5, 0.1)\n    ),\n\n    mainPanel(\n      plotOutput(\"curva\", height = \"440px\"),\n      verbatimTextOutput(\"resultado\"),\n      textOutput(\"interpretacion\")\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n\n  prob_nueva &lt;- reactive({\n    sigmoide(input$b0 + input$b1 * input$xnew)\n  })\n\n  output$curva &lt;- renderPlot({\n    x &lt;- seq(-5, 10, length.out = 400)\n    p &lt;- sigmoide(input$b0 + input$b1 * x)\n\n    plot(\n      x, p,\n      type = \"l\",\n      lwd = 3,\n      ylim = c(0, 1),\n      xlab = \"Variable x\",\n      ylab = \"Probabilidad estimada\",\n      main = \"Curva logística y umbral\"\n    )\n\n    abline(h = input$umbral, lty = 2)\n    abline(v = input$xnew, lty = 3)\n\n    points(\n      input$xnew,\n      prob_nueva(),\n      pch = 19,\n      cex = 1.8\n    )\n\n    text(\n      input$xnew,\n      prob_nueva(),\n      labels = paste0(\"  p = \", round(prob_nueva(), 3)),\n      pos = 4\n    )\n  })\n\n  output$resultado &lt;- renderPrint({\n    clase &lt;- ifelse(\n      prob_nueva() &gt;= input$umbral,\n      1,\n      0\n    )\n\n    cat(\"Logit =\", round(input$b0 + input$b1 * input$xnew, 4), \"\\n\")\n    cat(\"Probabilidad =\", round(prob_nueva(), 4), \"\\n\")\n    cat(\"Umbral =\", input$umbral, \"\\n\")\n    cat(\"Clase predicha =\", clase)\n  })\n\n  output$interpretacion &lt;- renderText({\n    if (prob_nueva() &gt;= input$umbral) {\n      \"La probabilidad supera el umbral, por lo que la observación se asigna a la clase 1.\"\n    } else {\n      \"La probabilidad no alcanza el umbral, por lo que la observación se asigna a la clase 0.\"\n    }\n  })\n}\n\nshinyApp(ui, server)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
     "objectID": "04-regresion-logistica.html#conclusión",
     "href": "04-regresion-logistica.html#conclusión",
     "title": "5  Regresión logística para clasificación",
-    "section": "5.11 Conclusión",
-    "text": "5.11 Conclusión\nLa regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.",
+    "section": "5.12 Conclusión",
+    "text": "5.12 Conclusión\nLa regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -1003,8 +1023,8 @@
     "objectID": "04-regresion-logistica.html#referencias-fundamentales-de-la-regresión-logística",
     "href": "04-regresion-logistica.html#referencias-fundamentales-de-la-regresión-logística",
     "title": "5  Regresión logística para clasificación",
-    "section": "5.12 Referencias fundamentales de la regresión logística",
-    "text": "5.12 Referencias fundamentales de la regresión logística\nLa formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox (Cox 1958). Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a Hosmer et al. (2013). Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en James et al. (2021).\n\n\n\n\nCox, David R. 1958. «The Regression Analysis of Binary Sequences». Journal of the Royal Statistical Society: Series B (Methodological) 20 (2): 215-42. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x.\n\n\nHosmer, David W., Stanley Lemeshow, y Rodney X. Sturdivant. 2013. Applied Logistic Regression. 3.ª ed. Wiley. https://doi.org/10.1002/9781118548387.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
+    "section": "5.13 Referencias fundamentales de la regresión logística",
+    "text": "5.13 Referencias fundamentales de la regresión logística\nLa formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox (Cox 1958). Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a Hosmer et al. (2013). Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en James et al. (2021).\n\n\n\n\nCox, David R. 1958. «The Regression Analysis of Binary Sequences». Journal of the Royal Statistical Society: Series B (Methodological) 20 (2): 215-42. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x.\n\n\nHosmer, David W., Stanley Lemeshow, y Rodney X. Sturdivant. 2013. Applied Logistic Regression. 3.ª ed. Wiley. https://doi.org/10.1002/9781118548387.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -1070,11 +1090,21 @@
     ]
   },
   {
+    "objectID": "05-knn.html#laboratorio-interactivo-k-nn",
+    "href": "05-knn.html#laboratorio-interactivo-k-nn",
+    "title": "6  k vecinos más cercanos, k-NN",
+    "section": "6.7 Laboratorio interactivo: k-NN",
+    "text": "6.7 Laboratorio interactivo: k-NN\nSelecciona el número de vecinos y mueve un punto nuevo. El laboratorio identifica sus vecinos más cercanos y muestra la clase predicha.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 760\n#| components: [viewer]\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Laboratorio de clasificación k-NN\"),\n\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"k\", \"Número de vecinos k\", 1, 15, 5, 2),\n      sliderInput(\"xnew\", \"Longitud del sépalo\", 4, 8, 5.8, 0.1),\n      sliderInput(\"ynew\", \"Anchura del sépalo\", 2, 4.5, 3.0, 0.1)\n    ),\n\n    mainPanel(\n      plotOutput(\"grafica\", height = \"500px\"),\n      verbatimTextOutput(\"resultado\"),\n      textOutput(\"explicacion\")\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n\n  resultado &lt;- reactive({\n    X &lt;- as.matrix(iris[, c(\"Sepal.Length\", \"Sepal.Width\")])\n    nuevo &lt;- c(input$xnew, input$ynew)\n\n    distancias &lt;- sqrt(\n      rowSums(\n        sweep(X, 2, nuevo, \"-\")^2\n      )\n    )\n\n    indices &lt;- order(distancias)[seq_len(input$k)]\n    votos &lt;- table(iris$Species[indices])\n    clase &lt;- names(which.max(votos))\n\n    list(\n      indices = indices,\n      distancias = distancias,\n      votos = votos,\n      clase = clase\n    )\n  })\n\n  output$grafica &lt;- renderPlot({\n    especies &lt;- as.integer(iris$Species)\n    r &lt;- resultado()\n\n    plot(\n      iris$Sepal.Length,\n      iris$Sepal.Width,\n      pch = 19,\n      col = especies,\n      xlab = \"Longitud del sépalo\",\n      ylab = \"Anchura del sépalo\",\n      main = paste(\"Predicción:\", r$clase)\n    )\n\n    points(\n      iris$Sepal.Length[r$indices],\n      iris$Sepal.Width[r$indices],\n      pch = 1,\n      cex = 2.1,\n      lwd = 2\n    )\n\n    points(\n      input$xnew,\n      input$ynew,\n      pch = 8,\n      cex = 2.2,\n      lwd = 3\n    )\n\n    segments(\n      input$xnew,\n      input$ynew,\n      iris$Sepal.Length[r$indices],\n      iris$Sepal.Width[r$indices],\n      lty = 3\n    )\n\n    legend(\n      \"topright\",\n      legend = levels(iris$Species),\n      col = seq_along(levels(iris$Species)),\n      pch = 19,\n      bty = \"n\"\n    )\n  })\n\n  output$resultado &lt;- renderPrint({\n    r &lt;- resultado()\n\n    cat(\"Clase predicha:\", r$clase, \"\\n\\n\")\n    cat(\"Votos de los vecinos:\\n\")\n    print(r$votos)\n  })\n\n  output$explicacion &lt;- renderText({\n    paste0(\n      \"Los círculos grandes indican los \",\n      input$k,\n      \" vecinos utilizados. La estrella representa la observación nueva.\"\n    )\n  })\n}\n\nshinyApp(ui, server)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
+    ]
+  },
+  {
     "objectID": "05-knn.html#conclusión",
     "href": "05-knn.html#conclusión",
     "title": "6  k vecinos más cercanos, k-NN",
-    "section": "6.7 Conclusión",
-    "text": "6.7 Conclusión\nk-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de \\(k\\), del escalamiento y de la calidad de las variables predictoras.",
+    "section": "6.8 Conclusión",
+    "text": "6.8 Conclusión\nk-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de \\(k\\), del escalamiento y de la calidad de las variables predictoras.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -1083,8 +1113,8 @@
     "objectID": "05-knn.html#referencias-fundamentales-de-k-nn",
     "href": "05-knn.html#referencias-fundamentales-de-k-nn",
     "title": "6  k vecinos más cercanos, k-NN",
-    "section": "6.8 Referencias fundamentales de k-NN",
-    "text": "6.8 Referencias fundamentales de k-NN\nEl método de los vecinos más cercanos tiene como antecedente clásico el informe de Fix y Hodges (1951). Sus propiedades de clasificación y cotas de error fueron estudiadas por Cover y Hart (1967). Una exposición moderna, acompañada de aplicaciones en R, puede consultarse en James et al. (2021).\n\n\n\n\nCover, Thomas M., y Peter E. Hart. 1967. «Nearest Neighbor Pattern Classification». IEEE Transactions on Information Theory 13 (1): 21-27. https://doi.org/10.1109/TIT.1967.1053964.\n\n\nFix, Evelyn, y Joseph L. Hodges. 1951. Discriminatory Analysis: Nonparametric Discrimination: Consistency Properties. Project 21-49-004, Report 4. USAF School of Aviation Medicine.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
+    "section": "6.9 Referencias fundamentales de k-NN",
+    "text": "6.9 Referencias fundamentales de k-NN\nEl método de los vecinos más cercanos tiene como antecedente clásico el informe de Fix y Hodges (1951). Sus propiedades de clasificación y cotas de error fueron estudiadas por Cover y Hart (1967). Una exposición moderna, acompañada de aplicaciones en R, puede consultarse en James et al. (2021).\n\n\n\n\nCover, Thomas M., y Peter E. Hart. 1967. «Nearest Neighbor Pattern Classification». IEEE Transactions on Information Theory 13 (1): 21-27. https://doi.org/10.1109/TIT.1967.1053964.\n\n\nFix, Evelyn, y Joseph L. Hodges. 1951. Discriminatory Analysis: Nonparametric Discrimination: Consistency Properties. Project 21-49-004, Report 4. USAF School of Aviation Medicine.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -2174,7 +2204,7 @@
     "href": "11-redes-neuronales.html#ejemplo-manual-de-una-neurona",
     "title": "12  Redes neuronales artificiales",
     "section": "12.4 3. Ejemplo manual de una neurona",
-    "text": "12.4 3. Ejemplo manual de una neurona\nSupongamos:\n$$ x_1=0.8,x_2=0.4\nw_1=1.2,w_2=-0.7,b=0.1 $$\nEntonces:\n$$ z=(1.2)(0.8)+(-0.7)(0.4)+0.1\nz=0.96-0.28+0.1=0.78 $$\nSi usamos la función sigmoide:\n\\[\n\\sigma(z)=\\frac{1}{1+e^{-z}}\n\\]\nobtenemos:\n\\[\n\\sigma(0.78)\\approx0.686\n\\]\nLa neurona produce una salida cercana a 0.686.",
+    "text": "12.4 3. Ejemplo manual de una neurona\nSupongamos que las entradas, los pesos y el sesgo son:\n\\[\n\\begin{aligned}\nx_1 &= 0.8, & x_2 &= 0.4,\\\\\nw_1 &= 1.2, & w_2 &= -0.7, & b &= 0.1.\n\\end{aligned}\n\\]\nLa combinación lineal se obtiene sustituyendo los valores:\n\\[\n\\begin{aligned}\nz &= w_1x_1+w_2x_2+b\\\\\n  &= (1.2)(0.8)+(-0.7)(0.4)+0.1\\\\\n  &= 0.96-0.28+0.1\\\\\n  &= 0.78.\n\\end{aligned}\n\\]\nSi usamos la función sigmoide:\n\\[\n\\sigma(z)=\\frac{1}{1+e^{-z}}\n\\]\nobtenemos:\n\\[\n\\sigma(0.78)\\approx0.686\n\\]\nLa neurona produce una salida cercana a 0.686.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2184,7 +2214,7 @@
     "href": "11-redes-neuronales.html#funciones-de-activación",
     "title": "12  Redes neuronales artificiales",
     "section": "12.5 4. Funciones de activación",
-    "text": "12.5 4. Funciones de activación\nLas funciones de activación permiten que la red represente relaciones no lineales.\n\n12.5.1 4.1 Función escalón\n\\[\nf(z)=\n\\begin{cases}\n1, & z\\geq0\\\\\n0, & z&lt;0\n\\end{cases}\n\\]\nFue utilizada en los primeros perceptrones.\n\n\n12.5.2 4.2 Función sigmoide\n\\[\n\\sigma(z)=\\frac{1}{1+e^{-z}}\n\\]\nCaracterísticas:\n\nproduce valores entre 0 y 1;\nes útil en clasificación binaria;\npuede interpretarse como probabilidad;\npuede saturarse para valores grandes.\n\n\n\n12.5.3 4.3 Tangente hiperbólica\n\\[\n\\tanh(z)=\\frac{e^z-e^{-z}}{e^z+e^{-z}}\n\\]\nProduce valores entre -1 y 1.\n\n\n12.5.4 4.4 ReLU\n\\[\n\\] \\[\n\\operatorname{ReLU}(z)=\\max(0,z)\n\\] \\[\n\\]\nEs una de las activaciones más utilizadas en capas ocultas.\n\n\n12.5.5 4.5 Softmax\nPara clasificación multiclase:\n\\[\nP(y=k)=\\frac{e^{z_k}}{\\sum_{j=1}^{K}e^{z_j}}\n\\]\nConvierte las salidas en probabilidades que suman 1.",
+    "text": "12.5 4. Funciones de activación\nLas funciones de activación permiten que la red represente relaciones no lineales.\n\n12.5.1 4.1 Función escalón\n\\[\nf(z)=\n\\begin{cases}\n1, & z\\geq0\\\\\n0, & z&lt;0\n\\end{cases}\n\\]\nFue utilizada en los primeros perceptrones.\n\n\n12.5.2 4.2 Función sigmoide\n\\[\n\\sigma(z)=\\frac{1}{1+e^{-z}}\n\\]\nCaracterísticas:\n\nproduce valores entre 0 y 1;\nes útil en clasificación binaria;\npuede interpretarse como probabilidad;\npuede saturarse para valores grandes.\n\n\n\n12.5.3 4.3 Tangente hiperbólica\n\\[\n\\tanh(z)=\\frac{e^z-e^{-z}}{e^z+e^{-z}}\n\\]\nProduce valores entre -1 y 1.\n\n\n12.5.4 4.4 ReLU\n\\[\n\\operatorname{ReLU}(z)=\\max(0,z)\n\\]\nEs una de las activaciones más utilizadas en capas ocultas.\n\n\n12.5.5 4.5 Softmax\nPara clasificación multiclase:\n\\[\nP(y=k)=\\frac{e^{z_k}}{\\sum_{j=1}^{K}e^{z_j}}\n\\]\nConvierte las salidas en probabilidades que suman 1.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2234,7 +2264,7 @@
     "href": "11-redes-neuronales.html#descenso-de-gradiente",
     "title": "12  Redes neuronales artificiales",
     "section": "12.10 9. Descenso de gradiente",
-    "text": "12.10 9. Descenso de gradiente\nEl entrenamiento busca valores de los pesos que minimicen la pérdida.\nLa actualización general es:\n$$ w{nuevo}=w{anterior} -\\(\\eta\\frac{\\partial L}{\\partial w}\\)\ndonde \\(\\eta\\) es la tasa de aprendizaje. $$\n\n12.10.1 Tasa demasiado pequeña\n\naprendizaje lento;\nmuchas iteraciones.\n\n\n\n12.10.2 Tasa demasiado grande\n\noscilaciones;\ndivergencia;\npérdida inestable.",
+    "text": "12.10 9. Descenso de gradiente\nEl entrenamiento busca valores de los pesos que minimicen la pérdida.\nLa actualización general es:\n\\[\nw^{\\mathrm{nuevo}}\n=\nw^{\\mathrm{anterior}}\n-\n\\eta\\frac{\\partial L}{\\partial w}\n\\]\ndonde \\(\\eta\\) es la tasa de aprendizaje.\n\n12.10.1 Tasa demasiado pequeña\n\naprendizaje lento;\nmuchas iteraciones.\n\n\n\n12.10.2 Tasa demasiado grande\n\noscilaciones;\ndivergencia;\npérdida inestable.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2350,11 +2380,21 @@
     ]
   },
   {
+    "objectID": "11-redes-neuronales.html#visualizador-interactivo-de-una-red-neuronal",
+    "href": "11-redes-neuronales.html#visualizador-interactivo-de-una-red-neuronal",
+    "title": "12  Redes neuronales artificiales",
+    "section": "12.22 Visualizador interactivo de una red neuronal",
+    "text": "12.22 Visualizador interactivo de una red neuronal\nEste laboratorio representa gráficamente una arquitectura similar a la que se especifica con el argumento hidden de neuralnet. Modifica el número de neuronas de las capas ocultas y observa cómo cambian la topología y el número de conexiones.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 760\n#| components: [viewer]\n\nlibrary(shiny)\n\ndibujar_red &lt;- function(n_entrada, h1, h2, n_salida) {\n\n  capas &lt;- c(n_entrada, h1)\n  nombres &lt;- c(\"Entrada\", \"Oculta 1\")\n\n  if (h2 &gt; 0) {\n    capas &lt;- c(capas, h2)\n    nombres &lt;- c(nombres, \"Oculta 2\")\n  }\n\n  capas &lt;- c(capas, n_salida)\n  nombres &lt;- c(nombres, \"Salida\")\n\n  xcapas &lt;- seq(0.08, 0.92, length.out = length(capas))\n  posiciones &lt;- vector(\"list\", length(capas))\n\n  plot(\n    0, 0,\n    type = \"n\",\n    xlim = c(0, 1),\n    ylim = c(0, 1),\n    axes = FALSE,\n    xlab = \"\",\n    ylab = \"\",\n    main = \"Arquitectura de la red neuronal\"\n  )\n\n  for (j in seq_along(capas)) {\n    y &lt;- seq(0.15, 0.85, length.out = capas[j])\n    posiciones[[j]] &lt;- cbind(xcapas[j], y)\n  }\n\n  for (j in seq_len(length(capas) - 1)) {\n    desde &lt;- posiciones[[j]]\n    hacia &lt;- posiciones[[j + 1]]\n\n    for (a in seq_len(nrow(desde))) {\n      for (b in seq_len(nrow(hacia))) {\n        segments(\n          desde[a, 1], desde[a, 2],\n          hacia[b, 1], hacia[b, 2],\n          col = \"gray70\"\n        )\n      }\n    }\n  }\n\n  for (j in seq_along(posiciones)) {\n    puntos &lt;- posiciones[[j]]\n\n    symbols(\n      puntos[, 1],\n      puntos[, 2],\n      circles = rep(0.025, nrow(puntos)),\n      inches = FALSE,\n      add = TRUE,\n      bg = \"white\",\n      fg = \"black\"\n    )\n\n    text(\n      xcapas[j],\n      0.96,\n      nombres[j],\n      font = 2\n    )\n  }\n}\n\nui &lt;- fluidPage(\n  titlePanel(\"Visualizador interactivo de una red neuronal\"),\n\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\n        \"entradas\",\n        \"Número de variables de entrada\",\n        min = 2,\n        max = 6,\n        value = 4,\n        step = 1\n      ),\n\n      sliderInput(\n        \"h1\",\n        \"Neuronas en la primera capa oculta\",\n        min = 1,\n        max = 10,\n        value = 5,\n        step = 1\n      ),\n\n      sliderInput(\n        \"h2\",\n        \"Neuronas en la segunda capa oculta\",\n        min = 0,\n        max = 8,\n        value = 3,\n        step = 1\n      ),\n\n      sliderInput(\n        \"salidas\",\n        \"Neuronas de salida\",\n        min = 1,\n        max = 4,\n        value = 1,\n        step = 1\n      )\n    ),\n\n    mainPanel(\n      plotOutput(\"red\", height = \"520px\"),\n      h4(\"Configuración equivalente en neuralnet\"),\n      verbatimTextOutput(\"codigo\"),\n      h4(\"Resumen\"),\n      textOutput(\"resumen\")\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n\n  output$red &lt;- renderPlot({\n    dibujar_red(\n      input$entradas,\n      input$h1,\n      input$h2,\n      input$salidas\n    )\n  })\n\n  output$codigo &lt;- renderText({\n    hidden &lt;- if (input$h2 == 0) {\n      as.character(input$h1)\n    } else {\n      paste0(\"c(\", input$h1, \", \", input$h2, \")\")\n    }\n\n    paste0(\n      \"modelo &lt;- neuralnet(\\n\",\n      \"  formula = clase ~ .,\\n\",\n      \"  data = train,\\n\",\n      \"  hidden = \", hidden, \",\\n\",\n      \"  linear.output = FALSE\\n\",\n      \")\\n\\n\",\n      \"plot(modelo)\"\n    )\n  })\n\n  output$resumen &lt;- renderText({\n    capas &lt;- if (input$h2 == 0) 3 else 4\n\n    conexiones &lt;- input$entradas * input$h1\n\n    if (input$h2 == 0) {\n      conexiones &lt;- conexiones +\n        input$h1 * input$salidas\n    } else {\n      conexiones &lt;- conexiones +\n        input$h1 * input$h2 +\n        input$h2 * input$salidas\n    }\n\n    paste0(\n      \"La arquitectura tiene \",\n      capas,\n      \" capas y aproximadamente \",\n      conexiones,\n      \" conexiones entre neuronas, sin contar los sesgos.\"\n    )\n  })\n}\n\nshinyApp(ui, server)\n\n\n\n\n\n\nNotaRelación con neuralnet\n\n\n\nEl visualizador no entrena el modelo dentro del navegador. Su propósito es mostrar la arquitectura definida mediante hidden. Cuando ejecutes plot(modelo_rna) en RStudio, neuralnet dibujará además los pesos y sesgos aprendidos.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
+    ]
+  },
+  {
     "objectID": "11-redes-neuronales.html#arquitectura-de-la-red",
     "href": "11-redes-neuronales.html#arquitectura-de-la-red",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.22 20. Arquitectura de la red",
-    "text": "12.22 20. Arquitectura de la red\nUna arquitectura se define por:\n\nnúmero de capas ocultas;\nneuronas por capa;\nactivaciones;\nconexiones;\nregularización.\n\nNo existe una arquitectura universal.\n\n12.22.1 Red muy pequeña\nPuede producir subajuste.\n\n\n12.22.2 Red demasiado grande\nPuede memorizar entrenamiento y sobreajustar.\nUna estrategia razonable es comenzar con una red pequeña y aumentar complejidad gradualmente.",
+    "section": "12.23 20. Arquitectura de la red",
+    "text": "12.23 20. Arquitectura de la red\nUna arquitectura se define por:\n\nnúmero de capas ocultas;\nneuronas por capa;\nactivaciones;\nconexiones;\nregularización.\n\nNo existe una arquitectura universal.\n\n12.23.1 Red muy pequeña\nPuede producir subajuste.\n\n\n12.23.2 Red demasiado grande\nPuede memorizar entrenamiento y sobreajustar.\nUna estrategia razonable es comenzar con una red pequeña y aumentar complejidad gradualmente.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2363,8 +2403,8 @@
     "objectID": "11-redes-neuronales.html#épocas-lotes-y-optimizadores",
     "href": "11-redes-neuronales.html#épocas-lotes-y-optimizadores",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.23 21. Épocas, lotes y optimizadores",
-    "text": "12.23 21. Épocas, lotes y optimizadores\n\n12.23.1 Época\nUna época representa una pasada completa por entrenamiento.\n\n\n12.23.2 Lote\nUn lote es un subconjunto utilizado para calcular una actualización.\n\n\n12.23.3 Descenso por lotes\nUsa todo el conjunto.\n\n\n12.23.4 Descenso estocástico\nActualiza con una observación.\n\n\n12.23.5 Mini-batch\nUsa pequeños grupos y es la opción más común.\n\n\n12.23.6 Optimizadores\nEntre los más conocidos se encuentran:\n\nSGD;\nMomentum;\nRMSprop;\nAdam.",
+    "section": "12.24 21. Épocas, lotes y optimizadores",
+    "text": "12.24 21. Épocas, lotes y optimizadores\n\n12.24.1 Época\nUna época representa una pasada completa por entrenamiento.\n\n\n12.24.2 Lote\nUn lote es un subconjunto utilizado para calcular una actualización.\n\n\n12.24.3 Descenso por lotes\nUsa todo el conjunto.\n\n\n12.24.4 Descenso estocástico\nActualiza con una observación.\n\n\n12.24.5 Mini-batch\nUsa pequeños grupos y es la opción más común.\n\n\n12.24.6 Optimizadores\nEntre los más conocidos se encuentran:\n\nSGD;\nMomentum;\nRMSprop;\nAdam.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2373,8 +2413,8 @@
     "objectID": "11-redes-neuronales.html#sobreajuste",
     "href": "11-redes-neuronales.html#sobreajuste",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.24 22. Sobreajuste",
-    "text": "12.24 22. Sobreajuste\nUna red sobreajustada obtiene:\n\nerror bajo en entrenamiento;\nerror alto en validación o prueba.\n\nSeñales:\n\nla pérdida de entrenamiento sigue bajando;\nla pérdida de validación comienza a subir;\ncrece la diferencia entre ambas.",
+    "section": "12.25 22. Sobreajuste",
+    "text": "12.25 22. Sobreajuste\nUna red sobreajustada obtiene:\n\nerror bajo en entrenamiento;\nerror alto en validación o prueba.\n\nSeñales:\n\nla pérdida de entrenamiento sigue bajando;\nla pérdida de validación comienza a subir;\ncrece la diferencia entre ambas.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2383,8 +2423,8 @@
     "objectID": "11-redes-neuronales.html#regularización",
     "href": "11-redes-neuronales.html#regularización",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.25 23. Regularización",
-    "text": "12.25 23. Regularización\n\n12.25.1 23.1 Regularización L2\nAgrega una penalización:\n\\[\nL_{total}=L+\\lambda\\sum_j w_j^2\n\\]\n\n\n12.25.2 23.2 Regularización L1\n\\[\nL_{total}=L+\\lambda\\sum_j |w_j|\n\\]\n\n\n12.25.3 23.3 Dropout\nDesactiva aleatoriamente una proporción de neuronas durante el entrenamiento.\n\n\n12.25.4 23.4 Early stopping\nDetiene el entrenamiento cuando la validación deja de mejorar.",
+    "section": "12.26 23. Regularización",
+    "text": "12.26 23. Regularización\n\n12.26.1 23.1 Regularización L2\nAgrega una penalización:\n\\[\nL_{total}=L+\\lambda\\sum_j w_j^2\n\\]\n\n\n12.26.2 23.2 Regularización L1\n\\[\nL_{total}=L+\\lambda\\sum_j |w_j|\n\\]\n\n\n12.26.3 23.3 Dropout\nDesactiva aleatoriamente una proporción de neuronas durante el entrenamiento.\n\n\n12.26.4 23.4 Early stopping\nDetiene el entrenamiento cuando la validación deja de mejorar.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2393,8 +2433,8 @@
     "objectID": "11-redes-neuronales.html#implementación-moderna-con-keras",
     "href": "11-redes-neuronales.html#implementación-moderna-con-keras",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.26 24. Implementación moderna con keras",
-    "text": "12.26 24. Implementación moderna con keras\nEl paquete keras permite construir redes utilizando una interfaz de alto nivel.\n\n\n\n\n\n\nNotaEntorno de ejecución\n\n\n\nLa instalación de keras y su motor puede variar según el equipo. Conviene ejecutar este ejemplo en un entorno configurado o en Google Colab.\n\n\n\nlibrary(keras)\n\nx_train_keras &lt;- as.matrix(x_train)\nx_test_keras &lt;- as.matrix(x_test)\n\ny_train_keras &lt;- as.integer(\n  train$Species\n) - 1\n\ny_test_keras &lt;- as.integer(\n  test$Species\n) - 1\n\nModelo:\n\nmodelo_keras &lt;- keras_model_sequential() |&gt;\n  layer_dense(\n    units = 16,\n    activation = \"relu\",\n    input_shape = ncol(x_train_keras)\n  ) |&gt;\n  layer_dropout(rate = 0.20) |&gt;\n  layer_dense(\n    units = 8,\n    activation = \"relu\"\n  ) |&gt;\n  layer_dense(\n    units = 3,\n    activation = \"softmax\"\n  )\n\nCompilación:\n\nmodelo_keras |&gt;\n  compile(\n    optimizer = \"adam\",\n    loss = \"sparse_categorical_crossentropy\",\n    metrics = \"accuracy\"\n  )\n\nEntrenamiento:\n\nhistoria &lt;- modelo_keras |&gt;\n  fit(\n    x = x_train_keras,\n    y = y_train_keras,\n    epochs = 100,\n    batch_size = 16,\n    validation_split = 0.20,\n    verbose = 0\n  )\n\nEvaluación:\n\nmodelo_keras |&gt;\n  evaluate(\n    x_test_keras,\n    y_test_keras,\n    verbose = 0\n  )",
+    "section": "12.27 24. Implementación moderna con keras",
+    "text": "12.27 24. Implementación moderna con keras\nEl paquete keras permite construir redes utilizando una interfaz de alto nivel.\n\n\n\n\n\n\nNotaEntorno de ejecución\n\n\n\nLa instalación de keras y su motor puede variar según el equipo. Conviene ejecutar este ejemplo en un entorno configurado o en Google Colab.\n\n\n\nlibrary(keras)\n\nx_train_keras &lt;- as.matrix(x_train)\nx_test_keras &lt;- as.matrix(x_test)\n\ny_train_keras &lt;- as.integer(\n  train$Species\n) - 1\n\ny_test_keras &lt;- as.integer(\n  test$Species\n) - 1\n\nModelo:\n\nmodelo_keras &lt;- keras_model_sequential() |&gt;\n  layer_dense(\n    units = 16,\n    activation = \"relu\",\n    input_shape = ncol(x_train_keras)\n  ) |&gt;\n  layer_dropout(rate = 0.20) |&gt;\n  layer_dense(\n    units = 8,\n    activation = \"relu\"\n  ) |&gt;\n  layer_dense(\n    units = 3,\n    activation = \"softmax\"\n  )\n\nCompilación:\n\nmodelo_keras |&gt;\n  compile(\n    optimizer = \"adam\",\n    loss = \"sparse_categorical_crossentropy\",\n    metrics = \"accuracy\"\n  )\n\nEntrenamiento:\n\nhistoria &lt;- modelo_keras |&gt;\n  fit(\n    x = x_train_keras,\n    y = y_train_keras,\n    epochs = 100,\n    batch_size = 16,\n    validation_split = 0.20,\n    verbose = 0\n  )\n\nEvaluación:\n\nmodelo_keras |&gt;\n  evaluate(\n    x_test_keras,\n    y_test_keras,\n    verbose = 0\n  )",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2403,8 +2443,8 @@
     "objectID": "11-redes-neuronales.html#curvas-de-aprendizaje",
     "href": "11-redes-neuronales.html#curvas-de-aprendizaje",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.27 25. Curvas de aprendizaje",
-    "text": "12.27 25. Curvas de aprendizaje\nLas curvas de pérdida y exactitud ayudan a diagnosticar el entrenamiento.\n\nplot(historia)\n\nDebe compararse:\n\ndesempeño de entrenamiento;\ndesempeño de validación;\npunto donde comienza el sobreajuste.",
+    "section": "12.28 25. Curvas de aprendizaje",
+    "text": "12.28 25. Curvas de aprendizaje\nLas curvas de pérdida y exactitud ayudan a diagnosticar el entrenamiento.\n\nplot(historia)\n\nDebe compararse:\n\ndesempeño de entrenamiento;\ndesempeño de validación;\npunto donde comienza el sobreajuste.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2413,8 +2453,8 @@
     "objectID": "11-redes-neuronales.html#clasificación-multiclase",
     "href": "11-redes-neuronales.html#clasificación-multiclase",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.28 26. Clasificación multiclase",
-    "text": "12.28 26. Clasificación multiclase\nEn un problema con \\(K\\) clases:\n\nla capa de salida suele tener \\(K\\) neuronas;\nse utiliza softmax;\nla clase predicha es la de mayor probabilidad.\n\n\\[\n\\widehat{y}=\n\\arg\\max_k P(y=k\\mid\\mathbf{x})\n\\]",
+    "section": "12.29 26. Clasificación multiclase",
+    "text": "12.29 26. Clasificación multiclase\nEn un problema con \\(K\\) clases:\n\nla capa de salida suele tener \\(K\\) neuronas;\nse utiliza softmax;\nla clase predicha es la de mayor probabilidad.\n\n\\[\n\\widehat{y}=\n\\arg\\max_k P(y=k\\mid\\mathbf{x})\n\\]",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2423,8 +2463,8 @@
     "objectID": "11-redes-neuronales.html#codificación-de-la-respuesta",
     "href": "11-redes-neuronales.html#codificación-de-la-respuesta",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.29 27. Codificación de la respuesta",
-    "text": "12.29 27. Codificación de la respuesta\nPara clasificación multiclase pueden emplearse:\n\nenteros de 0 a \\(K-1\\);\nvariables indicadoras one-hot.\n\nEjemplo one-hot:\n\n\n\nClase\nNeurona 1\nNeurona 2\nNeurona 3\n\n\n\n\nA\n1\n0\n0\n\n\nB\n0\n1\n0\n\n\nC\n0\n0\n1",
+    "section": "12.30 27. Codificación de la respuesta",
+    "text": "12.30 27. Codificación de la respuesta\nPara clasificación multiclase pueden emplearse:\n\nenteros de 0 a \\(K-1\\);\nvariables indicadoras one-hot.\n\nEjemplo one-hot:\n\n\n\nClase\nNeurona 1\nNeurona 2\nNeurona 3\n\n\n\n\nA\n1\n0\n0\n\n\nB\n0\n1\n0\n\n\nC\n0\n0\n1",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2433,8 +2473,8 @@
     "objectID": "11-redes-neuronales.html#inicialización-de-pesos",
     "href": "11-redes-neuronales.html#inicialización-de-pesos",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.30 28. Inicialización de pesos",
-    "text": "12.30 28. Inicialización de pesos\nTodos los pesos no deben comenzar con el mismo valor, porque las neuronas aprenderían exactamente lo mismo.\nLas inicializaciones modernas buscan:\n\nromper simetría;\nmantener estable la varianza;\nmejorar el flujo de gradientes.",
+    "section": "12.31 28. Inicialización de pesos",
+    "text": "12.31 28. Inicialización de pesos\nTodos los pesos no deben comenzar con el mismo valor, porque las neuronas aprenderían exactamente lo mismo.\nLas inicializaciones modernas buscan:\n\nromper simetría;\nmantener estable la varianza;\nmejorar el flujo de gradientes.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2443,8 +2483,8 @@
     "objectID": "11-redes-neuronales.html#gradientes-que-desaparecen-o-explotan",
     "href": "11-redes-neuronales.html#gradientes-que-desaparecen-o-explotan",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.31 29. Gradientes que desaparecen o explotan",
-    "text": "12.31 29. Gradientes que desaparecen o explotan\nEn redes profundas, los gradientes pueden:\n\naproximarse a cero;\ncrecer excesivamente.\n\nConsecuencias:\n\naprendizaje muy lento;\ninestabilidad;\npesos extremos.\n\nSoluciones comunes:\n\nReLU;\ninicialización adecuada;\nnormalización;\narquitecturas apropiadas;\ncontrol de la tasa de aprendizaje.",
+    "section": "12.32 29. Gradientes que desaparecen o explotan",
+    "text": "12.32 29. Gradientes que desaparecen o explotan\nEn redes profundas, los gradientes pueden:\n\naproximarse a cero;\ncrecer excesivamente.\n\nConsecuencias:\n\naprendizaje muy lento;\ninestabilidad;\npesos extremos.\n\nSoluciones comunes:\n\nReLU;\ninicialización adecuada;\nnormalización;\narquitecturas apropiadas;\ncontrol de la tasa de aprendizaje.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2453,8 +2493,8 @@
     "objectID": "11-redes-neuronales.html#importancia-de-la-reproducibilidad",
     "href": "11-redes-neuronales.html#importancia-de-la-reproducibilidad",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.32 30. Importancia de la reproducibilidad",
-    "text": "12.32 30. Importancia de la reproducibilidad\nPara reproducir resultados:\n\nfijar semillas;\nregistrar arquitectura;\nguardar parámetros;\ndocumentar divisiones;\nconservar versiones;\nguardar modelos entrenados;\nanotar métricas y umbrales.\n\n\nset.seed(2026)",
+    "section": "12.33 30. Importancia de la reproducibilidad",
+    "text": "12.33 30. Importancia de la reproducibilidad\nPara reproducir resultados:\n\nfijar semillas;\nregistrar arquitectura;\nguardar parámetros;\ndocumentar divisiones;\nconservar versiones;\nguardar modelos entrenados;\nanotar métricas y umbrales.\n\n\nset.seed(2026)",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2463,8 +2503,8 @@
     "objectID": "11-redes-neuronales.html#interpretabilidad",
     "href": "11-redes-neuronales.html#interpretabilidad",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.33 31. Interpretabilidad",
-    "text": "12.33 31. Interpretabilidad\nLas redes neuronales suelen considerarse menos interpretables que:\n\nregresión logística;\nárboles de decisión;\nmodelos lineales.\n\nHerramientas posibles:\n\nimportancia por permutación;\nanálisis de sensibilidad;\ngráficos de dependencia;\nSHAP;\nLIME;\ninspección de activaciones.\n\nLa interpretación debe acompañarse de validación y conocimiento del dominio.",
+    "section": "12.34 31. Interpretabilidad",
+    "text": "12.34 31. Interpretabilidad\nLas redes neuronales suelen considerarse menos interpretables que:\n\nregresión logística;\nárboles de decisión;\nmodelos lineales.\n\nHerramientas posibles:\n\nimportancia por permutación;\nanálisis de sensibilidad;\ngráficos de dependencia;\nSHAP;\nLIME;\ninspección de activaciones.\n\nLa interpretación debe acompañarse de validación y conocimiento del dominio.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2473,8 +2513,8 @@
     "objectID": "11-redes-neuronales.html#aplicación-biomédica",
     "href": "11-redes-neuronales.html#aplicación-biomédica",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.34 32. Aplicación biomédica",
-    "text": "12.34 32. Aplicación biomédica\nEjemplo: clasificar pacientes según riesgo de enfermedad.\nVariables:\n\nedad;\npresión arterial;\nglucosa;\ncolesterol;\nfrecuencia cardiaca.\n\nRespuesta:\n\nriesgo bajo;\nriesgo alto.\n\nDebe prestarse especial atención a:\n\nsensibilidad;\nfalsos negativos;\ncalidad de los datos;\nvalidación externa;\nsesgo de selección;\nexplicabilidad.",
+    "section": "12.35 32. Aplicación biomédica",
+    "text": "12.35 32. Aplicación biomédica\nEjemplo: clasificar pacientes según riesgo de enfermedad.\nVariables:\n\nedad;\npresión arterial;\nglucosa;\ncolesterol;\nfrecuencia cardiaca.\n\nRespuesta:\n\nriesgo bajo;\nriesgo alto.\n\nDebe prestarse especial atención a:\n\nsensibilidad;\nfalsos negativos;\ncalidad de los datos;\nvalidación externa;\nsesgo de selección;\nexplicabilidad.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2483,8 +2523,8 @@
     "objectID": "11-redes-neuronales.html#aplicación-ambiental",
     "href": "11-redes-neuronales.html#aplicación-ambiental",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.35 33. Aplicación ambiental",
-    "text": "12.35 33. Aplicación ambiental\nEjemplo: clasificar niveles de contaminación.\nVariables:\n\nPM10;\nozono;\ntemperatura;\nhumedad;\nvelocidad del viento;\nhora;\nestación.\n\nRespuesta:\n\naceptable;\nno aceptable.\n\nLa red puede capturar relaciones no lineales, pero debe compararse con modelos más simples.",
+    "section": "12.36 33. Aplicación ambiental",
+    "text": "12.36 33. Aplicación ambiental\nEjemplo: clasificar niveles de contaminación.\nVariables:\n\nPM10;\nozono;\ntemperatura;\nhumedad;\nvelocidad del viento;\nhora;\nestación.\n\nRespuesta:\n\naceptable;\nno aceptable.\n\nLa red puede capturar relaciones no lineales, pero debe compararse con modelos más simples.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2493,8 +2533,8 @@
     "objectID": "11-redes-neuronales.html#comparación-con-otros-algoritmos",
     "href": "11-redes-neuronales.html#comparación-con-otros-algoritmos",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.36 34. Comparación con otros algoritmos",
-    "text": "12.36 34. Comparación con otros algoritmos\n\n\n\n\n\n\n\n\n\n\nAspecto\nRed neuronal\nRegresión logística\nÁrbol\nRandom Forest\n\n\n\n\nNo linealidad\nAlta\nLimitada\nAlta\nAlta\n\n\nInterpretación\nBaja\nAlta\nAlta\nMedia\n\n\nPreparación\nAlta\nMedia\nMedia\nMedia\n\n\nEscalamiento\nImportante\nRecomendable\nPoco importante\nPoco importante\n\n\nDatos requeridos\nFrecuentemente muchos\nMenos\nModerados\nModerados\n\n\nCosto\nPuede ser alto\nBajo\nBajo\nModerado",
+    "section": "12.37 34. Comparación con otros algoritmos",
+    "text": "12.37 34. Comparación con otros algoritmos\n\n\n\n\n\n\n\n\n\n\nAspecto\nRed neuronal\nRegresión logística\nÁrbol\nRandom Forest\n\n\n\n\nNo linealidad\nAlta\nLimitada\nAlta\nAlta\n\n\nInterpretación\nBaja\nAlta\nAlta\nMedia\n\n\nPreparación\nAlta\nMedia\nMedia\nMedia\n\n\nEscalamiento\nImportante\nRecomendable\nPoco importante\nPoco importante\n\n\nDatos requeridos\nFrecuentemente muchos\nMenos\nModerados\nModerados\n\n\nCosto\nPuede ser alto\nBajo\nBajo\nModerado",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2503,8 +2543,8 @@
     "objectID": "11-redes-neuronales.html#ventajas",
     "href": "11-redes-neuronales.html#ventajas",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.37 35. Ventajas",
-    "text": "12.37 35. Ventajas\n\nmodelan relaciones complejas;\nrepresentan no linealidades;\nse adaptan a clasificación y regresión;\npueden aprender características internas;\nescalan a problemas de gran dimensión;\nson base de aprendizaje profundo.",
+    "section": "12.38 35. Ventajas",
+    "text": "12.38 35. Ventajas\n\nmodelan relaciones complejas;\nrepresentan no linealidades;\nse adaptan a clasificación y regresión;\npueden aprender características internas;\nescalan a problemas de gran dimensión;\nson base de aprendizaje profundo.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2513,8 +2553,8 @@
     "objectID": "11-redes-neuronales.html#limitaciones",
     "href": "11-redes-neuronales.html#limitaciones",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.38 36. Limitaciones",
-    "text": "12.38 36. Limitaciones\n\nrequieren preparación cuidadosa;\npueden necesitar muchos datos;\nimplican varios hiperparámetros;\npueden sobreajustar;\nson menos interpretables;\nel entrenamiento puede ser costoso;\nlos resultados dependen de arquitectura e inicialización.",
+    "section": "12.39 36. Limitaciones",
+    "text": "12.39 36. Limitaciones\n\nrequieren preparación cuidadosa;\npueden necesitar muchos datos;\nimplican varios hiperparámetros;\npueden sobreajustar;\nson menos interpretables;\nel entrenamiento puede ser costoso;\nlos resultados dependen de arquitectura e inicialización.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2523,8 +2563,8 @@
     "objectID": "11-redes-neuronales.html#errores-frecuentes",
     "href": "11-redes-neuronales.html#errores-frecuentes",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.39 37. Errores frecuentes",
-    "text": "12.39 37. Errores frecuentes\n\nNo normalizar variables.\nUsar el conjunto de prueba para ajustar.\nEntrenar demasiadas épocas sin validación.\nUsar una red enorme para pocos datos.\nEvaluar solo exactitud.\nIgnorar el desbalance.\nNo fijar semilla.\nNo guardar la arquitectura.\nInterpretar probabilidades como certezas.\nComparar modelos con particiones diferentes.\nDejar identificadores como predictores.\nNo comparar contra un modelo simple.",
+    "section": "12.40 37. Errores frecuentes",
+    "text": "12.40 37. Errores frecuentes\n\nNo normalizar variables.\nUsar el conjunto de prueba para ajustar.\nEntrenar demasiadas épocas sin validación.\nUsar una red enorme para pocos datos.\nEvaluar solo exactitud.\nIgnorar el desbalance.\nNo fijar semilla.\nNo guardar la arquitectura.\nInterpretar probabilidades como certezas.\nComparar modelos con particiones diferentes.\nDejar identificadores como predictores.\nNo comparar contra un modelo simple.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2533,8 +2573,8 @@
     "objectID": "11-redes-neuronales.html#flujo-de-trabajo-recomendado",
     "href": "11-redes-neuronales.html#flujo-de-trabajo-recomendado",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.40 38. Flujo de trabajo recomendado",
-    "text": "12.40 38. Flujo de trabajo recomendado\n\nDefinir el objetivo.\nPreparar los datos.\nSeparar entrenamiento, validación y prueba.\nNormalizar con entrenamiento.\nConstruir una arquitectura pequeña.\nEntrenar y revisar curvas.\nAjustar hiperparámetros.\nAplicar regularización.\nEvaluar en prueba una sola vez.\nComparar con modelos base.\nInterpretar errores.\nDocumentar y guardar el modelo.",
+    "section": "12.41 38. Flujo de trabajo recomendado",
+    "text": "12.41 38. Flujo de trabajo recomendado\n\nDefinir el objetivo.\nPreparar los datos.\nSeparar entrenamiento, validación y prueba.\nNormalizar con entrenamiento.\nConstruir una arquitectura pequeña.\nEntrenar y revisar curvas.\nAjustar hiperparámetros.\nAplicar regularización.\nEvaluar en prueba una sola vez.\nComparar con modelos base.\nInterpretar errores.\nDocumentar y guardar el modelo.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2543,8 +2583,8 @@
     "objectID": "11-redes-neuronales.html#actividad-guiada",
     "href": "11-redes-neuronales.html#actividad-guiada",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.41 39. Actividad guiada",
-    "text": "12.41 39. Actividad guiada\nUtiliza iris para clasificación multiclase.\n\nDivide los datos en entrenamiento y prueba.\nNormaliza las cuatro variables.\nDiseña una red con una capa oculta.\nEntrena el modelo.\nObtén probabilidades.\nAsigna la clase más probable.\nConstruye la matriz de confusión.\nCalcula exactitud.\nRepite con más neuronas.\nCompara los resultados.\nDescribe si existe sobreajuste.\nCompara contra k-NN o Random Forest.",
+    "section": "12.42 39. Actividad guiada",
+    "text": "12.42 39. Actividad guiada\nUtiliza iris para clasificación multiclase.\n\nDivide los datos en entrenamiento y prueba.\nNormaliza las cuatro variables.\nDiseña una red con una capa oculta.\nEntrena el modelo.\nObtén probabilidades.\nAsigna la clase más probable.\nConstruye la matriz de confusión.\nCalcula exactitud.\nRepite con más neuronas.\nCompara los resultados.\nDescribe si existe sobreajuste.\nCompara contra k-NN o Random Forest.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2553,8 +2593,8 @@
     "objectID": "11-redes-neuronales.html#ejercicios",
     "href": "11-redes-neuronales.html#ejercicios",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.42 40. Ejercicios",
-    "text": "12.42 40. Ejercicios\n\n12.42.1 Ejercicio 1\nCalcula manualmente la salida de una neurona sigmoide.\n\n\n12.42.2 Ejercicio 2\nPrograma una neurona ReLU en R.\n\n\n12.42.3 Ejercicio 3\nEntrena un perceptrón para la compuerta OR.\n\n\n12.42.4 Ejercicio 4\nExplica por qué XOR requiere una capa oculta.\n\n\n12.42.5 Ejercicio 5\nEntrena una red binaria con neuralnet.\n\n\n12.42.6 Ejercicio 6\nCompara arquitecturas hidden = 3, hidden = 5 y hidden = c(5,3).\n\n\n12.42.7 Ejercicio 7\nModifica el umbral de clasificación y analiza sensibilidad y especificidad.\n\n\n12.42.8 Ejercicio 8\nConstruye una red multiclase con keras.\n\n\n12.42.9 Ejercicio 9\nCompara la red con regresión logística.\n\n\n12.42.10 Ejercicio 10\nDescribe tres medidas para reducir sobreajuste.",
+    "section": "12.43 40. Ejercicios",
+    "text": "12.43 40. Ejercicios\n\n12.43.1 Ejercicio 1\nCalcula manualmente la salida de una neurona sigmoide.\n\n\n12.43.2 Ejercicio 2\nPrograma una neurona ReLU en R.\n\n\n12.43.3 Ejercicio 3\nEntrena un perceptrón para la compuerta OR.\n\n\n12.43.4 Ejercicio 4\nExplica por qué XOR requiere una capa oculta.\n\n\n12.43.5 Ejercicio 5\nEntrena una red binaria con neuralnet.\n\n\n12.43.6 Ejercicio 6\nCompara arquitecturas hidden = 3, hidden = 5 y hidden = c(5,3).\n\n\n12.43.7 Ejercicio 7\nModifica el umbral de clasificación y analiza sensibilidad y especificidad.\n\n\n12.43.8 Ejercicio 8\nConstruye una red multiclase con keras.\n\n\n12.43.9 Ejercicio 9\nCompara la red con regresión logística.\n\n\n12.43.10 Ejercicio 10\nDescribe tres medidas para reducir sobreajuste.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2563,8 +2603,8 @@
     "objectID": "11-redes-neuronales.html#preguntas-de-reflexión",
     "href": "11-redes-neuronales.html#preguntas-de-reflexión",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.43 41. Preguntas de reflexión",
-    "text": "12.43 41. Preguntas de reflexión\n\n¿Qué función cumple el sesgo?\n¿Por qué se necesitan activaciones no lineales?\n¿Qué diferencia existe entre propagación hacia adelante y retropropagación?\n¿Por qué debe separarse validación de prueba?\n¿Qué indica una pérdida de validación creciente?\n¿Cuándo conviene usar una red neuronal?\n¿Cuándo sería preferible un modelo más simple?\n¿Por qué las probabilidades deben interpretarse con cautela?",
+    "section": "12.44 41. Preguntas de reflexión",
+    "text": "12.44 41. Preguntas de reflexión\n\n¿Qué función cumple el sesgo?\n¿Por qué se necesitan activaciones no lineales?\n¿Qué diferencia existe entre propagación hacia adelante y retropropagación?\n¿Por qué debe separarse validación de prueba?\n¿Qué indica una pérdida de validación creciente?\n¿Cuándo conviene usar una red neuronal?\n¿Cuándo sería preferible un modelo más simple?\n¿Por qué las probabilidades deben interpretarse con cautela?",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
@@ -2573,8 +2613,8 @@
     "objectID": "11-redes-neuronales.html#conclusión",
     "href": "11-redes-neuronales.html#conclusión",
     "title": "12  Redes neuronales artificiales",
-    "section": "12.44 42. Conclusión",
-    "text": "12.44 42. Conclusión\nLas redes neuronales artificiales combinan neuronas simples para aprender relaciones complejas.\nSus componentes fundamentales son:\n\nentradas;\npesos;\nsesgos;\nfunciones de activación;\ncapas;\nfunción de pérdida;\noptimización;\nretropropagación.\n\nUna red efectiva no depende solamente de aumentar capas o neuronas. También requiere:\n\ndatos de calidad;\nnormalización correcta;\nvalidación;\nregularización;\nselección cuidadosa de arquitectura;\nevaluación con métricas apropiadas;\ncomparación con modelos más sencillos.\n\nEn el siguiente capítulo podremos abordar métodos no supervisados, comenzando con agrupamiento k-means.",
+    "section": "12.45 42. Conclusión",
+    "text": "12.45 42. Conclusión\nLas redes neuronales artificiales combinan neuronas simples para aprender relaciones complejas.\nSus componentes fundamentales son:\n\nentradas;\npesos;\nsesgos;\nfunciones de activación;\ncapas;\nfunción de pérdida;\noptimización;\nretropropagación.\n\nUna red efectiva no depende solamente de aumentar capas o neuronas. También requiere:\n\ndatos de calidad;\nnormalización correcta;\nvalidación;\nregularización;\nselección cuidadosa de arquitectura;\nevaluación con métricas apropiadas;\ncomparación con modelos más sencillos.\n\nEn el siguiente capítulo podremos abordar métodos no supervisados, comenzando con agrupamiento k-means.",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Redes neuronales artificiales</span>"
     ]
