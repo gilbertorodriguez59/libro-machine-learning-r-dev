@@ -28,6 +28,13 @@ project:
 lang: es
 bibliography: referencias.bib
 
+filters:
+  - shinylive
+
+format:
+  html:
+    embed-resources: false
+
 book:
   title: "Aprendizaje y Clasificación Automática con R"
   subtitle: "Un enfoque práctico con datos abiertos reales"
@@ -49,6 +56,7 @@ book:
     - 08-evaluacion-modelos.qmd
     - 09-svm.qmd
     - 10-naive-bayes.qmd
+    - 11-redes-neuronales.qmd
   appendices:
     - referencias.qmd
 
