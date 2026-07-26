@@ -13,13 +13,13 @@ Al finalizar este capítulo podrás:
 - reconocer las limitaciones y los errores frecuentes;
 - aplicar el algoritmo a datos reales.
 
-## Del aprendizaje supervisado al no supervisado
+## 1. Del aprendizaje supervisado al no supervisado
 
 En los capítulos anteriores conocíamos la variable de respuesta. En el aprendizaje no supervisado no existe una etiqueta conocida que indique el grupo correcto. El objetivo es descubrir estructura en los datos.
 
 El **agrupamiento** o *clustering* reúne observaciones similares y separa observaciones diferentes.
 
-## Idea intuitiva de k-means
+## 2. Idea intuitiva de k-means
 
 k-means busca dividir las observaciones en $k$ grupos. Cada grupo se representa mediante un **centroide**, que es el promedio de sus observaciones.
 
@@ -30,7 +30,7 @@ El algoritmo repite dos operaciones:
 
 El proceso termina cuando las asignaciones dejan de cambiar o la mejora es muy pequeña.
 
-## Función objetivo
+## 3. Función objetivo
 
 k-means minimiza la suma de cuadrados dentro de los grupos:
 
@@ -40,7 +40,7 @@ $$
 
 Aquí, $C_j$ es el grupo $j$ y $\boldsymbol{\mu}_j$ es su centroide.
 
-## Ejemplo manual
+## 4. Ejemplo manual
 
 Considera seis puntos:
 
@@ -55,7 +55,7 @@ Considera seis puntos:
 
 Si fijamos $k=2$, elegimos dos centroides iniciales, asignamos cada punto al más cercano y recalculamos los promedios de ambos grupos. Repetimos hasta estabilizar.
 
-## Implementación básica en R
+## 5. Implementación básica en R
 
 ```{r}
 datos <- data.frame(
@@ -84,11 +84,11 @@ plot(
 points(modelo_km$centers, pch = 8, cex = 2, lwd = 2)
 ```
 
-## ¿Por qué usar `nstart`?
+## 6. ¿Por qué usar `nstart`?
 
 k-means depende de los centroides iniciales. `nstart = 25` ejecuta el algoritmo varias veces y conserva la solución con menor variación interna.
 
-## Escalamiento de variables
+## 7. Escalamiento de variables
 
 Si una variable está medida en miles y otra entre 0 y 10, la primera dominará las distancias. Por ello suele ser necesario estandarizar:
 
@@ -101,7 +101,7 @@ X <- scale(iris[, 1:4])
 head(X)
 ```
 
-## Aplicación con `iris`
+## 8. Aplicación con `iris`
 
 ```{r}
 set.seed(2026)
@@ -115,7 +115,7 @@ table(
 
 Los números de los clusters no tienen significado previo. El grupo 1 no es mejor ni peor que el grupo 2.
 
-## Interpretación de centroides
+## 9. Interpretación de centroides
 
 ```{r}
 km_iris$centers
@@ -123,7 +123,7 @@ km_iris$centers
 
 Cada fila representa un perfil promedio estandarizado. Valores positivos indican niveles superiores a la media; valores negativos, inferiores.
 
-## Método del codo
+## 10. Método del codo
 
 El método del codo compara la suma de cuadrados interna para distintos valores de $k$.
 
@@ -148,7 +148,7 @@ plot(
 
 Se busca un punto a partir del cual añadir grupos produce mejoras pequeñas.
 
-## Coeficiente silhouette
+## 11. Coeficiente silhouette
 
 Silhouette compara cohesión interna y separación externa. Sus valores se encuentran entre -1 y 1:
 
@@ -167,7 +167,7 @@ mean(sil[, "sil_width"])
 plot(sil)
 ```
 
-## Laboratorio interactivo k-means
+## 12. Laboratorio interactivo k-means
 
 ::: {.content-visible when-format="html"}
 
@@ -242,7 +242,7 @@ shinyApp(ui, server)
 El laboratorio interactivo de k-means está disponible en la versión web del capítulo. Permite modificar $k$, el tamaño de la muestra y la dispersión de los grupos.
 :::
 
-## Ventajas
+## 13. Ventajas
 
 - sencillo e intuitivo;
 - rápido en conjuntos medianos y grandes;
@@ -250,7 +250,7 @@ El laboratorio interactivo de k-means está disponible en la versión web del ca
 - útil para segmentación y exploración;
 - disponible en R base.
 
-## Limitaciones
+## 14. Limitaciones
 
 - requiere fijar $k$;
 - depende de la inicialización;
@@ -259,7 +259,7 @@ El laboratorio interactivo de k-means está disponible en la versión web del ca
 - no maneja bien clusters con densidades muy diferentes;
 - solo trabaja naturalmente con variables numéricas.
 
-## Errores frecuentes
+## 15. Errores frecuentes
 
 1. No estandarizar variables.
 2. Elegir $k$ únicamente porque coincide con una expectativa previa.
@@ -270,11 +270,11 @@ El laboratorio interactivo de k-means está disponible en la versión web del ca
 7. Confundir clusters con clases verdaderas.
 8. Describir grupos sin revisar sus centroides.
 
-## Aplicación con datos reales
+## 16. Aplicación con datos reales
 
 En accidentes de tránsito pueden agruparse municipios, horarios o tipos de accidente usando variables como número de víctimas, frecuencia, hora, zona y severidad. El objetivo no es predecir una etiqueta, sino descubrir perfiles semejantes.
 
-## Actividad guiada
+## 17. Actividad guiada
 
 1. Selecciona cuatro variables numéricas de un conjunto real.
 2. Trata valores faltantes.
@@ -287,7 +287,7 @@ En accidentes de tránsito pueden agruparse municipios, horarios o tipos de acci
 9. Asigna nombres descriptivos a los perfiles.
 10. Explica las limitaciones del análisis.
 
-## Ejercicios
+## 18. Ejercicios
 
 1. Implementa una iteración manual de k-means.
 2. Compara resultados con y sin estandarización.
@@ -297,7 +297,7 @@ En accidentes de tránsito pueden agruparse municipios, horarios o tipos de acci
 6. Contrasta el método del codo y silhouette.
 7. Aplica k-means a datos ambientales o de accidentes.
 
-## Conclusión
+## 19. Conclusión
 
 k-means descubre grupos mediante distancias y centroides. Su utilidad depende de una preparación adecuada, una selección razonada de $k$ y una interpretación basada en los perfiles de cada cluster.
 

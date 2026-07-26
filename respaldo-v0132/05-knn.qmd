@@ -286,45 +286,6 @@ El lector puede cambiar el valor de $k$, mover una observación nueva y visualiz
 
 :::
 
-## Materiales complementarios del capítulo
-
-::: {.content-visible when-format="html"}
-
-### Video del capítulo
-
-<div class="video-responsive">
-<iframe src="https://www.youtube.com/embed/NLJj0QAWomU"
-title="Capítulo 6. k vecinos más cercanos, k-NN"
-frameborder="0" allowfullscreen></iframe>
-</div>
-
-:::
-
-::: {.content-visible when-format="pdf"}
-
-### Video del capítulo
-
-Disponible en YouTube:
-
-<https://youtu.be/NLJj0QAWomU>
-
-:::
-
-| Recurso | Descripción | Abrir o descargar |
-|---|---|---|
-| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-06/capitulo-06-knn-presentacion.pdf){target="_blank"} |
-| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-06/capitulo-06-knn-presentacion.pptx) |
-| Infografía | Resumen visual del algoritmo k-NN. | [Abrir infografía](recursos/capitulo-06/capitulo-06-knn-infografia.png){target="_blank"} |
-
-::: {.content-visible when-format="html"}
-
-![Infografía del capítulo 6](recursos/capitulo-06/capitulo-06-knn-infografia.png){fig-alt="Infografía sobre k vecinos más cercanos" width="85%"}
-
-:::
-
-Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
-contenido del libro y revisados y adaptados por el autor.
-
 ## Conclusión
 
 k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de $k$, del escalamiento y de la calidad de las variables predictoras.

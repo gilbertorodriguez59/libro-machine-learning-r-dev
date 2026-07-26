@@ -2,12 +2,6 @@ project:
   type: book
   output-dir: docs
   resources:
-  - recursos/capitulo-06/capitulo-06-knn-presentacion.pdf
-  - recursos/capitulo-06/capitulo-06-knn-presentacion.pptx
-  - recursos/capitulo-06/capitulo-06-knn-infografia.png
-  - recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf
-  - recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx
-  - recursos/capitulo-07/capitulo-07-arboles-infografia.png
     - recursos_colab/atus_2024.csv.gz
     - recursos_colab/atus_ml_preparado.csv.gz
     - Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb

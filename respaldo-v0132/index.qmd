@@ -5,12 +5,11 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.13.2 (desarrollo)
+**Versión:** 0.13.1 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages
 
 
-::: {.content-visible when-format="html"}
 ::: {.hero-libro}
 <div class="hero-grid">
   <div>
@@ -28,22 +27,8 @@
   </div>
 </div>
 <div class="feature-strip">
-  <span>13 capítulos</span><span>R reproducible</span><span>Datos abiertos</span><span>Videos</span><span>Shinylive</span><span>PDF</span>
+  <span>12 capítulos</span><span>R reproducible</span><span>Datos abiertos</span><span>Videos</span><span>Shinylive</span><span>PDF</span>
 </div>
-:::
-:::
-
-::: {.content-visible when-format="pdf"}
-
-**Edición interactiva ampliada**
-
-Este libro integra código en R, datos abiertos reales, videos, presentaciones,
-infografías, Google Colab y laboratorios interactivos disponibles en la
-versión web.
-
-- Curso en YouTube: <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
-- Libro web: <https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/>
-
 :::
 
 Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.

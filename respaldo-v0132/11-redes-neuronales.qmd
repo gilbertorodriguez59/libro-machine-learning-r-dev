@@ -16,7 +16,7 @@ Al finalizar este capítulo podrás:
 - evaluar el desempeño mediante matriz de confusión y métricas;
 - reconocer sobreajuste, regularización y errores frecuentes.
 
-## Introducción
+## 1. Introducción
 
 Las **redes neuronales artificiales** son modelos computacionales inspirados, de forma muy simplificada, en la manera en que las neuronas biológicas reciben, transforman y transmiten señales.
 
@@ -32,7 +32,7 @@ Una red neuronal puede aprender relaciones complejas entre variables de entrada 
 
 La idea central es construir muchas unidades simples, llamadas **neuronas artificiales**, conectadas entre sí mediante pesos ajustables.
 
-## La neurona artificial
+## 2. La neurona artificial
 
 Una neurona recibe varias entradas:
 
@@ -70,7 +70,7 @@ El resultado $a$ se transmite a otras neuronas o se utiliza como salida.
 - La función de activación introduce no linealidad.
 - La salida representa una predicción o una señal intermedia.
 
-## Ejemplo manual de una neurona
+## 3. Ejemplo manual de una neurona
 
 Supongamos que las entradas, los pesos y el sesgo son:
 
@@ -106,11 +106,11 @@ $$
 
 La neurona produce una salida cercana a 0.686.
 
-## Funciones de activación
+## 4. Funciones de activación
 
 Las funciones de activación permiten que la red represente relaciones no lineales.
 
-### Función escalón
+### 4.1 Función escalón
 
 $$
 f(z)=
@@ -122,7 +122,7 @@ $$
 
 Fue utilizada en los primeros perceptrones.
 
-### Función sigmoide
+### 4.2 Función sigmoide
 
 $$
 \sigma(z)=\frac{1}{1+e^{-z}}
@@ -135,7 +135,7 @@ Características:
 - puede interpretarse como probabilidad;
 - puede saturarse para valores grandes.
 
-### Tangente hiperbólica
+### 4.3 Tangente hiperbólica
 
 $$
 \tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}
@@ -143,7 +143,7 @@ $$
 
 Produce valores entre -1 y 1.
 
-### ReLU
+### 4.4 ReLU
 
 $$
 \operatorname{ReLU}(z)=\max(0,z)
@@ -151,7 +151,7 @@ $$
 
 Es una de las activaciones más utilizadas en capas ocultas.
 
-### Softmax
+### 4.5 Softmax
 
 Para clasificación multiclase:
 
@@ -161,7 +161,7 @@ $$
 
 Convierte las salidas en probabilidades que suman 1.
 
-## El perceptrón
+## 5. El perceptrón
 
 El perceptrón es uno de los modelos neuronales más sencillos.
 
@@ -189,7 +189,7 @@ donde:
 
 Un perceptrón simple solo resuelve problemas linealmente separables. El problema XOR es el ejemplo clásico que requiere una capa oculta.
 
-## Estructura de una red multicapa
+## 6. Estructura de una red multicapa
 
 Una red neuronal multicapa suele tener:
 
@@ -217,7 +217,7 @@ Ejemplos:
 - varias neuronas softmax para clasificación multiclase;
 - una neurona lineal para regresión.
 
-## Propagación hacia adelante
+## 7. Propagación hacia adelante
 
 La **propagación hacia adelante** calcula la salida de la red a partir de las entradas.
 
@@ -235,11 +235,11 @@ $$
 
 La red transforma sucesivamente la información hasta producir una predicción.
 
-## Función de pérdida
+## 8. Función de pérdida
 
 La función de pérdida mide qué tan lejos está la predicción del valor real.
 
-### Error cuadrático medio
+### 8.1 Error cuadrático medio
 
 $$
 MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\widehat{y}_i)^2
@@ -247,7 +247,7 @@ $$
 
 Se usa principalmente en regresión.
 
-### Entropía cruzada binaria
+### 8.2 Entropía cruzada binaria
 
 $$
 L=-\frac{1}{n}\sum_{i=1}^{n}
@@ -259,7 +259,7 @@ $$
 
 Se utiliza en clasificación binaria.
 
-### Entropía cruzada categórica
+### 8.3 Entropía cruzada categórica
 
 $$
 L=-\frac{1}{n}\sum_{i=1}^{n}\sum_{k=1}^{K}
@@ -268,7 +268,7 @@ $$
 
 Se utiliza en clasificación multiclase.
 
-## Descenso de gradiente
+## 9. Descenso de gradiente
 
 El entrenamiento busca valores de los pesos que minimicen la pérdida.
 
@@ -295,7 +295,7 @@ donde $\eta$ es la tasa de aprendizaje.
 - divergencia;
 - pérdida inestable.
 
-## Retropropagación
+## 10. Retropropagación
 
 La **retropropagación** calcula cómo contribuye cada peso al error.
 
@@ -310,7 +310,7 @@ El proceso es:
 
 La retropropagación no es un modelo distinto, sino el mecanismo principal para entrenar redes multicapa.
 
-## Implementación manual de una neurona en R
+## 11. Implementación manual de una neurona en R
 
 ```{r}
 sigmoide <- function(z) {
@@ -475,7 +475,7 @@ La versión web del capítulo incluye un laboratorio donde pueden modificarse la
 
 :::
 
-## Perceptrón desde cero en R
+## 12. Perceptrón desde cero en R
 
 ```{r}
 entrenar_perceptron <- function(X, y,
@@ -549,7 +549,7 @@ predecir_perceptron(
 )
 ```
 
-## Ejemplo de XOR
+## 13. Ejemplo de XOR
 
 La compuerta XOR produce:
 
@@ -562,7 +562,7 @@ La compuerta XOR produce:
 
 No puede resolverse mediante una sola frontera lineal. Una capa oculta permite construir regiones más complejas.
 
-## Preparación de los datos
+## 14. Preparación de los datos
 
 Antes de entrenar una red neuronal es recomendable:
 
@@ -574,7 +574,7 @@ Antes de entrenar una red neuronal es recomendable:
 - eliminar identificadores;
 - evitar fuga de información.
 
-## Normalización
+## 15. Normalización
 
 Las redes suelen entrenarse mejor cuando las variables tienen escalas comparables.
 
@@ -619,7 +619,7 @@ x_test <- scale(
 )
 ```
 
-## Clasificación binaria con neuralnet
+## 16. Clasificación binaria con neuralnet
 
 ::: {.callout-note title="Ejecución de los ejemplos con neuralnet"}
 Para que la generación del libro sea estable, los bloques que entrenan la red con `neuralnet` se muestran, pero no se ejecutan automáticamente durante el renderizado. Puedes ejecutarlos en RStudio después de instalar el paquete con `PREPARAR_PAQUETES_RED_NEURONAL.bat`.
@@ -716,7 +716,7 @@ modelo_rna <- neuralnet::neuralnet(
 modelo_rna
 ```
 
-## Predicción con neuralnet
+## 17. Predicción con neuralnet
 
 ```{r}
 #| eval: false
@@ -739,7 +739,7 @@ matriz <- table(
 matriz
 ```
 
-## Métricas binarias
+## 18. Métricas binarias
 
 ```{r}
 #| eval: false
@@ -780,7 +780,7 @@ metricas_binarias(
 )
 ```
 
-## Selección del umbral
+## 19. Selección del umbral
 
 El umbral 0.5 no siempre es el mejor.
 
@@ -1024,7 +1024,7 @@ La versión web permite modificar el número de entradas, neuronas ocultas y sal
 
 :::
 
-## Arquitectura de la red
+## 20. Arquitectura de la red
 
 Una arquitectura se define por:
 
@@ -1046,7 +1046,7 @@ Puede memorizar entrenamiento y sobreajustar.
 
 Una estrategia razonable es comenzar con una red pequeña y aumentar complejidad gradualmente.
 
-## Épocas, lotes y optimizadores
+## 21. Épocas, lotes y optimizadores
 
 ### Época
 
@@ -1077,7 +1077,7 @@ Entre los más conocidos se encuentran:
 - RMSprop;
 - Adam.
 
-## Sobreajuste
+## 22. Sobreajuste
 
 Una red sobreajustada obtiene:
 
@@ -1090,9 +1090,9 @@ Señales:
 - la pérdida de validación comienza a subir;
 - crece la diferencia entre ambas.
 
-## Regularización
+## 23. Regularización
 
-### Regularización L2
+### 23.1 Regularización L2
 
 Agrega una penalización:
 
@@ -1100,21 +1100,21 @@ $$
 L_{total}=L+\lambda\sum_j w_j^2
 $$
 
-### Regularización L1
+### 23.2 Regularización L1
 
 $$
 L_{total}=L+\lambda\sum_j |w_j|
 $$
 
-### Dropout
+### 23.3 Dropout
 
 Desactiva aleatoriamente una proporción de neuronas durante el entrenamiento.
 
-### Early stopping
+### 23.4 Early stopping
 
 Detiene el entrenamiento cuando la validación deja de mejorar.
 
-## Implementación moderna con keras
+## 24. Implementación moderna con keras
 
 El paquete `keras` permite construir redes utilizando una interfaz de alto nivel.
 
@@ -1203,7 +1203,7 @@ modelo_keras |>
   )
 ```
 
-## Curvas de aprendizaje
+## 25. Curvas de aprendizaje
 
 Las curvas de pérdida y exactitud ayudan a diagnosticar el entrenamiento.
 
@@ -1219,7 +1219,7 @@ Debe compararse:
 - desempeño de validación;
 - punto donde comienza el sobreajuste.
 
-## Clasificación multiclase
+## 26. Clasificación multiclase
 
 En un problema con $K$ clases:
 
@@ -1232,7 +1232,7 @@ $$
 \arg\max_k P(y=k\mid\mathbf{x})
 $$
 
-## Codificación de la respuesta
+## 27. Codificación de la respuesta
 
 Para clasificación multiclase pueden emplearse:
 
@@ -1247,7 +1247,7 @@ Ejemplo one-hot:
 | B | 0 | 1 | 0 |
 | C | 0 | 0 | 1 |
 
-## Inicialización de pesos
+## 28. Inicialización de pesos
 
 Todos los pesos no deben comenzar con el mismo valor, porque las neuronas aprenderían exactamente lo mismo.
 
@@ -1257,7 +1257,7 @@ Las inicializaciones modernas buscan:
 - mantener estable la varianza;
 - mejorar el flujo de gradientes.
 
-## Gradientes que desaparecen o explotan
+## 29. Gradientes que desaparecen o explotan
 
 En redes profundas, los gradientes pueden:
 
@@ -1278,7 +1278,7 @@ Soluciones comunes:
 - arquitecturas apropiadas;
 - control de la tasa de aprendizaje.
 
-## Importancia de la reproducibilidad
+## 30. Importancia de la reproducibilidad
 
 Para reproducir resultados:
 
@@ -1294,7 +1294,7 @@ Para reproducir resultados:
 set.seed(2026)
 ```
 
-## Interpretabilidad
+## 31. Interpretabilidad
 
 Las redes neuronales suelen considerarse menos interpretables que:
 
@@ -1313,7 +1313,7 @@ Herramientas posibles:
 
 La interpretación debe acompañarse de validación y conocimiento del dominio.
 
-## Aplicación biomédica
+## 32. Aplicación biomédica
 
 Ejemplo: clasificar pacientes según riesgo de enfermedad.
 
@@ -1339,7 +1339,7 @@ Debe prestarse especial atención a:
 - sesgo de selección;
 - explicabilidad.
 
-## Aplicación ambiental
+## 33. Aplicación ambiental
 
 Ejemplo: clasificar niveles de contaminación.
 
@@ -1360,7 +1360,7 @@ Respuesta:
 
 La red puede capturar relaciones no lineales, pero debe compararse con modelos más simples.
 
-## Comparación con otros algoritmos
+## 34. Comparación con otros algoritmos
 
 | Aspecto | Red neuronal | Regresión logística | Árbol | Random Forest |
 |---|---|---|---|---|
@@ -1371,7 +1371,7 @@ La red puede capturar relaciones no lineales, pero debe compararse con modelos m
 | Datos requeridos | Frecuentemente muchos | Menos | Moderados | Moderados |
 | Costo | Puede ser alto | Bajo | Bajo | Moderado |
 
-## Ventajas
+## 35. Ventajas
 
 - modelan relaciones complejas;
 - representan no linealidades;
@@ -1380,7 +1380,7 @@ La red puede capturar relaciones no lineales, pero debe compararse con modelos m
 - escalan a problemas de gran dimensión;
 - son base de aprendizaje profundo.
 
-## Limitaciones
+## 36. Limitaciones
 
 - requieren preparación cuidadosa;
 - pueden necesitar muchos datos;
@@ -1390,7 +1390,7 @@ La red puede capturar relaciones no lineales, pero debe compararse con modelos m
 - el entrenamiento puede ser costoso;
 - los resultados dependen de arquitectura e inicialización.
 
-## Errores frecuentes
+## 37. Errores frecuentes
 
 1. No normalizar variables.
 2. Usar el conjunto de prueba para ajustar.
@@ -1405,7 +1405,7 @@ La red puede capturar relaciones no lineales, pero debe compararse con modelos m
 11. Dejar identificadores como predictores.
 12. No comparar contra un modelo simple.
 
-## Flujo de trabajo recomendado
+## 38. Flujo de trabajo recomendado
 
 1. Definir el objetivo.
 2. Preparar los datos.
@@ -1420,7 +1420,7 @@ La red puede capturar relaciones no lineales, pero debe compararse con modelos m
 11. Interpretar errores.
 12. Documentar y guardar el modelo.
 
-## Actividad guiada
+## 39. Actividad guiada
 
 Utiliza `iris` para clasificación multiclase.
 
@@ -1437,7 +1437,7 @@ Utiliza `iris` para clasificación multiclase.
 11. Describe si existe sobreajuste.
 12. Compara contra k-NN o Random Forest.
 
-## Ejercicios
+## 40. Ejercicios
 
 ### Ejercicio 1
 
@@ -1479,7 +1479,7 @@ Compara la red con regresión logística.
 
 Describe tres medidas para reducir sobreajuste.
 
-## Preguntas de reflexión
+## 41. Preguntas de reflexión
 
 - ¿Qué función cumple el sesgo?
 - ¿Por qué se necesitan activaciones no lineales?
@@ -1490,7 +1490,7 @@ Describe tres medidas para reducir sobreajuste.
 - ¿Cuándo sería preferible un modelo más simple?
 - ¿Por qué las probabilidades deben interpretarse con cautela?
 
-## Conclusión
+## 42. Conclusión
 
 Las redes neuronales artificiales combinan neuronas simples para aprender relaciones complejas.
 
