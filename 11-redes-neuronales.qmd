@@ -1490,6 +1490,45 @@ Describe tres medidas para reducir sobreajuste.
 - ¿Cuándo sería preferible un modelo más simple?
 - ¿Por qué las probabilidades deben interpretarse con cautela?
 
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<iframe width="100%" height="420"
+src="https://www.youtube.com/embed/gk3bt0h3WUU"
+title="Capítulo 12. Redes neuronales artificiales"
+frameborder="0"
+allowfullscreen></iframe>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/gk3bt0h3WUU>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx) |
+| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 12](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png){fig-alt="Capítulo 12. Redes neuronales artificiales" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.
+
 ## Conclusión
 
 Las redes neuronales artificiales combinan neuronas simples para aprender relaciones complejas.

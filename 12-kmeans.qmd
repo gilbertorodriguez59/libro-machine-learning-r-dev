@@ -297,6 +297,45 @@ En accidentes de tránsito pueden agruparse municipios, horarios o tipos de acci
 6. Contrasta el método del codo y silhouette.
 7. Aplica k-means a datos ambientales o de accidentes.
 
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<iframe width="100%" height="420"
+src="https://www.youtube.com/embed/mZgUlnSxrgA"
+title="Capítulo 13. Agrupamiento con k-means"
+frameborder="0"
+allowfullscreen></iframe>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/mZgUlnSxrgA>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx) |
+| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-13/capitulo-13-kmeans-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 13](recursos/capitulo-13/capitulo-13-kmeans-infografia.png){fig-alt="Capítulo 13. Agrupamiento con k-means" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.
+
 ## Conclusión
 
 k-means descubre grupos mediante distancias y centroides. Su utilidad depende de una preparación adecuada, una selección razonada de $k$ y una interpretación basada en los perfiles de cada cluster.

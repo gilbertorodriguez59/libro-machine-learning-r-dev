@@ -2,6 +2,15 @@ project:
   type: book
   output-dir: docs
   resources:
+  - recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf
+  - recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx
+  - recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png
+  - recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf
+  - recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx
+  - recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png
+  - recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf
+  - recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx
+  - recursos/capitulo-13/capitulo-13-kmeans-infografia.png
   - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf
   - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx
   - recursos/capitulo-08/capitulo-08-random-forest-infografia.png
