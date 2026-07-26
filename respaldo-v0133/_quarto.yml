@@ -2,15 +2,6 @@ project:
   type: book
   output-dir: docs
   resources:
-  - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf
-  - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx
-  - recursos/capitulo-08/capitulo-08-random-forest-infografia.png
-  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf
-  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx
-  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png
-  - recursos/capitulo-10/capitulo-10-svm-presentacion.pdf
-  - recursos/capitulo-10/capitulo-10-svm-presentacion.pptx
-  - recursos/capitulo-10/capitulo-10-svm-infografia.png
   - recursos/capitulo-06/capitulo-06-knn-presentacion.pdf
   - recursos/capitulo-06/capitulo-06-knn-presentacion.pptx
   - recursos/capitulo-06/capitulo-06-knn-infografia.png

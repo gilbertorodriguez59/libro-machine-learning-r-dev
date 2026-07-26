@@ -5,32 +5,44 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.13.3 (desarrollo)
+**Versión:** 0.13.2 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages
 
 
 ::: {.content-visible when-format="html"}
-
-::: {.callout-note appearance="simple" icon="false"}
-
-## Edición interactiva ampliada
-
-### Aprende Machine Learning haciendo
-
-Libro abierto con código en **R**, datos reales, videos, presentaciones,
-infografías, Google Colab y laboratorios que se ejecutan directamente en el
-navegador.
-
-[Comenzar el libro](01-introduccion.qmd){.btn .btn-primary .btn-lg}
-[Curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger .btn-lg}
-[Cuaderno Google Colab](00-cuaderno-google-colab.qmd){.btn .btn-outline-primary .btn-lg}
-
-![Portada del libro](imagenes/portada-libro-carta.png){fig-alt="Portada del libro Aprendizaje y Clasificación Automática con R" width="58%"}
-
-**13 capítulos · R reproducible · Datos abiertos · Videos · Shinylive · PDF**
-
+::: {.hero-libro}
+<div class="hero-grid">
+  <div>
+    <span class="hero-badge">Edición interactiva ampliada</span>
+    <h2>Aprende Machine Learning haciendo</h2>
+    <p>Libro abierto con código en R, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="01-introduccion.html">Comenzar el libro</a>
+      <a class="btn btn-danger btn-lg" href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" target="_blank">Curso en YouTube</a>
+      <a class="btn btn-outline-primary btn-lg" href="Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb">Cuaderno Colab</a>
+    </div>
+  </div>
+  <div class="hero-cover">
+    <img src="imagenes/portada-libro-carta.png" alt="Portada del libro">
+  </div>
+</div>
+<div class="feature-strip">
+  <span>13 capítulos</span><span>R reproducible</span><span>Datos abiertos</span><span>Videos</span><span>Shinylive</span><span>PDF</span>
+</div>
 :::
+:::
+
+::: {.content-visible when-format="pdf"}
+
+**Edición interactiva ampliada**
+
+Este libro integra código en R, datos abiertos reales, videos, presentaciones,
+infografías, Google Colab y laboratorios interactivos disponibles en la
+versión web.
+
+- Curso en YouTube: <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+- Libro web: <https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/>
 
 :::
 
